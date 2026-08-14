@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
 
 <meta charset="UTF-8">
@@ -13,14 +14,7 @@
 
 <title>Angotell</title>
 
-
 <style>
-
-/* =========================================================
-   ANGOTELL
-   APP DE COMUNICAÇÃO
-   FIREBASE + AUTH + FIRESTORE
-   ========================================================= */
 
 :root{
 
@@ -49,7 +43,6 @@
 
 }
 
-
 *{
 
   box-sizing:border-box;
@@ -61,7 +54,6 @@
   -webkit-tap-highlight-color:transparent;
 
 }
-
 
 html,
 body{
@@ -85,7 +77,6 @@ body{
 
 }
 
-
 button,
 input,
 textarea{
@@ -94,17 +85,11 @@ textarea{
 
 }
 
-
 button{
 
   cursor:pointer;
 
 }
-
-
-/* =========================================================
-   FUNDO
-   ========================================================= */
 
 .app{
 
@@ -139,11 +124,6 @@ button{
 
 }
 
-
-/* =========================================================
-   TELAS
-   ========================================================= */
-
 .screen{
 
   position:absolute;
@@ -154,7 +134,6 @@ button{
 
 }
 
-
 .screen.active{
 
   display:block;
@@ -162,9 +141,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    LOGIN
-   ========================================================= */
+================================ */
 
 #authScreen{
 
@@ -175,7 +154,6 @@ button{
   padding:25px;
 
 }
-
 
 .auth-wrapper{
 
@@ -188,7 +166,6 @@ button{
   justify-content:center;
 
 }
-
 
 .auth-box{
 
@@ -220,7 +197,6 @@ button{
     rgba(0,0,0,.45);
 
 }
-
 
 .auth-logo{
 
@@ -257,7 +233,6 @@ button{
 
 }
 
-
 .auth-title{
 
   text-align:center;
@@ -286,7 +261,6 @@ button{
 
 }
 
-
 .auth-description{
 
   text-align:center;
@@ -301,7 +275,6 @@ button{
     9px 10px 22px;
 
 }
-
 
 .auth-tabs{
 
@@ -321,7 +294,6 @@ button{
 
 }
 
-
 .auth-tab{
 
   border:0;
@@ -335,7 +307,6 @@ button{
   color:#817b8d;
 
 }
-
 
 .auth-tab.active{
 
@@ -351,13 +322,11 @@ button{
 
 }
 
-
 .form-group{
 
   margin-bottom:12px;
 
 }
-
 
 .form-group label{
 
@@ -371,7 +340,6 @@ button{
     0 0 6px 4px;
 
 }
-
 
 .input{
 
@@ -396,7 +364,6 @@ button{
 
 }
 
-
 .input:focus{
 
   border-color:
@@ -407,7 +374,6 @@ button{
     rgba(139,92,246,.12);
 
 }
-
 
 .primary-button{
 
@@ -438,13 +404,11 @@ button{
 
 }
 
-
 .primary-button:active{
 
   transform:scale(.98);
 
 }
-
 
 .auth-message{
 
@@ -461,16 +425,15 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    APP PRINCIPAL
-   ========================================================= */
+================================ */
 
 #mainScreen{
 
   z-index:100;
 
 }
-
 
 .topbar{
 
@@ -509,7 +472,6 @@ button{
 
 }
 
-
 .logo-area{
 
   display:flex;
@@ -519,7 +481,6 @@ button{
   gap:10px;
 
 }
-
 
 .logo{
 
@@ -547,7 +508,6 @@ button{
 
 }
 
-
 .logo-name{
 
   font-size:17px;
@@ -555,7 +515,6 @@ button{
   font-weight:800;
 
 }
-
 
 .logo-status{
 
@@ -565,7 +524,6 @@ button{
 
 }
 
-
 .header-actions{
 
   display:flex;
@@ -573,7 +531,6 @@ button{
   gap:4px;
 
 }
-
 
 .header-btn{
 
@@ -592,7 +549,6 @@ button{
 
 }
 
-
 .header-btn:active{
 
   background:
@@ -601,9 +557,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    HOME
-   ========================================================= */
+================================ */
 
 .home{
 
@@ -617,14 +573,12 @@ button{
 
 }
 
-
 .hero{
 
   padding:
     22px 8px 17px;
 
 }
-
 
 .hero-small{
 
@@ -633,7 +587,6 @@ button{
   font-size:11px;
 
 }
-
 
 .hero-title{
 
@@ -663,7 +616,6 @@ button{
 
 }
 
-
 .hero-description{
 
   margin-top:9px;
@@ -677,9 +629,9 @@ button{
 }
 
 
-/* =========================================================
-   PESQUISA GLOBAL
-   ========================================================= */
+/* ===============================
+   PESQUISA
+================================ */
 
 .search-bar{
 
@@ -704,13 +656,11 @@ button{
 
 }
 
-
 .search-icon{
 
   color:#8d8799;
 
 }
-
 
 .search-input{
 
@@ -727,7 +677,6 @@ button{
   font-size:13px;
 
 }
-
 
 .search-results{
 
@@ -754,13 +703,11 @@ button{
 
 }
 
-
 .search-results.show{
 
   display:block;
 
 }
-
 
 .search-user{
 
@@ -777,13 +724,11 @@ button{
 
 }
 
-
 .search-user:last-child{
 
   border-bottom:0;
 
 }
-
 
 .avatar{
 
@@ -812,7 +757,6 @@ button{
 
 }
 
-
 .user-info{
 
   flex:1;
@@ -821,7 +765,6 @@ button{
 
 }
 
-
 .user-name{
 
   font-size:13px;
@@ -829,7 +772,6 @@ button{
   font-weight:700;
 
 }
-
 
 .user-handle{
 
@@ -840,7 +782,6 @@ button{
   margin-top:2px;
 
 }
-
 
 .add-contact{
 
@@ -859,9 +800,9 @@ button{
 }
 
 
-/* =========================================================
-   AÇÕES RÁPIDAS
-   ========================================================= */
+/* ===============================
+   AÇÕES
+================================ */
 
 .quick-actions{
 
@@ -875,7 +816,6 @@ button{
   margin-top:15px;
 
 }
-
 
 .quick{
 
@@ -903,7 +843,6 @@ button{
 
 }
 
-
 .quick-icon{
 
   width:30px;
@@ -917,7 +856,6 @@ button{
 
 }
 
-
 .quick:nth-child(1) .quick-icon{
 
   color:#bd9aff;
@@ -926,7 +864,6 @@ button{
     rgba(139,92,246,.17);
 
 }
-
 
 .quick:nth-child(2) .quick-icon{
 
@@ -937,7 +874,6 @@ button{
 
 }
 
-
 .quick:nth-child(3) .quick-icon{
 
   color:#54ecff;
@@ -946,7 +882,6 @@ button{
     rgba(22,224,255,.13);
 
 }
-
 
 .quick:nth-child(4) .quick-icon{
 
@@ -957,7 +892,6 @@ button{
 
 }
 
-
 .quick span{
 
   color:#aaa4b2;
@@ -967,16 +901,15 @@ button{
 }
 
 
-/* =========================================================
-   LISTA DE CONVERSAS
-   ========================================================= */
+/* ===============================
+   CHAT LIST
+================================ */
 
 .chat-list{
 
   margin-top:18px;
 
 }
-
 
 .section-title{
 
@@ -992,7 +925,6 @@ button{
   letter-spacing:.7px;
 
 }
-
 
 .chat-item{
 
@@ -1012,14 +944,12 @@ button{
 
 }
 
-
 .chat-item:active{
 
   background:
     rgba(255,255,255,.05);
 
 }
-
 
 .chat-content{
 
@@ -1029,7 +959,6 @@ button{
 
 }
 
-
 .chat-row{
 
   display:flex;
@@ -1037,7 +966,6 @@ button{
   justify-content:space-between;
 
 }
-
 
 .chat-name{
 
@@ -1047,7 +975,6 @@ button{
 
 }
 
-
 .chat-time{
 
   color:#696472;
@@ -1055,7 +982,6 @@ button{
   font-size:9px;
 
 }
-
 
 .chat-preview{
 
@@ -1072,7 +998,6 @@ button{
   text-overflow:ellipsis;
 
 }
-
 
 .unread{
 
@@ -1101,9 +1026,9 @@ button{
 }
 
 
-/* =========================================================
-   VAZIO
-   ========================================================= */
+/* ===============================
+   EMPTY
+================================ */
 
 .empty{
 
@@ -1120,7 +1045,6 @@ button{
   padding:20px;
 
 }
-
 
 .empty-symbol{
 
@@ -1146,7 +1070,6 @@ button{
 
 }
 
-
 .empty h2{
 
   margin-top:14px;
@@ -1154,7 +1077,6 @@ button{
   font-size:16px;
 
 }
-
 
 .empty p{
 
@@ -1169,9 +1091,9 @@ button{
 }
 
 
-/* =========================================================
-   NAV INFERIOR
-   ========================================================= */
+/* ===============================
+   NAV
+================================ */
 
 .bottom-nav{
 
@@ -1208,7 +1130,6 @@ button{
 
 }
 
-
 .nav-item{
 
   border:0;
@@ -1231,7 +1152,6 @@ button{
 
 }
 
-
 .nav-item.active{
 
   color:white;
@@ -1245,13 +1165,11 @@ button{
 
 }
 
-
 .nav-item span:first-child{
 
   font-size:17px;
 
 }
-
 
 .nav-item span:last-child{
 
@@ -1260,9 +1178,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    NOVO CHAT
-   ========================================================= */
+================================ */
 
 .new-chat{
 
@@ -1295,9 +1213,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    PERFIL
-   ========================================================= */
+================================ */
 
 .profile-screen{
 
@@ -1319,13 +1237,11 @@ button{
 
 }
 
-
 .profile-screen.open{
 
   display:block;
 
 }
-
 
 .profile-card{
 
@@ -1340,7 +1256,6 @@ button{
     rgba(255,255,255,.035);
 
 }
-
 
 .profile-avatar{
 
@@ -1369,7 +1284,6 @@ button{
 
 }
 
-
 .profile-name{
 
   text-align:center;
@@ -1379,7 +1293,6 @@ button{
   font-weight:800;
 
 }
-
 
 .profile-handle{
 
@@ -1393,7 +1306,6 @@ button{
 
 }
 
-
 .profile-status{
 
   text-align:center;
@@ -1406,7 +1318,6 @@ button{
 
 }
 
-
 .profile-actions{
 
   display:grid;
@@ -1416,7 +1327,6 @@ button{
   margin-top:20px;
 
 }
-
 
 .profile-action{
 
@@ -1435,9 +1345,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    CONVERSA
-   ========================================================= */
+================================ */
 
 .conversation{
 
@@ -1455,13 +1365,11 @@ button{
 
 }
 
-
 .conversation.open{
 
   display:flex;
 
 }
-
 
 .conversation-header{
 
@@ -1489,7 +1397,6 @@ button{
 
 }
 
-
 .back{
 
   width:42px;
@@ -1507,7 +1414,6 @@ button{
 
 }
 
-
 .conversation-person{
 
   flex:1;
@@ -1516,7 +1422,6 @@ button{
 
 }
 
-
 .conversation-name{
 
   font-size:14px;
@@ -1524,7 +1429,6 @@ button{
   font-weight:750;
 
 }
-
 
 .conversation-status{
 
@@ -1536,13 +1440,11 @@ button{
 
 }
 
-
 .conversation-actions{
 
   display:flex;
 
 }
-
 
 .conversation-actions button{
 
@@ -1560,9 +1462,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    MENSAGENS
-   ========================================================= */
+================================ */
 
 .messages{
 
@@ -1573,7 +1475,6 @@ button{
   padding:15px;
 
 }
-
 
 .messages-empty{
 
@@ -1595,7 +1496,6 @@ button{
 
 }
 
-
 .message{
 
   max-width:78%;
@@ -1613,7 +1513,6 @@ button{
 
 }
 
-
 .message.mine{
 
   margin-left:auto;
@@ -1626,7 +1525,6 @@ button{
     );
 
 }
-
 
 .message-meta{
 
@@ -1644,7 +1542,6 @@ button{
 
 }
 
-
 .read{
 
   color:
@@ -1653,9 +1550,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    COMPOSER
-   ========================================================= */
+================================ */
 
 .composer{
 
@@ -1681,7 +1578,6 @@ button{
 
 }
 
-
 .attach{
 
   width:42px;
@@ -1699,7 +1595,6 @@ button{
   font-size:19px;
 
 }
-
 
 .message-box{
 
@@ -1730,14 +1625,12 @@ button{
 
 }
 
-
 .message-box:focus{
 
   border-color:
     var(--purple);
 
 }
-
 
 .send{
 
@@ -1761,9 +1654,9 @@ button{
 }
 
 
-/* =========================================================
-   MODAL NOVO CHAT
-   ========================================================= */
+/* ===============================
+   MODAL
+================================ */
 
 .modal{
 
@@ -1787,13 +1680,11 @@ button{
 
 }
 
-
 .modal.open{
 
   display:flex;
 
 }
-
 
 .modal-card{
 
@@ -1815,7 +1706,6 @@ button{
 
 }
 
-
 .modal-handle{
 
   width:35px;
@@ -1829,7 +1719,6 @@ button{
 
 }
 
-
 .modal-title{
 
   font-size:17px;
@@ -1839,7 +1728,6 @@ button{
   margin-bottom:13px;
 
 }
-
 
 .modal-option{
 
@@ -1861,7 +1749,6 @@ button{
 
 }
 
-
 .modal-close{
 
   width:100%;
@@ -1882,9 +1769,9 @@ button{
 }
 
 
-/* =========================================================
+/* ===============================
    RESPONSIVO
-   ========================================================= */
+================================ */
 
 @media(min-width:700px){
 
@@ -1904,7 +1791,6 @@ button{
 
 }
 
-
 </style>
 
 </head>
@@ -1916,9 +1802,9 @@ button{
 <div class="app">
 
 
-<!-- =======================================================
+<!-- =====================================================
      AUTENTICAÇÃO
-     ======================================================= -->
+===================================================== -->
 
 <section
   id="authScreen"
@@ -1966,8 +1852,6 @@ Criar conta
 </div>
 
 
-<!-- NOME -->
-
 <div
   id="nameField"
   class="form-group"
@@ -1988,8 +1872,6 @@ Nome público
 
 </div>
 
-
-<!-- USERNAME -->
 
 <div
   id="usernameField"
@@ -2012,8 +1894,6 @@ Nome de utilizador
 </div>
 
 
-<!-- EMAIL -->
-
 <div class="form-group">
 
 <label>
@@ -2030,8 +1910,6 @@ E-mail
 
 </div>
 
-
-<!-- PASSWORD -->
 
 <div class="form-group">
 
@@ -2071,17 +1949,15 @@ Entrar no Angotell
 </section>
 
 
-<!-- =======================================================
-     APP
-     ======================================================= -->
+<!-- =====================================================
+     APP PRINCIPAL
+===================================================== -->
 
 <section
   id="mainScreen"
   class="screen"
 >
 
-
-<!-- HEADER -->
 
 <header class="topbar">
 
@@ -2125,11 +2001,8 @@ comunicação de nova geração
 
 </div>
 
-
 </header>
 
-
-<!-- HOME -->
 
 <main class="home">
 
@@ -2153,8 +2026,6 @@ e começa conversas reais.
 </div>
 
 
-<!-- PESQUISA GLOBAL -->
-
 <div class="search-bar">
 
 <span class="search-icon">
@@ -2172,15 +2043,11 @@ e começa conversas reais.
 </div>
 
 
-<!-- RESULTADOS -->
-
 <div
   id="searchResults"
   class="search-results"
 ></div>
 
-
-<!-- AÇÕES -->
 
 <div class="quick-actions">
 
@@ -2252,8 +2119,6 @@ IA
 </div>
 
 
-<!-- LISTA -->
-
 <div class="chat-list">
 
 <div class="section-title">
@@ -2296,8 +2161,6 @@ e disponível quando voltares.
 </main>
 
 
-<!-- BOTÃO -->
-
 <button
   id="newChat"
   class="new-chat"
@@ -2305,8 +2168,6 @@ e disponível quando voltares.
 ＋
 </button>
 
-
-<!-- NAV -->
 
 <nav class="bottom-nav">
 
@@ -2361,9 +2222,9 @@ e disponível quando voltares.
 </section>
 
 
-<!-- =======================================================
+<!-- =====================================================
      PERFIL
-     ======================================================= -->
+===================================================== -->
 
 <section
   id="profileScreen"
@@ -2442,9 +2303,9 @@ Voltar
 </section>
 
 
-<!-- =======================================================
+<!-- =====================================================
      CONVERSA
-     ======================================================= -->
+===================================================== -->
 
 <section
   id="conversation"
@@ -2561,9 +2422,9 @@ Ainda não existem mensagens nesta conversa.
 </section>
 
 
-<!-- =======================================================
+<!-- =====================================================
      MODAL
-     ======================================================= -->
+===================================================== -->
 
 <div
   id="newChatModal"
@@ -2614,16 +2475,12 @@ Cancelar
 </div>
 
 
-<!-- =======================================================
+<!-- =====================================================
      FIREBASE
-     ======================================================= -->
+===================================================== -->
 
 <script type="module">
 
-
-/* =========================================================
-   FIREBASE IMPORTS
-   ========================================================= */
 
 import {
 
@@ -2681,24 +2538,20 @@ import {
 
   serverTimestamp,
 
-  arrayUnion,
-
-  arrayRemove,
-
-  writeBatch
+  arrayUnion
 
 } from
 "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 
-/* =========================================================
-   CONFIGURAÇÃO FIREBASE
-   ========================================================= */
+/* =====================================================
+   FIREBASE CONFIGURAÇÃO CORRIGIDA
+===================================================== */
 
 const firebaseConfig = {
 
   apiKey:
-    "AIzaSyBl_SqID26LfAUYrd9HykCETmNLb7d66m4",
+    "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
 
   authDomain:
     "angotell.firebaseapp.com",
@@ -2718,9 +2571,9 @@ const firebaseConfig = {
 };
 
 
-/* =========================================================
+/* =====================================================
    INICIALIZAÇÃO
-   ========================================================= */
+===================================================== */
 
 const app =
   initializeApp(firebaseConfig);
@@ -2734,9 +2587,9 @@ const db =
   getFirestore(app);
 
 
-/* =========================================================
+/* =====================================================
    ESTADO
-   ========================================================= */
+===================================================== */
 
 let currentUser = null;
 
@@ -2751,9 +2604,9 @@ let unsubscribeChats = null;
 let authMode = "login";
 
 
-/* =========================================================
+/* =====================================================
    ELEMENTOS
-   ========================================================= */
+===================================================== */
 
 const authScreen =
   document.getElementById("authScreen");
@@ -2792,9 +2645,9 @@ const usernameField =
   document.getElementById("usernameField");
 
 
-/* =========================================================
-   TABS LOGIN / REGISTRO
-   ========================================================= */
+/* =====================================================
+   LOGIN
+===================================================== */
 
 document
   .getElementById("loginTab")
@@ -2825,6 +2678,10 @@ document
   };
 
 
+/* =====================================================
+   REGISTRO
+===================================================== */
+
 document
   .getElementById("registerTab")
   .onclick = () => {
@@ -2854,9 +2711,9 @@ document
   };
 
 
-/* =========================================================
+/* =====================================================
    AUTENTICAÇÃO
-   ========================================================= */
+===================================================== */
 
 authButton.onclick =
   async () => {
@@ -2872,6 +2729,24 @@ authButton.onclick =
 
 
     try {
+
+
+      if(!mail){
+
+        throw new Error(
+          "Digite o seu e-mail."
+        );
+
+      }
+
+
+      if(!pass){
+
+        throw new Error(
+          "Digite a sua senha."
+        );
+
+      }
 
 
       if(authMode === "login"){
@@ -2985,14 +2860,24 @@ authButton.onclick =
   };
 
 
-/* =========================================================
-   ERROS
-   ========================================================= */
+/* =====================================================
+   ERROS FIREBASE
+===================================================== */
 
 function traduzFirebaseError(error){
 
   const code =
     error.code || "";
+
+
+  if(code.includes(
+    "auth/api-key-not-valid"
+  )){
+
+    return "A configuração do Firebase contém uma API Key inválida.";
+
+  }
+
 
   if(code.includes(
     "auth/invalid-credential"
@@ -3002,6 +2887,7 @@ function traduzFirebaseError(error){
 
   }
 
+
   if(code.includes(
     "auth/email-already-in-use"
   )){
@@ -3009,6 +2895,7 @@ function traduzFirebaseError(error){
     return "Este e-mail já está registado.";
 
   }
+
 
   if(code.includes(
     "auth/weak-password"
@@ -3018,6 +2905,7 @@ function traduzFirebaseError(error){
 
   }
 
+
   if(code.includes(
     "auth/invalid-email"
   )){
@@ -3026,15 +2914,25 @@ function traduzFirebaseError(error){
 
   }
 
+
+  if(code.includes(
+    "auth/network-request-failed"
+  )){
+
+    return "Erro de ligação à Internet.";
+
+  }
+
+
   return error.message ||
     "Não foi possível concluir a operação.";
 
 }
 
 
-/* =========================================================
+/* =====================================================
    AUTH STATE
-   ========================================================= */
+===================================================== */
 
 onAuthStateChanged(
   auth,
@@ -3081,9 +2979,9 @@ onAuthStateChanged(
 );
 
 
-/* =========================================================
+/* =====================================================
    PERFIL
-   ========================================================= */
+===================================================== */
 
 async function carregarPerfil(){
 
@@ -3129,9 +3027,9 @@ async function carregarPerfil(){
 }
 
 
-/* =========================================================
+/* =====================================================
    PERFIL UI
-   ========================================================= */
+===================================================== */
 
 function atualizarPerfilUI(){
 
@@ -3146,13 +3044,17 @@ function atualizarPerfilUI(){
 
 
   document
-    .getElementById("profileName")
+    .getElementById(
+      "profileName"
+    )
     .textContent =
     name;
 
 
   document
-    .getElementById("profileUsername")
+    .getElementById(
+      "profileUsername"
+    )
     .textContent =
     username
       ? "@" + username
@@ -3160,7 +3062,9 @@ function atualizarPerfilUI(){
 
 
   document
-    .getElementById("profileAvatar")
+    .getElementById(
+      "profileAvatar"
+    )
     .textContent =
     name
       .charAt(0)
@@ -3169,22 +3073,9 @@ function atualizarPerfilUI(){
 }
 
 
-/* =========================================================
+/* =====================================================
    PRESENÇA
-   =========================================================
-
-   Firestore não é o sistema ideal para presença em
-   tempo real de alta precisão.
-
-   Aqui utilizamos heartbeat.
-
-   Se o utilizador atualiza lastSeenAt recentemente,
-   é considerado online.
-
-   Posteriormente podemos migrar a presença para
-   Firebase Realtime Database para presença ainda
-   mais precisa.
-*/
+===================================================== */
 
 function iniciarPresenca(){
 
@@ -3242,9 +3133,9 @@ async function atualizarPresenca(){
 }
 
 
-/* =========================================================
+/* =====================================================
    PESQUISA GLOBAL
-   ========================================================= */
+===================================================== */
 
 const globalSearch =
   document.getElementById(
@@ -3291,7 +3182,8 @@ globalSearch.addEventListener(
 
     searchTimer =
       setTimeout(
-        () => pesquisarUtilizadores(value),
+        () =>
+          pesquisarUtilizadores(value),
         350
       );
 
@@ -3299,9 +3191,9 @@ globalSearch.addEventListener(
 );
 
 
-/* =========================================================
-   PESQUISA UTILIZADORES
-   ========================================================= */
+/* =====================================================
+   PESQUISA DE UTILIZADORES
+===================================================== */
 
 async function pesquisarUtilizadores(
   value
@@ -3316,20 +3208,10 @@ async function pesquisarUtilizadores(
       );
 
 
-    /*
-      Pesquisa por username.
-
-      O Firestore trabalha muito bem
-      com pesquisa por prefixo quando
-      usamos >= e <=.
-    */
-
     const q =
       query(
 
         usersRef,
-
-        orderBy("username"),
 
         where(
           "username",
@@ -3341,6 +3223,10 @@ async function pesquisarUtilizadores(
           "username",
           "<=",
           value + "\uf8ff"
+        ),
+
+        orderBy(
+          "username"
         ),
 
         limit(15)
@@ -3359,17 +3245,25 @@ async function pesquisarUtilizadores(
     if(snap.empty){
 
       searchResults.innerHTML = `
+
         <div class="search-user">
+
           <div class="user-info">
+
             <div class="user-name">
               Nenhum utilizador encontrado
             </div>
+
             <div class="user-handle">
               Tenta outro nome ou username
             </div>
+
           </div>
+
         </div>
+
       `;
+
 
       searchResults.classList.add(
         "show"
@@ -3410,23 +3304,31 @@ async function pesquisarUtilizadores(
         item.innerHTML = `
 
           <div class="avatar">
+
             ${(user.name || "?")
               .charAt(0)
               .toUpperCase()}
+
           </div>
 
           <div class="user-info">
 
             <div class="user-name">
+
               ${escapeHTML(
-                user.name || "Utilizador"
+                user.name ||
+                "Utilizador"
               )}
+
             </div>
 
             <div class="user-handle">
+
               @${escapeHTML(
-                user.username || ""
+                user.username ||
+                ""
               )}
+
             </div>
 
           </div>
@@ -3493,9 +3395,9 @@ async function pesquisarUtilizadores(
 }
 
 
-/* =========================================================
-   ADICIONAR CONTACTO
-   ========================================================= */
+/* =====================================================
+   CONTACTOS
+===================================================== */
 
 async function adicionarContacto(
   uid
@@ -3550,9 +3452,9 @@ async function adicionarContacto(
 }
 
 
-/* =========================================================
-   CONVERSAS
-   ========================================================= */
+/* =====================================================
+   ID DA CONVERSA
+===================================================== */
 
 function gerarChatId(
   uid1,
@@ -3569,9 +3471,9 @@ function gerarChatId(
 }
 
 
-/* =========================================================
+/* =====================================================
    ABRIR CONVERSA
-   ========================================================= */
+===================================================== */
 
 async function abrirConversa(
   otherUser
@@ -3683,9 +3585,9 @@ async function abrirConversa(
 }
 
 
-/* =========================================================
-   CARREGAR MENSAGENS
-   ========================================================= */
+/* =====================================================
+   MENSAGENS
+===================================================== */
 
 function carregarMensagens(
   chatId
@@ -3735,9 +3637,11 @@ function carregarMensagens(
         if(snapshot.empty){
 
           container.innerHTML = `
+
             <div class="messages-empty">
               Ainda não existem mensagens nesta conversa.
             </div>
+
           `;
 
           return;
@@ -3773,8 +3677,9 @@ function carregarMensagens(
 
 
             const time =
-              message.createdAt
-                ?.toDate
+              message.createdAt &&
+              typeof message.createdAt.toDate === "function"
+
                 ? message.createdAt
                     .toDate()
                     .toLocaleTimeString(
@@ -3784,6 +3689,7 @@ function carregarMensagens(
                         minute:"2-digit"
                       }
                     )
+
                 : "";
 
 
@@ -3791,7 +3697,8 @@ function carregarMensagens(
 
               <div>
                 ${escapeHTML(
-                  message.text || ""
+                  message.text ||
+                  ""
                 )}
               </div>
 
@@ -3831,9 +3738,9 @@ function carregarMensagens(
 }
 
 
-/* =========================================================
-   ENVIAR MENSAGEM REAL
-   ========================================================= */
+/* =====================================================
+   ENVIAR MENSAGEM
+===================================================== */
 
 const composer =
   document.getElementById(
@@ -3871,6 +3778,9 @@ composer.addEventListener(
 
     messageBox.value =
       "";
+
+    messageBox.style.height =
+      "43px";
 
 
     try{
@@ -3949,9 +3859,9 @@ composer.addEventListener(
 );
 
 
-/* =========================================================
-   CARREGAR CONVERSAS DO UTILIZADOR
-   ========================================================= */
+/* =====================================================
+   CARREGAR CONVERSAS
+===================================================== */
 
 function carregarConversas(){
 
@@ -4080,9 +3990,11 @@ function carregarConversas(){
           item.innerHTML = `
 
             <div class="avatar">
+
               ${(user.name || "?")
                 .charAt(0)
                 .toUpperCase()}
+
             </div>
 
             <div class="chat-content">
@@ -4090,19 +4002,23 @@ function carregarConversas(){
               <div class="chat-row">
 
                 <div class="chat-name">
+
                   ${escapeHTML(
                     user.name ||
                     "Utilizador"
                   )}
+
                 </div>
 
               </div>
 
               <div class="chat-preview">
+
                 ${escapeHTML(
                   chat.lastMessage ||
                   "Nova conversa"
                 )}
+
               </div>
 
             </div>
@@ -4128,9 +4044,9 @@ function carregarConversas(){
 }
 
 
-/* =========================================================
+/* =====================================================
    FECHAR CONVERSA
-   ========================================================= */
+===================================================== */
 
 document
   .getElementById(
@@ -4160,9 +4076,9 @@ document
   };
 
 
-/* =========================================================
+/* =====================================================
    NOVO CHAT
-   ========================================================= */
+===================================================== */
 
 const modal =
   document.getElementById(
@@ -4214,10 +4130,6 @@ document
   };
 
 
-/* =========================================================
-   GRUPO
-   ========================================================= */
-
 document
   .getElementById(
     "modalGroup"
@@ -4237,9 +4149,9 @@ document
   };
 
 
-/* =========================================================
+/* =====================================================
    PERFIL
-   ========================================================= */
+===================================================== */
 
 document
   .getElementById(
@@ -4274,9 +4186,9 @@ document
   };
 
 
-/* =========================================================
+/* =====================================================
    LOGOUT
-   ========================================================= */
+===================================================== */
 
 document
   .getElementById(
@@ -4330,9 +4242,9 @@ document
   };
 
 
-/* =========================================================
+/* =====================================================
    NAVEGAÇÃO
-   ========================================================= */
+===================================================== */
 
 document
   .querySelectorAll(
@@ -4386,9 +4298,9 @@ document
   );
 
 
-/* =========================================================
+/* =====================================================
    UTILITÁRIO
-   ========================================================= */
+===================================================== */
 
 function escapeHTML(
   text
@@ -4411,9 +4323,9 @@ function escapeHTML(
 }
 
 
-/* =========================================================
+/* =====================================================
    TEXTAREA
-   ========================================================= */
+===================================================== */
 
 messageBox.addEventListener(
   "input",
@@ -4452,27 +4364,55 @@ messageBox.addEventListener(
 );
 
 
-/* =========================================================
-   ATUALIZAÇÃO DE LEITURA
-   =========================================================
+/* =====================================================
+   PESQUISA PELO BOTÃO
+===================================================== */
 
-   A estrutura já suporta:
+document
+  .getElementById(
+    "globalSearchButton"
+  )
+  .onclick =
+  () => {
 
-   read
-   readAt
+    globalSearch.focus();
 
-   Para produção, ao abrir uma conversa,
-   devemos marcar as mensagens recebidas
-   como lidas.
+  };
 
-   Isso pode ser feito em lote com
-   writeBatch quando o sistema de
-   notificações estiver implementado.
-*/
+
+/* =====================================================
+   BOTÃO CONVERSA
+===================================================== */
+
+document
+  .getElementById(
+    "quickConversation"
+  )
+  .onclick =
+  () => {
+
+    globalSearch.focus();
+
+  };
+
+
+/* =====================================================
+   BOTÃO CONTACTOS
+===================================================== */
+
+document
+  .getElementById(
+    "quickContacts"
+  )
+  .onclick =
+  () => {
+
+    globalSearch.focus();
+
+  };
 
 
 </script>
-
 
 </body>
 </html>
