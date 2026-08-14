@@ -1,0 +1,4478 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<meta name="theme-color" content="#08070d">
+
+<title>Angotell</title>
+
+
+<style>
+
+/* =========================================================
+   ANGOTELL
+   APP DE COMUNICAÇÃO
+   FIREBASE + AUTH + FIRESTORE
+   ========================================================= */
+
+:root{
+
+  --bg:#08070d;
+
+  --surface:#11101a;
+  --surface2:#171522;
+
+  --glass:rgba(19,17,29,.86);
+
+  --border:rgba(255,255,255,.08);
+
+  --text:#ffffff;
+  --muted:#918c9e;
+
+  --purple:#8b5cf6;
+  --violet:#a855f7;
+  --pink:#ec4899;
+  --magenta:#ff29d9;
+  --cyan:#16e0ff;
+  --orange:#ff8a3d;
+  --yellow:#ffd166;
+
+  --success:#35e59a;
+  --danger:#ff5577;
+
+}
+
+
+*{
+
+  box-sizing:border-box;
+
+  margin:0;
+
+  padding:0;
+
+  -webkit-tap-highlight-color:transparent;
+
+}
+
+
+html,
+body{
+
+  width:100%;
+  height:100%;
+
+  overflow:hidden;
+
+  background:var(--bg);
+
+  color:var(--text);
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+}
+
+
+button,
+input,
+textarea{
+
+  font-family:inherit;
+
+}
+
+
+button{
+
+  cursor:pointer;
+
+}
+
+
+/* =========================================================
+   FUNDO
+   ========================================================= */
+
+.app{
+
+  position:relative;
+
+  width:100%;
+  height:100dvh;
+
+  overflow:hidden;
+
+  background:
+
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(168,85,247,.14),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 0% 70%,
+      rgba(236,72,153,.10),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 60% 100%,
+      rgba(22,224,255,.07),
+      transparent 35%
+    ),
+
+    #08070d;
+
+}
+
+
+/* =========================================================
+   TELAS
+   ========================================================= */
+
+.screen{
+
+  position:absolute;
+
+  inset:0;
+
+  display:none;
+
+}
+
+
+.screen.active{
+
+  display:block;
+
+}
+
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+#authScreen{
+
+  z-index:500;
+
+  overflow-y:auto;
+
+  padding:25px;
+
+}
+
+
+.auth-wrapper{
+
+  min-height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+.auth-box{
+
+  width:100%;
+
+  max-width:410px;
+
+  padding:25px 21px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:27px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      rgba(20,17,31,.92),
+      rgba(11,9,18,.94)
+    );
+
+  backdrop-filter:
+    blur(25px);
+
+  box-shadow:
+
+    0 25px 80px
+    rgba(0,0,0,.45);
+
+}
+
+
+.auth-logo{
+
+  width:72px;
+  height:72px;
+
+  margin:0 auto 18px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:24px;
+
+  font-size:30px;
+
+  font-weight:900;
+
+  background:
+
+    conic-gradient(
+      from 210deg,
+      var(--purple),
+      var(--pink),
+      var(--orange),
+      var(--cyan),
+      var(--purple)
+    );
+
+  box-shadow:
+
+    0 0 40px
+    rgba(168,85,247,.28);
+
+}
+
+
+.auth-title{
+
+  text-align:center;
+
+  font-size:27px;
+
+  font-weight:850;
+
+  letter-spacing:-.7px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      white,
+      #d5b7ff,
+      #ff91d6,
+      #ffc08e
+    );
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+.auth-description{
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.55;
+
+  margin:
+    9px 10px 22px;
+
+}
+
+
+.auth-tabs{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  padding:4px;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  margin-bottom:18px;
+
+}
+
+
+.auth-tab{
+
+  border:0;
+
+  border-radius:11px;
+
+  padding:10px;
+
+  background:transparent;
+
+  color:#817b8d;
+
+}
+
+
+.auth-tab.active{
+
+  color:white;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.25),
+      rgba(236,72,153,.18)
+    );
+
+}
+
+
+.form-group{
+
+  margin-bottom:12px;
+
+}
+
+
+.form-group label{
+
+  display:block;
+
+  font-size:10px;
+
+  color:#a49dac;
+
+  margin:
+    0 0 6px 4px;
+
+}
+
+
+.input{
+
+  width:100%;
+
+  height:48px;
+
+  border:
+    1px solid var(--border);
+
+  outline:0;
+
+  border-radius:15px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color:white;
+
+  padding:
+    0 14px;
+
+}
+
+
+.input:focus{
+
+  border-color:
+    var(--purple);
+
+  box-shadow:
+    0 0 20px
+    rgba(139,92,246,.12);
+
+}
+
+
+.primary-button{
+
+  width:100%;
+
+  height:49px;
+
+  border:0;
+
+  border-radius:15px;
+
+  color:white;
+
+  font-weight:700;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(236,72,153,.15);
+
+}
+
+
+.primary-button:active{
+
+  transform:scale(.98);
+
+}
+
+
+.auth-message{
+
+  min-height:18px;
+
+  margin-top:12px;
+
+  text-align:center;
+
+  font-size:11px;
+
+  color:var(--danger);
+
+}
+
+
+/* =========================================================
+   APP PRINCIPAL
+   ========================================================= */
+
+#mainScreen{
+
+  z-index:100;
+
+}
+
+
+.topbar{
+
+  position:absolute;
+
+  top:12px;
+  left:12px;
+  right:12px;
+
+  height:58px;
+
+  z-index:20;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:
+    0 8px 0 14px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:20px;
+
+  background:
+    rgba(17,15,27,.80);
+
+  backdrop-filter:
+    blur(24px);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,.30);
+
+}
+
+
+.logo-area{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+.logo{
+
+  width:36px;
+  height:36px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:12px;
+
+  font-weight:900;
+
+  background:
+
+    conic-gradient(
+      from 210deg,
+      var(--purple),
+      var(--pink),
+      var(--orange),
+      var(--cyan),
+      var(--purple)
+    );
+
+}
+
+
+.logo-name{
+
+  font-size:17px;
+
+  font-weight:800;
+
+}
+
+
+.logo-status{
+
+  color:#898394;
+
+  font-size:9px;
+
+}
+
+
+.header-actions{
+
+  display:flex;
+
+  gap:4px;
+
+}
+
+
+.header-btn{
+
+  width:40px;
+  height:40px;
+
+  border:0;
+
+  border-radius:13px;
+
+  background:transparent;
+
+  color:#c5bfce;
+
+  font-size:18px;
+
+}
+
+
+.header-btn:active{
+
+  background:
+    rgba(255,255,255,.07);
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+.home{
+
+  width:100%;
+  height:100%;
+
+  padding:
+    84px 12px 88px;
+
+  overflow-y:auto;
+
+}
+
+
+.hero{
+
+  padding:
+    22px 8px 17px;
+
+}
+
+
+.hero-small{
+
+  color:var(--muted);
+
+  font-size:11px;
+
+}
+
+
+.hero-title{
+
+  margin-top:6px;
+
+  font-size:31px;
+
+  line-height:1.05;
+
+  letter-spacing:-1.3px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      white,
+      #d7b9ff,
+      #ff8ed9,
+      #ffc18c
+    );
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  color:transparent;
+
+}
+
+
+.hero-description{
+
+  margin-top:9px;
+
+  color:#858091;
+
+  font-size:11px;
+
+  line-height:1.55;
+
+}
+
+
+/* =========================================================
+   PESQUISA GLOBAL
+   ========================================================= */
+
+.search-bar{
+
+  height:49px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  padding:
+    0 15px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  background:
+    rgba(255,255,255,.045);
+
+}
+
+
+.search-icon{
+
+  color:#8d8799;
+
+}
+
+
+.search-input{
+
+  width:100%;
+
+  border:0;
+
+  outline:0;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:13px;
+
+}
+
+
+.search-results{
+
+  display:none;
+
+  position:relative;
+
+  z-index:40;
+
+  margin-top:7px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:
+    rgba(18,15,27,.97);
+
+  backdrop-filter:
+    blur(20px);
+
+}
+
+
+.search-results.show{
+
+  display:block;
+
+}
+
+
+.search-user{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+  padding:12px;
+
+  border-bottom:
+    1px solid var(--border);
+
+}
+
+
+.search-user:last-child{
+
+  border-bottom:0;
+
+}
+
+
+.avatar{
+
+  width:42px;
+  height:42px;
+
+  flex:none;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:14px;
+
+  font-size:13px;
+
+  font-weight:800;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink)
+    );
+
+}
+
+
+.user-info{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.user-name{
+
+  font-size:13px;
+
+  font-weight:700;
+
+}
+
+
+.user-handle{
+
+  color:#777180;
+
+  font-size:10px;
+
+  margin-top:2px;
+
+}
+
+
+.add-contact{
+
+  width:36px;
+  height:36px;
+
+  border:0;
+
+  border-radius:12px;
+
+  color:white;
+
+  background:
+    rgba(139,92,246,.20);
+
+}
+
+
+/* =========================================================
+   AÇÕES RÁPIDAS
+   ========================================================= */
+
+.quick-actions{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:8px;
+
+  margin-top:15px;
+
+}
+
+
+.quick{
+
+  min-height:70px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color:white;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:6px;
+
+}
+
+
+.quick-icon{
+
+  width:30px;
+  height:30px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:10px;
+
+}
+
+
+.quick:nth-child(1) .quick-icon{
+
+  color:#bd9aff;
+
+  background:
+    rgba(139,92,246,.17);
+
+}
+
+
+.quick:nth-child(2) .quick-icon{
+
+  color:#ff80bf;
+
+  background:
+    rgba(236,72,153,.16);
+
+}
+
+
+.quick:nth-child(3) .quick-icon{
+
+  color:#54ecff;
+
+  background:
+    rgba(22,224,255,.13);
+
+}
+
+
+.quick:nth-child(4) .quick-icon{
+
+  color:#ffae7c;
+
+  background:
+    rgba(255,138,61,.14);
+
+}
+
+
+.quick span{
+
+  color:#aaa4b2;
+
+  font-size:9px;
+
+}
+
+
+/* =========================================================
+   LISTA DE CONVERSAS
+   ========================================================= */
+
+.chat-list{
+
+  margin-top:18px;
+
+}
+
+
+.section-title{
+
+  color:#777180;
+
+  font-size:10px;
+
+  margin:
+    0 8px 8px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+
+}
+
+
+.chat-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:10px;
+
+  border-radius:16px;
+
+  margin-bottom:3px;
+
+  cursor:pointer;
+
+}
+
+
+.chat-item:active{
+
+  background:
+    rgba(255,255,255,.05);
+
+}
+
+
+.chat-content{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.chat-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+}
+
+
+.chat-name{
+
+  font-size:13px;
+
+  font-weight:700;
+
+}
+
+
+.chat-time{
+
+  color:#696472;
+
+  font-size:9px;
+
+}
+
+
+.chat-preview{
+
+  margin-top:3px;
+
+  color:#777180;
+
+  font-size:10px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
+}
+
+
+.unread{
+
+  min-width:18px;
+  height:18px;
+
+  padding:0 5px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:9px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink)
+    );
+
+  font-size:9px;
+
+}
+
+
+/* =========================================================
+   VAZIO
+   ========================================================= */
+
+.empty{
+
+  min-height:190px;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  text-align:center;
+
+  padding:20px;
+
+}
+
+
+.empty-symbol{
+
+  width:65px;
+  height:65px;
+
+  margin:auto;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:22px;
+
+  font-size:25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.16),
+      rgba(236,72,153,.12)
+    );
+
+}
+
+
+.empty h2{
+
+  margin-top:14px;
+
+  font-size:16px;
+
+}
+
+
+.empty p{
+
+  margin-top:6px;
+
+  color:#777180;
+
+  font-size:10px;
+
+  line-height:1.55;
+
+}
+
+
+/* =========================================================
+   NAV INFERIOR
+   ========================================================= */
+
+.bottom-nav{
+
+  position:absolute;
+
+  left:12px;
+  right:12px;
+  bottom:12px;
+
+  height:64px;
+
+  z-index:30;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  padding:5px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:21px;
+
+  background:
+    rgba(17,15,27,.87);
+
+  backdrop-filter:
+    blur(25px);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.42);
+
+}
+
+
+.nav-item{
+
+  border:0;
+
+  border-radius:16px;
+
+  background:transparent;
+
+  color:#777180;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:3px;
+
+}
+
+
+.nav-item.active{
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139,92,246,.20),
+      rgba(236,72,153,.13)
+    );
+
+}
+
+
+.nav-item span:first-child{
+
+  font-size:17px;
+
+}
+
+
+.nav-item span:last-child{
+
+  font-size:8px;
+
+}
+
+
+/* =========================================================
+   NOVO CHAT
+   ========================================================= */
+
+.new-chat{
+
+  position:absolute;
+
+  right:20px;
+  bottom:91px;
+
+  width:52px;
+  height:52px;
+
+  z-index:35;
+
+  border:0;
+
+  border-radius:18px;
+
+  color:white;
+
+  font-size:23px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
+
+}
+
+
+/* =========================================================
+   PERFIL
+   ========================================================= */
+
+.profile-screen{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:200;
+
+  display:none;
+
+  padding:
+    85px 13px 15px;
+
+  overflow-y:auto;
+
+  background:
+    #09080f;
+
+}
+
+
+.profile-screen.open{
+
+  display:block;
+
+}
+
+
+.profile-card{
+
+  padding:20px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:22px;
+
+  background:
+    rgba(255,255,255,.035);
+
+}
+
+
+.profile-avatar{
+
+  width:82px;
+  height:82px;
+
+  margin:0 auto 14px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:27px;
+
+  font-size:27px;
+
+  font-weight:900;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
+
+}
+
+
+.profile-name{
+
+  text-align:center;
+
+  font-size:20px;
+
+  font-weight:800;
+
+}
+
+
+.profile-handle{
+
+  text-align:center;
+
+  color:#777180;
+
+  font-size:11px;
+
+  margin-top:4px;
+
+}
+
+
+.profile-status{
+
+  text-align:center;
+
+  margin-top:8px;
+
+  color:var(--success);
+
+  font-size:10px;
+
+}
+
+
+.profile-actions{
+
+  display:grid;
+
+  gap:8px;
+
+  margin-top:20px;
+
+}
+
+
+.profile-action{
+
+  height:46px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+
+  color:#d6cfdd;
+
+  background:
+    rgba(255,255,255,.035);
+
+}
+
+
+/* =========================================================
+   CONVERSA
+   ========================================================= */
+
+.conversation{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:150;
+
+  display:none;
+
+  flex-direction:column;
+
+  background:#09080f;
+
+}
+
+
+.conversation.open{
+
+  display:flex;
+
+}
+
+
+.conversation-header{
+
+  height:68px;
+
+  flex:none;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  padding:
+    0 9px;
+
+  border-bottom:
+    1px solid var(--border);
+
+  background:
+    rgba(15,13,23,.93);
+
+  backdrop-filter:
+    blur(20px);
+
+}
+
+
+.back{
+
+  width:42px;
+  height:42px;
+
+  border:0;
+
+  border-radius:13px;
+
+  background:transparent;
+
+  color:white;
+
+  font-size:25px;
+
+}
+
+
+.conversation-person{
+
+  flex:1;
+
+  min-width:0;
+
+}
+
+
+.conversation-name{
+
+  font-size:14px;
+
+  font-weight:750;
+
+}
+
+
+.conversation-status{
+
+  color:#777180;
+
+  font-size:9px;
+
+  margin-top:3px;
+
+}
+
+
+.conversation-actions{
+
+  display:flex;
+
+}
+
+
+.conversation-actions button{
+
+  width:39px;
+  height:39px;
+
+  border:0;
+
+  border-radius:12px;
+
+  background:transparent;
+
+  color:#bcb5c6;
+
+}
+
+
+/* =========================================================
+   MENSAGENS
+   ========================================================= */
+
+.messages{
+
+  flex:1;
+
+  overflow-y:auto;
+
+  padding:15px;
+
+}
+
+
+.messages-empty{
+
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  color:#777180;
+
+  font-size:10px;
+
+  line-height:1.7;
+
+}
+
+
+.message{
+
+  max-width:78%;
+
+  padding:10px 13px;
+
+  margin-bottom:8px;
+
+  border-radius:17px;
+
+  background:
+    #191329;
+
+  font-size:13px;
+
+}
+
+
+.message.mine{
+
+  margin-left:auto;
+
+  background:
+    linear-gradient(
+      135deg,
+      #34204e,
+      #49233f
+    );
+
+}
+
+
+.message-meta{
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:4px;
+
+  margin-top:4px;
+
+  color:#858091;
+
+  font-size:8px;
+
+}
+
+
+.read{
+
+  color:
+    var(--cyan);
+
+}
+
+
+/* =========================================================
+   COMPOSER
+   ========================================================= */
+
+.composer{
+
+  flex:none;
+
+  min-height:68px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:7px;
+
+  padding:
+    8px 10px
+    calc(8px + env(safe-area-inset-bottom));
+
+  background:
+    rgba(10,8,16,.96);
+
+  border-top:
+    1px solid var(--border);
+
+}
+
+
+.attach{
+
+  width:42px;
+  height:42px;
+
+  border:0;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#aaa3b2;
+
+  font-size:19px;
+
+}
+
+
+.message-box{
+
+  flex:1;
+
+  min-width:0;
+
+  min-height:43px;
+
+  max-height:110px;
+
+  resize:none;
+
+  outline:0;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:
+    12px 13px;
+
+  color:white;
+
+  background:
+    rgba(255,255,255,.045);
+
+}
+
+
+.message-box:focus{
+
+  border-color:
+    var(--purple);
+
+}
+
+
+.send{
+
+  width:43px;
+  height:43px;
+
+  border:0;
+
+  border-radius:14px;
+
+  color:white;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple),
+      var(--pink),
+      var(--orange)
+    );
+
+}
+
+
+/* =========================================================
+   MODAL NOVO CHAT
+   ========================================================= */
+
+.modal{
+
+  position:absolute;
+
+  inset:0;
+
+  z-index:400;
+
+  display:none;
+
+  align-items:flex-end;
+
+  justify-content:center;
+
+  background:
+    rgba(0,0,0,.55);
+
+  backdrop-filter:
+    blur(5px);
+
+}
+
+
+.modal.open{
+
+  display:flex;
+
+}
+
+
+.modal-card{
+
+  width:100%;
+
+  max-width:500px;
+
+  padding:
+    18px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    25px 25px 0 0;
+
+  background:
+    #11101a;
+
+}
+
+
+.modal-handle{
+
+  width:35px;
+  height:4px;
+
+  margin:0 auto 16px;
+
+  border-radius:4px;
+
+  background:#403a48;
+
+}
+
+
+.modal-title{
+
+  font-size:17px;
+
+  font-weight:800;
+
+  margin-bottom:13px;
+
+}
+
+
+.modal-option{
+
+  width:100%;
+
+  height:48px;
+
+  margin-bottom:8px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.035);
+
+  color:#ddd6e5;
+
+}
+
+
+.modal-close{
+
+  width:100%;
+
+  height:45px;
+
+  margin-top:4px;
+
+  border:0;
+
+  border-radius:14px;
+
+  color:#ff7aa9;
+
+  background:
+    rgba(236,72,153,.08);
+
+}
+
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media(min-width:700px){
+
+  .app{
+
+    max-width:480px;
+
+    margin:auto;
+
+    border-left:
+      1px solid rgba(255,255,255,.04);
+
+    border-right:
+      1px solid rgba(255,255,255,.04);
+
+  }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<!-- =======================================================
+     AUTENTICAÇÃO
+     ======================================================= -->
+
+<section
+  id="authScreen"
+  class="screen active"
+>
+
+<div class="auth-wrapper">
+
+<div class="auth-box">
+
+
+<div class="auth-logo">
+A
+</div>
+
+
+<h1 class="auth-title">
+Angotell
+</h1>
+
+
+<p class="auth-description">
+Comunicação de nova geração.
+Cria a tua identidade e conecta-te
+com pessoas reais.
+</p>
+
+
+<div class="auth-tabs">
+
+<button
+  id="loginTab"
+  class="auth-tab active"
+>
+Entrar
+</button>
+
+<button
+  id="registerTab"
+  class="auth-tab"
+>
+Criar conta
+</button>
+
+</div>
+
+
+<!-- NOME -->
+
+<div
+  id="nameField"
+  class="form-group"
+  style="display:none"
+>
+
+<label>
+Nome público
+</label>
+
+<input
+  id="registerName"
+  class="input"
+  type="text"
+  placeholder="Como as pessoas te verão"
+  maxlength="40"
+>
+
+</div>
+
+
+<!-- USERNAME -->
+
+<div
+  id="usernameField"
+  class="form-group"
+  style="display:none"
+>
+
+<label>
+Nome de utilizador
+</label>
+
+<input
+  id="registerUsername"
+  class="input"
+  type="text"
+  placeholder="ex: joao123"
+  maxlength="25"
+>
+
+</div>
+
+
+<!-- EMAIL -->
+
+<div class="form-group">
+
+<label>
+E-mail
+</label>
+
+<input
+  id="email"
+  class="input"
+  type="email"
+  autocomplete="email"
+  placeholder="teu@email.com"
+>
+
+</div>
+
+
+<!-- PASSWORD -->
+
+<div class="form-group">
+
+<label>
+Senha
+</label>
+
+<input
+  id="password"
+  class="input"
+  type="password"
+  autocomplete="current-password"
+  placeholder="Mínimo 6 caracteres"
+>
+
+</div>
+
+
+<button
+  id="authButton"
+  class="primary-button"
+>
+Entrar no Angotell
+</button>
+
+
+<div
+  id="authMessage"
+  class="auth-message"
+></div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+     APP
+     ======================================================= -->
+
+<section
+  id="mainScreen"
+  class="screen"
+>
+
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+
+<div class="logo-area">
+
+<div class="logo">
+A
+</div>
+
+<div>
+
+<div class="logo-name">
+Angotell
+</div>
+
+<div class="logo-status">
+comunicação de nova geração
+</div>
+
+</div>
+
+</div>
+
+
+<div class="header-actions">
+
+<button
+  id="globalSearchButton"
+  class="header-btn"
+>
+⌕
+</button>
+
+<button
+  id="profileButton"
+  class="header-btn"
+>
+◎
+</button>
+
+</div>
+
+
+</header>
+
+
+<!-- HOME -->
+
+<main class="home">
+
+
+<div class="hero">
+
+<div class="hero-small">
+O teu espaço
+</div>
+
+<h1 class="hero-title">
+Comunicação<br>
+sem limites.
+</h1>
+
+<p class="hero-description">
+Encontra pessoas, adiciona contactos
+e começa conversas reais.
+</p>
+
+</div>
+
+
+<!-- PESQUISA GLOBAL -->
+
+<div class="search-bar">
+
+<span class="search-icon">
+⌕
+</span>
+
+<input
+  id="globalSearch"
+  class="search-input"
+  type="search"
+  autocomplete="off"
+  placeholder="Pesquisar pessoas ou utilizadores..."
+>
+
+</div>
+
+
+<!-- RESULTADOS -->
+
+<div
+  id="searchResults"
+  class="search-results"
+></div>
+
+
+<!-- AÇÕES -->
+
+<div class="quick-actions">
+
+
+<button
+  id="quickConversation"
+  class="quick"
+>
+
+<div class="quick-icon">
+＋
+</div>
+
+<span>
+Conversa
+</span>
+
+</button>
+
+
+<button
+  id="quickGroup"
+  class="quick"
+>
+
+<div class="quick-icon">
+♧
+</div>
+
+<span>
+Grupo
+</span>
+
+</button>
+
+
+<button
+  id="quickContacts"
+  class="quick"
+>
+
+<div class="quick-icon">
+◎
+</div>
+
+<span>
+Contactos
+</span>
+
+</button>
+
+
+<button
+  id="quickAI"
+  class="quick"
+>
+
+<div class="quick-icon">
+✦
+</div>
+
+<span>
+IA
+</span>
+
+</button>
+
+
+</div>
+
+
+<!-- LISTA -->
+
+<div class="chat-list">
+
+<div class="section-title">
+Conversas
+</div>
+
+<div
+  id="chatList"
+></div>
+
+
+<div
+  id="emptyChats"
+  class="empty"
+>
+
+<div>
+
+<div class="empty-symbol">
+◇
+</div>
+
+<h2>
+Ainda não há conversas
+</h2>
+
+<p>
+Quando iniciares uma conversa,
+ela ficará registada na tua conta
+e disponível quando voltares.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+</main>
+
+
+<!-- BOTÃO -->
+
+<button
+  id="newChat"
+  class="new-chat"
+>
+＋
+</button>
+
+
+<!-- NAV -->
+
+<nav class="bottom-nav">
+
+
+<button
+  class="nav-item active"
+  data-page="chats"
+>
+
+<span>◈</span>
+<span>Conversas</span>
+
+</button>
+
+
+<button
+  class="nav-item"
+  data-page="contacts"
+>
+
+<span>◎</span>
+<span>Contactos</span>
+
+</button>
+
+
+<button
+  class="nav-item"
+  data-page="ai"
+>
+
+<span>✦</span>
+<span>Angotell AI</span>
+
+</button>
+
+
+<button
+  class="nav-item"
+  data-page="profile"
+>
+
+<span>◉</span>
+<span>Perfil</span>
+
+</button>
+
+
+</nav>
+
+
+</section>
+
+
+<!-- =======================================================
+     PERFIL
+     ======================================================= -->
+
+<section
+  id="profileScreen"
+  class="profile-screen"
+>
+
+
+<div class="profile-card">
+
+
+<div
+  id="profileAvatar"
+  class="profile-avatar"
+>
+A
+</div>
+
+
+<div
+  id="profileName"
+  class="profile-name"
+>
+Utilizador
+</div>
+
+
+<div
+  id="profileUsername"
+  class="profile-handle"
+>
+@utilizador
+</div>
+
+
+<div
+  id="profileStatus"
+  class="profile-status"
+>
+● online
+</div>
+
+
+<div class="profile-actions">
+
+
+<button
+  id="editProfile"
+  class="profile-action"
+>
+Editar perfil
+</button>
+
+
+<button
+  id="logoutButton"
+  class="profile-action"
+>
+Sair da conta
+</button>
+
+
+<button
+  id="closeProfile"
+  class="profile-action"
+>
+Voltar
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =======================================================
+     CONVERSA
+     ======================================================= -->
+
+<section
+  id="conversation"
+  class="conversation"
+>
+
+
+<header class="conversation-header">
+
+
+<button
+  id="backButton"
+  class="back"
+>
+‹
+</button>
+
+
+<div class="conversation-person">
+
+
+<div
+  id="conversationName"
+  class="conversation-name"
+>
+Conversa
+</div>
+
+
+<div
+  id="conversationStatus"
+  class="conversation-status"
+>
+</div>
+
+
+</div>
+
+
+<div class="conversation-actions">
+
+<button
+  id="callButton"
+>
+◉
+</button>
+
+<button
+  id="videoButton"
+>
+▣
+</button>
+
+<button
+  id="conversationMenu"
+>
+⋮
+</button>
+
+</div>
+
+
+</header>
+
+
+<div
+  id="messages"
+  class="messages"
+>
+
+<div
+  id="messagesEmpty"
+  class="messages-empty"
+>
+Ainda não existem mensagens nesta conversa.
+</div>
+
+</div>
+
+
+<form
+  id="composer"
+  class="composer"
+>
+
+
+<button
+  type="button"
+  class="attach"
+>
+＋
+</button>
+
+
+<textarea
+  id="messageBox"
+  class="message-box"
+  rows="1"
+  placeholder="Escreve uma mensagem..."
+></textarea>
+
+
+<button
+  type="submit"
+  class="send"
+>
+➤
+</button>
+
+
+</form>
+
+
+</section>
+
+
+<!-- =======================================================
+     MODAL
+     ======================================================= -->
+
+<div
+  id="newChatModal"
+  class="modal"
+>
+
+
+<div class="modal-card">
+
+
+<div class="modal-handle"></div>
+
+
+<div class="modal-title">
+Nova comunicação
+</div>
+
+
+<button
+  id="modalIndividual"
+  class="modal-option"
+>
+👤 Nova conversa individual
+</button>
+
+
+<button
+  id="modalGroup"
+  class="modal-option"
+>
+👥 Criar grupo
+</button>
+
+
+<button
+  id="modalClose"
+  class="modal-close"
+>
+Cancelar
+</button>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- =======================================================
+     FIREBASE
+     ======================================================= -->
+
+<script type="module">
+
+
+/* =========================================================
+   FIREBASE IMPORTS
+   ========================================================= */
+
+import {
+
+  initializeApp
+
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+
+import {
+
+  getAuth,
+
+  createUserWithEmailAndPassword,
+
+  signInWithEmailAndPassword,
+
+  onAuthStateChanged,
+
+  signOut,
+
+  updateProfile
+
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+
+import {
+
+  getFirestore,
+
+  doc,
+
+  setDoc,
+
+  getDoc,
+
+  updateDoc,
+
+  collection,
+
+  addDoc,
+
+  query,
+
+  where,
+
+  orderBy,
+
+  limit,
+
+  getDocs,
+
+  onSnapshot,
+
+  serverTimestamp,
+
+  arrayUnion,
+
+  arrayRemove,
+
+  writeBatch
+
+} from
+"https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+
+/* =========================================================
+   CONFIGURAÇÃO FIREBASE
+   ========================================================= */
+
+const firebaseConfig = {
+
+  apiKey:
+    "AIzaSyBl_SqID26LfAUYrd9HykCETmNLb7d66m4",
+
+  authDomain:
+    "angotell.firebaseapp.com",
+
+  projectId:
+    "angotell",
+
+  storageBucket:
+    "angotell.firebasestorage.app",
+
+  messagingSenderId:
+    "241567716431",
+
+  appId:
+    "1:241567716431:web:ffd859078a6198bc17463a"
+
+};
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+   ========================================================= */
+
+const app =
+  initializeApp(firebaseConfig);
+
+
+const auth =
+  getAuth(app);
+
+
+const db =
+  getFirestore(app);
+
+
+/* =========================================================
+   ESTADO
+   ========================================================= */
+
+let currentUser = null;
+
+let currentProfile = null;
+
+let currentChatId = null;
+
+let unsubscribeMessages = null;
+
+let unsubscribeChats = null;
+
+let authMode = "login";
+
+
+/* =========================================================
+   ELEMENTOS
+   ========================================================= */
+
+const authScreen =
+  document.getElementById("authScreen");
+
+const mainScreen =
+  document.getElementById("mainScreen");
+
+const profileScreen =
+  document.getElementById("profileScreen");
+
+const conversation =
+  document.getElementById("conversation");
+
+const authButton =
+  document.getElementById("authButton");
+
+const authMessage =
+  document.getElementById("authMessage");
+
+const email =
+  document.getElementById("email");
+
+const password =
+  document.getElementById("password");
+
+const registerName =
+  document.getElementById("registerName");
+
+const registerUsername =
+  document.getElementById("registerUsername");
+
+const nameField =
+  document.getElementById("nameField");
+
+const usernameField =
+  document.getElementById("usernameField");
+
+
+/* =========================================================
+   TABS LOGIN / REGISTRO
+   ========================================================= */
+
+document
+  .getElementById("loginTab")
+  .onclick = () => {
+
+    authMode = "login";
+
+    document
+      .getElementById("loginTab")
+      .classList.add("active");
+
+    document
+      .getElementById("registerTab")
+      .classList.remove("active");
+
+    nameField.style.display =
+      "none";
+
+    usernameField.style.display =
+      "none";
+
+    authButton.textContent =
+      "Entrar no Angotell";
+
+    authMessage.textContent =
+      "";
+
+  };
+
+
+document
+  .getElementById("registerTab")
+  .onclick = () => {
+
+    authMode = "register";
+
+    document
+      .getElementById("registerTab")
+      .classList.add("active");
+
+    document
+      .getElementById("loginTab")
+      .classList.remove("active");
+
+    nameField.style.display =
+      "block";
+
+    usernameField.style.display =
+      "block";
+
+    authButton.textContent =
+      "Criar conta Angotell";
+
+    authMessage.textContent =
+      "";
+
+  };
+
+
+/* =========================================================
+   AUTENTICAÇÃO
+   ========================================================= */
+
+authButton.onclick =
+  async () => {
+
+    authMessage.textContent =
+      "";
+
+    const mail =
+      email.value.trim();
+
+    const pass =
+      password.value;
+
+
+    try {
+
+
+      if(authMode === "login"){
+
+        await signInWithEmailAndPassword(
+          auth,
+          mail,
+          pass
+        );
+
+        return;
+
+      }
+
+
+      const name =
+        registerName.value.trim();
+
+      const username =
+        registerUsername.value
+          .trim()
+          .toLowerCase();
+
+
+      if(!name){
+
+        throw new Error(
+          "Digite o seu nome."
+        );
+
+      }
+
+
+      if(!/^[a-z0-9._-]{3,25}$/.test(username)){
+
+        throw new Error(
+          "O nome de utilizador deve ter 3 a 25 caracteres."
+        );
+
+      }
+
+
+      const credential =
+        await createUserWithEmailAndPassword(
+          auth,
+          mail,
+          pass
+        );
+
+
+      const user =
+        credential.user;
+
+
+      await updateProfile(
+        user,
+        {
+          displayName:name
+        }
+      );
+
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          user.uid
+        ),
+        {
+
+          uid:user.uid,
+
+          name:name,
+
+          username:username,
+
+          email:mail,
+
+          photoURL:"",
+
+          bio:"",
+
+          online:true,
+
+          lastSeenAt:
+            serverTimestamp(),
+
+          createdAt:
+            serverTimestamp(),
+
+          updatedAt:
+            serverTimestamp(),
+
+          contacts:[]
+
+        }
+      );
+
+
+    }
+
+    catch(error){
+
+      console.error(error);
+
+      authMessage.textContent =
+        traduzFirebaseError(error);
+
+    }
+
+  };
+
+
+/* =========================================================
+   ERROS
+   ========================================================= */
+
+function traduzFirebaseError(error){
+
+  const code =
+    error.code || "";
+
+  if(code.includes(
+    "auth/invalid-credential"
+  )){
+
+    return "E-mail ou senha incorretos.";
+
+  }
+
+  if(code.includes(
+    "auth/email-already-in-use"
+  )){
+
+    return "Este e-mail já está registado.";
+
+  }
+
+  if(code.includes(
+    "auth/weak-password"
+  )){
+
+    return "A senha precisa de pelo menos 6 caracteres.";
+
+  }
+
+  if(code.includes(
+    "auth/invalid-email"
+  )){
+
+    return "E-mail inválido.";
+
+  }
+
+  return error.message ||
+    "Não foi possível concluir a operação.";
+
+}
+
+
+/* =========================================================
+   AUTH STATE
+   ========================================================= */
+
+onAuthStateChanged(
+  auth,
+  async user => {
+
+    if(!user){
+
+      currentUser = null;
+
+      authScreen.classList.add(
+        "active"
+      );
+
+      mainScreen.classList.remove(
+        "active"
+      );
+
+      return;
+
+    }
+
+
+    currentUser =
+      user;
+
+
+    await carregarPerfil();
+
+
+    authScreen.classList.remove(
+      "active"
+    );
+
+    mainScreen.classList.add(
+      "active"
+    );
+
+
+    iniciarPresenca();
+
+    carregarConversas();
+
+  }
+);
+
+
+/* =========================================================
+   PERFIL
+   ========================================================= */
+
+async function carregarPerfil(){
+
+  const ref =
+    doc(
+      db,
+      "users",
+      currentUser.uid
+    );
+
+
+  const snap =
+    await getDoc(ref);
+
+
+  if(snap.exists()){
+
+    currentProfile =
+      snap.data();
+
+    atualizarPerfilUI();
+
+    return;
+
+  }
+
+
+  currentProfile = {
+
+    uid:currentUser.uid,
+
+    name:
+      currentUser.displayName ||
+      "Utilizador",
+
+    username:"",
+
+    email:
+      currentUser.email || ""
+
+  };
+
+}
+
+
+/* =========================================================
+   PERFIL UI
+   ========================================================= */
+
+function atualizarPerfilUI(){
+
+  const name =
+    currentProfile.name ||
+    "Utilizador";
+
+
+  const username =
+    currentProfile.username ||
+    "";
+
+
+  document
+    .getElementById("profileName")
+    .textContent =
+    name;
+
+
+  document
+    .getElementById("profileUsername")
+    .textContent =
+    username
+      ? "@" + username
+      : "";
+
+
+  document
+    .getElementById("profileAvatar")
+    .textContent =
+    name
+      .charAt(0)
+      .toUpperCase();
+
+}
+
+
+/* =========================================================
+   PRESENÇA
+   =========================================================
+
+   Firestore não é o sistema ideal para presença em
+   tempo real de alta precisão.
+
+   Aqui utilizamos heartbeat.
+
+   Se o utilizador atualiza lastSeenAt recentemente,
+   é considerado online.
+
+   Posteriormente podemos migrar a presença para
+   Firebase Realtime Database para presença ainda
+   mais precisa.
+*/
+
+function iniciarPresenca(){
+
+  atualizarPresenca();
+
+  setInterval(
+    atualizarPresenca,
+    30000
+  );
+
+}
+
+
+async function atualizarPresenca(){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+
+      {
+
+        online:true,
+
+        lastSeenAt:
+          serverTimestamp()
+
+      }
+
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Presença:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PESQUISA GLOBAL
+   ========================================================= */
+
+const globalSearch =
+  document.getElementById(
+    "globalSearch"
+  );
+
+const searchResults =
+  document.getElementById(
+    "searchResults"
+  );
+
+
+let searchTimer;
+
+
+globalSearch.addEventListener(
+  "input",
+  () => {
+
+    clearTimeout(
+      searchTimer
+    );
+
+
+    const value =
+      globalSearch.value
+        .trim()
+        .toLowerCase();
+
+
+    if(value.length < 2){
+
+      searchResults.classList.remove(
+        "show"
+      );
+
+      searchResults.innerHTML =
+        "";
+
+      return;
+
+    }
+
+
+    searchTimer =
+      setTimeout(
+        () => pesquisarUtilizadores(value),
+        350
+      );
+
+  }
+);
+
+
+/* =========================================================
+   PESQUISA UTILIZADORES
+   ========================================================= */
+
+async function pesquisarUtilizadores(
+  value
+){
+
+  try{
+
+    const usersRef =
+      collection(
+        db,
+        "users"
+      );
+
+
+    /*
+      Pesquisa por username.
+
+      O Firestore trabalha muito bem
+      com pesquisa por prefixo quando
+      usamos >= e <=.
+    */
+
+    const q =
+      query(
+
+        usersRef,
+
+        orderBy("username"),
+
+        where(
+          "username",
+          ">=",
+          value
+        ),
+
+        where(
+          "username",
+          "<=",
+          value + "\uf8ff"
+        ),
+
+        limit(15)
+
+      );
+
+
+    const snap =
+      await getDocs(q);
+
+
+    searchResults.innerHTML =
+      "";
+
+
+    if(snap.empty){
+
+      searchResults.innerHTML = `
+        <div class="search-user">
+          <div class="user-info">
+            <div class="user-name">
+              Nenhum utilizador encontrado
+            </div>
+            <div class="user-handle">
+              Tenta outro nome ou username
+            </div>
+          </div>
+        </div>
+      `;
+
+      searchResults.classList.add(
+        "show"
+      );
+
+      return;
+
+    }
+
+
+    snap.forEach(
+      docSnap => {
+
+        const user =
+          docSnap.data();
+
+
+        if(
+          currentUser &&
+          user.uid === currentUser.uid
+        ){
+
+          return;
+
+        }
+
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "search-user";
+
+
+        item.innerHTML = `
+
+          <div class="avatar">
+            ${(user.name || "?")
+              .charAt(0)
+              .toUpperCase()}
+          </div>
+
+          <div class="user-info">
+
+            <div class="user-name">
+              ${escapeHTML(
+                user.name || "Utilizador"
+              )}
+            </div>
+
+            <div class="user-handle">
+              @${escapeHTML(
+                user.username || ""
+              )}
+            </div>
+
+          </div>
+
+          <button
+            class="add-contact"
+            data-user="${user.uid}"
+          >
+            +
+          </button>
+
+        `;
+
+
+        item
+          .querySelector(".user-info")
+          .onclick =
+          () => abrirConversa(user);
+
+
+        item
+          .querySelector(".avatar")
+          .onclick =
+          () => abrirConversa(user);
+
+
+        item
+          .querySelector(".add-contact")
+          .onclick =
+          event => {
+
+            event.stopPropagation();
+
+            adicionarContacto(
+              user.uid
+            );
+
+          };
+
+
+        searchResults.appendChild(
+          item
+        );
+
+      }
+    );
+
+
+    searchResults.classList.add(
+      "show"
+    );
+
+  }
+
+  catch(error){
+
+    console.error(
+      "Pesquisa:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ADICIONAR CONTACTO
+   ========================================================= */
+
+async function adicionarContacto(
+  uid
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  try{
+
+    await updateDoc(
+
+      doc(
+        db,
+        "users",
+        currentUser.uid
+      ),
+
+      {
+
+        contacts:
+          arrayUnion(uid),
+
+        updatedAt:
+          serverTimestamp()
+
+      }
+
+    );
+
+
+    alert(
+      "Contacto adicionado."
+    );
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "Não foi possível adicionar o contacto."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   CONVERSAS
+   ========================================================= */
+
+function gerarChatId(
+  uid1,
+  uid2
+){
+
+  return [
+    uid1,
+    uid2
+  ]
+    .sort()
+    .join("_");
+
+}
+
+
+/* =========================================================
+   ABRIR CONVERSA
+   ========================================================= */
+
+async function abrirConversa(
+  otherUser
+){
+
+  if(!currentUser){
+
+    return;
+
+  }
+
+
+  searchResults.classList.remove(
+    "show"
+  );
+
+
+  globalSearch.value =
+    "";
+
+
+  const chatId =
+    gerarChatId(
+      currentUser.uid,
+      otherUser.uid
+    );
+
+
+  currentChatId =
+    chatId;
+
+
+  const chatRef =
+    doc(
+      db,
+      "chats",
+      chatId
+    );
+
+
+  const chatSnap =
+    await getDoc(chatRef);
+
+
+  if(!chatSnap.exists()){
+
+    await setDoc(
+      chatRef,
+      {
+
+        chatId,
+
+        type:"individual",
+
+        members:[
+          currentUser.uid,
+          otherUser.uid
+        ],
+
+        createdAt:
+          serverTimestamp(),
+
+        updatedAt:
+          serverTimestamp(),
+
+        lastMessage:"",
+
+        lastMessageAt:
+          serverTimestamp(),
+
+        lastSenderId:""
+
+      }
+    );
+
+  }
+
+
+  document
+    .getElementById(
+      "conversationName"
+    )
+    .textContent =
+    otherUser.name ||
+    "Utilizador";
+
+
+  document
+    .getElementById(
+      "conversationStatus"
+    )
+    .textContent =
+    "@" +
+    (
+      otherUser.username ||
+      ""
+    );
+
+
+  conversation.classList.add(
+    "open"
+  );
+
+
+  carregarMensagens(
+    chatId
+  );
+
+}
+
+
+/* =========================================================
+   CARREGAR MENSAGENS
+   ========================================================= */
+
+function carregarMensagens(
+  chatId
+){
+
+  if(unsubscribeMessages){
+
+    unsubscribeMessages();
+
+  }
+
+
+  const messagesRef =
+    collection(
+      db,
+      "chats",
+      chatId,
+      "messages"
+    );
+
+
+  const q =
+    query(
+      messagesRef,
+      orderBy(
+        "createdAt",
+        "asc"
+      )
+    );
+
+
+  unsubscribeMessages =
+    onSnapshot(
+      q,
+      snapshot => {
+
+        const container =
+          document.getElementById(
+            "messages"
+          );
+
+
+        container.innerHTML =
+          "";
+
+
+        if(snapshot.empty){
+
+          container.innerHTML = `
+            <div class="messages-empty">
+              Ainda não existem mensagens nesta conversa.
+            </div>
+          `;
+
+          return;
+
+        }
+
+
+        snapshot.forEach(
+          messageDoc => {
+
+            const message =
+              messageDoc.data();
+
+
+            const div =
+              document.createElement(
+                "div"
+              );
+
+
+            const mine =
+              message.senderId ===
+              currentUser.uid;
+
+
+            div.className =
+              "message" +
+              (
+                mine
+                  ? " mine"
+                  : ""
+              );
+
+
+            const time =
+              message.createdAt
+                ?.toDate
+                ? message.createdAt
+                    .toDate()
+                    .toLocaleTimeString(
+                      "pt-AO",
+                      {
+                        hour:"2-digit",
+                        minute:"2-digit"
+                      }
+                    )
+                : "";
+
+
+            div.innerHTML = `
+
+              <div>
+                ${escapeHTML(
+                  message.text || ""
+                )}
+              </div>
+
+              <div class="message-meta">
+
+                ${time}
+
+                ${
+                  mine
+                    ? (
+                      message.read
+                        ? `<span class="read">✓✓</span>`
+                        : "✓"
+                    )
+                    : ""
+                }
+
+              </div>
+
+            `;
+
+
+            container.appendChild(
+              div
+            );
+
+          }
+        );
+
+
+        container.scrollTop =
+          container.scrollHeight;
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   ENVIAR MENSAGEM REAL
+   ========================================================= */
+
+const composer =
+  document.getElementById(
+    "composer"
+  );
+
+
+const messageBox =
+  document.getElementById(
+    "messageBox"
+  );
+
+
+composer.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+
+    const text =
+      messageBox.value.trim();
+
+
+    if(
+      !text ||
+      !currentChatId ||
+      !currentUser
+    ){
+
+      return;
+
+    }
+
+
+    messageBox.value =
+      "";
+
+
+    try{
+
+      const messagesRef =
+        collection(
+          db,
+          "chats",
+          currentChatId,
+          "messages"
+        );
+
+
+      await addDoc(
+        messagesRef,
+        {
+
+          senderId:
+            currentUser.uid,
+
+          text:text,
+
+          createdAt:
+            serverTimestamp(),
+
+          read:false,
+
+          readAt:null
+
+        }
+      );
+
+
+      await updateDoc(
+
+        doc(
+          db,
+          "chats",
+          currentChatId
+        ),
+
+        {
+
+          lastMessage:
+            text,
+
+          lastSenderId:
+            currentUser.uid,
+
+          lastMessageAt:
+            serverTimestamp(),
+
+          updatedAt:
+            serverTimestamp()
+
+        }
+
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        "Envio:",
+        error
+      );
+
+      alert(
+        "Não foi possível enviar a mensagem."
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   CARREGAR CONVERSAS DO UTILIZADOR
+   ========================================================= */
+
+function carregarConversas(){
+
+  if(unsubscribeChats){
+
+    unsubscribeChats();
+
+  }
+
+
+  const chatsRef =
+    collection(
+      db,
+      "chats"
+    );
+
+
+  const q =
+    query(
+
+      chatsRef,
+
+      where(
+        "members",
+        "array-contains",
+        currentUser.uid
+      ),
+
+      orderBy(
+        "updatedAt",
+        "desc"
+      )
+
+    );
+
+
+  unsubscribeChats =
+    onSnapshot(
+      q,
+      async snapshot => {
+
+        const list =
+          document.getElementById(
+            "chatList"
+          );
+
+
+        const empty =
+          document.getElementById(
+            "emptyChats"
+          );
+
+
+        list.innerHTML =
+          "";
+
+
+        if(snapshot.empty){
+
+          empty.style.display =
+            "flex";
+
+          return;
+
+        }
+
+
+        empty.style.display =
+          "none";
+
+
+        for(
+          const chatDoc
+          of snapshot.docs
+        ){
+
+          const chat =
+            chatDoc.data();
+
+
+          const otherId =
+            chat.members.find(
+              id =>
+                id !== currentUser.uid
+            );
+
+
+          if(!otherId){
+
+            continue;
+
+          }
+
+
+          const userSnap =
+            await getDoc(
+              doc(
+                db,
+                "users",
+                otherId
+              )
+            );
+
+
+          if(!userSnap.exists()){
+
+            continue;
+
+          }
+
+
+          const user =
+            userSnap.data();
+
+
+          const item =
+            document.createElement(
+              "div"
+            );
+
+
+          item.className =
+            "chat-item";
+
+
+          item.innerHTML = `
+
+            <div class="avatar">
+              ${(user.name || "?")
+                .charAt(0)
+                .toUpperCase()}
+            </div>
+
+            <div class="chat-content">
+
+              <div class="chat-row">
+
+                <div class="chat-name">
+                  ${escapeHTML(
+                    user.name ||
+                    "Utilizador"
+                  )}
+                </div>
+
+              </div>
+
+              <div class="chat-preview">
+                ${escapeHTML(
+                  chat.lastMessage ||
+                  "Nova conversa"
+                )}
+              </div>
+
+            </div>
+
+          `;
+
+
+          item.onclick =
+            () => abrirConversa(
+              user
+            );
+
+
+          list.appendChild(
+            item
+          );
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   FECHAR CONVERSA
+   ========================================================= */
+
+document
+  .getElementById(
+    "backButton"
+  )
+  .onclick =
+  () => {
+
+    conversation.classList.remove(
+      "open"
+    );
+
+
+    if(unsubscribeMessages){
+
+      unsubscribeMessages();
+
+      unsubscribeMessages =
+        null;
+
+    }
+
+
+    currentChatId =
+      null;
+
+  };
+
+
+/* =========================================================
+   NOVO CHAT
+   ========================================================= */
+
+const modal =
+  document.getElementById(
+    "newChatModal"
+  );
+
+
+document
+  .getElementById(
+    "newChat"
+  )
+  .onclick =
+  () => {
+
+    modal.classList.add(
+      "open"
+    );
+
+  };
+
+
+document
+  .getElementById(
+    "modalClose"
+  )
+  .onclick =
+  () => {
+
+    modal.classList.remove(
+      "open"
+    );
+
+  };
+
+
+document
+  .getElementById(
+    "modalIndividual"
+  )
+  .onclick =
+  () => {
+
+    modal.classList.remove(
+      "open"
+    );
+
+    globalSearch.focus();
+
+  };
+
+
+/* =========================================================
+   GRUPO
+   ========================================================= */
+
+document
+  .getElementById(
+    "modalGroup"
+  )
+  .onclick =
+  () => {
+
+    modal.classList.remove(
+      "open"
+    );
+
+
+    alert(
+      "A criação de grupos será ligada ao sistema de grupos do Firebase."
+    );
+
+  };
+
+
+/* =========================================================
+   PERFIL
+   ========================================================= */
+
+document
+  .getElementById(
+    "profileButton"
+  )
+  .onclick =
+  abrirPerfil;
+
+
+function abrirPerfil(){
+
+  atualizarPerfilUI();
+
+  profileScreen.classList.add(
+    "open"
+  );
+
+}
+
+
+document
+  .getElementById(
+    "closeProfile"
+  )
+  .onclick =
+  () => {
+
+    profileScreen.classList.remove(
+      "open"
+    );
+
+  };
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+document
+  .getElementById(
+    "logoutButton"
+  )
+  .onclick =
+  async () => {
+
+    try{
+
+      if(currentUser){
+
+        await updateDoc(
+
+          doc(
+            db,
+            "users",
+            currentUser.uid
+          ),
+
+          {
+
+            online:false,
+
+            lastSeenAt:
+              serverTimestamp()
+
+          }
+
+        );
+
+      }
+
+
+      await signOut(auth);
+
+      profileScreen.classList.remove(
+        "open"
+      );
+
+    }
+
+    catch(error){
+
+      console.error(
+        error
+      );
+
+    }
+
+  };
+
+
+/* =========================================================
+   NAVEGAÇÃO
+   ========================================================= */
+
+document
+  .querySelectorAll(
+    ".nav-item"
+  )
+  .forEach(
+    button => {
+
+      button.onclick =
+        () => {
+
+          const page =
+            button.dataset.page;
+
+
+          document
+            .querySelectorAll(
+              ".nav-item"
+            )
+            .forEach(
+              b =>
+                b.classList.remove(
+                  "active"
+                )
+            );
+
+
+          button.classList.add(
+            "active"
+          );
+
+
+          if(page === "profile"){
+
+            abrirPerfil();
+
+          }
+
+
+          if(page === "chats"){
+
+            profileScreen.classList.remove(
+              "open"
+            );
+
+          }
+
+        };
+
+    }
+  );
+
+
+/* =========================================================
+   UTILITÁRIO
+   ========================================================= */
+
+function escapeHTML(
+  text
+){
+
+  return String(text)
+    .replace(
+      /[&<>"']/g,
+      char => ({
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[char])
+    );
+
+}
+
+
+/* =========================================================
+   TEXTAREA
+   ========================================================= */
+
+messageBox.addEventListener(
+  "input",
+  function(){
+
+    this.style.height =
+      "auto";
+
+
+    this.style.height =
+      Math.min(
+        this.scrollHeight,
+        110
+      ) + "px";
+
+  }
+);
+
+
+messageBox.addEventListener(
+  "keydown",
+  event => {
+
+    if(
+      event.key === "Enter" &&
+      !event.shiftKey
+    ){
+
+      event.preventDefault();
+
+      composer.requestSubmit();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ATUALIZAÇÃO DE LEITURA
+   =========================================================
+
+   A estrutura já suporta:
+
+   read
+   readAt
+
+   Para produção, ao abrir uma conversa,
+   devemos marcar as mensagens recebidas
+   como lidas.
+
+   Isso pode ser feito em lote com
+   writeBatch quando o sistema de
+   notificações estiver implementado.
+*/
+
+
+</script>
+
+
+</body>
+</html>
