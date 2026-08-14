@@ -1,4416 +1,3495 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
->
-
-<meta name="theme-color" content="#08070d">
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 
 <title>Angotell</title>
 
 <style>
-
 :root{
-
-  --bg:#08070d;
-
-  --surface:#11101a;
-  --surface2:#171522;
-
-  --glass:rgba(19,17,29,.86);
-
-  --border:rgba(255,255,255,.08);
-
-  --text:#ffffff;
-  --muted:#918c9e;
-
-  --purple:#8b5cf6;
-  --violet:#a855f7;
-  --pink:#ec4899;
-  --magenta:#ff29d9;
-  --cyan:#16e0ff;
-  --orange:#ff8a3d;
-  --yellow:#ffd166;
-
-  --success:#35e59a;
-  --danger:#ff5577;
-
+    --bg:#090811;
+    --panel:#11101a;
+    --panel2:#171522;
+    --panel3:#1d1928;
+    --text:#f7f3ff;
+    --muted:#9e98aa;
+    --border:rgba(255,255,255,.08);
+    --pink:#e84d9b;
+    --purple:#8c4de8;
+    --orange:#ff7043;
+    --cyan:#25c8ee;
+    --green:#40dc9a;
+    --danger:#ff5474;
+    --shadow:0 15px 50px rgba(0,0,0,.38);
 }
 
 *{
-
-  box-sizing:border-box;
-
-  margin:0;
-
-  padding:0;
-
-  -webkit-tap-highlight-color:transparent;
-
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
-
-  width:100%;
-  height:100%;
-
-  overflow:hidden;
-
-  background:var(--bg);
-
-  color:var(--text);
-
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
+html,body{
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow:hidden;
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 }
 
-button,
-input,
-textarea{
-
-  font-family:inherit;
-
+button,input,textarea{
+    font:inherit;
 }
 
 button{
-
-  cursor:pointer;
-
+    border:0;
+    cursor:pointer;
 }
 
-.app{
-
-  position:relative;
-
-  width:100%;
-  height:100dvh;
-
-  overflow:hidden;
-
-  background:
-
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(168,85,247,.14),
-      transparent 32%
-    ),
-
-    radial-gradient(
-      circle at 0% 70%,
-      rgba(236,72,153,.10),
-      transparent 35%
-    ),
-
-    radial-gradient(
-      circle at 60% 100%,
-      rgba(22,224,255,.07),
-      transparent 35%
-    ),
-
-    #08070d;
-
+.hidden{
+    display:none!important;
 }
 
-.screen{
+/* =========================
+   APP
+========================= */
 
-  position:absolute;
-
-  inset:0;
-
-  display:none;
-
+#app{
+    width:100%;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 5%,rgba(140,77,232,.12),transparent 28%),
+        radial-gradient(circle at 90% 80%,rgba(232,77,155,.10),transparent 30%),
+        var(--bg);
 }
 
-.screen.active{
+/* =========================
+   AUTH
+========================= */
 
-  display:block;
-
+.auth-screen{
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:
+        max(20px,env(safe-area-inset-top))
+        16px
+        max(20px,env(safe-area-inset-bottom));
 }
 
-
-/* ===============================
-   LOGIN
-================================ */
-
-#authScreen{
-
-  z-index:500;
-
-  overflow-y:auto;
-
-  padding:25px;
-
+.auth-card{
+    width:min(100%,610px);
+    background:rgba(17,16,26,.92);
+    border:1px solid var(--border);
+    border-radius:34px;
+    padding:30px 24px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(25px);
 }
 
-.auth-wrapper{
-
-  min-height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-}
-
-.auth-box{
-
-  width:100%;
-
-  max-width:410px;
-
-  padding:25px 21px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:27px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      rgba(20,17,31,.92),
-      rgba(11,9,18,.94)
-    );
-
-  backdrop-filter:
-    blur(25px);
-
-  box-shadow:
-
-    0 25px 80px
-    rgba(0,0,0,.45);
-
-}
-
-.auth-logo{
-
-  width:72px;
-  height:72px;
-
-  margin:0 auto 18px;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:24px;
-
-  font-size:30px;
-
-  font-weight:900;
-
-  background:
-
-    conic-gradient(
-      from 210deg,
-      var(--purple),
-      var(--pink),
-      var(--orange),
-      var(--cyan),
-      var(--purple)
-    );
-
-  box-shadow:
-
-    0 0 40px
-    rgba(168,85,247,.28);
-
-}
-
-.auth-title{
-
-  text-align:center;
-
-  font-size:27px;
-
-  font-weight:850;
-
-  letter-spacing:-.7px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      white,
-      #d5b7ff,
-      #ff91d6,
-      #ffc08e
-    );
-
-  -webkit-background-clip:text;
-
-  background-clip:text;
-
-  color:transparent;
-
-}
-
-.auth-description{
-
-  text-align:center;
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.55;
-
-  margin:
-    9px 10px 22px;
-
-}
-
-.auth-tabs{
-
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  padding:4px;
-
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.04);
-
-  margin-bottom:18px;
-
-}
-
-.auth-tab{
-
-  border:0;
-
-  border-radius:11px;
-
-  padding:10px;
-
-  background:transparent;
-
-  color:#817b8d;
-
-}
-
-.auth-tab.active{
-
-  color:white;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      rgba(139,92,246,.25),
-      rgba(236,72,153,.18)
-    );
-
-}
-
-.form-group{
-
-  margin-bottom:12px;
-
-}
-
-.form-group label{
-
-  display:block;
-
-  font-size:10px;
-
-  color:#a49dac;
-
-  margin:
-    0 0 6px 4px;
-
-}
-
-.input{
-
-  width:100%;
-
-  height:48px;
-
-  border:
-    1px solid var(--border);
-
-  outline:0;
-
-  border-radius:15px;
-
-  background:
-    rgba(255,255,255,.045);
-
-  color:white;
-
-  padding:
-    0 14px;
-
-}
-
-.input:focus{
-
-  border-color:
-    var(--purple);
-
-  box-shadow:
-    0 0 20px
-    rgba(139,92,246,.12);
-
-}
-
-.primary-button{
-
-  width:100%;
-
-  height:49px;
-
-  border:0;
-
-  border-radius:15px;
-
-  color:white;
-
-  font-weight:700;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
-
-  box-shadow:
-    0 10px 30px
-    rgba(236,72,153,.15);
-
-}
-
-.primary-button:active{
-
-  transform:scale(.98);
-
-}
-
-.auth-message{
-
-  min-height:18px;
-
-  margin-top:12px;
-
-  text-align:center;
-
-  font-size:11px;
-
-  color:var(--danger);
-
-}
-
-
-/* ===============================
-   APP PRINCIPAL
-================================ */
-
-#mainScreen{
-
-  z-index:100;
-
-}
-
-.topbar{
-
-  position:absolute;
-
-  top:12px;
-  left:12px;
-  right:12px;
-
-  height:58px;
-
-  z-index:20;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:
-    0 8px 0 14px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:20px;
-
-  background:
-    rgba(17,15,27,.80);
-
-  backdrop-filter:
-    blur(24px);
-
-  box-shadow:
-    0 12px 40px rgba(0,0,0,.30);
-
-}
-
-.logo-area{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
+.brand{
+    text-align:center;
+    margin-bottom:25px;
 }
 
 .logo{
-
-  width:36px;
-  height:36px;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:12px;
-
-  font-weight:900;
-
-  background:
-
-    conic-gradient(
-      from 210deg,
-      var(--purple),
-      var(--pink),
-      var(--orange),
-      var(--cyan),
-      var(--purple)
-    );
-
+    width:94px;
+    height:94px;
+    margin:auto;
+    border-radius:29px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:52px;
+    font-weight:900;
+    color:white;
+    background:
+        linear-gradient(
+            135deg,
+            #ff654c,
+            #ec3e91 35%,
+            #8d4fe9 65%,
+            #18c8ed
+        );
+    box-shadow:
+        0 0 35px rgba(232,77,155,.25);
 }
 
-.logo-name{
-
-  font-size:17px;
-
-  font-weight:800;
-
+.brand h1{
+    margin:18px 0 8px;
+    font-size:40px;
+    letter-spacing:-1.5px;
+    background:linear-gradient(90deg,#c85bea,#ff6c55,#ff9d4a);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.logo-status{
-
-  color:#898394;
-
-  font-size:9px;
-
+.brand p{
+    color:var(--muted);
+    line-height:1.6;
+    margin:0 auto;
+    max-width:420px;
 }
 
-.header-actions{
-
-  display:flex;
-
-  gap:4px;
-
+.auth-tabs{
+    display:flex;
+    padding:5px;
+    background:#171520;
+    border-radius:18px;
+    margin:24px 0;
 }
 
-.header-btn{
-
-  width:40px;
-  height:40px;
-
-  border:0;
-
-  border-radius:13px;
-
-  background:transparent;
-
-  color:#c5bfce;
-
-  font-size:18px;
-
+.auth-tabs button{
+    flex:1;
+    padding:14px;
+    color:var(--muted);
+    background:transparent;
+    border-radius:14px;
+    font-weight:700;
 }
 
-.header-btn:active{
-
-  background:
-    rgba(255,255,255,.07);
-
+.auth-tabs button.active{
+    color:white;
+    background:
+        linear-gradient(
+            110deg,
+            rgba(140,77,232,.55),
+            rgba(232,77,155,.38)
+        );
 }
 
-
-/* ===============================
-   HOME
-================================ */
-
-.home{
-
-  width:100%;
-  height:100%;
-
-  padding:
-    84px 12px 88px;
-
-  overflow-y:auto;
-
+.field{
+    margin-bottom:15px;
 }
 
-.hero{
-
-  padding:
-    22px 8px 17px;
-
+.field label{
+    display:block;
+    margin:0 0 8px 5px;
+    color:#bdb7c7;
+    font-size:14px;
+    font-weight:700;
 }
 
-.hero-small{
-
-  color:var(--muted);
-
-  font-size:11px;
-
+.field input{
+    width:100%;
+    border:1px solid var(--border);
+    outline:0;
+    color:white;
+    background:#181721;
+    border-radius:18px;
+    padding:16px;
+    transition:.2s;
 }
 
-.hero-title{
-
-  margin-top:6px;
-
-  font-size:31px;
-
-  line-height:1.05;
-
-  letter-spacing:-1.3px;
-
-  background:
-
-    linear-gradient(
-      90deg,
-      white,
-      #d7b9ff,
-      #ff8ed9,
-      #ffc18c
-    );
-
-  -webkit-background-clip:text;
-
-  background-clip:text;
-
-  color:transparent;
-
+.field input:focus{
+    border-color:rgba(232,77,155,.55);
+    box-shadow:0 0 0 3px rgba(232,77,155,.08);
 }
 
-.hero-description{
-
-  margin-top:9px;
-
-  color:#858091;
-
-  font-size:11px;
-
-  line-height:1.55;
-
+.primary-btn{
+    width:100%;
+    padding:17px;
+    border-radius:19px;
+    color:white;
+    font-weight:800;
+    background:
+        linear-gradient(
+            110deg,
+            #9a4de8,
+            #e63f9c,
+            #ff7045
+        );
+    box-shadow:0 12px 30px rgba(180,55,160,.22);
 }
 
-
-/* ===============================
-   PESQUISA
-================================ */
-
-.search-bar{
-
-  height:49px;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-  padding:
-    0 15px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:17px;
-
-  background:
-    rgba(255,255,255,.045);
-
+.primary-btn:disabled{
+    opacity:.6;
 }
 
-.search-icon{
-
-  color:#8d8799;
-
+.status{
+    min-height:20px;
+    text-align:center;
+    margin-top:13px;
+    font-size:13px;
 }
 
-.search-input{
-
-  width:100%;
-
-  border:0;
-
-  outline:0;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:13px;
-
+.status.error{
+    color:#ff6582;
 }
 
-.search-results{
-
-  display:none;
-
-  position:relative;
-
-  z-index:40;
-
-  margin-top:7px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:18px;
-
-  overflow:hidden;
-
-  background:
-    rgba(18,15,27,.97);
-
-  backdrop-filter:
-    blur(20px);
-
+.status.success{
+    color:var(--green);
 }
 
-.search-results.show{
+/* =========================
+   MAIN APP
+========================= */
 
-  display:block;
-
+.main-app{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    position:relative;
 }
 
-.search-user{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:11px;
-
-  padding:12px;
-
-  border-bottom:
-    1px solid var(--border);
-
+.topbar{
+    min-height:66px;
+    padding:
+        max(8px,env(safe-area-inset-top))
+        14px
+        8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(9,8,17,.88);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(22px);
+    z-index:10;
 }
 
-.search-user:last-child{
-
-  border-bottom:0;
-
+.top-left{
+    display:flex;
+    align-items:center;
+    gap:11px;
 }
 
 .avatar{
-
-  width:42px;
-  height:42px;
-
-  flex:none;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:14px;
-
-  font-size:13px;
-
-  font-weight:800;
-
-  background:
-
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink)
-    );
-
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+    color:white;
+    background:
+        linear-gradient(
+            135deg,
+            #8d4ee8,
+            #eb439a,
+            #ff7547
+        );
+    position:relative;
+    flex:none;
 }
 
-.user-info{
-
-  flex:1;
-
-  min-width:0;
-
+.online-dot{
+    position:absolute;
+    right:-1px;
+    bottom:1px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:var(--green);
+    border:2px solid var(--bg);
 }
 
-.user-name{
-
-  font-size:13px;
-
-  font-weight:700;
-
+.top-title{
+    min-width:0;
 }
 
-.user-handle{
-
-  color:#777180;
-
-  font-size:10px;
-
-  margin-top:2px;
-
+.top-title strong{
+    display:block;
+    font-size:17px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.add-contact{
-
-  width:36px;
-  height:36px;
-
-  border:0;
-
-  border-radius:12px;
-
-  color:white;
-
-  background:
-    rgba(139,92,246,.20);
-
+.top-title small{
+    color:var(--muted);
 }
 
-
-/* ===============================
-   AÇÕES
-================================ */
-
-.quick-actions{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:8px;
-
-  margin-top:15px;
-
+.top-actions{
+    display:flex;
+    gap:7px;
 }
 
-.quick{
-
-  min-height:70px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:17px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:white;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:6px;
-
+.icon-btn{
+    width:43px;
+    height:43px;
+    border-radius:15px;
+    background:#171520;
+    color:#e9e4f0;
+    border:1px solid var(--border);
 }
 
-.quick-icon{
+/* =========================
+   FLOATING SEARCH
+========================= */
 
-  width:30px;
-  height:30px;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:10px;
-
+.search-area{
+    position:absolute;
+    top:74px;
+    left:12px;
+    right:12px;
+    z-index:30;
+    pointer-events:none;
 }
 
-.quick:nth-child(1) .quick-icon{
-
-  color:#bd9aff;
-
-  background:
-    rgba(139,92,246,.17);
-
+.search-box{
+    pointer-events:auto;
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(24,23,34,.97);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:4px 7px 4px 15px;
+    box-shadow:var(--shadow);
 }
 
-.quick:nth-child(2) .quick-icon{
-
-  color:#ff80bf;
-
-  background:
-    rgba(236,72,153,.16);
-
+.search-box input{
+    min-width:0;
+    flex:1;
+    background:transparent;
+    border:0;
+    outline:0;
+    color:white;
+    padding:12px 0;
 }
 
-.quick:nth-child(3) .quick-icon{
-
-  color:#54ecff;
-
-  background:
-    rgba(22,224,255,.13);
-
+.search-results{
+    margin-top:7px;
+    max-height:55vh;
+    overflow:auto;
+    background:rgba(17,16,26,.98);
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:var(--shadow);
 }
 
-.quick:nth-child(4) .quick-icon{
-
-  color:#ffae7c;
-
-  background:
-    rgba(255,138,61,.14);
-
+.search-result{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    border-bottom:1px solid var(--border);
 }
 
-.quick span{
-
-  color:#aaa4b2;
-
-  font-size:9px;
-
+.search-result:last-child{
+    border-bottom:0;
 }
 
+.result-info{
+    flex:1;
+    min-width:0;
+}
 
-/* ===============================
-   CHAT LIST
-================================ */
+.result-info strong,
+.result-info small{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
 
-.chat-list{
+.result-info small{
+    color:var(--muted);
+    margin-top:3px;
+}
 
-  margin-top:18px;
+.result-actions{
+    display:flex;
+    gap:5px;
+}
 
+.small-btn{
+    padding:9px 11px;
+    border-radius:12px;
+    background:#252032;
+    color:white;
+    font-size:12px;
+    font-weight:700;
+}
+
+.small-btn.primary{
+    background:linear-gradient(110deg,#814ce7,#e4499b);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    flex:1;
+    min-height:0;
+    overflow:hidden;
+    position:relative;
+}
+
+.page{
+    width:100%;
+    height:100%;
+    overflow-y:auto;
+    padding:
+        18px
+        14px
+        calc(95px + env(safe-area-inset-bottom));
 }
 
 .section-title{
+    margin:5px 3px 13px;
+    color:#c4bdcc;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.7px;
+}
 
-  color:#777180;
+/* =========================
+   CHAT LIST
+========================= */
 
-  font-size:10px;
-
-  margin:
-    0 8px 8px;
-
-  text-transform:uppercase;
-
-  letter-spacing:.7px;
-
+.chat-list{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
 }
 
 .chat-item{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:10px;
-
-  border-radius:16px;
-
-  margin-bottom:3px;
-
-  cursor:pointer;
-
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 10px;
+    border-radius:18px;
+    background:rgba(24,23,34,.72);
+    border:1px solid transparent;
 }
 
 .chat-item:active{
-
-  background:
-    rgba(255,255,255,.05);
-
+    background:#211e2c;
 }
 
-.chat-content{
-
-  flex:1;
-
-  min-width:0;
-
+.chat-info{
+    flex:1;
+    min-width:0;
 }
 
-.chat-row{
-
-  display:flex;
-
-  justify-content:space-between;
-
+.chat-line{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
 }
 
 .chat-name{
-
-  font-size:13px;
-
-  font-weight:700;
-
+    font-weight:800;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .chat-time{
-
-  color:#696472;
-
-  font-size:9px;
-
+    color:var(--muted);
+    font-size:11px;
+    flex:none;
 }
 
 .chat-preview{
-
-  margin-top:3px;
-
-  color:#777180;
-
-  font-size:10px;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .unread{
-
-  min-width:18px;
-  height:18px;
-
-  padding:0 5px;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:9px;
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink)
-    );
-
-  font-size:9px;
-
+    min-width:21px;
+    height:21px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--pink);
+    font-size:11px;
+    font-weight:900;
 }
 
+/* =========================
+   CONTACTS
+========================= */
 
-/* ===============================
-   EMPTY
-================================ */
-
-.empty{
-
-  min-height:190px;
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  text-align:center;
-
-  padding:20px;
-
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    background:#15141e;
+    border:1px solid var(--border);
+    border-radius:18px;
+    margin-bottom:8px;
 }
 
-.empty-symbol{
-
-  width:65px;
-  height:65px;
-
-  margin:auto;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:22px;
-
-  font-size:25px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(139,92,246,.16),
-      rgba(236,72,153,.12)
-    );
-
+.contact-info{
+    flex:1;
+    min-width:0;
 }
 
-.empty h2{
-
-  margin-top:14px;
-
-  font-size:16px;
-
+.contact-info strong{
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
-.empty p{
-
-  margin-top:6px;
-
-  color:#777180;
-
-  font-size:10px;
-
-  line-height:1.55;
-
+.contact-info small{
+    color:var(--muted);
 }
 
-
-/* ===============================
-   NAV
-================================ */
-
-.bottom-nav{
-
-  position:absolute;
-
-  left:12px;
-  right:12px;
-  bottom:12px;
-
-  height:64px;
-
-  z-index:30;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  padding:5px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:21px;
-
-  background:
-    rgba(17,15,27,.87);
-
-  backdrop-filter:
-    blur(25px);
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.42);
-
-}
-
-.nav-item{
-
-  border:0;
-
-  border-radius:16px;
-
-  background:transparent;
-
-  color:#777180;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:3px;
-
-}
-
-.nav-item.active{
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(139,92,246,.20),
-      rgba(236,72,153,.13)
-    );
-
-}
-
-.nav-item span:first-child{
-
-  font-size:17px;
-
-}
-
-.nav-item span:last-child{
-
-  font-size:8px;
-
-}
-
-
-/* ===============================
-   NOVO CHAT
-================================ */
-
-.new-chat{
-
-  position:absolute;
-
-  right:20px;
-  bottom:91px;
-
-  width:52px;
-  height:52px;
-
-  z-index:35;
-
-  border:0;
-
-  border-radius:18px;
-
-  color:white;
-
-  font-size:23px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
-
-}
-
-
-/* ===============================
-   PERFIL
-================================ */
-
-.profile-screen{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:200;
-
-  display:none;
-
-  padding:
-    85px 13px 15px;
-
-  overflow-y:auto;
-
-  background:
-    #09080f;
-
-}
-
-.profile-screen.open{
-
-  display:block;
-
-}
+/* =========================
+   PROFILE
+========================= */
 
 .profile-card{
-
-  padding:20px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:22px;
-
-  background:
-    rgba(255,255,255,.035);
-
+    background:#15141e;
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:22px;
 }
 
-.profile-avatar{
-
-  width:82px;
-  height:82px;
-
-  margin:0 auto 14px;
-
-  display:grid;
-
-  place-items:center;
-
-  border-radius:27px;
-
-  font-size:27px;
-
-  font-weight:900;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
-
+.profile-big-avatar{
+    width:85px;
+    height:85px;
+    margin:0 auto 15px;
+    border-radius:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    font-weight:900;
+    background:linear-gradient(135deg,#874be7,#e6499b,#ff7044);
 }
 
 .profile-name{
-
-  text-align:center;
-
-  font-size:20px;
-
-  font-weight:800;
-
+    text-align:center;
+    font-size:22px;
+    font-weight:900;
 }
 
-.profile-handle{
-
-  text-align:center;
-
-  color:#777180;
-
-  font-size:11px;
-
-  margin-top:4px;
-
+.profile-username{
+    text-align:center;
+    color:var(--muted);
+    margin:5px 0 20px;
 }
 
-.profile-status{
+/* =========================
+   BOTTOM FLOATING BAR
+========================= */
 
-  text-align:center;
-
-  margin-top:8px;
-
-  color:var(--success);
-
-  font-size:10px;
-
+.bottom-bar{
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:max(12px,env(safe-area-inset-bottom));
+    height:65px;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    border-radius:23px;
+    background:rgba(23,21,32,.94);
+    border:1px solid var(--border);
+    box-shadow:0 15px 40px rgba(0,0,0,.38);
+    backdrop-filter:blur(25px);
 }
 
-.profile-actions{
-
-  display:grid;
-
-  gap:8px;
-
-  margin-top:20px;
-
+.nav-btn{
+    width:25%;
+    height:100%;
+    background:transparent;
+    color:#8f899a;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
 }
 
-.profile-action{
-
-  height:46px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:14px;
-
-  color:#d6cfdd;
-
-  background:
-    rgba(255,255,255,.035);
-
+.nav-btn span:first-child{
+    font-size:20px;
 }
 
+.nav-btn.active{
+    color:#fff;
+}
 
-/* ===============================
-   CONVERSA
-================================ */
+/* =========================
+   CONVERSATION
+========================= */
 
 .conversation{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:150;
-
-  display:none;
-
-  flex-direction:column;
-
-  background:#09080f;
-
+    position:absolute;
+    inset:0;
+    z-index:50;
+    display:flex;
+    flex-direction:column;
+    background:
+        radial-gradient(circle at 80% 10%,rgba(140,77,232,.10),transparent 25%),
+        var(--bg);
 }
 
-.conversation.open{
-
-  display:flex;
-
+.conversation-head{
+    min-height:68px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:
+        max(8px,env(safe-area-inset-top))
+        10px
+        8px;
+    border-bottom:1px solid var(--border);
+    background:rgba(9,8,17,.91);
+    backdrop-filter:blur(20px);
 }
 
-.conversation-header{
-
-  height:68px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  padding:
-    0 9px;
-
-  border-bottom:
-    1px solid var(--border);
-
-  background:
-    rgba(15,13,23,.93);
-
-  backdrop-filter:
-    blur(20px);
-
+.back-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    color:white;
+    background:#171520;
 }
 
-.back{
-
-  width:42px;
-  height:42px;
-
-  border:0;
-
-  border-radius:13px;
-
-  background:transparent;
-
-  color:white;
-
-  font-size:25px;
-
+.conversation-user{
+    flex:1;
+    min-width:0;
 }
 
-.conversation-person{
-
-  flex:1;
-
-  min-width:0;
-
+.conversation-user strong,
+.conversation-user small{
+    display:block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
-.conversation-name{
-
-  font-size:14px;
-
-  font-weight:750;
-
+.conversation-user small{
+    color:var(--muted);
+    margin-top:2px;
 }
-
-.conversation-status{
-
-  color:#777180;
-
-  font-size:9px;
-
-  margin-top:3px;
-
-}
-
-.conversation-actions{
-
-  display:flex;
-
-}
-
-.conversation-actions button{
-
-  width:39px;
-  height:39px;
-
-  border:0;
-
-  border-radius:12px;
-
-  background:transparent;
-
-  color:#bcb5c6;
-
-}
-
-
-/* ===============================
-   MENSAGENS
-================================ */
 
 .messages{
-
-  flex:1;
-
-  overflow-y:auto;
-
-  padding:15px;
-
-}
-
-.messages-empty{
-
-  height:100%;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
-  color:#777180;
-
-  font-size:10px;
-
-  line-height:1.7;
-
+    flex:1;
+    min-height:0;
+    overflow-y:auto;
+    padding:15px 12px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
 
 .message{
-
-  max-width:78%;
-
-  padding:10px 13px;
-
-  margin-bottom:8px;
-
-  border-radius:17px;
-
-  background:
-    #191329;
-
-  font-size:13px;
-
+    max-width:82%;
+    display:flex;
+    flex-direction:column;
 }
 
 .message.mine{
+    align-self:flex-end;
+    align-items:flex-end;
+}
 
-  margin-left:auto;
+.message.theirs{
+    align-self:flex-start;
+}
 
-  background:
-    linear-gradient(
-      135deg,
-      #34204e,
-      #49233f
-    );
+.bubble{
+    padding:10px 13px;
+    border-radius:18px;
+    background:#1b1924;
+    border:1px solid var(--border);
+    line-height:1.45;
+    word-break:break-word;
+}
 
+.mine .bubble{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(132,73,230,.9),
+            rgba(215,63,144,.9)
+        );
+    border-bottom-right-radius:5px;
+}
+
+.theirs .bubble{
+    border-bottom-left-radius:5px;
 }
 
 .message-meta{
-
-  display:flex;
-
-  justify-content:flex-end;
-
-  gap:4px;
-
-  margin-top:4px;
-
-  color:#858091;
-
-  font-size:8px;
-
+    display:flex;
+    align-items:center;
+    gap:5px;
+    margin:3px 5px 0;
+    color:#85808d;
+    font-size:10px;
 }
 
 .read{
-
-  color:
-    var(--cyan);
-
+    color:#47cfff;
+    font-weight:900;
 }
-
-
-/* ===============================
-   COMPOSER
-================================ */
 
 .composer{
-
-  flex:none;
-
-  min-height:68px;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:7px;
-
-  padding:
-    8px 10px
-    calc(8px + env(safe-area-inset-bottom));
-
-  background:
-    rgba(10,8,16,.96);
-
-  border-top:
-    1px solid var(--border);
-
+    padding:
+        8px
+        9px
+        max(9px,env(safe-area-inset-bottom));
+    display:flex;
+    gap:7px;
+    align-items:flex-end;
+    background:rgba(9,8,17,.94);
+    border-top:1px solid var(--border);
 }
 
-.attach{
-
-  width:42px;
-  height:42px;
-
-  border:0;
-
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.05);
-
-  color:#aaa3b2;
-
-  font-size:19px;
-
+.composer textarea{
+    flex:1;
+    min-height:44px;
+    max-height:120px;
+    resize:none;
+    border:1px solid var(--border);
+    outline:0;
+    border-radius:18px;
+    padding:12px 14px;
+    color:white;
+    background:#171620;
 }
 
-.message-box{
-
-  flex:1;
-
-  min-width:0;
-
-  min-height:43px;
-
-  max-height:110px;
-
-  resize:none;
-
-  outline:0;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:16px;
-
-  padding:
-    12px 13px;
-
-  color:white;
-
-  background:
-    rgba(255,255,255,.045);
-
+.send-btn{
+    width:46px;
+    height:46px;
+    border-radius:16px;
+    color:white;
+    background:linear-gradient(135deg,#874be7,#e94a99);
 }
 
-.message-box:focus{
+/* =========================
+   MODALS
+========================= */
 
-  border-color:
-    var(--purple);
-
+.modal-layer{
+    position:absolute;
+    inset:0;
+    z-index:100;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(7px);
 }
-
-.send{
-
-  width:43px;
-  height:43px;
-
-  border:0;
-
-  border-radius:14px;
-
-  color:white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--purple),
-      var(--pink),
-      var(--orange)
-    );
-
-}
-
-
-/* ===============================
-   MODAL
-================================ */
 
 .modal{
-
-  position:absolute;
-
-  inset:0;
-
-  z-index:400;
-
-  display:none;
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  background:
-    rgba(0,0,0,.55);
-
-  backdrop-filter:
-    blur(5px);
-
+    width:100%;
+    max-height:90%;
+    overflow:auto;
+    padding:22px 17px max(22px,env(safe-area-inset-bottom));
+    background:#12111b;
+    border-top:1px solid var(--border);
+    border-radius:28px 28px 0 0;
 }
 
-.modal.open{
-
-  display:flex;
-
+.modal h2{
+    margin:0 0 18px;
 }
 
-.modal-card{
-
-  width:100%;
-
-  max-width:500px;
-
-  padding:
-    18px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:
-    25px 25px 0 0;
-
-  background:
-    #11101a;
-
+.modal-actions{
+    display:flex;
+    gap:8px;
 }
 
-.modal-handle{
-
-  width:35px;
-  height:4px;
-
-  margin:0 auto 16px;
-
-  border-radius:4px;
-
-  background:#403a48;
-
+.modal-actions button{
+    flex:1;
 }
 
-.modal-title{
+/* =========================
+   LOADING
+========================= */
 
-  font-size:17px;
-
-  font-weight:800;
-
-  margin-bottom:13px;
-
+#loading{
+    position:absolute;
+    inset:0;
+    z-index:999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#090811;
 }
 
-.modal-option{
-
-  width:100%;
-
-  height:48px;
-
-  margin-bottom:8px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:#ddd6e5;
-
+.loader{
+    width:42px;
+    height:42px;
+    border:3px solid rgba(255,255,255,.12);
+    border-top-color:#e84d9b;
+    border-right-color:#8c4de8;
+    border-radius:50%;
+    animation:spin .7s linear infinite;
 }
 
-.modal-close{
-
-  width:100%;
-
-  height:45px;
-
-  margin-top:4px;
-
-  border:0;
-
-  border-radius:14px;
-
-  color:#ff7aa9;
-
-  background:
-    rgba(236,72,153,.08);
-
+@keyframes spin{
+    to{transform:rotate(360deg)}
 }
 
+.empty{
+    text-align:center;
+    color:var(--muted);
+    padding:40px 20px;
+}
 
-/* ===============================
-   RESPONSIVO
-================================ */
+.toast{
+    position:absolute;
+    left:15px;
+    right:15px;
+    bottom:95px;
+    z-index:500;
+    padding:13px 16px;
+    border-radius:16px;
+    background:#252131;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    text-align:center;
+    font-size:13px;
+}
 
 @media(min-width:700px){
+    .page{
+        padding-left:25px;
+        padding-right:25px;
+    }
 
-  .app{
+    .bottom-bar{
+        left:50%;
+        right:auto;
+        width:500px;
+        transform:translateX(-50%);
+    }
 
-    max-width:480px;
-
-    margin:auto;
-
-    border-left:
-      1px solid rgba(255,255,255,.04);
-
-    border-right:
-      1px solid rgba(255,255,255,.04);
-
-  }
-
+    .conversation{
+        left:50%;
+        width:min(100%,700px);
+        transform:translateX(-50%);
+        border-left:1px solid var(--border);
+        border-right:1px solid var(--border);
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<div id="app">
+
+    <!-- LOADING -->
+    <div id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- AUTH -->
+    <section id="authScreen" class="auth-screen hidden">
+        <div class="auth-card">
+
+            <div class="brand">
+                <div class="logo">A</div>
+                <h1>Angotell</h1>
+                <p>
+                    Comunicação de nova geração.
+                    Cria a tua identidade e conecta-te com pessoas reais.
+                </p>
+            </div>
+
+            <div class="auth-tabs">
+                <button id="loginTab" class="active">Entrar</button>
+                <button id="registerTab">Criar conta</button>
+            </div>
+
+            <form id="authForm">
+
+                <div id="registerFields" class="hidden">
+
+                    <div class="field">
+                        <label>Nome público</label>
+                        <input
+                            id="displayName"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="Como as pessoas verão o teu nome">
+                    </div>
+
+                    <div class="field">
+                        <label>Nome de utilizador</label>
+                        <input
+                            id="username"
+                            type="text"
+                            autocomplete="username"
+                            placeholder="@teu_nome">
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label>E-mail</label>
+                    <input
+                        id="email"
+                        type="email"
+                        autocomplete="email"
+                        required
+                        placeholder="teu@email.com">
+                </div>
+
+                <div class="field">
+                    <label>Senha</label>
+                    <input
+                        id="password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                        placeholder="••••••••">
+                </div>
 
-<div class="app">
+                <button id="authButton" class="primary-btn" type="submit">
+                    Entrar no Angotell
+                </button>
+
+                <div id="authStatus" class="status"></div>
+
+            </form>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <section id="mainApp" class="main-app hidden">
+
+        <header class="topbar">
+
+            <div class="top-left">
+
+                <div id="topAvatar" class="avatar">
+                    A
+                    <span id="topOnline" class="online-dot"></span>
+                </div>
 
+                <div class="top-title">
+                    <strong id="topName">Angotell</strong>
+                    <small id="topUsername">@utilizador</small>
+                </div>
 
-<!-- =====================================================
-     AUTENTICAÇÃO
-===================================================== -->
+            </div>
 
-<section
-  id="authScreen"
-  class="screen active"
->
+            <div class="top-actions">
+                <button id="searchToggle" class="icon-btn">⌕</button>
+                <button id="profileButton" class="icon-btn">◉</button>
+            </div>
 
-<div class="auth-wrapper">
+        </header>
 
-<div class="auth-box">
+        <!-- FLOATING SEARCH -->
+        <div id="searchArea" class="search-area hidden">
 
+            <div class="search-box">
+                <span>⌕</span>
+                <input
+                    id="globalSearch"
+                    type="search"
+                    autocomplete="off"
+                    placeholder="Pesquisar pessoas...">
+                <button id="closeSearch" class="icon-btn">×</button>
+            </div>
 
-<div class="auth-logo">
-A
-</div>
+            <div id="searchResults" class="search-results hidden"></div>
 
+        </div>
 
-<h1 class="auth-title">
-Angotell
-</h1>
+        <main class="content">
 
+            <!-- CHATS -->
+            <section id="chatsPage" class="page">
 
-<p class="auth-description">
-Comunicação de nova geração.
-Cria a tua identidade e conecta-te
-com pessoas reais.
-</p>
+                <div class="section-title">
+                    Conversas
+                </div>
 
+                <div id="chatList" class="chat-list"></div>
 
-<div class="auth-tabs">
+            </section>
 
-<button
-  id="loginTab"
-  class="auth-tab active"
->
-Entrar
-</button>
+            <!-- CONTACTS -->
+            <section id="contactsPage" class="page hidden">
 
-<button
-  id="registerTab"
-  class="auth-tab"
->
-Criar conta
-</button>
+                <div class="section-title">
+                    Os meus contactos
+                </div>
 
-</div>
+                <div id="contactsList"></div>
 
+            </section>
 
-<div
-  id="nameField"
-  class="form-group"
-  style="display:none"
->
+            <!-- PROFILE -->
+            <section id="profilePage" class="page hidden">
 
-<label>
-Nome público
-</label>
+                <div class="profile-card">
 
-<input
-  id="registerName"
-  class="input"
-  type="text"
-  placeholder="Como as pessoas te verão"
-  maxlength="40"
->
+                    <div id="profileAvatar" class="profile-big-avatar">
+                        A
+                    </div>
 
-</div>
+                    <div id="profileDisplayName" class="profile-name">
+                        Utilizador
+                    </div>
 
+                    <div id="profileUsername" class="profile-username">
+                        @utilizador
+                    </div>
 
-<div
-  id="usernameField"
-  class="form-group"
-  style="display:none"
->
+                    <div class="field">
+                        <label>Nome público</label>
+                        <input id="editDisplayName" type="text">
+                    </div>
 
-<label>
-Nome de utilizador
-</label>
+                    <div class="field">
+                        <label>Nome de utilizador</label>
+                        <input id="editUsername" type="text">
+                    </div>
 
-<input
-  id="registerUsername"
-  class="input"
-  type="text"
-  placeholder="ex: joao123"
-  maxlength="25"
->
+                    <button id="saveProfile" class="primary-btn">
+                        Guardar perfil
+                    </button>
 
-</div>
+                    <br><br>
 
+                    <button id="logoutButton"
+                            class="primary-btn"
+                            style="background:#2a1720">
+                        Terminar sessão
+                    </button>
 
-<div class="form-group">
+                    <div id="profileStatus" class="status"></div>
 
-<label>
-E-mail
-</label>
+                </div>
 
-<input
-  id="email"
-  class="input"
-  type="email"
-  autocomplete="email"
-  placeholder="teu@email.com"
->
+            </section>
 
-</div>
+        </main>
 
+        <!-- FLOATING NAV -->
+        <nav class="bottom-bar">
 
-<div class="form-group">
+            <button class="nav-btn active" data-page="chatsPage">
+                <span>◉</span>
+                <span>Conversas</span>
+            </button>
 
-<label>
-Senha
-</label>
+            <button class="nav-btn" data-page="contactsPage">
+                <span>♧</span>
+                <span>Contactos</span>
+            </button>
 
-<input
-  id="password"
-  class="input"
-  type="password"
-  autocomplete="current-password"
-  placeholder="Mínimo 6 caracteres"
->
+            <button id="createGroupButton" class="nav-btn">
+                <span>＋</span>
+                <span>Grupo</span>
+            </button>
 
-</div>
+            <button class="nav-btn" data-page="profilePage">
+                <span>◎</span>
+                <span>Perfil</span>
+            </button>
 
+        </nav>
 
-<button
-  id="authButton"
-  class="primary-button"
->
-Entrar no Angotell
-</button>
+    </section>
 
+    <!-- CONVERSATION -->
+    <section id="conversation" class="conversation hidden">
 
-<div
-  id="authMessage"
-  class="auth-message"
-></div>
+        <header class="conversation-head">
 
+            <button id="backConversation" class="back-btn">
+                ‹
+            </button>
 
-</div>
+            <div id="conversationAvatar" class="avatar">
+                A
+            </div>
 
-</div>
+            <div class="conversation-user">
+                <strong id="conversationName">Conversa</strong>
+                <small id="conversationStatus">offline</small>
+            </div>
 
-</section>
+        </header>
 
+        <div id="messages" class="messages"></div>
 
-<!-- =====================================================
-     APP PRINCIPAL
-===================================================== -->
+        <!-- COMPOSER ONLY EXISTS INSIDE OPEN CONVERSATION -->
+        <form id="composer" class="composer">
 
-<section
-  id="mainScreen"
-  class="screen"
->
+            <textarea
+                id="messageInput"
+                rows="1"
+                maxlength="4000"
+                placeholder="Escreve uma mensagem..."></textarea>
 
+            <button class="send-btn" type="submit">
+                ➤
+            </button>
 
-<header class="topbar">
+        </form>
 
+    </section>
 
-<div class="logo-area">
+    <!-- GROUP MODAL -->
+    <div id="groupModal" class="modal-layer hidden">
 
-<div class="logo">
-A
-</div>
+        <div class="modal">
 
-<div>
+            <h2>Criar grupo</h2>
 
-<div class="logo-name">
-Angotell
-</div>
+            <div class="field">
+                <label>Nome do grupo</label>
+                <input
+                    id="groupName"
+                    type="text"
+                    placeholder="Nome do grupo">
+            </div>
 
-<div class="logo-status">
-comunicação de nova geração
-</div>
+            <div class="field">
+                <label>Selecionar contactos</label>
+                <div id="groupContacts"></div>
+            </div>
 
-</div>
+            <div class="modal-actions">
+                <button id="cancelGroup"
+                        class="small-btn">
+                    Cancelar
+                </button>
 
-</div>
+                <button id="confirmGroup"
+                        class="small-btn primary">
+                    Criar grupo
+                </button>
+            </div>
 
+            <div id="groupStatus" class="status"></div>
 
-<div class="header-actions">
+        </div>
 
-<button
-  id="globalSearchButton"
-  class="header-btn"
->
-⌕
-</button>
+    </div>
 
-<button
-  id="profileButton"
-  class="header-btn"
->
-◎
-</button>
-
-</div>
-
-</header>
-
-
-<main class="home">
-
-
-<div class="hero">
-
-<div class="hero-small">
-O teu espaço
-</div>
-
-<h1 class="hero-title">
-Comunicação<br>
-sem limites.
-</h1>
-
-<p class="hero-description">
-Encontra pessoas, adiciona contactos
-e começa conversas reais.
-</p>
-
-</div>
-
-
-<div class="search-bar">
-
-<span class="search-icon">
-⌕
-</span>
-
-<input
-  id="globalSearch"
-  class="search-input"
-  type="search"
-  autocomplete="off"
-  placeholder="Pesquisar pessoas ou utilizadores..."
->
-
-</div>
-
-
-<div
-  id="searchResults"
-  class="search-results"
-></div>
-
-
-<div class="quick-actions">
-
-
-<button
-  id="quickConversation"
-  class="quick"
->
-
-<div class="quick-icon">
-＋
-</div>
-
-<span>
-Conversa
-</span>
-
-</button>
-
-
-<button
-  id="quickGroup"
-  class="quick"
->
-
-<div class="quick-icon">
-♧
-</div>
-
-<span>
-Grupo
-</span>
-
-</button>
-
-
-<button
-  id="quickContacts"
-  class="quick"
->
-
-<div class="quick-icon">
-◎
-</div>
-
-<span>
-Contactos
-</span>
-
-</button>
-
-
-<button
-  id="quickAI"
-  class="quick"
->
-
-<div class="quick-icon">
-✦
-</div>
-
-<span>
-IA
-</span>
-
-</button>
-
+    <div id="toast" class="toast hidden"></div>
 
 </div>
-
-
-<div class="chat-list">
-
-<div class="section-title">
-Conversas
-</div>
-
-<div
-  id="chatList"
-></div>
-
-
-<div
-  id="emptyChats"
-  class="empty"
->
-
-<div>
-
-<div class="empty-symbol">
-◇
-</div>
-
-<h2>
-Ainda não há conversas
-</h2>
-
-<p>
-Quando iniciares uma conversa,
-ela ficará registada na tua conta
-e disponível quando voltares.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-</main>
-
-
-<button
-  id="newChat"
-  class="new-chat"
->
-＋
-</button>
-
-
-<nav class="bottom-nav">
-
-
-<button
-  class="nav-item active"
-  data-page="chats"
->
-
-<span>◈</span>
-<span>Conversas</span>
-
-</button>
-
-
-<button
-  class="nav-item"
-  data-page="contacts"
->
-
-<span>◎</span>
-<span>Contactos</span>
-
-</button>
-
-
-<button
-  class="nav-item"
-  data-page="ai"
->
-
-<span>✦</span>
-<span>Angotell AI</span>
-
-</button>
-
-
-<button
-  class="nav-item"
-  data-page="profile"
->
-
-<span>◉</span>
-<span>Perfil</span>
-
-</button>
-
-
-</nav>
-
-
-</section>
-
-
-<!-- =====================================================
-     PERFIL
-===================================================== -->
-
-<section
-  id="profileScreen"
-  class="profile-screen"
->
-
-
-<div class="profile-card">
-
-
-<div
-  id="profileAvatar"
-  class="profile-avatar"
->
-A
-</div>
-
-
-<div
-  id="profileName"
-  class="profile-name"
->
-Utilizador
-</div>
-
-
-<div
-  id="profileUsername"
-  class="profile-handle"
->
-@utilizador
-</div>
-
-
-<div
-  id="profileStatus"
-  class="profile-status"
->
-● online
-</div>
-
-
-<div class="profile-actions">
-
-
-<button
-  id="editProfile"
-  class="profile-action"
->
-Editar perfil
-</button>
-
-
-<button
-  id="logoutButton"
-  class="profile-action"
->
-Sair da conta
-</button>
-
-
-<button
-  id="closeProfile"
-  class="profile-action"
->
-Voltar
-</button>
-
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- =====================================================
-     CONVERSA
-===================================================== -->
-
-<section
-  id="conversation"
-  class="conversation"
->
-
-
-<header class="conversation-header">
-
-
-<button
-  id="backButton"
-  class="back"
->
-‹
-</button>
-
-
-<div class="conversation-person">
-
-
-<div
-  id="conversationName"
-  class="conversation-name"
->
-Conversa
-</div>
-
-
-<div
-  id="conversationStatus"
-  class="conversation-status"
->
-</div>
-
-
-</div>
-
-
-<div class="conversation-actions">
-
-<button
-  id="callButton"
->
-◉
-</button>
-
-<button
-  id="videoButton"
->
-▣
-</button>
-
-<button
-  id="conversationMenu"
->
-⋮
-</button>
-
-</div>
-
-
-</header>
-
-
-<div
-  id="messages"
-  class="messages"
->
-
-<div
-  id="messagesEmpty"
-  class="messages-empty"
->
-Ainda não existem mensagens nesta conversa.
-</div>
-
-</div>
-
-
-<form
-  id="composer"
-  class="composer"
->
-
-
-<button
-  type="button"
-  class="attach"
->
-＋
-</button>
-
-
-<textarea
-  id="messageBox"
-  class="message-box"
-  rows="1"
-  placeholder="Escreve uma mensagem..."
-></textarea>
-
-
-<button
-  type="submit"
-  class="send"
->
-➤
-</button>
-
-
-</form>
-
-
-</section>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-  id="newChatModal"
-  class="modal"
->
-
-
-<div class="modal-card">
-
-
-<div class="modal-handle"></div>
-
-
-<div class="modal-title">
-Nova comunicação
-</div>
-
-
-<button
-  id="modalIndividual"
-  class="modal-option"
->
-👤 Nova conversa individual
-</button>
-
-
-<button
-  id="modalGroup"
-  class="modal-option"
->
-👥 Criar grupo
-</button>
-
-
-<button
-  id="modalClose"
-  class="modal-close"
->
-Cancelar
-</button>
-
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
 
 <script type="module">
 
+/* =========================================================
+   FIREBASE
+========================================================= */
+
+import { initializeApp }
+    from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
 import {
-
-  initializeApp
-
-} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-
-
-import {
-
-  getAuth,
-
-  createUserWithEmailAndPassword,
-
-  signInWithEmailAndPassword,
-
-  onAuthStateChanged,
-
-  signOut,
-
-  updateProfile
-
-} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc,
+    updateDoc,
+    collection,
+    query,
+    where,
+    orderBy,
+    limit,
+    addDoc,
+    serverTimestamp,
+    onSnapshot,
+    getDocs,
+    arrayUnion,
+    arrayRemove,
+    writeBatch
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-  getFirestore,
-
-  doc,
-
-  setDoc,
-
-  getDoc,
-
-  updateDoc,
-
-  collection,
-
-  addDoc,
-
-  query,
-
-  where,
-
-  orderBy,
-
-  limit,
-
-  getDocs,
-
-  onSnapshot,
-
-  serverTimestamp,
-
-  arrayUnion
-
-} from
-"https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-
-
-/* =====================================================
-   FIREBASE CONFIGURAÇÃO CORRIGIDA
-===================================================== */
 
 const firebaseConfig = {
-
-  apiKey:
-    "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
-
-  authDomain:
-    "angotell.firebaseapp.com",
-
-  projectId:
-    "angotell",
-
-  storageBucket:
-    "angotell.firebasestorage.app",
-
-  messagingSenderId:
-    "241567716431",
-
-  appId:
-    "1:241567716431:web:ffd859078a6198bc17463a"
-
+    apiKey: "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
+    authDomain: "angotell.firebaseapp.com",
+    projectId: "angotell",
+    storageBucket: "angotell.firebasestorage.app",
+    messagingSenderId: "241567716431",
+    appId: "1:241567716431:web:ffd859078a6198bc17463a"
 };
 
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-
-const app =
-  initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 
-const auth =
-  getAuth(app);
-
-
-const db =
-  getFirestore(app);
-
-
-/* =====================================================
-   ESTADO
-===================================================== */
+/* =========================================================
+   STATE
+   ========================================================= */
 
 let currentUser = null;
-
 let currentProfile = null;
 
-let currentChatId = null;
-
-let unsubscribeMessages = null;
+let activeConversation = null;
 
 let unsubscribeChats = null;
+let unsubscribeContacts = null;
+let unsubscribeMessages = null;
+
+let searchTimer = null;
+let heartbeatTimer = null;
 
 let authMode = "login";
 
 
-/* =====================================================
-   ELEMENTOS
-===================================================== */
+/* =========================================================
+   DOM CACHE
+   Evita procurar os mesmos elementos repetidamente.
+========================================================= */
 
-const authScreen =
-  document.getElementById("authScreen");
+const $ = id => document.getElementById(id);
 
-const mainScreen =
-  document.getElementById("mainScreen");
+const loading = $("loading");
+const authScreen = $("authScreen");
+const mainApp = $("mainApp");
 
-const profileScreen =
-  document.getElementById("profileScreen");
+const authForm = $("authForm");
+const loginTab = $("loginTab");
+const registerTab = $("registerTab");
+const registerFields = $("registerFields");
 
-const conversation =
-  document.getElementById("conversation");
+const displayNameInput = $("displayName");
+const usernameInput = $("username");
+const emailInput = $("email");
+const passwordInput = $("password");
 
-const authButton =
-  document.getElementById("authButton");
+const authButton = $("authButton");
+const authStatus = $("authStatus");
 
-const authMessage =
-  document.getElementById("authMessage");
+const chatList = $("chatList");
+const contactsList = $("contactsList");
 
-const email =
-  document.getElementById("email");
+const searchArea = $("searchArea");
+const globalSearch = $("globalSearch");
+const searchResults = $("searchResults");
 
-const password =
-  document.getElementById("password");
+const conversation = $("conversation");
+const messages = $("messages");
+const messageInput = $("messageInput");
 
-const registerName =
-  document.getElementById("registerName");
-
-const registerUsername =
-  document.getElementById("registerUsername");
-
-const nameField =
-  document.getElementById("nameField");
-
-const usernameField =
-  document.getElementById("usernameField");
+const toast = $("toast");
 
 
-/* =====================================================
-   LOGIN
-===================================================== */
+/* =========================================================
+   UTILITÁRIOS
+========================================================= */
 
-document
-  .getElementById("loginTab")
-  .onclick = () => {
+function escapeHTML(value = ""){
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+}
+
+function normalizeUsername(value = ""){
+    return value
+        .trim()
+        .toLowerCase()
+        .replace(/^@/,"")
+        .replace(/\s+/g,"")
+        .replace(/[^a-z0-9_.-]/g,"");
+}
+
+function initials(name = "A"){
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+
+    if(!parts.length) return "A";
+
+    if(parts.length === 1){
+        return parts[0].substring(0,2).toUpperCase();
+    }
+
+    return (
+        parts[0][0] +
+        parts[parts.length - 1][0]
+    ).toUpperCase();
+}
+
+function showToast(text){
+    toast.textContent = text;
+    toast.classList.remove("hidden");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+        toast.classList.add("hidden");
+    },2600);
+}
+
+function setAuthStatus(text,type=""){
+    authStatus.textContent = text;
+    authStatus.className = "status " + type;
+}
+
+function formatTime(timestamp){
+
+    if(!timestamp) return "";
+
+    const date = timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
+
+    return date.toLocaleTimeString(
+        "pt-AO",
+        {
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
+}
+
+function formatDate(timestamp){
+
+    if(!timestamp) return "";
+
+    const date = timestamp.toDate
+        ? timestamp.toDate()
+        : new Date(timestamp);
+
+    return date.toLocaleDateString(
+        "pt-AO",
+        {
+            day:"2-digit",
+            month:"2-digit"
+        }
+    );
+}
+
+
+/* =========================================================
+   AUTH UI
+========================================================= */
+
+loginTab.addEventListener("click",() => {
 
     authMode = "login";
 
-    document
-      .getElementById("loginTab")
-      .classList.add("active");
+    loginTab.classList.add("active");
+    registerTab.classList.remove("active");
 
-    document
-      .getElementById("registerTab")
-      .classList.remove("active");
+    registerFields.classList.add("hidden");
 
-    nameField.style.display =
-      "none";
+    authButton.textContent = "Entrar no Angotell";
+    emailInput.autocomplete = "email";
+    passwordInput.autocomplete = "current-password";
 
-    usernameField.style.display =
-      "none";
-
-    authButton.textContent =
-      "Entrar no Angotell";
-
-    authMessage.textContent =
-      "";
-
-  };
+    setAuthStatus("");
+});
 
 
-/* =====================================================
-   REGISTRO
-===================================================== */
-
-document
-  .getElementById("registerTab")
-  .onclick = () => {
+registerTab.addEventListener("click",() => {
 
     authMode = "register";
 
-    document
-      .getElementById("registerTab")
-      .classList.add("active");
+    registerTab.classList.add("active");
+    loginTab.classList.remove("active");
 
-    document
-      .getElementById("loginTab")
-      .classList.remove("active");
+    registerFields.classList.remove("hidden");
 
-    nameField.style.display =
-      "block";
+    authButton.textContent = "Criar conta Angotell";
+    emailInput.autocomplete = "email";
+    passwordInput.autocomplete = "new-password";
 
-    usernameField.style.display =
-      "block";
+    setAuthStatus("");
+});
 
-    authButton.textContent =
-      "Criar conta Angotell";
 
-    authMessage.textContent =
-      "";
+/* =========================================================
+   AUTH
+========================================================= */
 
-  };
-
-
-/* =====================================================
-   AUTENTICAÇÃO
-===================================================== */
-
-authButton.onclick =
-  async () => {
-
-    authMessage.textContent =
-      "";
-
-    const mail =
-      email.value.trim();
-
-    const pass =
-      password.value;
-
-
-    try {
-
-
-      if(!mail){
-
-        throw new Error(
-          "Digite o seu e-mail."
-        );
-
-      }
-
-
-      if(!pass){
-
-        throw new Error(
-          "Digite a sua senha."
-        );
-
-      }
-
-
-      if(authMode === "login"){
-
-        await signInWithEmailAndPassword(
-          auth,
-          mail,
-          pass
-        );
-
-        return;
-
-      }
-
-
-      const name =
-        registerName.value.trim();
-
-      const username =
-        registerUsername.value
-          .trim()
-          .toLowerCase();
-
-
-      if(!name){
-
-        throw new Error(
-          "Digite o seu nome."
-        );
-
-      }
-
-
-      if(!/^[a-z0-9._-]{3,25}$/.test(username)){
-
-        throw new Error(
-          "O nome de utilizador deve ter 3 a 25 caracteres."
-        );
-
-      }
-
-
-      const credential =
-        await createUserWithEmailAndPassword(
-          auth,
-          mail,
-          pass
-        );
-
-
-      const user =
-        credential.user;
-
-
-      await updateProfile(
-        user,
-        {
-          displayName:name
-        }
-      );
-
-
-      await setDoc(
-        doc(
-          db,
-          "users",
-          user.uid
-        ),
-        {
-
-          uid:user.uid,
-
-          name:name,
-
-          username:username,
-
-          email:mail,
-
-          photoURL:"",
-
-          bio:"",
-
-          online:true,
-
-          lastSeenAt:
-            serverTimestamp(),
-
-          createdAt:
-            serverTimestamp(),
-
-          updatedAt:
-            serverTimestamp(),
-
-          contacts:[]
-
-        }
-      );
-
-
-    }
-
-    catch(error){
-
-      console.error(error);
-
-      authMessage.textContent =
-        traduzFirebaseError(error);
-
-    }
-
-  };
-
-
-/* =====================================================
-   ERROS FIREBASE
-===================================================== */
-
-function traduzFirebaseError(error){
-
-  const code =
-    error.code || "";
-
-
-  if(code.includes(
-    "auth/api-key-not-valid"
-  )){
-
-    return "A configuração do Firebase contém uma API Key inválida.";
-
-  }
-
-
-  if(code.includes(
-    "auth/invalid-credential"
-  )){
-
-    return "E-mail ou senha incorretos.";
-
-  }
-
-
-  if(code.includes(
-    "auth/email-already-in-use"
-  )){
-
-    return "Este e-mail já está registado.";
-
-  }
-
-
-  if(code.includes(
-    "auth/weak-password"
-  )){
-
-    return "A senha precisa de pelo menos 6 caracteres.";
-
-  }
-
-
-  if(code.includes(
-    "auth/invalid-email"
-  )){
-
-    return "E-mail inválido.";
-
-  }
-
-
-  if(code.includes(
-    "auth/network-request-failed"
-  )){
-
-    return "Erro de ligação à Internet.";
-
-  }
-
-
-  return error.message ||
-    "Não foi possível concluir a operação.";
-
-}
-
-
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if(!user){
-
-      currentUser = null;
-
-      authScreen.classList.add(
-        "active"
-      );
-
-      mainScreen.classList.remove(
-        "active"
-      );
-
-      return;
-
-    }
-
-
-    currentUser =
-      user;
-
-
-    await carregarPerfil();
-
-
-    authScreen.classList.remove(
-      "active"
-    );
-
-    mainScreen.classList.add(
-      "active"
-    );
-
-
-    iniciarPresenca();
-
-    carregarConversas();
-
-  }
-);
-
-
-/* =====================================================
-   PERFIL
-===================================================== */
-
-async function carregarPerfil(){
-
-  const ref =
-    doc(
-      db,
-      "users",
-      currentUser.uid
-    );
-
-
-  const snap =
-    await getDoc(ref);
-
-
-  if(snap.exists()){
-
-    currentProfile =
-      snap.data();
-
-    atualizarPerfilUI();
-
-    return;
-
-  }
-
-
-  currentProfile = {
-
-    uid:currentUser.uid,
-
-    name:
-      currentUser.displayName ||
-      "Utilizador",
-
-    username:"",
-
-    email:
-      currentUser.email || ""
-
-  };
-
-}
-
-
-/* =====================================================
-   PERFIL UI
-===================================================== */
-
-function atualizarPerfilUI(){
-
-  const name =
-    currentProfile.name ||
-    "Utilizador";
-
-
-  const username =
-    currentProfile.username ||
-    "";
-
-
-  document
-    .getElementById(
-      "profileName"
-    )
-    .textContent =
-    name;
-
-
-  document
-    .getElementById(
-      "profileUsername"
-    )
-    .textContent =
-    username
-      ? "@" + username
-      : "";
-
-
-  document
-    .getElementById(
-      "profileAvatar"
-    )
-    .textContent =
-    name
-      .charAt(0)
-      .toUpperCase();
-
-}
-
-
-/* =====================================================
-   PRESENÇA
-===================================================== */
-
-function iniciarPresenca(){
-
-  atualizarPresenca();
-
-  setInterval(
-    atualizarPresenca,
-    30000
-  );
-
-}
-
-
-async function atualizarPresenca(){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      ),
-
-      {
-
-        online:true,
-
-        lastSeenAt:
-          serverTimestamp()
-
-      }
-
-    );
-
-  }
-
-  catch(error){
-
-    console.error(
-      "Presença:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   PESQUISA GLOBAL
-===================================================== */
-
-const globalSearch =
-  document.getElementById(
-    "globalSearch"
-  );
-
-const searchResults =
-  document.getElementById(
-    "searchResults"
-  );
-
-
-let searchTimer;
-
-
-globalSearch.addEventListener(
-  "input",
-  () => {
-
-    clearTimeout(
-      searchTimer
-    );
-
-
-    const value =
-      globalSearch.value
-        .trim()
-        .toLowerCase();
-
-
-    if(value.length < 2){
-
-      searchResults.classList.remove(
-        "show"
-      );
-
-      searchResults.innerHTML =
-        "";
-
-      return;
-
-    }
-
-
-    searchTimer =
-      setTimeout(
-        () =>
-          pesquisarUtilizadores(value),
-        350
-      );
-
-  }
-);
-
-
-/* =====================================================
-   PESQUISA DE UTILIZADORES
-===================================================== */
-
-async function pesquisarUtilizadores(
-  value
-){
-
-  try{
-
-    const usersRef =
-      collection(
-        db,
-        "users"
-      );
-
-
-    const q =
-      query(
-
-        usersRef,
-
-        where(
-          "username",
-          ">=",
-          value
-        ),
-
-        where(
-          "username",
-          "<=",
-          value + "\uf8ff"
-        ),
-
-        orderBy(
-          "username"
-        ),
-
-        limit(15)
-
-      );
-
-
-    const snap =
-      await getDocs(q);
-
-
-    searchResults.innerHTML =
-      "";
-
-
-    if(snap.empty){
-
-      searchResults.innerHTML = `
-
-        <div class="search-user">
-
-          <div class="user-info">
-
-            <div class="user-name">
-              Nenhum utilizador encontrado
-            </div>
-
-            <div class="user-handle">
-              Tenta outro nome ou username
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      searchResults.classList.add(
-        "show"
-      );
-
-      return;
-
-    }
-
-
-    snap.forEach(
-      docSnap => {
-
-        const user =
-          docSnap.data();
-
-
-        if(
-          currentUser &&
-          user.uid === currentUser.uid
-        ){
-
-          return;
-
-        }
-
-
-        const item =
-          document.createElement(
-            "div"
-          );
-
-
-        item.className =
-          "search-user";
-
-
-        item.innerHTML = `
-
-          <div class="avatar">
-
-            ${(user.name || "?")
-              .charAt(0)
-              .toUpperCase()}
-
-          </div>
-
-          <div class="user-info">
-
-            <div class="user-name">
-
-              ${escapeHTML(
-                user.name ||
-                "Utilizador"
-              )}
-
-            </div>
-
-            <div class="user-handle">
-
-              @${escapeHTML(
-                user.username ||
-                ""
-              )}
-
-            </div>
-
-          </div>
-
-          <button
-            class="add-contact"
-            data-user="${user.uid}"
-          >
-            +
-          </button>
-
-        `;
-
-
-        item
-          .querySelector(".user-info")
-          .onclick =
-          () => abrirConversa(user);
-
-
-        item
-          .querySelector(".avatar")
-          .onclick =
-          () => abrirConversa(user);
-
-
-        item
-          .querySelector(".add-contact")
-          .onclick =
-          event => {
-
-            event.stopPropagation();
-
-            adicionarContacto(
-              user.uid
-            );
-
-          };
-
-
-        searchResults.appendChild(
-          item
-        );
-
-      }
-    );
-
-
-    searchResults.classList.add(
-      "show"
-    );
-
-  }
-
-  catch(error){
-
-    console.error(
-      "Pesquisa:",
-      error
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   CONTACTOS
-===================================================== */
-
-async function adicionarContacto(
-  uid
-){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  try{
-
-    await updateDoc(
-
-      doc(
-        db,
-        "users",
-        currentUser.uid
-      ),
-
-      {
-
-        contacts:
-          arrayUnion(uid),
-
-        updatedAt:
-          serverTimestamp()
-
-      }
-
-    );
-
-
-    alert(
-      "Contacto adicionado."
-    );
-
-  }
-
-  catch(error){
-
-    console.error(error);
-
-    alert(
-      "Não foi possível adicionar o contacto."
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   ID DA CONVERSA
-===================================================== */
-
-function gerarChatId(
-  uid1,
-  uid2
-){
-
-  return [
-    uid1,
-    uid2
-  ]
-    .sort()
-    .join("_");
-
-}
-
-
-/* =====================================================
-   ABRIR CONVERSA
-===================================================== */
-
-async function abrirConversa(
-  otherUser
-){
-
-  if(!currentUser){
-
-    return;
-
-  }
-
-
-  searchResults.classList.remove(
-    "show"
-  );
-
-
-  globalSearch.value =
-    "";
-
-
-  const chatId =
-    gerarChatId(
-      currentUser.uid,
-      otherUser.uid
-    );
-
-
-  currentChatId =
-    chatId;
-
-
-  const chatRef =
-    doc(
-      db,
-      "chats",
-      chatId
-    );
-
-
-  const chatSnap =
-    await getDoc(chatRef);
-
-
-  if(!chatSnap.exists()){
-
-    await setDoc(
-      chatRef,
-      {
-
-        chatId,
-
-        type:"individual",
-
-        members:[
-          currentUser.uid,
-          otherUser.uid
-        ],
-
-        createdAt:
-          serverTimestamp(),
-
-        updatedAt:
-          serverTimestamp(),
-
-        lastMessage:"",
-
-        lastMessageAt:
-          serverTimestamp(),
-
-        lastSenderId:""
-
-      }
-    );
-
-  }
-
-
-  document
-    .getElementById(
-      "conversationName"
-    )
-    .textContent =
-    otherUser.name ||
-    "Utilizador";
-
-
-  document
-    .getElementById(
-      "conversationStatus"
-    )
-    .textContent =
-    "@" +
-    (
-      otherUser.username ||
-      ""
-    );
-
-
-  conversation.classList.add(
-    "open"
-  );
-
-
-  carregarMensagens(
-    chatId
-  );
-
-}
-
-
-/* =====================================================
-   MENSAGENS
-===================================================== */
-
-function carregarMensagens(
-  chatId
-){
-
-  if(unsubscribeMessages){
-
-    unsubscribeMessages();
-
-  }
-
-
-  const messagesRef =
-    collection(
-      db,
-      "chats",
-      chatId,
-      "messages"
-    );
-
-
-  const q =
-    query(
-      messagesRef,
-      orderBy(
-        "createdAt",
-        "asc"
-      )
-    );
-
-
-  unsubscribeMessages =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const container =
-          document.getElementById(
-            "messages"
-          );
-
-
-        container.innerHTML =
-          "";
-
-
-        if(snapshot.empty){
-
-          container.innerHTML = `
-
-            <div class="messages-empty">
-              Ainda não existem mensagens nesta conversa.
-            </div>
-
-          `;
-
-          return;
-
-        }
-
-
-        snapshot.forEach(
-          messageDoc => {
-
-            const message =
-              messageDoc.data();
-
-
-            const div =
-              document.createElement(
-                "div"
-              );
-
-
-            const mine =
-              message.senderId ===
-              currentUser.uid;
-
-
-            div.className =
-              "message" +
-              (
-                mine
-                  ? " mine"
-                  : ""
-              );
-
-
-            const time =
-              message.createdAt &&
-              typeof message.createdAt.toDate === "function"
-
-                ? message.createdAt
-                    .toDate()
-                    .toLocaleTimeString(
-                      "pt-AO",
-                      {
-                        hour:"2-digit",
-                        minute:"2-digit"
-                      }
-                    )
-
-                : "";
-
-
-            div.innerHTML = `
-
-              <div>
-                ${escapeHTML(
-                  message.text ||
-                  ""
-                )}
-              </div>
-
-              <div class="message-meta">
-
-                ${time}
-
-                ${
-                  mine
-                    ? (
-                      message.read
-                        ? `<span class="read">✓✓</span>`
-                        : "✓"
-                    )
-                    : ""
-                }
-
-              </div>
-
-            `;
-
-
-            container.appendChild(
-              div
-            );
-
-          }
-        );
-
-
-        container.scrollTop =
-          container.scrollHeight;
-
-      }
-    );
-
-}
-
-
-/* =====================================================
-   ENVIAR MENSAGEM
-===================================================== */
-
-const composer =
-  document.getElementById(
-    "composer"
-  );
-
-
-const messageBox =
-  document.getElementById(
-    "messageBox"
-  );
-
-
-composer.addEventListener(
-  "submit",
-  async event => {
+authForm.addEventListener("submit",async event => {
 
     event.preventDefault();
 
-
-    const text =
-      messageBox.value.trim();
-
-
-    if(
-      !text ||
-      !currentChatId ||
-      !currentUser
-    ){
-
-      return;
-
-    }
-
-
-    messageBox.value =
-      "";
-
-    messageBox.style.height =
-      "43px";
-
+    authButton.disabled = true;
+    setAuthStatus("A processar...");
 
     try{
 
-      const messagesRef =
-        collection(
-          db,
-          "chats",
-          currentChatId,
-          "messages"
+        if(authMode === "register"){
+
+            const publicName =
+                displayNameInput.value.trim();
+
+            const username =
+                normalizeUsername(usernameInput.value);
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            if(!publicName || !username){
+                throw new Error(
+                    "Preenche o nome público e o nome de utilizador."
+                );
+            }
+
+            if(username.length < 3){
+                throw new Error(
+                    "O nome de utilizador deve ter pelo menos 3 caracteres."
+                );
+            }
+
+            /*
+             * IMPORTANTE:
+             * Authentication é concluída primeiro.
+             * Não esperamos Firestore para abrir o app.
+             */
+
+            const credential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            currentUser = credential.user;
+
+            /*
+             * O perfil é iniciado em segundo plano.
+             * Não bloqueia a entrada.
+             */
+
+            createProfileInBackground(
+                credential.user,
+                publicName,
+                username
+            );
+
+            setAuthStatus(
+                "Conta criada. A entrar...",
+                "success"
+            );
+
+            /*
+             * onAuthStateChanged abrirá o app.
+             */
+
+        }else{
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+        }
+
+    }catch(error){
+
+        console.error(error);
+
+        setAuthStatus(
+            firebaseError(error),
+            "error"
         );
 
-
-      await addDoc(
-        messagesRef,
-        {
-
-          senderId:
-            currentUser.uid,
-
-          text:text,
-
-          createdAt:
-            serverTimestamp(),
-
-          read:false,
-
-          readAt:null
-
-        }
-      );
+        authButton.disabled = false;
+    }
+});
 
 
-      await updateDoc(
+function firebaseError(error){
 
-        doc(
-          db,
-          "chats",
-          currentChatId
-        ),
+    const code = error?.code || "";
 
-        {
+    const errors = {
+        "auth/email-already-in-use":
+            "Este e-mail já está registado.",
 
-          lastMessage:
-            text,
+        "auth/invalid-email":
+            "O e-mail não é válido.",
 
-          lastSenderId:
-            currentUser.uid,
+        "auth/weak-password":
+            "A senha é demasiado fraca.",
 
-          lastMessageAt:
-            serverTimestamp(),
+        "auth/invalid-credential":
+            "E-mail ou senha incorretos.",
 
-          updatedAt:
-            serverTimestamp()
+        "auth/user-not-found":
+            "Utilizador não encontrado.",
 
-        }
+        "auth/wrong-password":
+            "Senha incorreta.",
 
-      );
+        "auth/network-request-failed":
+            "Problema de ligação à internet."
+    };
+
+    return errors[code] ||
+        error?.message ||
+        "Ocorreu um erro.";
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+async function createProfileInBackground(
+    user,
+    publicName,
+    username
+){
+
+    try{
+
+        const profileRef =
+            doc(db,"users",user.uid);
+
+        await setDoc(
+            profileRef,
+            {
+                uid:user.uid,
+                displayName:publicName,
+                username,
+                usernameLower:username,
+                email:user.email || "",
+                online:true,
+                lastSeen:serverTimestamp(),
+                createdAt:serverTimestamp()
+            },
+            { merge:true }
+        );
+
+    }catch(error){
+
+        console.error(
+            "Erro ao criar perfil:",
+            error
+        );
 
     }
+}
 
-    catch(error){
 
-      console.error(
-        "Envio:",
-        error
-      );
+async function loadProfile(){
 
-      alert(
-        "Não foi possível enviar a mensagem."
-      );
+    if(!currentUser) return null;
 
+    const ref =
+        doc(db,"users",currentUser.uid);
+
+    const snap =
+        await getDoc(ref);
+
+    if(!snap.exists()){
+
+        /*
+         * Conta Firebase pode existir mesmo que
+         * a criação do perfil tenha demorado.
+         */
+
+        return null;
     }
 
-  }
+    return {
+        id:snap.id,
+        ...snap.data()
+    };
+}
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+onAuthStateChanged(auth,async user => {
+
+    currentUser = user;
+
+    if(!user){
+
+        cleanupListeners();
+
+        mainApp.classList.add("hidden");
+        conversation.classList.add("hidden");
+        authScreen.classList.remove("hidden");
+
+        loading.classList.add("hidden");
+
+        authButton.disabled = false;
+
+        return;
+    }
+
+    /*
+     * Entrada rápida.
+     * Não há espera artificial.
+     */
+
+    authScreen.classList.add("hidden");
+    mainApp.classList.remove("hidden");
+    loading.classList.add("hidden");
+
+    authButton.disabled = false;
+
+    /*
+     * Carrega o perfil sem bloquear a renderização.
+     */
+
+    loadUserAfterEntry();
+
+});
+
+
+async function loadUserAfterEntry(){
+
+    try{
+
+        currentProfile =
+            await loadProfile();
+
+        /*
+         * Se o perfil ainda não terminou de ser criado,
+         * tentamos novamente sem travar a aplicação.
+         */
+
+        if(!currentProfile){
+
+            setTimeout(
+                loadUserAfterEntry,
+                1200
+            );
+
+            return;
+        }
+
+        renderProfile();
+        startRealtimeData();
+        updatePresence();
+
+    }catch(error){
+
+        console.error(error);
+
+        /*
+         * O app continua aberto mesmo se uma leitura
+         * secundária falhar.
+         */
+
+        showToast(
+            "Ligação ao perfil temporariamente indisponível."
+        );
+    }
+}
+
+
+/* =========================================================
+   PRESENCE
+========================================================= */
+
+async function updatePresence(){
+
+    if(!currentUser) return;
+
+    const ref =
+        doc(db,"users",currentUser.uid);
+
+    try{
+
+        await updateDoc(
+            ref,
+            {
+                online:true,
+                lastSeen:serverTimestamp()
+            }
+        );
+
+    }catch(error){
+        console.warn(error);
+    }
+
+    clearInterval(heartbeatTimer);
+
+    heartbeatTimer =
+        setInterval(async () => {
+
+            if(!currentUser) return;
+
+            try{
+
+                await updateDoc(
+                    ref,
+                    {
+                        online:true,
+                        lastSeen:serverTimestamp()
+                    }
+                );
+
+            }catch(error){
+                console.warn(error);
+            }
+
+        },30000);
+}
+
+
+document.addEventListener(
+    "visibilitychange",
+    async () => {
+
+        if(!currentUser) return;
+
+        const ref =
+            doc(db,"users",currentUser.uid);
+
+        try{
+
+            await updateDoc(
+                ref,
+                {
+                    online:
+                        document.visibilityState === "visible",
+                    lastSeen:serverTimestamp()
+                }
+            );
+
+        }catch(error){}
+    }
 );
 
 
-/* =====================================================
-   CARREGAR CONVERSAS
-===================================================== */
+/* =========================================================
+   PROFILE RENDER
+========================================================= */
 
-function carregarConversas(){
+function renderProfile(){
 
-  if(unsubscribeChats){
+    if(!currentProfile) return;
 
-    unsubscribeChats();
+    const name =
+        currentProfile.displayName ||
+        "Utilizador";
 
-  }
+    const username =
+        currentProfile.username ||
+        "";
 
+    const letter =
+        initials(name);
 
-  const chatsRef =
-    collection(
-      db,
-      "chats"
-    );
+    $("topAvatar").childNodes[0].nodeValue =
+        letter;
 
+    $("topName").textContent =
+        name;
 
-  const q =
-    query(
+    $("topUsername").textContent =
+        "@" + username;
 
-      chatsRef,
+    $("profileAvatar").textContent =
+        letter;
 
-      where(
-        "members",
-        "array-contains",
-        currentUser.uid
-      ),
+    $("profileDisplayName").textContent =
+        name;
 
-      orderBy(
-        "updatedAt",
-        "desc"
-      )
+    $("profileUsername").textContent =
+        "@" + username;
 
-    );
+    $("editDisplayName").value =
+        name;
 
-
-  unsubscribeChats =
-    onSnapshot(
-      q,
-      async snapshot => {
-
-        const list =
-          document.getElementById(
-            "chatList"
-          );
+    $("editUsername").value =
+        username;
+}
 
 
-        const empty =
-          document.getElementById(
-            "emptyChats"
-          );
+/* =========================================================
+   REALTIME DATA
+========================================================= */
+
+function startRealtimeData(){
+
+    /*
+     * Não criamos listeners de mensagens de todas
+     * as conversas.
+     *
+     * Mensagens só são escutadas quando a conversa
+     * correspondente é aberta.
+     */
+
+    startChatListener();
+    startContactListener();
+}
 
 
-        list.innerHTML =
-          "";
+/* =========================================================
+   CHAT LIST
+========================================================= */
+
+function startChatListener(){
+
+    if(unsubscribeChats)
+        unsubscribeChats();
+
+    const chatsRef =
+        collection(db,"chats");
+
+    const q =
+        query(
+            chatsRef,
+            where(
+                "members",
+                "array-contains",
+                currentUser.uid
+            ),
+            orderBy(
+                "updatedAt",
+                "desc"
+            ),
+            limit(40)
+        );
+
+    unsubscribeChats =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                const chats =
+                    snapshot.docs.map(
+                        doc => ({
+                            id:doc.id,
+                            ...doc.data()
+                        })
+                    );
+
+                renderChats(chats);
+
+            },
+            error => {
+
+                console.error(
+                    "Chat listener:",
+                    error
+                );
+
+                /*
+                 * Se a consulta composta exigir índice,
+                 * o restante do app continua funcionando.
+                 */
+
+                chatList.innerHTML = `
+                    <div class="empty">
+                        As conversas aparecerão aqui.
+                    </div>
+                `;
+            }
+        );
+}
 
 
-        if(snapshot.empty){
+async function renderChats(chats){
 
-          empty.style.display =
-            "flex";
+    if(!chats.length){
 
-          return;
-
-        }
-
-
-        empty.style.display =
-          "none";
-
-
-        for(
-          const chatDoc
-          of snapshot.docs
-        ){
-
-          const chat =
-            chatDoc.data();
-
-
-          const otherId =
-            chat.members.find(
-              id =>
-                id !== currentUser.uid
-            );
-
-
-          if(!otherId){
-
-            continue;
-
-          }
-
-
-          const userSnap =
-            await getDoc(
-              doc(
-                db,
-                "users",
-                otherId
-              )
-            );
-
-
-          if(!userSnap.exists()){
-
-            continue;
-
-          }
-
-
-          const user =
-            userSnap.data();
-
-
-          const item =
-            document.createElement(
-              "div"
-            );
-
-
-          item.className =
-            "chat-item";
-
-
-          item.innerHTML = `
-
-            <div class="avatar">
-
-              ${(user.name || "?")
-                .charAt(0)
-                .toUpperCase()}
-
+        chatList.innerHTML = `
+            <div class="empty">
+                Ainda não tens conversas.<br>
+                Usa a pesquisa para encontrar pessoas.
             </div>
+        `;
 
-            <div class="chat-content">
+        return;
+    }
 
-              <div class="chat-row">
+    /*
+     * Busca somente os perfis necessários.
+     * Não faz uma pesquisa global inteira.
+     */
 
-                <div class="chat-name">
+    const uniqueIds =
+        new Set();
 
-                  ${escapeHTML(
-                    user.name ||
-                    "Utilizador"
-                  )}
+    chats.forEach(chat => {
+
+        (chat.members || []).forEach(uid => {
+
+            if(uid !== currentUser.uid)
+                uniqueIds.add(uid);
+
+        });
+
+    });
+
+    const profiles =
+        new Map();
+
+    await Promise.all(
+        [...uniqueIds].map(async uid => {
+
+            try{
+
+                const snap =
+                    await getDoc(
+                        doc(db,"users",uid)
+                    );
+
+                if(snap.exists())
+                    profiles.set(
+                        uid,
+                        snap.data()
+                    );
+
+            }catch(error){}
+        })
+    );
+
+    chatList.innerHTML = chats.map(chat => {
+
+        const otherId =
+            (chat.members || [])
+                .find(
+                    uid =>
+                        uid !== currentUser.uid
+                );
+
+        const profile =
+            otherId
+                ? profiles.get(otherId)
+                : null;
+
+        const name =
+            chat.type === "group"
+                ? chat.name || "Grupo"
+                : profile?.displayName ||
+                  "Utilizador";
+
+        const preview =
+            chat.lastMessage ||
+            "Nova conversa";
+
+        return `
+            <button
+                class="chat-item"
+                data-chat-id="${escapeHTML(chat.id)}"
+                style="width:100%;text-align:left;color:inherit">
+
+                <div class="avatar">
+                    ${escapeHTML(initials(name))}
+                    ${
+                        chat.type !== "group" &&
+                        profile?.online
+                        ? `<span class="online-dot"></span>`
+                        : ""
+                    }
+                </div>
+
+                <div class="chat-info">
+
+                    <div class="chat-line">
+                        <span class="chat-name">
+                            ${escapeHTML(name)}
+                        </span>
+
+                        <span class="chat-time">
+                            ${formatTime(chat.updatedAt)}
+                        </span>
+                    </div>
+
+                    <div class="chat-preview">
+                        ${escapeHTML(preview)}
+                    </div>
 
                 </div>
 
-              </div>
-
-              <div class="chat-preview">
-
-                ${escapeHTML(
-                  chat.lastMessage ||
-                  "Nova conversa"
-                )}
-
-              </div>
-
-            </div>
-
-          `;
-
-
-          item.onclick =
-            () => abrirConversa(
-              user
-            );
-
-
-          list.appendChild(
-            item
-          );
-
-        }
-
-      }
-    );
-
-}
-
-
-/* =====================================================
-   FECHAR CONVERSA
-===================================================== */
-
-document
-  .getElementById(
-    "backButton"
-  )
-  .onclick =
-  () => {
-
-    conversation.classList.remove(
-      "open"
-    );
-
-
-    if(unsubscribeMessages){
-
-      unsubscribeMessages();
-
-      unsubscribeMessages =
-        null;
-
-    }
-
-
-    currentChatId =
-      null;
-
-  };
-
-
-/* =====================================================
-   NOVO CHAT
-===================================================== */
-
-const modal =
-  document.getElementById(
-    "newChatModal"
-  );
-
-
-document
-  .getElementById(
-    "newChat"
-  )
-  .onclick =
-  () => {
-
-    modal.classList.add(
-      "open"
-    );
-
-  };
-
-
-document
-  .getElementById(
-    "modalClose"
-  )
-  .onclick =
-  () => {
-
-    modal.classList.remove(
-      "open"
-    );
-
-  };
-
-
-document
-  .getElementById(
-    "modalIndividual"
-  )
-  .onclick =
-  () => {
-
-    modal.classList.remove(
-      "open"
-    );
-
-    globalSearch.focus();
-
-  };
-
-
-document
-  .getElementById(
-    "modalGroup"
-  )
-  .onclick =
-  () => {
-
-    modal.classList.remove(
-      "open"
-    );
-
-
-    alert(
-      "A criação de grupos será ligada ao sistema de grupos do Firebase."
-    );
-
-  };
-
-
-/* =====================================================
-   PERFIL
-===================================================== */
-
-document
-  .getElementById(
-    "profileButton"
-  )
-  .onclick =
-  abrirPerfil;
-
-
-function abrirPerfil(){
-
-  atualizarPerfilUI();
-
-  profileScreen.classList.add(
-    "open"
-  );
-
-}
-
-
-document
-  .getElementById(
-    "closeProfile"
-  )
-  .onclick =
-  () => {
-
-    profileScreen.classList.remove(
-      "open"
-    );
-
-  };
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-document
-  .getElementById(
-    "logoutButton"
-  )
-  .onclick =
-  async () => {
-
-    try{
-
-      if(currentUser){
-
-        await updateDoc(
-
-          doc(
-            db,
-            "users",
-            currentUser.uid
-          ),
-
-          {
-
-            online:false,
-
-            lastSeenAt:
-              serverTimestamp()
-
-          }
-
-        );
-
-      }
-
-
-      await signOut(auth);
-
-      profileScreen.classList.remove(
-        "open"
-      );
-
-    }
-
-    catch(error){
-
-      console.error(
-        error
-      );
-
-    }
-
-  };
-
-
-/* =====================================================
-   NAVEGAÇÃO
-===================================================== */
-
-document
-  .querySelectorAll(
-    ".nav-item"
-  )
-  .forEach(
-    button => {
-
-      button.onclick =
-        () => {
-
-          const page =
-            button.dataset.page;
-
-
-          document
-            .querySelectorAll(
-              ".nav-item"
-            )
-            .forEach(
-              b =>
-                b.classList.remove(
-                  "active"
+            </button>
+        `;
+
+    }).join("");
+
+    chatList
+        .querySelectorAll("[data-chat-id]")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => openConversation(
+                    button.dataset.chatId
                 )
             );
 
-
-          button.classList.add(
-            "active"
-          );
-
-
-          if(page === "profile"){
-
-            abrirPerfil();
-
-          }
-
-
-          if(page === "chats"){
-
-            profileScreen.classList.remove(
-              "open"
-            );
-
-          }
-
-        };
-
-    }
-  );
-
-
-/* =====================================================
-   UTILITÁRIO
-===================================================== */
-
-function escapeHTML(
-  text
-){
-
-  return String(text)
-    .replace(
-      /[&<>"']/g,
-      char => ({
-
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-
-      }[char])
-    );
-
+        });
 }
 
 
-/* =====================================================
-   TEXTAREA
-===================================================== */
+/* =========================================================
+   CONTACTS
+========================================================= */
 
-messageBox.addEventListener(
-  "input",
-  function(){
+function startContactListener(){
 
-    this.style.height =
-      "auto";
+    if(unsubscribeContacts)
+        unsubscribeContacts();
+
+    const ref =
+        doc(
+            db,
+            "users",
+            currentUser.uid
+        );
+
+    unsubscribeContacts =
+        onSnapshot(
+            ref,
+            snapshot => {
+
+                if(!snapshot.exists())
+                    return;
+
+                currentProfile = {
+                    id:snapshot.id,
+                    ...snapshot.data()
+                };
+
+                renderProfile();
+                renderContacts();
+
+            }
+        );
+}
 
 
-    this.style.height =
-      Math.min(
-        this.scrollHeight,
-        110
-      ) + "px";
+async function renderContacts(){
 
-  }
+    const ids =
+        currentProfile?.contacts || [];
+
+    if(!ids.length){
+
+        contactsList.innerHTML = `
+            <div class="empty">
+                Ainda não tens contactos.<br>
+                Pesquisa uma pessoa para adicionar.
+            </div>
+        `;
+
+        return;
+    }
+
+    const profiles = [];
+
+    await Promise.all(
+        ids.map(async uid => {
+
+            try{
+
+                const snap =
+                    await getDoc(
+                        doc(db,"users",uid)
+                    );
+
+                if(snap.exists()){
+
+                    profiles.push({
+                        id:snap.id,
+                        ...snap.data()
+                    });
+
+                }
+
+            }catch(error){}
+        })
+    );
+
+    contactsList.innerHTML =
+        profiles.map(profile => {
+
+            const name =
+                profile.displayName ||
+                "Utilizador";
+
+            return `
+                <div class="contact-item">
+
+                    <div class="avatar">
+                        ${escapeHTML(initials(name))}
+                        ${
+                            profile.online
+                            ? `<span class="online-dot"></span>`
+                            : ""
+                        }
+                    </div>
+
+                    <div class="contact-info">
+                        <strong>
+                            ${escapeHTML(name)}
+                        </strong>
+
+                        <small>
+                            @${escapeHTML(
+                                profile.username || ""
+                            )}
+                        </small>
+                    </div>
+
+                    <button
+                        class="small-btn primary start-contact-chat"
+                        data-uid="${escapeHTML(profile.uid)}">
+                        Conversar
+                    </button>
+
+                </div>
+            `;
+
+        }).join("");
+
+    contactsList
+        .querySelectorAll(".start-contact-chat")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => createOrOpenDirectChat(
+                    button.dataset.uid
+                )
+            );
+
+        });
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+$("searchToggle").addEventListener(
+    "click",
+    () => {
+
+        searchArea.classList.remove("hidden");
+
+        setTimeout(
+            () => globalSearch.focus(),
+            30
+        );
+    }
 );
 
 
-messageBox.addEventListener(
-  "keydown",
-  event => {
+$("closeSearch").addEventListener(
+    "click",
+    closeSearch
+);
+
+
+function closeSearch(){
+
+    searchArea.classList.add("hidden");
+
+    globalSearch.value = "";
+
+    searchResults.innerHTML = "";
+    searchResults.classList.add("hidden");
+}
+
+
+globalSearch.addEventListener(
+    "input",
+    () => {
+
+        clearTimeout(searchTimer);
+
+        const term =
+            normalizeUsername(
+                globalSearch.value
+            );
+
+        if(term.length < 2){
+
+            searchResults.innerHTML = "";
+            searchResults.classList.add("hidden");
+
+            return;
+        }
+
+        /*
+         * Debounce:
+         * evita uma consulta ao Firebase
+         * a cada tecla digitada.
+         */
+
+        searchTimer =
+            setTimeout(
+                () => searchUsers(term),
+                280
+            );
+    }
+);
+
+
+async function searchUsers(term){
+
+    searchResults.classList.remove("hidden");
+
+    searchResults.innerHTML = `
+        <div class="empty">
+            A pesquisar...
+        </div>
+    `;
+
+    try{
+
+        const usersRef =
+            collection(db,"users");
+
+        const q =
+            query(
+                usersRef,
+                where(
+                    "usernameLower",
+                    ">=",
+                    term
+                ),
+                where(
+                    "usernameLower",
+                    "<=",
+                    term + "\uf8ff"
+                ),
+                limit(20)
+            );
+
+        const snapshot =
+            await getDocs(q);
+
+        const results =
+            snapshot.docs
+                .map(
+                    doc => ({
+                        id:doc.id,
+                        ...doc.data()
+                    })
+                )
+                .filter(
+                    user =>
+                        user.uid !== currentUser.uid
+                );
+
+        if(!results.length){
+
+            searchResults.innerHTML = `
+                <div class="empty">
+                    Nenhum utilizador encontrado.
+                </div>
+            `;
+
+            return;
+        }
+
+        searchResults.innerHTML =
+            results.map(user => {
+
+                const name =
+                    user.displayName ||
+                    "Utilizador";
+
+                const isContact =
+                    (
+                        currentProfile?.contacts ||
+                        []
+                    ).includes(user.uid);
+
+                return `
+                    <div class="search-result">
+
+                        <div class="avatar">
+                            ${escapeHTML(
+                                initials(name)
+                            )}
+
+                            ${
+                                user.online
+                                ? `<span class="online-dot"></span>`
+                                : ""
+                            }
+                        </div>
+
+                        <div class="result-info">
+
+                            <strong>
+                                ${escapeHTML(name)}
+                            </strong>
+
+                            <small>
+                                @${escapeHTML(
+                                    user.username || ""
+                                )}
+                            </small>
+
+                        </div>
+
+                        <div class="result-actions">
+
+                            <button
+                                class="small-btn ${
+                                    isContact
+                                    ? ""
+                                    : "primary"
+                                } add-contact"
+                                data-uid="${escapeHTML(user.uid)}">
+
+                                ${
+                                    isContact
+                                    ? "Contacto"
+                                    : "Adicionar"
+                                }
+
+                            </button>
+
+                            <button
+                                class="small-btn start-search-chat"
+                                data-uid="${escapeHTML(user.uid)}">
+                                Chat
+                            </button>
+
+                        </div>
+
+                    </div>
+                `;
+
+            }).join("");
+
+        searchResults
+            .querySelectorAll(".add-contact")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => addContact(
+                        button.dataset.uid
+                    )
+                );
+
+            });
+
+        searchResults
+            .querySelectorAll(".start-search-chat")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => createOrOpenDirectChat(
+                        button.dataset.uid
+                    )
+                );
+
+            });
+
+    }catch(error){
+
+        console.error(error);
+
+        searchResults.innerHTML = `
+            <div class="empty">
+                Não foi possível realizar a pesquisa.
+            </div>
+        `;
+    }
+}
+
+
+/* =========================================================
+   ADD CONTACT
+========================================================= */
+
+async function addContact(uid){
+
+    if(!currentUser || !uid) return;
 
     if(
-      event.key === "Enter" &&
-      !event.shiftKey
+        (currentProfile.contacts || [])
+            .includes(uid)
     ){
 
-      event.preventDefault();
+        showToast(
+            "Este utilizador já está nos teus contactos."
+        );
 
-      composer.requestSubmit();
+        return;
+    }
+
+    try{
+
+        await updateDoc(
+            doc(
+                db,
+                "users",
+                currentUser.uid
+            ),
+            {
+                contacts:arrayUnion(uid)
+            }
+        );
+
+        /*
+         * A lista será atualizada pelo listener.
+         */
+
+        showToast(
+            "Contacto adicionado."
+        );
+
+        searchUsers(
+            normalizeUsername(
+                globalSearch.value
+            )
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Não foi possível adicionar o contacto."
+        );
+    }
+}
+
+
+/* =========================================================
+   DIRECT CHAT
+========================================================= */
+
+function directChatId(uid1,uid2){
+
+    return [uid1,uid2]
+        .sort()
+        .join("_");
+}
+
+
+async function createOrOpenDirectChat(otherUid){
+
+    if(!currentUser || !otherUid)
+        return;
+
+    const chatId =
+        directChatId(
+            currentUser.uid,
+            otherUid
+        );
+
+    const ref =
+        doc(db,"chats",chatId);
+
+    try{
+
+        const existing =
+            await getDoc(ref);
+
+        if(!existing.exists()){
+
+            await setDoc(
+                ref,
+                {
+                    type:"direct",
+                    members:[
+                        currentUser.uid,
+                        otherUid
+                    ],
+                    createdAt:serverTimestamp(),
+                    updatedAt:serverTimestamp(),
+                    lastMessage:""
+                }
+            );
+
+        }
+
+        closeSearch();
+
+        openConversation(chatId);
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Não foi possível abrir a conversa."
+        );
+    }
+}
+
+
+/* =========================================================
+   OPEN CONVERSATION
+========================================================= */
+
+async function openConversation(chatId){
+
+    if(!chatId) return;
+
+    /*
+     * Cancela o listener anterior antes de abrir
+     * outro. Isto é importante para performance.
+     */
+
+    if(unsubscribeMessages){
+
+        unsubscribeMessages();
+        unsubscribeMessages = null;
 
     }
 
-  }
+    activeConversation = chatId;
+
+    conversation.classList.remove("hidden");
+
+    messages.innerHTML = `
+        <div class="empty">
+            A carregar conversa...
+        </div>
+    `;
+
+    try{
+
+        const chatSnap =
+            await getDoc(
+                doc(db,"chats",chatId)
+            );
+
+        if(!chatSnap.exists())
+            return;
+
+        const chat =
+            chatSnap.data();
+
+        let title = "Grupo";
+        let online = false;
+        let avatarText = "G";
+
+        if(chat.type === "group"){
+
+            title =
+                chat.name || "Grupo";
+
+            avatarText =
+                initials(title);
+
+        }else{
+
+            const otherUid =
+                (chat.members || [])
+                    .find(
+                        uid =>
+                            uid !== currentUser.uid
+                    );
+
+            if(otherUid){
+
+                const profileSnap =
+                    await getDoc(
+                        doc(
+                            db,
+                            "users",
+                            otherUid
+                        )
+                    );
+
+                if(profileSnap.exists()){
+
+                    const profile =
+                        profileSnap.data();
+
+                    title =
+                        profile.displayName ||
+                        "Utilizador";
+
+                    online =
+                        !!profile.online;
+
+                    avatarText =
+                        initials(title);
+
+                }
+            }
+        }
+
+        $("conversationName").textContent =
+            title;
+
+        $("conversationStatus").textContent =
+            chat.type === "group"
+                ? "Grupo"
+                : online
+                    ? "online"
+                    : "offline";
+
+        $("conversationAvatar").textContent =
+            avatarText;
+
+        /*
+         * Só agora ligamos o listener das mensagens.
+         */
+
+        startMessageListener(chatId);
+
+    }catch(error){
+
+        console.error(error);
+
+        showToast(
+            "Não foi possível abrir a conversa."
+        );
+    }
+}
+
+
+/* =========================================================
+   MESSAGE LISTENER
+========================================================= */
+
+function startMessageListener(chatId){
+
+    const messagesRef =
+        collection(
+            db,
+            "chats",
+            chatId,
+            "messages"
+        );
+
+    const q =
+        query(
+            messagesRef,
+            orderBy(
+                "createdAt",
+                "asc"
+            ),
+            limit(100)
+        );
+
+    unsubscribeMessages =
+        onSnapshot(
+            q,
+            snapshot => {
+
+                renderMessages(
+                    snapshot.docs
+                        .map(
+                            doc => ({
+                                id:doc.id,
+                                ...doc.data()
+                            })
+                        )
+                );
+
+                /*
+                 * Marca leitura sem bloquear o desenho
+                 * da conversa.
+                 */
+
+                markConversationRead(
+                    chatId,
+                    snapshot.docs
+                );
+
+            },
+            error => {
+
+                console.error(
+                    "Message listener:",
+                    error
+                );
+
+                messages.innerHTML = `
+                    <div class="empty">
+                        Não foi possível carregar as mensagens.
+                    </div>
+                `;
+            }
+        );
+}
+
+
+function renderMessages(list){
+
+    if(!list.length){
+
+        messages.innerHTML = `
+            <div class="empty">
+                Inicia a conversa.
+            </div>
+        `;
+
+        return;
+    }
+
+    messages.innerHTML =
+        list.map(message => {
+
+            const mine =
+                message.senderId ===
+                currentUser.uid;
+
+            const read =
+                message.readBy &&
+                message.readBy.includes(
+                    currentUser.uid
+                );
+
+            return `
+                <div class="message ${
+                    mine ? "mine" : "theirs"
+                }">
+
+                    <div class="bubble">
+                        ${escapeHTML(
+                            message.text || ""
+                        )}
+                    </div>
+
+                    <div class="message-meta">
+
+                        <span>
+                            ${formatTime(
+                                message.createdAt
+                            )}
+                        </span>
+
+                        ${
+                            mine
+                            ? `
+                                <span class="${
+                                    read
+                                    ? "read"
+                                    : ""
+                                }">
+                                    ✓✓
+                                </span>
+                              `
+                            : ""
+                        }
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+    /*
+     * Scroll instantâneo.
+     * Não usamos animações pesadas.
+     */
+
+    messages.scrollTop =
+        messages.scrollHeight;
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+========================================================= */
+
+$("composer").addEventListener(
+    "submit",
+    async event => {
+
+        event.preventDefault();
+
+        if(!activeConversation)
+            return;
+
+        const text =
+            messageInput.value.trim();
+
+        if(!text) return;
+
+        messageInput.value = "";
+
+        const chatId =
+            activeConversation;
+
+        try{
+
+            /*
+             * A mensagem é criada primeiro.
+             */
+
+            await addDoc(
+                collection(
+                    db,
+                    "chats",
+                    chatId,
+                    "messages"
+                ),
+                {
+                    senderId:currentUser.uid,
+                    text,
+                    createdAt:serverTimestamp(),
+                    readBy:[
+                        currentUser.uid
+                    ]
+                }
+            );
+
+            /*
+             * Atualização da lista de chats.
+             */
+
+            updateDoc(
+                doc(
+                    db,
+                    "chats",
+                    chatId
+                ),
+                {
+                    lastMessage:text,
+                    updatedAt:serverTimestamp()
+                }
+            ).catch(
+                console.warn
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            messageInput.value = text;
+
+            showToast(
+                "Não foi possível enviar a mensagem."
+            );
+        }
+    }
 );
 
 
-/* =====================================================
-   PESQUISA PELO BOTÃO
-===================================================== */
+/* =========================================================
+   READ RECEIPTS
+========================================================= */
+
+async function markConversationRead(
+    chatId,
+    messageDocs
+){
+
+    const unread =
+        messageDocs.filter(doc => {
+
+            const data = doc.data();
+
+            return (
+                data.senderId !==
+                    currentUser.uid &&
+                !(
+                    data.readBy || []
+                ).includes(
+                    currentUser.uid
+                )
+            );
+
+        });
+
+    /*
+     * Limitamos o número de atualizações para
+     * evitar operações excessivas.
+     */
+
+    const batch =
+        writeBatch(db);
+
+    unread
+        .slice(-30)
+        .forEach(messageDoc => {
+
+            batch.update(
+                messageDoc.ref,
+                {
+                    readBy:arrayUnion(
+                        currentUser.uid
+                    )
+                }
+            );
+
+        });
+
+    if(unread.length){
+
+        try{
+            await batch.commit();
+        }catch(error){
+            console.warn(
+                "Read receipt:",
+                error
+            );
+        }
+    }
+}
+
+
+/* =========================================================
+   BACK CONVERSATION
+========================================================= */
+
+$("backConversation").addEventListener(
+    "click",
+    () => {
+
+        conversation.classList.add("hidden");
+
+        activeConversation = null;
+
+        if(unsubscribeMessages){
+
+            unsubscribeMessages();
+            unsubscribeMessages = null;
+
+        }
+
+        messages.innerHTML = "";
+
+    }
+);
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+messageInput.addEventListener(
+    "input",
+    () => {
+
+        messageInput.style.height =
+            "auto";
+
+        messageInput.style.height =
+            Math.min(
+                messageInput.scrollHeight,
+                120
+            ) + "px";
+    }
+);
+
+messageInput.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter" &&
+            !event.shiftKey
+        ){
+
+            event.preventDefault();
+
+            $("composer")
+                .requestSubmit();
+
+        }
+    }
+);
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 document
-  .getElementById(
-    "globalSearchButton"
-  )
-  .onclick =
-  () => {
+    .querySelectorAll(".nav-btn[data-page]")
+    .forEach(button => {
 
-    globalSearch.focus();
+        button.addEventListener(
+            "click",
+            () => {
 
-  };
+                const pageId =
+                    button.dataset.page;
+
+                document
+                    .querySelectorAll(".page")
+                    .forEach(page => {
+                        page.classList.add(
+                            "hidden"
+                        );
+                    });
+
+                $(pageId)
+                    .classList.remove(
+                        "hidden"
+                    );
+
+                document
+                    .querySelectorAll(".nav-btn")
+                    .forEach(btn => {
+                        btn.classList.remove(
+                            "active"
+                        );
+                    });
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+        );
+
+    });
 
 
-/* =====================================================
-   BOTÃO CONVERSA
-===================================================== */
+$("profileButton").addEventListener(
+    "click",
+    () => {
 
-document
-  .getElementById(
-    "quickConversation"
-  )
-  .onclick =
-  () => {
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+                page.classList.add(
+                    "hidden"
+                );
+            });
 
-    globalSearch.focus();
+        $("profilePage")
+            .classList.remove(
+                "hidden"
+            );
 
-  };
+        document
+            .querySelectorAll(".nav-btn")
+            .forEach(btn => {
+                btn.classList.remove(
+                    "active"
+                );
+            });
+
+    }
+);
 
 
-/* =====================================================
-   BOTÃO CONTACTOS
-===================================================== */
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
 
-document
-  .getElementById(
-    "quickContacts"
-  )
-  .onclick =
-  () => {
+$("saveProfile").addEventListener(
+    "click",
+    async () => {
 
-    globalSearch.focus();
+        if(!currentUser) return;
 
-  };
+        const name =
+            $("editDisplayName")
+                .value.trim();
 
+        const username =
+            normalizeUsername(
+                $("editUsername").value
+            );
+
+        if(!name || username.length < 3){
+
+            $("profileStatus").textContent =
+                "Preenche corretamente os dados.";
+
+            $("profileStatus")
+                .className =
+                "status error";
+
+            return;
+        }
+
+        $("saveProfile").disabled = true;
+
+        try{
+
+            await updateDoc(
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                ),
+                {
+                    displayName:name,
+                    username,
+                    usernameLower:username
+                }
+            );
+
+            currentProfile.displayName =
+                name;
+
+            currentProfile.username =
+                username;
+
+            renderProfile();
+
+            $("profileStatus").textContent =
+                "Perfil atualizado.";
+
+            $("profileStatus")
+                .className =
+                "status success";
+
+        }catch(error){
+
+            console.error(error);
+
+            $("profileStatus").textContent =
+                "Não foi possível atualizar.";
+
+            $("profileStatus")
+                .className =
+                "status error";
+
+        }finally{
+
+            $("saveProfile").disabled =
+                false;
+
+        }
+    }
+);
+
+
+/* =========================================================
+   GROUPS
+========================================================= */
+
+$("createGroupButton").addEventListener(
+    "click",
+    openGroupModal
+);
+
+
+$("cancelGroup").addEventListener(
+    "click",
+    closeGroupModal
+);
+
+
+function openGroupModal(){
+
+    $("groupModal")
+        .classList.remove("hidden");
+
+    renderGroupContacts();
+}
+
+
+function closeGroupModal(){
+
+    $("groupModal")
+        .classList.add("hidden");
+
+    $("groupName").value = "";
+
+    $("groupStatus").textContent = "";
+}
+
+
+async function renderGroupContacts(){
+
+    const ids =
+        currentProfile?.contacts || [];
+
+    if(!ids.length){
+
+        $("groupContacts").innerHTML = `
+            <div class="empty">
+                Adiciona contactos primeiro.
+            </div>
+        `;
+
+        return;
+    }
+
+    const users = [];
+
+    await Promise.all(
+        ids.map(async uid => {
+
+            try{
+
+                const snap =
+                    await getDoc(
+                        doc(db,"users",uid)
+                    );
+
+                if(snap.exists()){
+
+                    users.push({
+                        id:snap.id,
+                        ...snap.data()
+                    });
+
+                }
+
+            }catch(error){}
+        })
+    );
+
+    $("groupContacts").innerHTML =
+        users.map(user => {
+
+            const name =
+                user.displayName ||
+                "Utilizador";
+
+            return `
+                <label
+                    style="
+                        display:flex;
+                        align-items:center;
+                        gap:10px;
+                        padding:11px;
+                        margin-bottom:7px;
+                        border-radius:15px;
+                        background:#191722;
+                    ">
+
+                    <input
+                        type="checkbox"
+                        value="${escapeHTML(user.uid)}">
+
+                    <div class="avatar">
+                        ${escapeHTML(
+                            initials(name)
+                        )}
+                    </div>
+
+                    <span>
+                        ${escapeHTML(name)}
+                    </span>
+
+                </label>
+            `;
+
+        }).join("");
+}
+
+
+$("confirmGroup").addEventListener(
+    "click",
+    async () => {
+
+        const name =
+            $("groupName")
+                .value.trim();
+
+        const selected =
+            [
+                ...$("groupContacts")
+                    .querySelectorAll(
+                        "input[type=checkbox]:checked"
+                    )
+            ]
+            .map(
+                input =>
+                    input.value
+            );
+
+        if(!name){
+
+            $("groupStatus").textContent =
+                "Digite o nome do grupo.";
+
+            $("groupStatus")
+                .className =
+                "status error";
+
+            return;
+        }
+
+        if(!selected.length){
+
+            $("groupStatus").textContent =
+                "Selecione pelo menos um contacto.";
+
+            $("groupStatus")
+                .className =
+                "status error";
+
+            return;
+        }
+
+        $("confirmGroup").disabled =
+            true;
+
+        try{
+
+            const members =
+                [
+                    currentUser.uid,
+                    ...selected
+                ];
+
+            const chatRef =
+                await addDoc(
+                    collection(db,"chats"),
+                    {
+                        type:"group",
+                        name,
+                        members,
+                        createdBy:
+                            currentUser.uid,
+                        createdAt:
+                            serverTimestamp(),
+                        updatedAt:
+                            serverTimestamp(),
+                        lastMessage:""
+                    }
+                );
+
+            closeGroupModal();
+
+            showToast(
+                "Grupo criado."
+            );
+
+            openConversation(
+                chatRef.id
+            );
+
+        }catch(error){
+
+            console.error(error);
+
+            $("groupStatus").textContent =
+                "Não foi possível criar o grupo.";
+
+            $("groupStatus")
+                .className =
+                "status error";
+
+        }finally{
+
+            $("confirmGroup").disabled =
+                false;
+
+        }
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logoutButton").addEventListener(
+    "click",
+    async () => {
+
+        try{
+
+            if(currentUser){
+
+                await updateDoc(
+                    doc(
+                        db,
+                        "users",
+                        currentUser.uid
+                    ),
+                    {
+                        online:false,
+                        lastSeen:
+                            serverTimestamp()
+                    }
+                ).catch(
+                    () => {}
+                );
+
+            }
+
+            await signOut(auth);
+
+        }catch(error){
+
+            console.error(error);
+
+        }
+    }
+);
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+function cleanupListeners(){
+
+    if(unsubscribeChats){
+
+        unsubscribeChats();
+        unsubscribeChats = null;
+
+    }
+
+    if(unsubscribeContacts){
+
+        unsubscribeContacts();
+        unsubscribeContacts = null;
+
+    }
+
+    if(unsubscribeMessages){
+
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+
+    }
+
+    clearInterval(
+        heartbeatTimer
+    );
+
+    heartbeatTimer = null;
+
+    activeConversation = null;
+    currentProfile = null;
+}
+
+
+/* =========================================================
+   INITIAL STATE
+========================================================= */
+
+loading.classList.remove(
+    "hidden"
+);
 
 </script>
 
