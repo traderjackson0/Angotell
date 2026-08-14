@@ -1,961 +1,965 @@
 <!DOCTYPE html>
-<html lang="pt-AO">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#0b0912">
 <title>Angotell</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
-    margin:0;
-    width:100%;
-    height:100%;
-    font-family:system-ui,-apple-system,Segoe UI,sans-serif;
-    background:#090711;
-    color:#f7f3ff;
-    overflow:hidden;
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  background:#08070d;
+  color:#f7f2ff;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow:hidden;
 }
 
-button,
-input{
-    font:inherit;
+button,input,textarea{
+  font:inherit;
 }
 
 button{
-    border:0;
-    cursor:pointer;
-    color:inherit;
-}
-
-.app{
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    background:
-        radial-gradient(
-            circle at 85% 15%,
-            #26133b 0,
-            #0b0913 38%,
-            #06060b 100%
-        );
+  border:0;
+  cursor:pointer;
 }
 
 .hidden{
-    display:none!important;
+  display:none!important;
 }
 
 .screen{
-    height:100%;
-    width:100%;
-    display:flex;
-    flex-direction:column;
+  width:100%;
+  height:100dvh;
+  position:relative;
 }
 
-.top{
-    padding:14px 18px 12px;
-    border-bottom:1px solid #282333;
-    background:#0d0a16;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    flex-shrink:0;
+.app{
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 90% 15%,rgba(174,72,255,.12),transparent 30%),
+    radial-gradient(circle at 10% 85%,rgba(255,65,145,.08),transparent 35%),
+    #08070d;
 }
 
-.avatar{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7d42ff,
-            #ff3c9e,
-            #ff8443
-        );
-
-    font-weight:800;
-    font-size:19px;
-    flex:none;
-}
-
-.userMeta{
-    min-width:0;
-    flex:1;
-}
-
-.userMeta b{
-    display:block;
-    font-size:17px;
-}
-
-.userMeta span{
-    font-size:13px;
-    color:#a9a1b9;
-}
-
-.iconBtn{
-    width:48px;
-    height:48px;
-    border-radius:16px;
-    background:#171320;
-    border:1px solid #30293c;
-    display:grid;
-    place-items:center;
-    font-size:21px;
-}
-
-.content{
-    flex:1;
-    overflow:auto;
-    padding:20px 18px 100px;
-}
-
-.title{
-    font-size:23px;
-    font-weight:800;
-    margin:4px 0 16px;
-}
-
-.search{
-    display:flex;
-    gap:8px;
-    background:#15111f;
-    border:1px solid #302a39;
-    border-radius:18px;
-    padding:10px 13px;
-    margin-bottom:15px;
-}
-
-.search input,
-.field input{
-    width:100%;
-    border:0;
-    outline:0;
-    background:transparent;
-    color:#fff;
-}
-
-.search input::placeholder,
-.field input::placeholder{
-    color:#777084;
-}
-
-.card{
-    background:#15121d;
-    border:1px solid #2c2636;
-    border-radius:22px;
-    padding:13px;
-    margin:10px 0;
-
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.card .info{
-    flex:1;
-    min-width:0;
-}
-
-.card .info b{
-    display:block;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.card .info small{
-    color:#9b93a8;
-}
-
-.primary{
-    background:
-        linear-gradient(
-            135deg,
-            #8749ff,
-            #d93caa,
-            #ff714b
-        );
-
-    padding:11px 17px;
-    border-radius:15px;
-    font-weight:800;
-}
-
-.ghost{
-    background:#211b2b;
-    border:1px solid #393144;
-    padding:10px 14px;
-    border-radius:14px;
-}
-
-.empty{
-    text-align:center;
-    color:#958ca3;
-    padding:45px 15px;
-}
-
-.bottom{
-    position:absolute;
-    left:14px;
-    right:14px;
-    bottom:12px;
-
-    height:66px;
-
-    background:rgba(27,22,37,.96);
-    border:1px solid #373043;
-    border-radius:25px;
-
-    display:flex;
-
-    z-index:20;
-
-    box-shadow:
-        0 12px 35px #0008;
-}
-
-.nav{
-    flex:1;
-    background:none;
-    color:#8e869c;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    gap:4px;
-    font-size:11px;
-}
-
-.nav.active{
-    color:#fff;
-}
-
-.nav strong{
-    font-size:21px;
-    font-weight:400;
-}
-
-.chatHeader{
-    padding:10px 12px;
-    border-bottom:1px solid #282333;
-
-    display:flex;
-    align-items:center;
-    gap:9px;
-
-    background:#0d0a16;
-}
-
-.chatTitle{
-    flex:1;
-    min-width:0;
-}
-
-.chatTitle b,
-.chatTitle small{
-    display:block;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.chatTitle small{
-    color:#9f97aa;
-    font-size:12px;
-}
-
-.messages{
-    flex:1;
-    overflow:auto;
-
-    padding:
-        15px
-        13px
-        90px;
-
-    display:flex;
-    flex-direction:column;
-    gap:7px;
-}
-
-.bubble{
-    max-width:80%;
-    padding:10px 12px;
-
-    border-radius:17px;
-
-    line-height:1.35;
-
-    word-break:break-word;
-
-    background:#211c2b;
-    border:1px solid #322b3c;
-
-    align-self:flex-start;
-}
-
-.bubble.me{
-    align-self:flex-end;
-
-    background:
-        linear-gradient(
-            135deg,
-            #6e38d6,
-            #a83eaa
-        );
-
-    border-color:#9a4ad2;
-}
-
-.bubble .time{
-    display:block;
-    text-align:right;
-
-    font-size:9px;
-    opacity:.7;
-
-    margin-top:3px;
-}
-
-.composer{
-    position:absolute;
-
-    left:10px;
-    right:10px;
-    bottom:9px;
-
-    display:flex;
-    gap:7px;
-
-    background:#17131f;
-    border:1px solid #373042;
-
-    padding:7px;
-
-    border-radius:20px;
-
-    z-index:30;
-}
-
-.composer input{
-    flex:1;
-    min-width:0;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-    color:#fff;
-
-    padding:8px;
-}
-
-.send{
-    width:43px;
-    height:43px;
-
-    border-radius:14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8147ff,
-            #ff4f8f
-        );
-
-    font-weight:900;
-}
-
-.modal{
-    position:absolute;
-    inset:0;
-
-    background:#0009;
-
-    z-index:50;
-
-    display:grid;
-    place-items:center;
-
-    padding:18px;
-}
-
-.panel{
-    width:min(520px,100%);
-    max-height:90%;
-
-    overflow:auto;
-
-    background:#11101a;
-    border:1px solid #373043;
-
-    border-radius:24px;
-
-    padding:18px;
-}
-
-.panel h2{
-    margin:0 0 16px;
-}
-
-.field{
-    background:#191520;
-    border:1px solid #332c3b;
-
-    border-radius:15px;
-
-    padding:12px;
-
-    margin:9px 0;
-}
-
-.field label{
-    display:block;
-
-    color:#968ea2;
-
-    font-size:11px;
-
-    margin-bottom:5px;
-}
-
-.row{
-    display:flex;
-    gap:8px;
-}
-
-.row>*{
-    flex:1;
-}
-
-.check{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-    padding:9px;
-
-    border-radius:13px;
-
-    background:#17131f;
-
-    margin:5px 0;
-}
+/* AUTH */
 
 .auth{
-    height:100%;
-
-    display:grid;
-    place-items:center;
-
-    padding:18px;
+  width:min(620px,100%);
+  height:100%;
+  margin:auto;
+  padding:26px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-y:auto;
 }
 
-.authBox{
-    width:min(450px,100%);
-
-    background:#11101a;
-
-    border:1px solid #322c3a;
-
-    border-radius:30px;
-
-    padding:25px;
+.auth-card{
+  width:100%;
+  max-width:560px;
+  padding:28px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:30px;
+  background:rgba(17,14,26,.90);
+  box-shadow:0 20px 70px rgba(0,0,0,.45);
 }
 
 .logo{
-    width:78px;
-    height:78px;
-
-    border-radius:24px;
-
-    display:grid;
-    place-items:center;
-
-    margin:0 auto 13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff3c91,
-            #8b49ff,
-            #19caff
-        );
-
-    font-size:40px;
-    font-weight:900;
+  width:105px;
+  height:105px;
+  margin:0 auto 18px;
+  border-radius:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:62px;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,#7d4cff,#ff3f91,#ff7b3d,#00d9ff);
+  box-shadow:0 0 45px rgba(188,75,255,.35);
 }
 
-.auth h1{
-    text-align:center;
-    margin:0;
+.brand{
+  text-align:center;
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-.auth p{
-    text-align:center;
-    color:#938a9f;
+.subtitle{
+  text-align:center;
+  opacity:.58;
+  line-height:1.6;
+  margin:12px auto 25px;
 }
 
 .tabs{
-    display:flex;
-
-    background:#17131f;
-
-    padding:4px;
-
-    border-radius:15px;
-
-    margin:18px 0;
+  display:flex;
+  padding:5px;
+  border-radius:18px;
+  background:#17131f;
+  margin-bottom:22px;
 }
 
-.tabs button{
-    flex:1;
-
-    padding:11px;
-
-    border-radius:12px;
-
-    background:none;
-
-    color:#968da3;
+.tab{
+  flex:1;
+  padding:14px;
+  border-radius:14px;
+  background:transparent;
+  color:#aaa2b4;
 }
 
-.tabs .sel{
-    background:#65328d;
-    color:#fff;
+.tab.active{
+  color:white;
+  background:linear-gradient(135deg,#7142d9,#c43691);
 }
 
-.status{
-    min-height:20px;
-
-    text-align:center;
-
-    color:#ff7797;
-
-    font-size:12px;
-
-    margin-top:10px;
+.field{
+  margin-bottom:15px;
 }
+
+.field label{
+  display:block;
+  margin:0 0 7px 4px;
+  font-size:13px;
+  opacity:.65;
+}
+
+.field input{
+  width:100%;
+  height:54px;
+  padding:0 17px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.10);
+  background:#17141e;
+  color:white;
+  outline:none;
+}
+
+.field input:focus{
+  border-color:#a34cff;
+  box-shadow:0 0 0 3px rgba(163,76,255,.12);
+}
+
+.primary{
+  width:100%;
+  min-height:55px;
+  border-radius:18px;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);
+}
+
+.primary:disabled{
+  opacity:.5;
+}
+
+.error{
+  margin-top:14px;
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,45,100,.10);
+  color:#ff719d;
+  text-align:center;
+  font-size:13px;
+}
+
+/* APP HEADER */
+
+.main{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  flex:none;
+  min-height:92px;
+  padding:16px 20px 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  background:rgba(9,8,14,.88);
+  backdrop-filter:blur(18px);
+}
+
+.identity{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-width:0;
+}
+
+.avatar{
+  width:56px;
+  height:56px;
+  flex:none;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  color:white;
+  background:linear-gradient(135deg,#8745ff,#ff3d91);
+  position:relative;
+}
+
+.online-dot{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  background:#35e895;
+  border:2px solid #09080e;
+  position:absolute;
+  right:0;
+  bottom:1px;
+}
+
+.identity-text{
+  min-width:0;
+}
+
+.identity-name{
+  font-size:18px;
+  font-weight:800;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.identity-user{
+  opacity:.5;
+  font-size:13px;
+}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+}
+
+.icon-btn{
+  width:54px;
+  height:54px;
+  border-radius:18px;
+  color:white;
+  background:#17141f;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:21px;
+}
+
+/* CONTENT */
+
+.content{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+  position:relative;
+}
+
+.page{
+  width:100%;
+  height:100%;
+  overflow-y:auto;
+  padding:24px 20px 105px;
+}
+
+.page-title{
+  font-size:24px;
+  font-weight:900;
+  margin-bottom:18px;
+}
+
+.search{
+  width:100%;
+  height:52px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.08);
+  background:#14111c;
+  color:white;
+  padding:0 17px;
+  outline:none;
+  margin-bottom:18px;
+}
+
+.card{
+  padding:15px;
+  border-radius:23px;
+  background:#15121d;
+  border:1px solid rgba(255,255,255,.07);
+  margin-bottom:12px;
+}
+
+.person{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.person-info{
+  flex:1;
+  min-width:0;
+}
+
+.person-name{
+  font-weight:800;
+  font-size:16px;
+}
+
+.person-user{
+  opacity:.5;
+  font-size:13px;
+  margin-top:2px;
+}
+
+.action{
+  flex:none;
+  padding:12px 17px;
+  border-radius:15px;
+  color:white;
+  font-weight:800;
+  background:linear-gradient(135deg,#7545e8,#db419c);
+}
+
+.muted{
+  opacity:.45;
+  text-align:center;
+  padding:30px 10px;
+}
+
+/* CHAT */
+
+.chat{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  background:#09080f;
+}
+
+.chat-header{
+  min-height:72px;
+  padding:10px 14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  background:#0d0b14;
+}
+
+.back{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  color:white;
+  background:#181520;
+  font-size:21px;
+}
+
+.chat-title{
+  flex:1;
+  min-width:0;
+}
+
+.chat-name{
+  font-weight:900;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.chat-status{
+  font-size:12px;
+  opacity:.5;
+}
+
+.messages{
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  padding:16px 14px;
+}
+
+.message-row{
+  display:flex;
+  margin:7px 0;
+}
+
+.message-row.mine{
+  justify-content:flex-end;
+}
+
+.bubble{
+  max-width:78%;
+  padding:10px 13px 7px;
+  border-radius:19px;
+  background:#1b1824;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.mine .bubble{
+  background:linear-gradient(135deg,#693dcc,#b33791);
+}
+
+.message-text{
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.message-meta{
+  text-align:right;
+  font-size:10px;
+  opacity:.55;
+  margin-top:4px;
+}
+
+.composer{
+  flex:none;
+  display:flex;
+  gap:8px;
+  padding:9px 10px max(9px,env(safe-area-inset-bottom));
+  background:#0d0b14;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.composer input{
+  flex:1;
+  min-width:0;
+  height:50px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:0 16px;
+  background:#191620;
+  color:white;
+  outline:none;
+}
+
+.send{
+  width:52px;
+  height:50px;
+  border-radius:17px;
+  color:white;
+  background:linear-gradient(135deg,#7947f1,#ec429c);
+  font-size:20px;
+}
+
+/* BOTTOM */
+
+.bottom{
+  position:absolute;
+  z-index:20;
+  left:18px;
+  right:18px;
+  bottom:max(12px,env(safe-area-inset-bottom));
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+  border-radius:25px;
+  background:rgba(24,20,32,.94);
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  backdrop-filter:blur(18px);
+}
+
+.nav{
+  flex:1;
+  height:100%;
+  color:#85808e;
+  background:transparent;
+  font-size:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+
+.nav-icon{
+  font-size:20px;
+}
+
+.nav.active{
+  color:white;
+}
+
+.nav.add{
+  font-size:30px;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  z-index:100;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(5px);
+}
+
+.modal-card{
+  width:min(600px,100%);
+  max-height:90dvh;
+  overflow-y:auto;
+  padding:22px;
+  border-radius:30px 30px 0 0;
+  background:#15121d;
+  border:1px solid rgba(255,255,255,.09);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.modal-title{
+  font-size:21px;
+  font-weight:900;
+}
+
+.close{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  color:white;
+  background:#211d29;
+}
+
+/* TOAST */
 
 .toast{
-    position:absolute;
-
-    left:20px;
-    right:20px;
-
-    bottom:90px;
-
-    z-index:100;
-
-    background:#24202e;
-
-    border:1px solid #4a4153;
-
-    border-radius:16px;
-
-    padding:12px;
-
-    text-align:center;
+  position:fixed;
+  z-index:200;
+  left:50%;
+  bottom:98px;
+  transform:translateX(-50%);
+  max-width:90%;
+  padding:13px 18px;
+  border-radius:17px;
+  background:#25202e;
+  color:white;
+  border:1px solid rgba(255,255,255,.09);
+  box-shadow:0 10px 35px rgba(0,0,0,.35);
+  text-align:center;
+  font-size:13px;
 }
 
-.spinner{
-    display:inline-block;
+/* PROFILE */
 
-    width:16px;
-    height:16px;
-
-    border:2px solid #ffffff44;
-
-    border-top-color:#fff;
-
-    border-radius:50%;
-
-    animation:r .7s linear infinite;
-
-    vertical-align:middle;
+.profile-card{
+  text-align:center;
+  padding:25px 20px;
 }
 
-@keyframes r{
-    to{
-        transform:rotate(360deg);
-    }
+.profile-big{
+  width:90px;
+  height:90px;
+  margin:auto auto 14px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
+  font-weight:900;
+  background:linear-gradient(135deg,#8049ff,#ff3c91);
 }
 
+/* MOBILE */
+
+@media(max-width:500px){
+  .auth{
+    padding:10px 12px;
+  }
+
+  .auth-card{
+    padding:22px 17px;
+    border-radius:26px;
+  }
+
+  .logo{
+    width:88px;
+    height:88px;
+    font-size:51px;
+  }
+
+  .brand{
+    font-size:32px;
+  }
+
+  .topbar{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .page{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .bottom{
+    left:12px;
+    right:12px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<div id="authScreen" class="screen">
+  <div class="auth">
+    <div class="auth-card">
 
-<!-- ========================= -->
-<!-- LOGIN / CADASTRO -->
-<!-- ========================= -->
+      <div class="logo">A</div>
 
-<section id="authScreen" class="auth screen">
+      <div class="brand">Angotell</div>
 
-<div class="authBox">
+      <div class="subtitle">
+        Comunicação de nova geração.<br>
+        Cria a tua identidade e conecta-te com pessoas reais.
+      </div>
 
-<div class="logo">A</div>
+      <div class="tabs">
+        <button id="loginTab" class="tab active">Entrar</button>
+        <button id="registerTab" class="tab">Criar conta</button>
+      </div>
 
-<h1>Angotell</h1>
+      <div id="registerFields" class="hidden">
 
-<p>
-Comunicação de nova geração.
-</p>
+        <div class="field">
+          <label>Nome público</label>
+          <input id="regName" autocomplete="name" placeholder="Ex.: G’Jackson">
+        </div>
 
-<div class="tabs">
+        <div class="field">
+          <label>Nome de utilizador</label>
+          <input id="regUsername" autocomplete="username" placeholder="Ex.: jackson007">
+        </div>
 
-<button id="loginTab" class="sel">
-Entrar
-</button>
+      </div>
 
-<button id="registerTab">
-Criar conta
-</button>
+      <div class="field">
+        <label>E-mail</label>
+        <input id="authEmail" type="email" autocomplete="email" placeholder="teu@email.com">
+      </div>
 
-</div>
+      <div class="field">
+        <label>Senha</label>
+        <input id="authPassword" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres">
+      </div>
 
-<div id="registerFields" class="hidden">
+      <button id="authButton" class="primary">
+        Entrar no Angotell
+      </button>
 
-<div class="field">
+      <div id="authError" class="error hidden"></div>
 
-<label>
-Nome público
-</label>
-
-<input
-id="publicName"
-placeholder="Como as pessoas verão você">
-
-</div>
-
-<div class="field">
-
-<label>
-Nome de utilizador
-</label>
-
-<input
-id="username"
-placeholder="ex.: jackson007">
-
-</div>
-
-</div>
-
-<div class="field">
-
-<label>
-E-mail
-</label>
-
-<input
-id="email"
-type="email"
-autocomplete="email">
-
-</div>
-
-<div class="field">
-
-<label>
-Senha
-</label>
-
-<input
-id="password"
-type="password"
-autocomplete="current-password">
-
-</div>
-
-<button
-id="authBtn"
-class="primary"
-style="width:100%;padding:14px">
-
-Entrar no Angotell
-
-</button>
-
-<div
-id="authStatus"
-class="status">
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ========================= -->
-<!-- APLICAÇÃO -->
-<!-- ========================= -->
-
-<section
-id="mainScreen"
-class="screen hidden">
-
-<header class="top">
-
-<div
-id="topAvatar"
-class="avatar">
-A
-</div>
-
-<div class="userMeta">
-
-<b id="topName">
-Angotell
-</b>
-
-<span id="topUsername">
-@utilizador
-</span>
-
-</div>
-
-<button
-class="iconBtn"
-id="globalSearchBtn">
-⌕
-</button>
-
-<button
-class="iconBtn"
-id="profileBtn">
-◎
-</button>
-
-</header>
-
-<main
-id="home"
-class="content">
-</main>
-
-
-<!-- BARRA INFERIOR -->
-
-<nav class="bottom">
-
-<button
-class="nav active"
-data-page="chats">
-
-<strong>◉</strong>
-Conversas
-
-</button>
-
-<button
-class="nav"
-data-page="contacts">
-
-<strong>♧</strong>
-Contactos
-
-</button>
-
-<button
-class="nav"
-data-page="groups">
-
-<strong>＋</strong>
-Grupo
-
-</button>
-
-<button
-class="nav"
-data-page="profile">
-
-<strong>◎</strong>
-Perfil
-
-</button>
-
-</nav>
-
-</section>
-
-
-<!-- ========================= -->
-<!-- TELA DE CONVERSA -->
-<!-- ========================= -->
-
-<section
-id="chatScreen"
-class="screen hidden"
-style="position:absolute;inset:0;background:#08070d;z-index:40">
-
-<header class="chatHeader">
-
-<button
-class="iconBtn"
-id="backChat">
-‹
-</button>
-
-<div
-id="chatAvatar"
-class="avatar"
-style="width:42px;height:42px">
-A
-</div>
-
-<div class="chatTitle">
-
-<b id="chatName">
-Conversa
-</b>
-
-<small id="chatStatus">
-online
-</small>
-
-</div>
-
-<button
-class="iconBtn"
-id="chatInfo">
-⋮
-</button>
-
-</header>
-
-
-<div
-id="messages"
-class="messages">
+    </div>
+  </div>
 </div>
 
 
-<form
-id="composer"
-class="composer">
+<div id="appScreen" class="screen hidden">
 
-<input
-id="messageInput"
-autocomplete="off"
-placeholder="Escreva uma mensagem…">
+  <div class="app">
 
-<button class="send">
-➤
-</button>
+    <div class="main">
 
-</form>
+      <header class="topbar">
 
-</section>
+        <div class="identity">
+
+          <div id="topAvatar" class="avatar">
+            A
+            <span id="topOnline" class="online-dot"></span>
+          </div>
+
+          <div class="identity-text">
+            <div id="topName" class="identity-name">Angotell</div>
+            <div id="topUsername" class="identity-user">@utilizador</div>
+          </div>
+
+        </div>
+
+        <div class="top-actions">
+          <button id="globalSearchBtn" class="icon-btn">⌕</button>
+          <button id="profileTopBtn" class="icon-btn">◎</button>
+        </div>
+
+      </header>
 
 
-<div
-id="modal"
-class="modal hidden">
+      <main class="content">
+
+        <!-- CONVERSAS -->
+
+        <section id="conversationsPage" class="page">
+
+          <div class="page-title">Conversas</div>
+
+          <div id="conversationList"></div>
+
+        </section>
+
+
+        <!-- CONTACTOS -->
+
+        <section id="contactsPage" class="page hidden">
+
+          <div class="page-title">Os meus contactos</div>
+
+          <input
+            id="contactSearch"
+            class="search"
+            placeholder="Pesquisar pessoas..."
+            autocomplete="off"
+          >
+
+          <div id="contactSearchResults"></div>
+
+          <div id="contactsList"></div>
+
+        </section>
+
+
+        <!-- GRUPOS -->
+
+        <section id="groupsPage" class="page hidden">
+
+          <div class="page-title">Grupos</div>
+
+          <button id="createGroupBtn" class="primary" style="margin-bottom:18px;">
+            + Criar novo grupo
+          </button>
+
+          <div id="groupsList"></div>
+
+        </section>
+
+
+        <!-- PERFIL -->
+
+        <section id="profilePage" class="page hidden">
+
+          <div class="page-title">Perfil</div>
+
+          <div class="card profile-card">
+
+            <div id="profileAvatar" class="profile-big">A</div>
+
+            <div id="profilePublicName" class="person-name">
+              Utilizador
+            </div>
+
+            <div id="profileUsername" class="person-user">
+              @utilizador
+            </div>
+
+          </div>
+
+          <div class="card">
+
+            <div class="field">
+              <label>Nome público</label>
+              <input id="profileNameInput">
+            </div>
+
+            <div class="field">
+              <label>Nome de utilizador</label>
+              <input id="profileUsernameInput">
+            </div>
+
+            <button id="saveProfileBtn" class="primary">
+              Guardar alterações
+            </button>
+
+          </div>
+
+          <button id="logoutBtn" class="primary" style="margin-top:12px;">
+            Terminar sessão
+          </button>
+
+        </section>
+
+      </main>
+
+
+      <nav class="bottom">
+
+        <button class="nav active" data-page="conversationsPage">
+          <span class="nav-icon">◉</span>
+          Conversas
+        </button>
+
+        <button class="nav" data-page="contactsPage">
+          <span class="nav-icon">♣</span>
+          Contactos
+        </button>
+
+        <button id="bottomGroupBtn" class="nav add">
+          +
+        </button>
+
+        <button class="nav" data-page="groupsPage">
+          <span class="nav-icon">♧</span>
+          Grupo
+        </button>
+
+        <button class="nav" data-page="profilePage">
+          <span class="nav-icon">◎</span>
+          Perfil
+        </button>
+
+      </nav>
+
+    </div>
+
+  </div>
+
 </div>
 
-<div
-id="toast"
-class="toast hidden">
-</div>
+
+<!-- CHAT -->
+
+<div id="chatScreen" class="screen hidden">
+
+  <div class="chat">
+
+    <header class="chat-header">
+
+      <button id="closeChatBtn" class="back">‹</button>
+
+      <div id="chatAvatar" class="avatar">A</div>
+
+      <div class="chat-title">
+        <div id="chatName" class="chat-name">Conversa</div>
+        <div id="chatStatus" class="chat-status"></div>
+      </div>
+
+    </header>
+
+    <div id="messages" class="messages"></div>
+
+    <form id="composer" class="composer">
+
+      <input
+        id="messageInput"
+        autocomplete="off"
+        placeholder="Escreve uma mensagem..."
+      >
+
+      <button class="send" type="submit">➤</button>
+
+    </form>
+
+  </div>
 
 </div>
+
+
+<!-- GROUP MODAL -->
+
+<div id="groupModal" class="modal hidden">
+
+  <div class="modal-card">
+
+    <div class="modal-head">
+      <div class="modal-title">Criar grupo</div>
+      <button id="closeGroupModal" class="close">×</button>
+    </div>
+
+    <div class="field">
+      <label>Nome do grupo</label>
+      <input id="groupName" placeholder="Ex.: Amigos">
+    </div>
+
+    <div style="margin-bottom:10px;font-weight:800;">
+      Selecionar contactos
+    </div>
+
+    <div id="groupContacts"></div>
+
+    <button id="confirmCreateGroup" class="primary" style="margin-top:15px;">
+      Criar grupo
+    </button>
+
+  </div>
+
+</div>
+
+
+<div id="toast" class="toast hidden"></div>
 
 
 <script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  updateProfile
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  updateDoc,
+  addDoc,
+  collection,
+  query,
+  where,
+  orderBy,
+  limit,
+  limitToLast,
+  onSnapshot,
+  serverTimestamp,
+  arrayUnion
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 
 /* =========================================================
    FIREBASE
 ========================================================= */
 
-import {
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-
-import {
-getAuth,
-onAuthStateChanged,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-signOut,
-updateProfile
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-import {
-getFirestore,
-doc,
-setDoc,
-getDoc,
-addDoc,
-collection,
-query,
-where,
-onSnapshot,
-serverTimestamp,
-updateDoc,
-arrayUnion,
-orderBy,
-limit,
-getDocs,
-deleteDoc
-}
-from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
 const firebaseConfig = {
-
-apiKey:
-"AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
-
-authDomain:
-"angotell.firebaseapp.com",
-
-projectId:
-"angotell",
-
-storageBucket:
-"angotell.firebasestorage.app",
-
-messagingSenderId:
-"241567716431",
-
-appId:
-"1:241567716431:web:ffd859078a6198bc17463a"
-
+  apiKey: "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
+  authDomain: "angotell.firebaseapp.com",
+  projectId: "angotell",
+  storageBucket: "angotell.firebasestorage.app",
+  messagingSenderId: "241567716431",
+  appId: "1:241567716431:web:ffd859078a6198bc17463a"
 };
 
+const app = initializeApp(firebaseConfig);
 
-const app =
-initializeApp(firebaseConfig);
-
-const auth =
-getAuth(app);
-
-const db =
-getFirestore(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 
 /* =========================================================
@@ -963,130 +967,83 @@ getFirestore(app);
 ========================================================= */
 
 let me = null;
-
-let userData = null;
+let myProfile = null;
 
 let activeChat = null;
+let activeChatUnsubscribe = null;
 
-let unsubChats = null;
-
-let unsubMessages = null;
-
-let unsubContacts = null;
-
-let authMode = "login";
+let contactsUnsubscribe = null;
+let conversationsUnsubscribe = null;
+let groupsUnsubscribe = null;
 
 let searchTimer = null;
 
+const $ = id => document.getElementById(id);
+
 
 /* =========================================================
-   UTILITÁRIOS
+   UTILIDADES
 ========================================================= */
 
-const $ =
-id => document.getElementById(id);
-
-
-const esc =
-s =>
-String(s ?? "")
-.replace(
-/[&<>"']/g,
-m =>
-({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-"\"":"&quot;",
-"'":"&#39;"
-}[m])
-);
-
-
-function toast(text){
-
-$("toast").textContent = text;
-
-$("toast").classList.remove("hidden");
-
-clearTimeout(window.__toast);
-
-window.__toast =
-setTimeout(
-() =>
-$("toast").classList.add("hidden"),
-2600
-);
-
+function escapeHTML(value){
+  return String(value ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
-
-
-function setAuthStatus(text,loading=false){
-
-$("authStatus").innerHTML =
-loading
-?
-'<span class="spinner"></span> '+esc(text)
-:
-esc(text);
-
-}
-
 
 function initials(name){
+  const value = String(name || "A").trim();
+  const parts = value.split(/\s+/).filter(Boolean);
 
-return (
-String(name || "A")
-.trim()
-.split(/\s+/)
-.slice(0,2)
-.map(x => x[0])
-.join("")
-|| "A"
-)
-.toUpperCase();
+  if(parts.length === 1){
+    return parts[0].slice(0,2).toUpperCase();
+  }
 
+  return (
+    parts[0][0] +
+    parts[parts.length - 1][0]
+  ).toUpperCase();
 }
 
+function showToast(message){
+  $("toast").textContent = message;
+  $("toast").classList.remove("hidden");
 
-function fmt(ts){
+  clearTimeout(showToast.timer);
 
-try{
-
-let d =
-ts?.toDate
-?
-ts.toDate()
-:
-new Date(ts);
-
-return d.toLocaleTimeString(
-[],
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-);
-
-}catch{
-
-return "";
-
+  showToast.timer = setTimeout(() => {
+    $("toast").classList.add("hidden");
+  },3000);
 }
 
+function showAuthError(message){
+  $("authError").textContent = message;
+  $("authError").classList.remove("hidden");
 }
 
+function clearAuthError(){
+  $("authError").classList.add("hidden");
+}
 
-/* =========================================================
-   ID DETERMINÍSTICO DO CHAT
-========================================================= */
+function friendlyError(error){
+  const code = error?.code || "";
 
-function chatIdFor(a,b){
+  const map = {
+    "auth/email-already-in-use": "Este e-mail já possui uma conta.",
+    "auth/invalid-email": "O e-mail não é válido.",
+    "auth/weak-password": "A senha precisa ter pelo menos 6 caracteres.",
+    "auth/invalid-credential": "E-mail ou senha incorretos.",
+    "auth/user-not-found": "Utilizador não encontrado.",
+    "auth/wrong-password": "Senha incorreta.",
+    "permission-denied": "Sem permissão no Firebase. Verifica as regras do Firestore.",
+    "failed-precondition": "O Firestore precisa de uma configuração adicional.",
+    "unavailable": "Firebase temporariamente indisponível. Verifica a internet."
+  };
 
-return [a,b]
-.sort()
-.join("__");
-
+  return map[code] || error?.message || "Ocorreu um erro.";
 }
 
 
@@ -1094,1015 +1051,497 @@ return [a,b]
    NAVEGAÇÃO
 ========================================================= */
 
-function switchPage(page){
+function showPage(pageId){
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.add("hidden");
+  });
 
-document
-.querySelectorAll(".nav")
-.forEach(
-x =>
-x.classList.toggle(
-"active",
-x.dataset.page === page
-)
-);
+  $(pageId).classList.remove("hidden");
 
-
-if(page === "chats")
-renderChats();
-
-
-if(page === "contacts")
-renderContacts();
-
-
-if(page === "groups")
-renderGroups();
-
-
-if(page === "profile")
-renderProfile();
-
+  document.querySelectorAll(".nav").forEach(btn => {
+    btn.classList.toggle(
+      "active",
+      btn.dataset.page === pageId
+    );
+  });
 }
+
+document.querySelectorAll(".nav[data-page]").forEach(button => {
+  button.addEventListener("click",() => {
+    showPage(button.dataset.page);
+
+    if(button.dataset.page === "contactsPage"){
+      loadContacts();
+    }
+
+    if(button.dataset.page === "groupsPage"){
+      loadGroups();
+    }
+  });
+});
 
 
 /* =========================================================
    LOGIN / CADASTRO
 ========================================================= */
 
+let authMode = "login";
+
 $("loginTab").onclick = () => {
-
-authMode = "login";
-
-$("loginTab").classList.add("sel");
-
-$("registerTab").classList.remove("sel");
-
-$("registerFields")
-.classList.add("hidden");
-
-$("authBtn").textContent =
-"Entrar no Angotell";
-
-setAuthStatus("");
-
+  authMode = "login";
+  $("loginTab").classList.add("active");
+  $("registerTab").classList.remove("active");
+  $("registerFields").classList.add("hidden");
+  $("authButton").textContent = "Entrar no Angotell";
+  clearAuthError();
 };
-
 
 $("registerTab").onclick = () => {
-
-authMode = "register";
-
-$("registerTab").classList.add("sel");
-
-$("loginTab").classList.remove("sel");
-
-$("registerFields")
-.classList.remove("hidden");
-
-$("authBtn").textContent =
-"Criar conta Angotell";
-
-setAuthStatus("");
-
+  authMode = "register";
+  $("registerTab").classList.add("active");
+  $("loginTab").classList.remove("active");
+  $("registerFields").classList.remove("hidden");
+  $("authButton").textContent = "Criar conta Angotell";
+  clearAuthError();
 };
 
+$("authButton").onclick = async () => {
+  clearAuthError();
 
-$("authBtn").onclick =
-async () => {
+  const email = $("authEmail").value.trim();
+  const password = $("authPassword").value;
 
-try{
+  if(!email || !password){
+    showAuthError("Preenche o e-mail e a senha.");
+    return;
+  }
 
-setAuthStatus(
-authMode === "login"
-?
-"A entrar…"
-:
-"A criar conta…",
-true
-);
+  $("authButton").disabled = true;
 
+  try{
+    if(authMode === "login"){
+      await signInWithEmailAndPassword(auth, email, password);
+    }else{
+      const publicName = $("regName").value.trim();
+      const username = $("regUsername").value.trim();
 
-const email =
-$("email").value.trim();
+      if(!publicName || !username){
+        throw new Error("Preenche o nome público e o nome de utilizador.");
+      }
 
-const password =
-$("password").value;
+      const usernameClean = username.toLowerCase().replace(/[^a-z0-9_.]/g,"");
 
+      if(usernameClean.length < 3){
+        throw new Error("O nome de utilizador precisa ter pelo menos 3 caracteres.");
+      }
 
-if(!email || !password){
+      const usernameRef = doc(db,"usernames",usernameClean);
+      const usernameSnap = await getDoc(usernameRef);
 
-throw Error(
-"Preencha o e-mail e a senha."
-);
+      if(usernameSnap.exists()){
+        throw new Error("Este nome de utilizador já está ocupado.");
+      }
 
-}
+      const credential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = credential.user;
 
+      await updateProfile(user,{ displayName: publicName });
 
-/* LOGIN */
+      await setDoc(
+        doc(db,"users",user.uid),
+        {
+          uid:user.uid,
+          publicName,
+          username:usernameClean,
+          usernameLower:usernameClean,
+          publicNameLower:publicName.toLowerCase(),
+          email,
+          online:true,
+          lastSeen:serverTimestamp(),
+          createdAt:serverTimestamp()
+        },
+        {merge:true}
+      );
 
-if(authMode === "login"){
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-return;
-
-}
-
-
-/* CADASTRO */
-
-const name =
-$("publicName")
-.value
-.trim();
-
-
-const username =
-$("username")
-.value
-.trim()
-.toLowerCase()
-.replace(
-/[^a-z0-9_.-]/g,
-""
-);
-
-
-if(!name || !username){
-
-throw Error(
-"Preencha o nome público e o nome de utilizador."
-);
-
-}
-
-
-const cred =
-await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-
-await updateProfile(
-cred.user,
-{
-displayName:name
-}
-);
-
-
-await setDoc(
-doc(
-db,
-"users",
-cred.user.uid
-),
-{
-
-uid:
-cred.user.uid,
-
-publicName:
-name,
-
-username:
-username,
-
-email:
-email,
-
-online:true,
-
-lastSeen:
-serverTimestamp(),
-
-createdAt:
-serverTimestamp()
-
-}
-);
-
-
-await setDoc(
-doc(
-db,
-"usernames",
-username
-),
-{
-uid:cred.user.uid
-}
-);
-
-
-}catch(e){
-
-console.error(e);
-
-setAuthStatus(
-e.code ===
-"auth/email-already-in-use"
-?
-"Este e-mail já está registado."
-:
-e.message ||
-"Não foi possível concluir."
-);
-
-}
-
+      await setDoc(
+        usernameRef,
+        {
+          uid:user.uid,
+          username:usernameClean
+        },
+        {merge:true}
+      );
+    }
+  }catch(error){
+    console.error(error);
+    showAuthError(friendlyError(error));
+  }finally{
+    $("authButton").disabled = false;
+  }
 };
 
 
 /* =========================================================
-   AUTENTICAÇÃO
+   AUTH STATE
 ========================================================= */
 
-onAuthStateChanged(
-auth,
-async user => {
+onAuthStateChanged(auth, async user => {
+  if(!user){
+    me = null;
+    myProfile = null;
+    $("authScreen").classList.remove("hidden");
+    $("appScreen").classList.add("hidden");
+    $("chatScreen").classList.add("hidden");
+    return;
+  }
 
-if(!user){
+  me = user;
+  $("authScreen").classList.add("hidden");
+  $("appScreen").classList.remove("hidden");
 
-me = null;
-
-$("authScreen")
-.classList.remove("hidden");
-
-$("mainScreen")
-.classList.add("hidden");
-
-return;
-
-}
-
-
-me = user;
-
-
-try{
-
-await ensureUser(user);
-
-$("authScreen")
-.classList.add("hidden");
-
-$("mainScreen")
-.classList.remove("hidden");
-
-
-await loadUser();
-
-
-listenContacts();
-
-listenChats();
-
-switchPage("chats");
-
-setOnline(true);
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Erro ao carregar o perfil: "
-+
-e.message
-);
-
-}
-
+  try{
+    await loadMyProfile();
+    await setOnline(true);
+    startRealtimeSystems();
+  }catch(error){
+    console.error(error);
+    showToast("Conta autenticada, mas houve erro ao carregar o perfil.");
+  }
 });
 
 
 /* =========================================================
-   GARANTIR PERFIL
+   PERFIL
 ========================================================= */
 
-async function ensureUser(user){
+async function loadMyProfile(){
+  const ref = doc(db,"users",me.uid);
+  const snap = await getDoc(ref);
 
-const ref =
-doc(
-db,
-"users",
-user.uid
-);
+  if(!snap.exists()){
+    const fallbackName = me.displayName || me.email?.split("@")[0] || "Utilizador";
+    const fallbackUsername = (me.email?.split("@")[0] || ("user" + me.uid.slice(0,7)))
+      .toLowerCase()
+      .replace(/[^a-z0-9_.]/g,"");
 
-const snapshot =
-await getDoc(ref);
+    myProfile = {
+      uid:me.uid,
+      publicName:fallbackName,
+      username:fallbackUsername,
+      usernameLower:fallbackUsername,
+      publicNameLower:fallbackName.toLowerCase(),
+      email:me.email || "",
+      online:true
+    };
 
+    await setDoc(
+      ref,
+      {
+        ...myProfile,
+        createdAt:serverTimestamp(),
+        lastSeen:serverTimestamp()
+      },
+      {merge:true}
+    );
+  }else{
+    myProfile = {
+      uid:me.uid,
+      ...snap.data()
+    };
+  }
 
-if(!snapshot.exists()){
-
-await setDoc(
-ref,
-{
-
-uid:
-user.uid,
-
-publicName:
-user.displayName ||
-"Utilizador Angotell",
-
-username:
-(user.email || "utilizador")
-.split("@")[0]
-.toLowerCase(),
-
-email:
-user.email,
-
-online:true,
-
-lastSeen:
-serverTimestamp(),
-
-createdAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
+  renderProfile();
 }
 
+function renderProfile(){
+  if(!myProfile) return;
+
+  const name = myProfile.publicName || myProfile.username || "Utilizador";
+  const username = myProfile.username || "utilizador";
+
+  $("topName").textContent = name;
+  $("topUsername").textContent = "@" + username;
+  $("topAvatar").childNodes[0].nodeValue = initials(name) + " ";
+  $("profileAvatar").textContent = initials(name);
+  $("profilePublicName").textContent = name;
+  $("profileUsername").textContent = "@" + username;
+  $("profileNameInput").value = name;
+  $("profileUsernameInput").value = username;
 }
-
-
-/* =========================================================
-   CARREGAR PERFIL
-========================================================= */
-
-async function loadUser(){
-
-const snapshot =
-await getDoc(
-doc(
-db,
-"users",
-me.uid
-)
-);
-
-
-userData =
-snapshot.data() || {};
-
-
-$("topName")
-.textContent =
-userData.publicName ||
-me.displayName ||
-"Utilizador";
-
-
-$("topUsername")
-.textContent =
-"@" +
-(
-userData.username ||
-"utilizador"
-);
-
-
-$("topAvatar")
-.textContent =
-initials(
-userData.publicName ||
-me.displayName
-);
-
-}
-
-
-/* =========================================================
-   PRESENÇA
-========================================================= */
 
 async function setOnline(value){
-
-try{
-
-await updateDoc(
-doc(
-db,
-"users",
-me.uid
-),
-{
-
-online:value,
-
-lastSeen:
-serverTimestamp()
-
-}
-);
-
-}catch{}
-
+  if(!me) return;
+  await setDoc(
+    doc(db,"users",me.uid),
+    {
+      online:value,
+      lastSeen:serverTimestamp()
+    },
+    {merge:true}
+  );
 }
 
+setInterval(() => {
+  if(me){
+    setOnline(true).catch(console.error);
+  }
+},30000);
 
-document.addEventListener(
-"visibilitychange",
-() => {
+window.addEventListener("pagehide",() => {
+  if(me){
+    setOnline(false).catch(() => {});
+  }
+});
 
-if(me){
+$("saveProfileBtn").onclick = async () => {
+  if(!me) return;
 
-setOnline(
-document.visibilityState ===
-"visible"
-);
+  const name = $("profileNameInput").value.trim();
+  const username = $("profileUsernameInput").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
 
-}
+  if(name.length < 2){
+    showToast("Nome público inválido.");
+    return;
+  }
 
-}
-);
+  if(username.length < 3){
+    showToast("Nome de utilizador inválido.");
+    return;
+  }
+
+  try{
+    const currentUsername = myProfile.usernameLower || "";
+
+    if(username !== currentUsername){
+      const usernameSnap = await getDoc(doc(db,"usernames",username));
+
+      if(usernameSnap.exists()){
+        showToast("Esse nome de utilizador já está ocupado.");
+        return;
+      }
+
+      await setDoc(
+        doc(db,"usernames",username),
+        { uid:me.uid, username },
+        {merge:true}
+      );
+    }
+
+    await setDoc(
+      doc(db,"users",me.uid),
+      {
+        publicName:name,
+        username,
+        usernameLower:username,
+        publicNameLower:name.toLowerCase()
+      },
+      {merge:true}
+    );
+
+    myProfile.publicName = name;
+    myProfile.username = username;
+    myProfile.usernameLower = username;
+
+    renderProfile();
+    showToast("Perfil atualizado.");
+
+  }catch(error){
+    console.error(error);
+    showToast(friendlyError(error));
+  }
+};
+
+$("logoutBtn").onclick = async () => {
+  try{
+    await setOnline(false);
+    await signOut(auth);
+  }catch(error){
+    console.error(error);
+  }
+};
 
 
 /* =========================================================
    CONTACTOS
 ========================================================= */
 
-function listenContacts(){
-
-if(unsubContacts)
-unsubContacts();
-
-
-unsubContacts =
-onSnapshot(
-collection(
-db,
-"users",
-me.uid,
-"contacts"
-),
-
-snapshot => {
-
-window.__contacts =
-snapshot.docs.map(
-d => ({
-id:d.id,
-...d.data()
-})
-);
-
-
-if(
-document
-.querySelector(".nav.active")
-?.dataset.page ===
-"contacts"
-){
-
-renderContacts();
-
+function startRealtimeSystems(){
+  loadContacts();
+  loadConversations();
+  loadGroups();
 }
 
-},
+function loadContacts(){
+  if(!me) return;
 
-error => {
+  if(contactsUnsubscribe){
+    contactsUnsubscribe();
+  }
 
-console.error(error);
+  const ref = collection(db, "users", me.uid, "contacts");
 
-}
-);
-
-}
-
-
-/* =========================================================
-   CHATS
-========================================================= */
-
-function listenChats(){
-
-if(unsubChats)
-unsubChats();
-
-
-const q =
-query(
-collection(db,"chats"),
-where(
-"members",
-"array-contains",
-me.uid
-)
-);
-
-
-unsubChats =
-onSnapshot(
-q,
-snapshot => {
-
-window.__chats =
-snapshot.docs.map(
-d => ({
-id:d.id,
-...d.data()
-})
-);
-
-
-if(
-document
-.querySelector(".nav.active")
-?.dataset.page ===
-"chats"
-){
-
-renderChats();
-
+  contactsUnsubscribe = onSnapshot(
+    ref,
+    snapshot => {
+      renderContacts(
+        snapshot.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        }))
+      );
+    },
+    error => {
+      console.error("CONTACTS:", error);
+      showToast("Erro ao carregar contactos.");
+    }
+  );
 }
 
-},
+function renderContacts(contacts=[]){
+  const box = $("contactsList");
 
-error => {
+  if(!contacts.length){
+    box.innerHTML = `<div class="muted">Ainda não tens contactos guardados.</div>`;
+    return;
+  }
 
-console.error(error);
+  box.innerHTML = contacts.map(contact => {
+    const name = contact.publicName || contact.username || "Utilizador";
+    const targetUid = contact.uid || contact.id;
 
-toast(
-"Não foi possível carregar as conversas."
-);
+    return `
+      <div class="card">
+        <div class="person">
+          <div class="avatar">
+            ${escapeHTML(initials(name))}
+            ${contact.online ? `<span class="online-dot"></span>` : ""}
+          </div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(name)}</div>
+            <div class="person-user">@${escapeHTML(contact.username || "")}</div>
+          </div>
+          <button class="action" data-chat-user="${escapeHTML(targetUid)}">
+            Conversar
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
 
-}
-);
-
+  box.querySelectorAll("[data-chat-user]").forEach(button => {
+    button.onclick = () => {
+      openPrivateChat(button.dataset.chatUser);
+    };
+  });
 }
 
 
 /* =========================================================
-   LISTA DE CONVERSAS
+   PESQUISA GLOBAL
 ========================================================= */
 
-function renderChats(){
-
-const chats =
-(window.__chats || [])
-.sort(
-(a,b) =>
-(
-b.updatedAt?.toMillis?.() || 0
-)
--
-(
-a.updatedAt?.toMillis?.() || 0
-)
-);
-
-
-$("home").innerHTML =
-
-'<div class="title">As minhas conversas</div>' +
-
-(
-chats.length
-
-?
-
-chats.map(c => {
-
-const other =
-c.type === "group"
-?
-null
-:
-c.members.find(
-x => x !== me.uid
-);
-
-const name =
-c.type === "group"
-
-?
-
-(
-c.name ||
-"Grupo"
-)
-
-:
-
-(
-c.memberNames?.[other] ||
-"Utilizador"
-);
-
-
-return `
-
-<div
-class="card"
-data-chat="${esc(c.id)}">
-
-<div class="avatar">
-
-${esc(initials(name))}
-
-</div>
-
-<div class="info">
-
-<b>
-${esc(name)}
-</b>
-
-<small>
-${esc(
-c.lastMessage ||
-"Toque para conversar"
-)}
-</small>
-
-</div>
-
-<small>
-${fmt(c.updatedAt)}
-</small>
-
-</div>
-
-`;
-
-}).join("")
-
-:
-
-`
-<div class="empty">
-
-Ainda não há conversas.
-
-<br>
-
-Adicione um contacto e toque em
-<b>Conversar</b>.
-
-</div>
-`
-
-);
-
-
-document
-.querySelectorAll("[data-chat]")
-.forEach(
-element =>
-element.onclick =
-() =>
-openChat(
-element.dataset.chat
-)
-);
-
-}
-
-
-/* =========================================================
-   CONTACTOS
-========================================================= */
-
-function renderContacts(){
-
-const contacts =
-window.__contacts || [];
-
-
-$("home").innerHTML = `
-
-<div class="title">
-Os meus contactos
-</div>
-
-<div class="search">
-
-<span>⌕</span>
-
-<input
-id="contactSearch"
-placeholder="Pesquisar pessoas em tempo real">
-
-</div>
-
-<div id="contactResults"></div>
-
-<div id="savedContacts">
-
-${
-contacts.length
-
-?
-
-contacts
-.map(
-c => contactCard(c)
-)
-.join("")
-
-:
-
-`
-<div class="empty">
-Nenhum contacto guardado.
-</div>
-`
-
-}
-
-</div>
-
-`;
-
-
-$("contactSearch").oninput =
-e =>
-searchUsers(
-e.target.value
-);
-
-
-document
-.querySelectorAll(
-"[data-converse]"
-)
-.forEach(
-x =>
-x.onclick =
-() =>
-startPrivate(
-x.dataset.converse
-)
-);
-
-
-document
-.querySelectorAll(
-"[data-remove]"
-)
-.forEach(
-x =>
-x.onclick =
-() =>
-removeContact(
-x.dataset.remove
-)
-);
-
-}
-
-
-function contactCard(c){
-
-return `
-
-<div class="card">
-
-<div class="avatar">
-
-${esc(initials(c.publicName))}
-
-</div>
-
-<div class="info">
-
-<b>
-${esc(c.publicName)}
-</b>
-
-<small>
-
-@${esc(c.username)}
-·
-${c.online ? "online" : "offline"}
-
-</small>
-
-</div>
-
-<button
-class="primary"
-data-converse="${esc(c.uid)}">
-
-Conversar
-
-</button>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================================
-   PESQUISA
-========================================================= */
+$("globalSearchBtn").onclick = () => {
+  showPage("contactsPage");
+  $("contactSearch").focus();
+};
+
+$("contactSearch").addEventListener("input", () => {
+  clearTimeout(searchTimer);
+  const term = $("contactSearch").value.trim().toLowerCase();
+
+  if(term.length < 2){
+    $("contactSearchResults").innerHTML = "";
+    return;
+  }
+
+  searchTimer = setTimeout(() => searchUsers(term), 220);
+});
 
 async function searchUsers(term){
+  const results = new Map();
 
-clearTimeout(searchTimer);
+  try{
+    const usernameQuery = query(
+      collection(db,"users"),
+      where("usernameLower", ">=", term),
+      where("usernameLower", "<=", term + "\uf8ff"),
+      limit(15)
+    );
 
+    const nameQuery = query(
+      collection(db,"users"),
+      where("publicNameLower", ">=", term),
+      where("publicNameLower", "<=", term + "\uf8ff"),
+      limit(15)
+    );
 
-const box =
-$("contactResults");
+    const [usernameSnap, nameSnap] = await Promise.all([
+      getDocs(usernameQuery),
+      getDocs(nameQuery)
+    ]);
 
+    [usernameSnap, nameSnap].forEach(snapshot => {
+      snapshot.forEach(d => {
+        if(d.id !== me.uid){
+          results.set(d.id, { uid: d.id, ...d.data() });
+        }
+      });
+    });
 
-if(!box)
-return;
+    renderSearchResults([...results.values()]);
 
-
-if(!term.trim()){
-
-box.innerHTML = "";
-
-return;
-
+  }catch(error){
+    console.error("SEARCH:", error);
+    showToast(friendlyError(error));
+  }
 }
 
+function renderSearchResults(users){
+  const box = $("contactSearchResults");
 
-box.innerHTML = `
+  if(!users.length){
+    box.innerHTML = `<div class="muted">Nenhum perfil encontrado.</div>`;
+    return;
+  }
 
-<div class="empty">
+  box.innerHTML =
+    `<div style="margin-bottom:10px;font-weight:800;">Resultados da pesquisa</div>` +
+    users.map(user => {
+      const name = user.publicName || user.username || "Utilizador";
 
-<span class="spinner"></span>
+      return `
+        <div class="card">
+          <div class="person">
+            <div class="avatar">
+              ${escapeHTML(initials(name))}
+              ${user.online ? `<span class="online-dot"></span>` : ""}
+            </div>
+            <div class="person-info">
+              <div class="person-name">${escapeHTML(name)}</div>
+              <div class="person-user">@${escapeHTML(user.username || "")}</div>
+            </div>
+            <button
+              class="action add-contact"
+              data-uid="${escapeHTML(user.uid)}"
+              data-name="${escapeHTML(name)}"
+              data-username="${escapeHTML(user.username || "")}"
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+      `;
+    }).join("");
 
-Pesquisando…
-
-</div>
-
-`;
-
-
-searchTimer =
-setTimeout(
-async () => {
-
-try{
-
-const value =
-term
-.trim()
-.toLowerCase();
-
-
-const q =
-query(
-collection(db,"users"),
-
-where(
-"username",
-">=",
-value
-),
-
-where(
-"username",
-"<=",
-value + "\uf8ff"
-),
-
-limit(20)
-);
-
-
-const snapshot =
-await getDocs(q);
-
-
-const results =
-snapshot.docs
-.map(
-d => d.data()
-)
-.filter(
-u =>
-u.uid !== me.uid
-);
-
-
-box.innerHTML =
-
-results.length
-
-?
-
-`
-<div
-class="title"
-style="font-size:16px">
-
-Resultados
-
-</div>
-
-` +
-
-results
-.map(
-u => `
-
-<div class="card">
-
-<div class="avatar">
-
-${esc(
-initials(
-u.publicName
-)
-)}
-
-</div>
-
-<div class="info">
-
-<b>
-${esc(
-u.publicName
-)}
-</b>
-
-<small>
-@${esc(
-u.username
-)}
-</small>
-
-</div>
-
-<button
-class="primary"
-data-add="${esc(u.uid)}">
-
-Adicionar
-
-</button>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`
-<div class="empty">
-
-Nenhum perfil encontrado.
-
-</div>
-`;
-
-
-document
-.querySelectorAll(
-"[data-add]"
-)
-.forEach(
-x =>
-x.onclick =
-() =>
-addContact(
-x.dataset.add
-)
-);
-
-
-}catch(e){
-
-console.error(e);
-
-box.innerHTML = `
-
-<div class="empty">
-Erro na pesquisa.
-</div>
-
-`;
-
-}
-
-},
-180
-);
-
+  box.querySelectorAll(".add-contact").forEach(button => {
+    button.onclick = () => {
+      addContact({
+        uid: button.dataset.uid,
+        publicName: button.dataset.name,
+        username: button.dataset.username
+      });
+    };
+  });
 }
 
 
@@ -2110,619 +1549,193 @@ Erro na pesquisa.
    ADICIONAR CONTACTO
 ========================================================= */
 
-async function addContact(uid){
+async function addContact(user){
+  if(!me || !user?.uid){
+    showToast("Não foi possível identificar o contacto.");
+    return;
+  }
 
-try{
+  if(user.uid === me.uid){
+    showToast("Não podes adicionar a tua própria conta.");
+    return;
+  }
 
-const snapshot =
-await getDoc(
-doc(
-db,
-"users",
-uid
-)
-);
+  try{
+    await setDoc(
+      doc(db, "users", me.uid, "contacts", user.uid),
+      {
+        uid: user.uid,
+        publicName: user.publicName || "Utilizador",
+        username: user.username || "",
+        online: user.online === true,
+        addedAt: serverTimestamp()
+      },
+      {merge:true}
+    );
 
+    showToast("Contacto adicionado com sucesso.");
+    loadContacts();
 
-if(!snapshot.exists()){
-
-toast(
-"Utilizador não encontrado."
-);
-
-return;
-
-}
-
-
-const user =
-snapshot.data();
-
-
-await setDoc(
-doc(
-db,
-"users",
-me.uid,
-"contacts",
-uid
-),
-{
-
-uid:uid,
-
-publicName:
-user.publicName,
-
-username:
-user.username,
-
-online:
-user.online || false,
-
-addedAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
-
-toast(
-"Contacto guardado."
-);
-
-
-renderContacts();
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Não foi possível adicionar o contacto."
-);
-
-}
-
+  }catch(error){
+    console.error("ADD CONTACT ERROR:", error);
+    showToast(friendlyError(error));
+  }
 }
 
 
 /* =========================================================
-   REMOVER CONTACTO
+   CONVERSAS
 ========================================================= */
 
-async function removeContact(uid){
-
-if(
-!confirm(
-"Remover este contacto?"
-)
-)
-return;
-
-
-try{
-
-await deleteDoc(
-doc(
-db,
-"users",
-me.uid,
-"contacts",
-uid
-)
-);
-
-
-toast(
-"Contacto removido."
-);
-
-
-renderContacts();
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Não foi possível remover o contacto."
-);
-
+function createPrivateChatId(uid1,uid2){
+  return [uid1,uid2].sort().join("_");
 }
 
+async function openPrivateChat(otherUid){
+  if(!me || !otherUid) return;
+
+  try{
+    const otherSnap = await getDoc(doc(db, "users", otherUid));
+
+    if(!otherSnap.exists()){
+      showToast("Este perfil já não existe.");
+      return;
+    }
+
+    const other = { uid: otherUid, ...otherSnap.data() };
+    const chatId = createPrivateChatId(me.uid, otherUid);
+    const chatRef = doc(db, "chats", chatId);
+    const existing = await getDoc(chatRef);
+
+    if(!existing.exists()){
+      await setDoc(chatRef, {
+        id: chatId,
+        type: "private",
+        members: [me.uid, otherUid],
+        memberNames: {
+          [me.uid]: myProfile.publicName || myProfile.username || "Utilizador",
+          [otherUid]: other.publicName || other.username || "Utilizador"
+        },
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        lastMessage: "",
+        lastSenderId: ""
+      });
+    }
+
+    activeChat = {
+      id: chatId,
+      type: "private",
+      otherUid,
+      name: other.publicName || other.username || "Utilizador",
+      avatar: initials(other.publicName || other.username || "U")
+    };
+
+    showChat();
+
+  }catch(error){
+    console.error("OPEN CHAT ERROR:", error);
+    showToast(friendlyError(error));
+  }
 }
 
+function showChat(){
+  $("appScreen").classList.add("hidden");
+  $("chatScreen").classList.remove("hidden");
+  $("chatName").textContent = activeChat.name;
+  $("chatAvatar").textContent = activeChat.avatar;
+  $("chatStatus").textContent = activeChat.type === "group" ? "Grupo" : "Conversa";
+  $("composer").classList.remove("hidden");
+  $("messageInput").value = "";
+  $("messageInput").focus();
 
-/* =========================================================
-   CRIAR / ABRIR CONVERSA PRIVADA
-========================================================= */
-
-async function startPrivate(uid){
-
-try{
-
-toast(
-"A abrir conversa…"
-);
-
-
-const id =
-chatIdFor(
-me.uid,
-uid
-);
-
-
-const chatRef =
-doc(
-db,
-"chats",
-id
-);
-
-
-const otherSnapshot =
-await getDoc(
-doc(
-db,
-"users",
-uid
-)
-);
-
-
-if(!otherSnapshot.exists()){
-
-throw Error(
-"Contacto não encontrado."
-);
-
+  startChatMessages();
 }
 
+function startChatMessages(){
+  if(activeChatUnsubscribe){
+    activeChatUnsubscribe();
+    activeChatUnsubscribe = null;
+  }
 
-const other =
-otherSnapshot.data();
+  if(!activeChat) return;
 
+  const messagesRef = collection(db, "chats", activeChat.id, "messages");
+  const messagesQuery = query(
+    messagesRef,
+    orderBy("createdAt","asc"),
+    limitToLast(100)
+  );
 
-const chatSnapshot =
-await getDoc(chatRef);
-
-
-/*
-
-SE NÃO EXISTE:
-
-CRIA AUTOMATICAMENTE.
-
-*/
-
-if(!chatSnapshot.exists()){
-
-await setDoc(
-chatRef,
-{
-
-id:id,
-
-type:"private",
-
-members:[
-me.uid,
-uid
-],
-
-memberNames:{
-[me.uid]:
-userData.publicName,
-
-[uid]:
-other.publicName ||
-"Utilizador"
-},
-
-lastMessage:"",
-
-createdAt:
-serverTimestamp(),
-
-updatedAt:
-serverTimestamp()
-
-}
-);
-
+  activeChatUnsubscribe = onSnapshot(
+    messagesQuery,
+    snapshot => {
+      renderMessages(
+        snapshot.docs.map(d => ({
+          id: d.id,
+          ...d.data()
+        }))
+      );
+    },
+    error => {
+      console.error("MESSAGES:", error);
+      showToast(friendlyError(error));
+    }
+  );
 }
 
-
-/*
-
-ABRE O CHAT.
-
-*/
-
-await openChat(id);
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Não foi possível abrir a conversa: "
-+
-(e.message || "")
-);
-
-}
-
-}
-
-
-/* =========================================================
-   ABRIR CHAT
-========================================================= */
-
-async function openChat(id){
-
-try{
-
-const snapshot =
-await getDoc(
-doc(
-db,
-"chats",
-id
-)
-);
-
-
-if(!snapshot.exists()){
-
-throw Error(
-"A conversa não existe."
-);
-
-}
-
-
-const chat = {
-
-id:id,
-
-...snapshot.data()
-
-};
-
-
-if(
-!(chat.members || [])
-.includes(me.uid)
-){
-
-throw Error(
-"Você não pertence a esta conversa."
-);
-
-}
-
-
-activeChat = chat;
-
-
-/*
-
-ESCONDE APP PRINCIPAL.
-
-*/
-
-$("mainScreen")
-.classList.add(
-"hidden"
-);
-
-
-/*
-
-ABRE CONVERSA.
-
-*/
-
-$("chatScreen")
-.classList.remove(
-"hidden"
-);
-
-
-const other =
-chat.type === "group"
-
-?
-
-null
-
-:
-
-chat.members.find(
-x => x !== me.uid
-);
-
-
-const name =
-chat.type === "group"
-
-?
-
-(
-chat.name ||
-"Grupo"
-)
-
-:
-
-(
-chat.memberNames?.[other] ||
-"Conversa"
-);
-
-
-$("chatName")
-.textContent =
-name;
-
-
-$("chatAvatar")
-.textContent =
-initials(name);
-
-
-$("chatStatus")
-.textContent =
-
-chat.type === "group"
-
-?
-
-`${chat.members.length} participantes`
-
-:
-
-"conversa em tempo real";
-
-
-$("messageInput").focus();
-
-
-listenMessages(id);
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Não foi possível abrir a conversa."
-);
-
-}
-
-}
-
-
-/* =========================================================
-   MENSAGENS EM TEMPO REAL
-========================================================= */
-
-function listenMessages(id){
-
-if(unsubMessages)
-unsubMessages();
-
-
-const q =
-query(
-collection(
-db,
-"chats",
-id,
-"messages"
-),
-
-orderBy(
-"createdAt",
-"asc"
-),
-
-limit(200)
-);
-
-
-unsubMessages =
-onSnapshot(
-q,
-
-snapshot => {
-
-
-const messages =
-snapshot.docs.map(
-d => ({
-id:d.id,
-...d.data()
-})
-);
-
-
-$("messages").innerHTML =
-
-messages.length
-
-?
-
-messages
-.map(
-m => `
-
-<div
-class="bubble ${
-m.senderId === me.uid
-?
-"me"
-:
-""
-}">
-
-${esc(m.text)}
-
-<span class="time">
-
-${fmt(m.createdAt)}
-
-${
-m.senderId === me.uid
-
-?
-
-(
-m.readBy?.length > 1
-?
-"✓✓"
-:
-"✓"
-)
-
-:
-
-""
-
-}
-
-</span>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`
-
-<div class="empty">
-
-Nenhuma mensagem ainda.
-
-<br>
-
-Comece a conversa.
-
-</div>
-
-`;
-
-
-requestAnimationFrame(
-() => {
-
-$("messages").scrollTop =
-$("messages").scrollHeight;
-
-}
-);
-
-
-/*
-
-MARCAR MENSAGENS RECEBIDAS
-COMO LIDAS.
-
-*/
-
-markIncomingRead(
-id,
-messages
-)
-.catch(
-() => {}
-);
-
-
-},
-
-error => {
-
-console.error(error);
-
-toast(
-"Erro ao receber mensagens em tempo real."
-);
-
-}
-
-);
-
-}
-
-
-/* =========================================================
-   RECIBOS DE LEITURA
-========================================================= */
-
-async function markIncomingRead(
-chatId,
-messages
-){
-
-const pending =
-messages.filter(
-m =>
-
-m.senderId !== me.uid &&
-
-!(m.readBy || [])
-.includes(me.uid)
-
-);
-
-
-if(!pending.length)
-return;
-
-
-await Promise.all(
-
-pending.map(
-m =>
-
-updateDoc(
-doc(
-db,
-"chats",
-chatId,
-"messages",
-m.id
-),
-
-{
-readBy:
-arrayUnion(me.uid)
-}
-
-)
-.catch(
-() => {}
-)
-
-)
-
-);
-
+function renderMessages(messages){
+  const box = $("messages");
+  box.innerHTML = "";
+
+  if(!messages.length){
+    box.innerHTML = `<div class="muted">Esta conversa começou agora.</div>`;
+    return;
+  }
+
+  messages.forEach(message => {
+    const mine = message.senderId === me.uid;
+    const time = message.createdAt?.toDate
+      ? message.createdAt.toDate().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" })
+      : "...";
+
+    const row = document.createElement("div");
+    row.className = "message-row " + (mine ? "mine" : "");
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+
+    const text = document.createElement("div");
+    text.className = "message-text";
+    text.textContent = message.text || "";
+
+    const meta = document.createElement("div");
+    meta.className = "message-meta";
+
+    let receipt = "";
+    if(mine){
+      const readBy = Array.isArray(message.readBy) ? message.readBy : [];
+      receipt = readBy.includes(activeChat.otherUid) ? " ✓✓" : " ✓";
+    }
+
+    meta.textContent = time + receipt;
+
+    bubble.appendChild(text);
+    bubble.appendChild(meta);
+    row.appendChild(bubble);
+    box.appendChild(row);
+
+    if(!mine && !(Array.isArray(message.readBy) && message.readBy.includes(me.uid))){
+      updateDoc(
+        doc(db, "chats", activeChat.id, "messages", message.id),
+        { readBy: arrayUnion(me.uid) }
+      ).catch(() => {});
+    }
+  });
+
+  requestAnimationFrame(() => {
+    box.scrollTop = box.scrollHeight;
+  });
 }
 
 
@@ -2730,820 +1743,392 @@ arrayUnion(me.uid)
    ENVIAR MENSAGEM
 ========================================================= */
 
-$("composer").onsubmit =
-async event => {
+$("composer").addEventListener("submit", async event => {
+  event.preventDefault();
 
-event.preventDefault();
+  if(!activeChat || !me) return;
 
+  const input = $("messageInput");
+  const text = input.value.trim();
 
-const input =
-$("messageInput");
+  if(!text) return;
 
+  input.value = "";
 
-const text =
-input.value.trim();
+  try{
+    const chatRef = doc(db, "chats", activeChat.id);
+    const messagesRef = collection(chatRef, "messages");
 
+    await addDoc(messagesRef, {
+      text,
+      senderId: me.uid,
+      senderName: myProfile.publicName || myProfile.username || "Utilizador",
+      readBy: [me.uid],
+      createdAt: serverTimestamp()
+    });
 
-if(
-!text ||
-!activeChat
-)
-return;
+    await updateDoc(chatRef, {
+      lastMessage: text.slice(0,120),
+      lastSenderId: me.uid,
+      updatedAt: serverTimestamp()
+    });
 
-
-const chatId =
-activeChat.id;
-
-
-input.value = "";
-
-
-try{
-
-
-/*
-
-CRIA MENSAGEM REAL.
-
-*/
-
-await addDoc(
-collection(
-db,
-"chats",
-chatId,
-"messages"
-),
-{
-
-text:text,
-
-senderId:
-me.uid,
-
-senderName:
-userData.publicName,
-
-createdAt:
-serverTimestamp(),
-
-readBy:[
-me.uid
-]
-
-}
-);
+  }catch(error){
+    console.error("SEND MESSAGE:", error);
+    input.value = text;
+    showToast(friendlyError(error));
+  }
+});
 
 
-/*
+/* =========================================================
+   FECHAR CHAT
+========================================================= */
 
-ATUALIZA CONVERSA.
+$("closeChatBtn").onclick = () => {
+  if(activeChatUnsubscribe){
+    activeChatUnsubscribe();
+    activeChatUnsubscribe = null;
+  }
 
-*/
-
-await updateDoc(
-doc(
-db,
-"chats",
-chatId
-),
-{
-
-lastMessage:
-text.slice(0,120),
-
-lastSenderId:
-me.uid,
-
-updatedAt:
-serverTimestamp()
-
-}
-);
-
-
-}catch(e){
-
-console.error(e);
-
-
-input.value =
-text;
-
-
-toast(
-"Mensagem não enviada. Verifique as regras do Firestore."
-);
-
-}
-
+  activeChat = null;
+  $("chatScreen").classList.add("hidden");
+  $("appScreen").classList.remove("hidden");
+  showPage("conversationsPage");
 };
 
 
 /* =========================================================
-   VOLTAR
+   LISTA DE CONVERSAS
 ========================================================= */
 
-$("backChat").onclick =
-() => {
+function loadConversations(){
+  if(!me) return;
 
-if(unsubMessages){
+  if(conversationsUnsubscribe){
+    conversationsUnsubscribe();
+  }
 
-unsubMessages();
+  const q = query(
+    collection(db,"chats"),
+    where("members", "array-contains", me.uid),
+    limit(50)
+  );
 
-unsubMessages = null;
+  conversationsUnsubscribe = onSnapshot(
+    q,
+    snapshot => {
+      const chats = snapshot.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .sort((a,b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
 
+      renderConversations(chats);
+    },
+    error => {
+      console.error("CONVERSATIONS:", error);
+    }
+  );
 }
 
+function renderConversations(chats){
+  const box = $("conversationList");
 
-activeChat = null;
+  if(!chats.length){
+    box.innerHTML = `<div class="muted">As tuas conversas aparecerão aqui.</div>`;
+    return;
+  }
 
+  box.innerHTML = chats.map(chat => {
+    let name = "Conversa";
+    let avatar = "A";
 
-$("chatScreen")
-.classList.add(
-"hidden"
-);
+    if(chat.type === "private"){
+      const otherUid = (chat.members || []).find(uid => uid !== me.uid);
+      name = chat.memberNames?.[otherUid] || "Utilizador";
+      avatar = initials(name);
+    }else{
+      name = chat.name || "Grupo";
+      avatar = initials(name);
+    }
 
+    const preview = chat.lastMessage || "Nova conversa";
 
-$("mainScreen")
-.classList.remove(
-"hidden"
-);
+    return `
+      <div class="card">
+        <div class="person" data-open-conversation="${escapeHTML(chat.id)}">
+          <div class="avatar">${escapeHTML(avatar)}</div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(name)}</div>
+            <div class="person-user">${escapeHTML(preview)}</div>
+          </div>
+          <button class="action">Abrir</button>
+        </div>
+      </div>
+    `;
+  }).join("");
 
+  box.querySelectorAll("[data-open-conversation]").forEach(row => {
+    row.onclick = () => {
+      const id = row.dataset.openConversation;
+      const chat = chats.find(c => c.id === id);
+      if(chat) openExistingChat(chat);
+    };
+  });
+}
 
-switchPage("chats");
+async function openExistingChat(chat){
+  if(chat.type === "private"){
+    const otherUid = (chat.members || []).find(uid => uid !== me.uid);
 
-};
+    if(!otherUid) return;
+
+    const snap = await getDoc(doc(db, "users", otherUid));
+    const other = snap.exists() ? snap.data() : {};
+
+    activeChat = {
+      id: chat.id,
+      type: "private",
+      otherUid,
+      name: other.publicName || chat.memberNames?.[otherUid] || "Utilizador",
+      avatar: initials(other.publicName || chat.memberNames?.[otherUid] || "U")
+    };
+  }else{
+    activeChat = {
+      id: chat.id,
+      type: "group",
+      name: chat.name || "Grupo",
+      avatar: initials(chat.name || "Grupo")
+    };
+  }
+
+  showChat();
+}
 
 
 /* =========================================================
    GRUPOS
 ========================================================= */
 
-function renderGroups(){
+$("createGroupBtn").onclick =
+$("bottomGroupBtn").onclick = () => {
+  openGroupModal();
+};
 
-const groups =
-(window.__chats || [])
-.filter(
-c =>
-c.type === "group"
-);
-
-
-$("home").innerHTML = `
-
-<div class="title">
-Grupos
-</div>
-
-<button
-id="newGroup"
-class="primary"
-style="width:100%;padding:14px">
-
-＋ Criar novo grupo
-
-</button>
-
-${
-groups.length
-
-?
-
-groups.map(
-g => `
-
-<div
-class="card"
-data-chat="${esc(g.id)}">
-
-<div class="avatar">
-
-${esc(
-initials(
-g.name
-)
-)}
-
-</div>
-
-<div class="info">
-
-<b>
-${esc(g.name)}
-</b>
-
-<small>
-
-${g.members.length}
-participantes
-
-·
-
-${esc(
-g.lastMessage ||
-"Sem mensagens"
-)}
-
-</small>
-
-</div>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-`
-
-<div class="empty">
-
-Nenhum grupo criado.
-
-</div>
-
-`
-
+function openGroupModal(){
+  $("groupModal").classList.remove("hidden");
+  renderGroupContacts();
 }
 
-`;
+$("closeGroupModal").onclick = () => {
+  $("groupModal").classList.add("hidden");
+};
 
+async function renderGroupContacts(){
+  const box = $("groupContacts");
+  box.innerHTML = `<div class="muted">A carregar contactos...</div>`;
 
-$("newGroup").onclick =
-showGroupModal;
+  try{
+    const snap = await new Promise((resolve, reject) => {
+      const unsub = onSnapshot(
+        collection(db, "users", me.uid, "contacts"),
+        snapshot => {
+          unsub();
+          resolve(snapshot);
+        },
+        reject
+      );
+    });
 
+    const contacts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
 
-document
-.querySelectorAll(
-"[data-chat]"
-)
-.forEach(
-x =>
-x.onclick =
-() =>
-openChat(
-x.dataset.chat
-)
-);
+    if(!contacts.length){
+      box.innerHTML = `<div class="muted">Adiciona contactos primeiro.</div>`;
+      return;
+    }
 
+    box.innerHTML = contacts.map(contact => {
+      const name = contact.publicName || contact.username || "Utilizador";
+      const targetUid = contact.uid || contact.id;
+
+      return `
+        <label class="card" style="display:flex;align-items:center;gap:12px;cursor:pointer;">
+          <input
+            type="checkbox"
+            class="group-member"
+            value="${escapeHTML(targetUid)}"
+            style="width:20px;height:20px;"
+          >
+          <div class="avatar">${escapeHTML(initials(name))}</div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(name)}</div>
+            <div class="person-user">@${escapeHTML(contact.username || "")}</div>
+          </div>
+        </label>
+      `;
+    }).join("");
+
+  }catch(error){
+    console.error(error);
+    box.innerHTML = `<div class="muted">Não foi possível carregar os contactos.</div>`;
+  }
 }
 
-
-/* =========================================================
-   MODAL GRUPO
-========================================================= */
-
-function showGroupModal(){
-
-const contacts =
-window.__contacts || [];
-
-
-$("modal").innerHTML = `
-
-<div class="panel">
-
-<h2>
-Novo grupo
-</h2>
-
-<div class="field">
-
-<label>
-Nome do grupo
-</label>
-
-<input
-id="groupName"
-placeholder="Ex.: Família">
-
-</div>
-
-<div>
-
-<b>
-Escolha os participantes
-</b>
-
-${
-contacts.length
-
-?
-
-contacts.map(
-c => `
-
-<label class="check">
-
-<input
-type="checkbox"
-value="${esc(c.uid)}">
-
-<span>
-
-${esc(c.publicName)}
-
-<small>
-@${esc(c.username)}
-</small>
-
-</span>
-
-</label>
-
-`
-)
-.join("")
-
-:
-
-`
-
-<p style="color:#968da0">
-
-Adicione contactos primeiro.
-
-</p>
-
-`
-
-}
-
-</div>
-
-<div
-class="row"
-style="margin-top:15px">
-
-<button
-class="ghost"
-id="cancelModal">
-
-Cancelar
-
-</button>
-
-<button
-class="primary"
-id="createGroup">
-
-Criar grupo
-
-</button>
-
-</div>
-
-<div
-id="groupStatus"
-class="status">
-</div>
-
-</div>
-
-`;
-
-
-$("modal")
-.classList.remove(
-"hidden"
-);
-
-
-$("cancelModal").onclick =
-closeModal;
-
-
-$("createGroup").onclick =
-createGroup;
-
-}
-
-
-/* =========================================================
-   CRIAR GRUPO
-========================================================= */
-
-async function createGroup(){
-
-try{
-
-const name =
-$("groupName")
-.value
-.trim();
-
-
-const ids =
-[
-...
-document.querySelectorAll(
-'#modal input[type="checkbox"]:checked'
-)
-]
-.map(
-x =>
-x.value
-);
-
-
-if(!name){
-
-throw Error(
-"Dê um nome ao grupo."
-);
-
-}
-
-
-if(!ids.length){
-
-throw Error(
-"Selecione pelo menos um contacto."
-);
-
-}
-
-
-const members =
-[
-me.uid,
-...ids
-];
-
-
-const names = {
-
-[me.uid]:
-userData.publicName
-
+$("confirmCreateGroup").onclick = async () => {
+  const name = $("groupName").value.trim();
+  const selected = [...document.querySelectorAll(".group-member:checked")].map(input => input.value);
+
+  if(name.length < 2){
+    showToast("Escolhe um nome para o grupo.");
+    return;
+  }
+
+  if(!selected.length){
+    showToast("Seleciona pelo menos um contacto.");
+    return;
+  }
+
+  try{
+    const members = [...new Set([me.uid, ...selected])];
+
+    const groupRef = await addDoc(collection(db, "groups"), {
+      name,
+      members,
+      admins: [me.uid],
+      createdBy: me.uid,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      lastMessage: "",
+      lastSenderId: ""
+    });
+
+    await setDoc(
+      doc(db, "chats", groupRef.id),
+      {
+        id: groupRef.id,
+        type: "group",
+        groupId: groupRef.id,
+        name,
+        members,
+        createdBy: me.uid,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        lastMessage: "",
+        lastSenderId: ""
+      },
+      {merge:true}
+    );
+
+    $("groupName").value = "";
+    $("groupModal").classList.add("hidden");
+    showToast("Grupo criado com sucesso.");
+    loadGroups();
+
+  }catch(error){
+    console.error("CREATE GROUP:", error);
+    showToast(friendlyError(error));
+  }
 };
 
 
-for(
-const id of ids
-){
+/* =========================================================
+   GRUPOS LISTA
+========================================================= */
 
-const snapshot =
-await getDoc(
-doc(
-db,
-"users",
-id
-)
-);
+function loadGroups(){
+  if(!me) return;
 
+  if(groupsUnsubscribe){
+    groupsUnsubscribe();
+  }
 
-if(snapshot.exists()){
+  const q = query(
+    collection(db, "groups"),
+    where("members", "array-contains", me.uid),
+    limit(50)
+  );
 
-names[id] =
-snapshot.data()
-.publicName ||
-"Utilizador";
-
+  groupsUnsubscribe = onSnapshot(
+    q,
+    snapshot => {
+      const groups = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      renderGroups(groups);
+    },
+    error => {
+      console.error("GROUPS:", error);
+    }
+  );
 }
 
-}
+function renderGroups(groups){
+  const box = $("groupsList");
 
+  if(!groups.length){
+    box.innerHTML = `<div class="muted">Ainda não participas de nenhum grupo.</div>`;
+    return;
+  }
 
-/*
+  box.innerHTML = groups.map(group => {
+    const name = group.name || "Grupo";
 
-DOCUMENTO DO GRUPO.
+    return `
+      <div class="card">
+        <div class="person">
+          <div class="avatar">${escapeHTML(initials(name))}</div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(name)}</div>
+            <div class="person-user">${(group.members || []).length} membros</div>
+          </div>
+          <button class="action" data-group="${escapeHTML(group.id)}">
+            Abrir
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
 
-*/
+  box.querySelectorAll("[data-group]").forEach(button => {
+    button.onclick = () => {
+      const group = groups.find(g => g.id === button.dataset.group);
 
-const groupRef =
-doc(
-collection(
-db,
-"chats"
-)
-);
-
-
-await setDoc(
-groupRef,
-{
-
-id:
-groupRef.id,
-
-type:
-"group",
-
-name:name,
-
-members:
-members,
-
-memberNames:
-names,
-
-lastMessage:"",
-
-createdAt:
-serverTimestamp(),
-
-updatedAt:
-serverTimestamp(),
-
-createdBy:
-me.uid
-
-}
-);
-
-
-closeModal();
-
-
-toast(
-"Grupo criado com sucesso."
-);
-
-
-await openChat(
-groupRef.id
-);
-
-
-}catch(e){
-
-console.error(e);
-
-const status =
-$("groupStatus");
-
-
-if(status){
-
-status.textContent =
-e.message ||
-"Não foi possível criar o grupo.";
-
-}
-
-}
-
+      if(group){
+        activeChat = {
+          id: group.id,
+          type: "group",
+          name: group.name || "Grupo",
+          avatar: initials(group.name || "Grupo")
+        };
+        showChat();
+      }
+    };
+  });
 }
 
 
 /* =========================================================
-   FECHAR MODAL
+   PERFIL / BOTÕES
 ========================================================= */
 
-function closeModal(){
-
-$("modal")
-.classList.add(
-"hidden"
-);
-
-$("modal").innerHTML = "";
-
-}
-
-
-/* =========================================================
-   PERFIL
-========================================================= */
-
-function renderProfile(){
-
-$("home").innerHTML = `
-
-<div class="title">
-Meu perfil
-</div>
-
-<div class="card">
-
-<div
-class="avatar"
-style="width:68px;height:68px">
-
-${esc(
-initials(
-userData.publicName
-)
-)}
-
-</div>
-
-<div class="info">
-
-<b>
-
-${esc(
-userData.publicName ||
-"Utilizador"
-)}
-
-</b>
-
-<small>
-
-@${esc(
-userData.username ||
-""
-)}
-
-</small>
-
-</div>
-
-</div>
-
-
-<div class="field">
-
-<label>
-Nome público
-</label>
-
-<input
-id="editName"
-value="${esc(
-userData.publicName || ""
-)}">
-
-</div>
-
-
-<div class="field">
-
-<label>
-Nome de utilizador
-</label>
-
-<input
-value="${esc(
-userData.username || ""
-)}"
-disabled>
-
-</div>
-
-
-<button
-id="saveProfile"
-class="primary"
-style="width:100%">
-
-Guardar alterações
-
-</button>
-
-
-<button
-id="logout"
-class="ghost"
-style="width:100%;margin-top:9px">
-
-Sair da conta
-
-</button>
-
-`;
-
-
-$("saveProfile").onclick =
-async () => {
-
-const name =
-$("editName")
-.value
-.trim();
-
-
-if(!name){
-
-toast(
-"Informe um nome."
-);
-
-return;
-
-}
-
-
-try{
-
-await updateDoc(
-doc(
-db,
-"users",
-me.uid
-),
-{
-publicName:name
-}
-);
-
-
-userData.publicName =
-name;
-
-
-await loadUser();
-
-
-toast(
-"Perfil atualizado."
-);
-
-
-}catch(e){
-
-console.error(e);
-
-toast(
-"Não foi possível atualizar."
-);
-
-}
-
+$("profileTopBtn").onclick = () => {
+  showPage("profilePage");
 };
 
-
-$("logout").onclick =
-() =>
-signOut(auth);
-
-}
-
-
-/* =========================================================
-   BOTÕES
-========================================================= */
-
-$("profileBtn").onclick =
-() =>
-switchPage("profile");
-
-
-$("globalSearchBtn").onclick =
-() =>
-switchPage("contacts");
-
-
-document
-.querySelectorAll(".nav")
-.forEach(
-x =>
-x.onclick =
-() =>
-switchPage(
-x.dataset.page
-)
-);
-
-
-$("chatInfo").onclick =
-() => {
-
-if(!activeChat)
-return;
-
-
-toast(
-
-activeChat.type === "group"
-
-?
-
-`${activeChat.members.length} participantes`
-
-:
-
-"Conversa privada"
-
-);
-
-};
+$("profilePage").addEventListener("click", event => {
+  if(event.target === $("profilePage")){
+    showPage("conversationsPage");
+  }
+});
 
 
 /* =========================================================
    LIMPEZA
 ========================================================= */
 
-window.addEventListener(
-"beforeunload",
-() => {
-
-if(unsubMessages)
-unsubMessages();
-
-if(unsubChats)
-unsubChats();
-
-if(unsubContacts)
-unsubContacts();
-
-}
-);
+window.addEventListener("beforeunload", () => {
+  if(contactsUnsubscribe) contactsUnsubscribe();
+  if(conversationsUnsubscribe) conversationsUnsubscribe();
+  if(groupsUnsubscribe) groupsUnsubscribe();
+  if(activeChatUnsubscribe) activeChatUnsubscribe();
+});
 
 </script>
 
