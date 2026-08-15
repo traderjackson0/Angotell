@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#0b0912">
 <title>KidiTalk</title>
 
@@ -15,7 +16,7 @@ button{border:0;cursor:pointer;}
 .screen{width:100%;height:100dvh;position:relative;}
 .app{width:100%;height:100%;background:radial-gradient(circle at 90% 15%,rgba(174,72,255,.12),transparent 30%),radial-gradient(circle at 10% 85%,rgba(255,65,145,.08),transparent 35%),#08070d;}
 
-/* AUTH */
+/* TELA DE AUTENTICAÇÃO */
 .auth{width:min(620px,100%);height:100%;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:center;overflow-y:auto;}
 .auth-card{width:100%;max-width:560px;padding:28px;border:1px solid rgba(255,255,255,.10);border-radius:30px;background:rgba(17,14,26,.90);box-shadow:0 20px 70px rgba(0,0,0,.45);}
 .logo{width:105px;height:105px;margin:0 auto 18px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:900;color:white;background:linear-gradient(135deg,#7d4cff,#ff3f91,#ff7b3d,#00d9ff);box-shadow:0 0 45px rgba(188,75,255,.35);}
@@ -30,9 +31,8 @@ button{border:0;cursor:pointer;}
 .field input:focus, .field textarea:focus{border-color:#a34cff;box-shadow:0 0 0 3px rgba(163,76,255,.12);}
 .primary{width:100%;min-height:55px;border-radius:18px;color:white;font-weight:800;background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);}
 .primary:disabled{opacity:.5;}
-.error{margin-top:14px;padding:12px;border-radius:14px;background:rgba(255,45,100,.10);color:#ff719d;text-align:center;font-size:13px;}
 
-/* HEADER */
+/* CABEÇALHO SUPERIOR */
 .main{width:100%;height:100%;display:flex;flex-direction:column;}
 .topbar{flex:none;min-height:85px;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(9,8,14,.88);backdrop-filter:blur(18px);}
 .identity{display:flex;align-items:center;gap:13px;min-width:0;}
@@ -44,20 +44,20 @@ button{border:0;cursor:pointer;}
 .top-actions{display:flex;gap:10px;}
 .icon-btn{width:48px;height:48px;border-radius:16px;color:white;background:#17141f;border:1px solid rgba(255,255,255,.08);font-size:20px;}
 
-/* CONTENT */
+/* CONTEÚDO DAS PÁGINAS */
 .content{flex:1;min-height:0;overflow:hidden;position:relative;}
 .page{width:100%;height:100%;overflow-y:auto;padding:20px 20px 105px;}
 .page-title{font-size:24px;font-weight:900;margin-bottom:18px;}
 .search{width:100%;height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.08);background:#14111c;color:white;padding:0 17px;outline:none;margin-bottom:18px;}
 .card{padding:15px;border-radius:22px;background:#15121d;border:1px solid rgba(255,255,255,.07);margin-bottom:12px;}
-.person{display:flex;align-items:center;gap:12px;}
+.person{display:flex;align-items:center;gap:12px;cursor:pointer;}
 .person-info{flex:1;min-width:0;}
 .person-name{font-weight:800;font-size:16px;}
-.person-user{opacity:.5;font-size:13px;margin-top:2px;}
+.person-user{opacity:.5;font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .action{flex:none;padding:10px 16px;border-radius:14px;color:white;font-weight:800;background:linear-gradient(135deg,#7545e8,#db419c);font-size:13px;}
 .muted{opacity:.45;text-align:center;padding:30px 10px;}
 
-/* CHAT */
+/* CHAT DA CONVERSA */
 .chat{width:100%;height:100%;display:flex;flex-direction:column;background:#09080f;}
 .chat-header{min-height:70px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);background:#0d0b14;}
 .back{width:42px;height:42px;border-radius:14px;color:white;background:#181520;font-size:21px;}
@@ -78,34 +78,34 @@ button{border:0;cursor:pointer;}
 .composer input{flex:1;min-width:0;height:50px;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:0 16px;background:#191620;color:white;outline:none;}
 .send{width:52px;height:50px;border-radius:17px;color:white;background:linear-gradient(135deg,#7947f1,#ec429c);font-size:20px;}
 
-/* BOTTOM NAV */
+/* BARRA INFERIOR DE NAVEGAÇÃO */
 .bottom{position:absolute;z-index:20;left:18px;right:18px;bottom:max(12px,env(safe-area-inset-bottom));height:68px;display:flex;align-items:center;justify-content:space-around;border-radius:25px;background:rgba(24,20,32,.94);border:1px solid rgba(255,255,255,.09);box-shadow:0 12px 35px rgba(0,0,0,.35);backdrop-filter:blur(18px);}
 .nav{flex:1;height:100%;color:#85808e;background:transparent;font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
 .nav-icon{font-size:19px;}
 .nav.active{color:white;}
-.nav.add{font-size:28px;}
 
-/* MODALS & MENUS */
+/* MODAL E MENU CONTEXTUAL REPOSICIONADO */
 .modal{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(6px);}
 .modal-card{width:min(600px,100%);max-height:88dvh;overflow-y:auto;padding:22px;border-radius:30px 30px 0 0;background:#15121d;border:1px solid rgba(255,255,255,.09);}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
 .modal-title{font-size:20px;font-weight:900;}
 .close{width:40px;height:40px;border-radius:14px;color:white;background:#211d29;}
 
-.context-menu{position:fixed;z-index:150;background:#1f1a2b;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:4px;}
-.context-btn{padding:10px 16px;background:transparent;color:white;text-align:left;border-radius:12px;font-weight:600;font-size:13px;}
-.context-btn:hover{background:rgba(255,255,255,.08);}
+.context-menu{position:fixed;z-index:150;left:20px;width:200px;background:#1f1a2b;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:8px;box-shadow:0 10px 35px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:4px;}
+.context-btn{padding:12px 16px;background:transparent;color:white;text-align:left;border-radius:12px;font-weight:600;font-size:14px;}
+.context-btn:hover{background:rgba(255,255,255,.1);}
 
 .toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.09);box-shadow:0 10px 35px rgba(0,0,0,.35);text-align:center;font-size:13px;}
 .story-item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-right:14px;cursor:pointer;}
 .story-ring{width:64px;height:64px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#8049ff,#ff3c91);}
 .story-avatar{width:100%;height:100%;border-radius:50%;background:#17141e;display:flex;align-items:center;justify-content:center;font-weight:bold;background-size:cover;background-position:center;}
+
+.file-label{display:inline-block;padding:12px 18px;border-radius:14px;background:#211d2b;color:#a34cff;border:1px dashed #a34cff;cursor:pointer;font-weight:700;text-align:center;width:100%;margin-top:6px;}
 </style>
 </head>
 
 <body>
 
-<!-- AUTH SCREEN -->
 <div id="authScreen" class="screen">
   <div class="auth">
     <div class="auth-card">
@@ -125,7 +125,7 @@ button{border:0;cursor:pointer;}
         </div>
         <div class="field">
           <label>Nome de utilizador</label>
-          <input id="regUsername" placeholder="Ex.: gaspar_kididiz">
+          <input id="regUsername" placeholder="Ex.: gaspar_kididi">
         </div>
       </div>
 
@@ -139,12 +139,10 @@ button{border:0;cursor:pointer;}
       </div>
 
       <button id="authButton" class="primary">Entrar no KidiTalk</button>
-      <div id="authError" class="error hidden"></div>
     </div>
   </div>
 </div>
 
-<!-- APP SCREEN -->
 <div id="appScreen" class="screen hidden">
   <div class="app">
     <div class="main">
@@ -161,33 +159,29 @@ button{border:0;cursor:pointer;}
         </div>
 
         <div class="top-actions">
-          <button id="globalSearchBtn" class="icon-btn">⌕</button>
           <button id="settingsTopBtn" class="icon-btn">⚙</button>
         </div>
       </header>
 
       <main class="content">
-        <!-- CONVERSAS -->
         <section id="conversationsPage" class="page">
           <div class="page-title">Conversas</div>
           <div id="conversationList"></div>
         </section>
 
-        <!-- CONTACTOS E PEDIDOS -->
         <section id="contactsPage" class="page hidden">
           <div class="page-title">Contactos</div>
-          <input id="contactSearch" class="search" placeholder="Pesquisar utilizadores...">
+          <input id="contactSearch" class="search" placeholder="Pesquisar utilizadores pelo @username...">
           
           <div id="contactSearchResults"></div>
           
-          <div style="margin:15px 0 10px;font-weight:800;">Pedidos Pendentes (Validade de 7 dias)</div>
+          <div style="margin:15px 0 10px;font-weight:800;">Pedidos Pendentes</div>
           <div id="requestsList"></div>
 
           <div style="margin:20px 0 10px;font-weight:800;">Os Meus Contactos</div>
           <div id="contactsList"></div>
         </section>
 
-        <!-- STATUS -->
         <section id="statusPage" class="page hidden">
           <div class="page-title">Status</div>
           <div style="display:flex;overflow-x:auto;padding-bottom:10px;margin-bottom:15px;" id="statusTray">
@@ -201,14 +195,12 @@ button{border:0;cursor:pointer;}
           <div id="statusList"></div>
         </section>
 
-        <!-- GRUPOS -->
         <section id="groupsPage" class="page hidden">
           <div class="page-title">Grupos</div>
           <button id="createGroupBtn" class="primary" style="margin-bottom:18px;">+ Criar Novo Grupo</button>
           <div id="groupsList"></div>
         </section>
 
-        <!-- DEFINIÇÕES (ENGRENAGEM) -->
         <section id="settingsPage" class="page hidden">
           <div class="page-title">Definições</div>
           
@@ -229,7 +221,6 @@ button{border:0;cursor:pointer;}
           <button id="logoutBtn" class="primary" style="margin-top:20px;background:#e63a3a;">Terminar Sessão</button>
         </section>
 
-        <!-- EDITAR PERFIL -->
         <section id="profileEditPage" class="page hidden">
           <div class="page-title">Editar Perfil</div>
           <div class="card">
@@ -238,22 +229,21 @@ button{border:0;cursor:pointer;}
               <input id="profileNameInput">
             </div>
             <div class="field">
-              <label>Nome de Utilizador</label>
-              <input id="profileUsernameInput">
+              <label>Escolher Foto da Galeria</label>
+              <label class="file-label">
+                📷 Selecionar Imagem da Galeria
+                <input type="file" id="profileFilePicker" accept="image/*" class="hidden">
+              </label>
+              <div id="profileFileStatus" style="font-size:12px;margin-top:6px;color:#35e895;"></div>
             </div>
-            <div class="field">
-              <label>URL da Foto de Perfil (Opcional)</label>
-              <input id="profilePicInput" placeholder="https://link-da-imagem.com/foto.jpg">
-            </div>
-            <button id="saveProfileBtn" class="primary">Guardar Alterações</button>
+            <button id="saveProfileBtn" class="primary" style="margin-top:10px;">Guardar Alterações</button>
           </div>
         </section>
 
-        <!-- SOBRE O DESENVOLVEDOR -->
         <section id="devInfoPage" class="page hidden">
           <div class="page-title">Desenvolvimento</div>
           <div class="card" style="line-height:1.6;">
-            <div style="font-size:20px;font-weight:900;color:#00d9ff;margin-bottom:8px;">Gaspar Kididiz</div>
+            <div style="font-size:20px;font-weight:900;color:#00d9ff;margin-bottom:8px;">Gaspar Kididi</div>
             <div style="font-size:13px;opacity:.6;margin-bottom:15px;">Criador & Desenvolvedor Solo</div>
             <p style="font-size:14px;opacity:.85;">
               O <strong>KidiTalk</strong> nasceu de uma visão de criar uma plataforma de comunicação rápida, segura e moderna.
@@ -262,7 +252,7 @@ button{border:0;cursor:pointer;}
               O desenvolvimento oficial começou no dia <strong>30 de Julho</strong>. Trabalhar sozinho na criação de toda a arquitetura, design, banco de dados e regras de segurança foi um desafio gigantesco, mas demonstrativo do poder da dedicação e paixão pela tecnologia.
             </p>
             <div style="margin-top:20px;padding:10px;background:rgba(255,255,255,.05);border-radius:12px;font-size:12px;opacity:.6;text-align:center;">
-              KidiTalk v2.0 (Build Escalável de Alta Performance)
+              KidiTalk v2.2 (Edição Estável)
             </div>
           </div>
         </section>
@@ -287,7 +277,6 @@ button{border:0;cursor:pointer;}
   </div>
 </div>
 
-<!-- CHAT SCREEN -->
 <div id="chatScreen" class="screen hidden">
   <div class="chat">
     <header class="chat-header">
@@ -308,28 +297,6 @@ button{border:0;cursor:pointer;}
   </div>
 </div>
 
-<!-- MODAL DE CRIAR GRUPO -->
-<div id="groupModal" class="modal hidden">
-  <div class="modal-card">
-    <div class="modal-head">
-      <div class="modal-title">Criar Grupo</div>
-      <button id="closeGroupModal" class="close">×</button>
-    </div>
-    <div class="field">
-      <label>Nome do Grupo</label>
-      <input id="groupName" placeholder="Ex.: Amigos do KidiTalk">
-    </div>
-    <div class="field">
-      <label>URL da Foto do Grupo (Opcional)</label>
-      <input id="groupPic" placeholder="https://link.com/foto.jpg">
-    </div>
-    <div style="margin-bottom:10px;font-weight:800;">Selecionar Contactos</div>
-    <div id="groupContacts"></div>
-    <button id="confirmCreateGroup" class="primary" style="margin-top:15px;">Criar Grupo</button>
-  </div>
-</div>
-
-<!-- MODAL NOVO STATUS -->
 <div id="statusModal" class="modal hidden">
   <div class="modal-card">
     <div class="modal-head">
@@ -337,30 +304,33 @@ button{border:0;cursor:pointer;}
       <button id="closeStatusModal" class="close">×</button>
     </div>
     <div class="field">
-      <label>URL da Imagem ou Vídeo</label>
-      <input id="statusMediaUrl" placeholder="https://link-da-midia.com/imagem.jpg">
+      <label>Escolher Foto ou Vídeo da Galeria</label>
+      <label class="file-label">
+        📁 Carregar Foto / Vídeo
+        <input type="file" id="statusFilePicker" accept="image/*,video/*" class="hidden">
+      </label>
+      <div id="statusFileStatus" style="font-size:12px;margin-top:6px;color:#35e895;"></div>
     </div>
     <div class="field">
       <label>Legenda</label>
-      <textarea id="statusCaption" rows="3" placeholder="Escreve o que estás a pensar..."></textarea>
+      <textarea id="statusCaption" rows="2" placeholder="Escreve uma legenda..."></textarea>
     </div>
     <button id="confirmPublishStatus" class="primary">Publicar Status</button>
   </div>
 </div>
 
-<!-- MENU CONTEXTUAL DE MENSAGENS -->
 <div id="contextMenu" class="context-menu hidden">
   <button class="context-btn" id="ctxCopy">Copiar Texto</button>
   <button class="context-btn" id="ctxEdit">Editar Mensagem</button>
-  <button class="context-btn" id="ctxDelete" style="color:#ff5555;">Eliminar Mensagem</button>
+  <button class="context-btn" id="ctxDelete" style="color:#ff5555;">Eliminar</button>
 </div>
 
 <div id="toast" class="toast hidden"></div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, getDocs, setDoc, updateDoc, addDoc, deleteDoc, collection, query, where, orderBy, limit, limitToLast, onSnapshot, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, setDoc, updateDoc, addDoc, deleteDoc, collection, query, where, orderBy, limitToLast, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
@@ -379,8 +349,11 @@ let me = null;
 let myProfile = null;
 let activeChat = null;
 let activeChatUnsubscribe = null;
-let longPressTimer = null;
 let selectedMessage = null;
+
+let uploadedProfileBase64 = "";
+let uploadedStatusBase64 = "";
+let uploadedStatusType = "image";
 
 const $ = id => document.getElementById(id);
 
@@ -411,11 +384,37 @@ document.querySelectorAll(".nav[data-page]").forEach(b => {
     showPage(b.dataset.page);
     if(b.dataset.page === "contactsPage") { loadContacts(); loadRequests(); }
     if(b.dataset.page === "statusPage") loadStatuses();
-    if(b.dataset.page === "groupsPage") loadGroups();
   };
 });
 
-/* AUTHENTICATION */
+/* UPLOAD VIA GALERIA LOCAL */
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
+$("profileFilePicker").onchange = async (e) => {
+  const file = e.target.files[0];
+  if(file){
+    uploadedProfileBase64 = await fileToBase64(file);
+    $("profileFileStatus").textContent = "✓ Imagem pronta a carregar!";
+  }
+};
+
+$("statusFilePicker").onchange = async (e) => {
+  const file = e.target.files[0];
+  if(file){
+    uploadedStatusBase64 = await fileToBase64(file);
+    uploadedStatusType = file.type.startsWith("video") ? "video" : "image";
+    $("statusFileStatus").textContent = `✓ ${uploadedStatusType === "video" ? "Vídeo" : "Imagem"} selecionado!`;
+  }
+};
+
+/* AUTENTICAÇÃO */
 let authMode = "login";
 $("loginTab").onclick = () => { authMode = "login"; $("loginTab").classList.add("active"); $("registerTab").classList.remove("active"); $("registerFields").classList.add("hidden"); };
 $("registerTab").onclick = () => { authMode = "register"; $("registerTab").classList.add("active"); $("loginTab").classList.remove("active"); $("registerFields").classList.remove("hidden"); };
@@ -432,9 +431,6 @@ $("authButton").onclick = async () => {
       const publicName = $("regName").value.trim();
       const username = $("regUsername").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
       if(!publicName || username.length < 3) return showToast("Preenche os dados do registo.");
-
-      const uSnap = await getDoc(doc(db, "usernames", username));
-      if(uSnap.exists()) return showToast("Nome de utilizador ocupado.");
 
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", cred.user.uid), {
@@ -471,28 +467,36 @@ function renderProfile(){
   $("topUsername").textContent = user;
   $("settingsName").textContent = name;
   $("settingsUser").textContent = user;
-  if(myProfile.photoUrl) $("topAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
-  else $("topAvatar").textContent = initials(name);
+
+  if(myProfile.photoUrl) {
+    $("topAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
+    $("topAvatar").textContent = "";
+  } else {
+    $("topAvatar").style.backgroundImage = "none";
+    $("topAvatar").textContent = initials(name);
+  }
 }
 
-/* SETTINGS & DEV INFO */
+/* DEFENIÇÕES E NAVEGAÇÃO */
 $("settingsTopBtn").onclick = () => showPage("settingsPage");
 $("openProfileBtn").onclick = () => {
   $("profileNameInput").value = myProfile.publicName || "";
-  $("profileUsernameInput").value = myProfile.username || "";
-  $("profilePicInput").value = myProfile.photoUrl || "";
   showPage("profileEditPage");
 };
 $("openDevInfoBtn").onclick = () => showPage("devInfoPage");
 
 $("saveProfileBtn").onclick = async () => {
   const publicName = $("profileNameInput").value.trim();
-  const photoUrl = $("profilePicInput").value.trim();
   if(!publicName) return showToast("Nome inválido.");
 
-  await updateDoc(doc(db, "users", me.uid), { publicName, photoUrl });
+  const updateData = { publicName };
+  if(uploadedProfileBase64) {
+    updateData.photoUrl = uploadedProfileBase64;
+    myProfile.photoUrl = uploadedProfileBase64;
+  }
+
+  await updateDoc(doc(db, "users", me.uid), updateData);
   myProfile.publicName = publicName;
-  myProfile.photoUrl = photoUrl;
   renderProfile();
   showToast("Perfil atualizado!");
   showPage("settingsPage");
@@ -500,11 +504,14 @@ $("saveProfileBtn").onclick = async () => {
 
 $("logoutBtn").onclick = () => signOut(auth);
 
-/* PEDIDOS DE AMIZADE (7 DIAS DE VALIDADE) */
-async function searchUsers(term){
+/* PESQUISA E AMIGOS */
+$("contactSearch").oninput = async (e) => {
+  const term = e.target.value.trim().toLowerCase().replace("@","");
+  if(term.length < 3) return;
   const box = $("contactSearchResults");
   box.innerHTML = `<div class="muted">A pesquisar...</div>`;
-  const q = query(collection(db, "users"), where("username", "==", term.toLowerCase().replace("@","")));
+
+  const q = query(collection(db, "users"), where("username", "==", term));
   const snap = await getDocs(q);
 
   if(snap.empty) { box.innerHTML = `<div class="muted">Nenhum utilizador encontrado.</div>`; return; }
@@ -519,42 +526,28 @@ async function searchUsers(term){
           <div class="person-name">${escapeHTML(u.publicName)}</div>
           <div class="person-user">@${escapeHTML(u.username)}</div>
         </div>
-        <button class="action" onclick="sendFriendRequest('${u.uid}')">Pedir Contacto</button>
+        <button class="action" onclick="sendFriendRequest('${u.uid}')">Adicionar</button>
       </div>
     `;
   }).join("");
-}
-
-$("contactSearch").oninput = (e) => {
-  if(e.target.value.trim().length > 2) searchUsers(e.target.value.trim());
 };
 
 window.sendFriendRequest = async (targetUid) => {
-  const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 7); // 7 dias de validade
-
   await setDoc(doc(db, "users", targetUid, "requests", me.uid), {
     fromUid: me.uid,
     fromName: myProfile.publicName,
     fromUsername: myProfile.username,
-    createdAt: serverTimestamp(),
-    expiresAt: expiresAt
+    createdAt: serverTimestamp()
   });
-  showToast("Pedido enviado com sucesso!");
+  showToast("Pedido enviado!");
 };
 
 function loadRequests(){
   onSnapshot(collection(db, "users", me.uid, "requests"), snap => {
     const box = $("requestsList");
-    const now = new Date();
-    const validDocs = snap.docs.filter(d => {
-      const data = d.data();
-      return !data.expiresAt || data.expiresAt.toDate() > now;
-    });
+    if(snap.empty){ box.innerHTML = `<div class="muted">Sem pedidos pendentes.</div>`; return; }
 
-    if(!validDocs.length){ box.innerHTML = `<div class="muted">Sem pedidos pendentes.</div>`; return; }
-
-    box.innerHTML = validDocs.map(d => {
+    box.innerHTML = snap.docs.map(d => {
       const r = d.data();
       return `
         <div class="card person">
@@ -596,16 +589,48 @@ function loadContacts(){
   });
 }
 
-/* CHAT, DOIS TICS AZUIS & MENU DEMORADO */
+/* LISTA DE CONVERSAS (NOMES DOS CONTACTOS CORRIGIDOS) */
+function loadConversations(){
+  const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
+  onSnapshot(q, async snap => {
+    const box = $("conversationList");
+    if(snap.empty){ box.innerHTML = `<div class="muted">Sem conversas ativas.</div>`; return; }
+
+    let html = "";
+    for(const d of snap.docs){
+      const c = d.data();
+      const otherUid = c.members.find(m => m !== me.uid);
+      let displayName = "Conversa";
+
+      if(otherUid){
+        const userSnap = await getDoc(doc(db, "users", otherUid));
+        if(userSnap.exists()){
+          displayName = userSnap.data().publicName || userSnap.data().username;
+        }
+      }
+
+      html += `
+        <div class="card person" onclick="openChat('${otherUid}', '${escapeHTML(displayName)}')">
+          <div class="avatar">${initials(displayName)}</div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(displayName)}</div>
+            <div class="person-user">${escapeHTML(c.lastMessage || "Sem mensagens...")}</div>
+          </div>
+        </div>
+      `;
+    }
+    box.innerHTML = html;
+  });
+}
+
+/* TELA DE MENSAGENS E OPÇÕES DE SMS */
 window.openChat = async (otherUid, otherName) => {
   const chatId = [me.uid, otherUid].sort().join("_");
   const chatRef = doc(db, "chats", chatId);
   const snap = await getDoc(chatRef);
 
   if(!snap.exists()){
-    await setDoc(chatRef, {
-      id: chatId, type: "private", members: [me.uid, otherUid], updatedAt: serverTimestamp()
-    });
+    await setDoc(chatRef, { id: chatId, members: [me.uid, otherUid], updatedAt: serverTimestamp() });
   }
 
   activeChat = { id: chatId, name: otherName, otherUid };
@@ -629,13 +654,9 @@ function listenMessages(){
       const isRead = Array.isArray(m.readBy) && m.readBy.length > 1;
       const tickHtml = mine ? `<span class="${isRead ? 'blue-tick' : 'grey-tick'}">${isRead ? '✓✓' : '✓'}</span>` : '';
 
-      if(!mine && (!m.readBy || !m.readBy.includes(me.uid))){
-        updateDoc(doc(db, "chats", activeChat.id, "messages", d.id), { readBy: arrayUnion(me.uid) });
-      }
-
       return `
         <div class="message-row ${mine ? 'mine' : ''}">
-          <div class="bubble" onmousedown="startPress(event, '${d.id}', '${escapeHTML(m.text)}')" onmouseleave="cancelPress()" onmouseup="cancelPress()" ontouchstart="startPress(event, '${d.id}', '${escapeHTML(m.text)}')" ontouchend="cancelPress()">
+          <div class="bubble" oncontextmenu="openContextMenu(event, '${d.id}', '${escapeHTML(m.text)}'); return false;">
             <div class="message-text">${escapeHTML(m.text)}</div>
             <div class="message-meta">${tickHtml}</div>
           </div>
@@ -645,6 +666,38 @@ function listenMessages(){
     box.scrollTop = box.scrollHeight;
   });
 }
+
+window.openContextMenu = (e, msgId, text) => {
+  selectedMessage = { id: msgId, text };
+  const menu = $("contextMenu");
+  
+  let topPos = e.clientY || 100;
+  if (topPos > window.innerHeight - 150) topPos = window.innerHeight - 160;
+
+  menu.style.top = topPos + "px";
+  menu.style.left = "20px";
+  menu.classList.remove("hidden");
+};
+
+document.onclick = () => $("contextMenu").classList.add("hidden");
+
+$("ctxCopy").onclick = () => {
+  if(selectedMessage) navigator.clipboard.writeText(selectedMessage.text);
+  showToast("Mensagem copiada!");
+};
+
+$("ctxEdit").onclick = async () => {
+  const newText = prompt("Editar mensagem:", selectedMessage.text);
+  if(newText && activeChat){
+    await updateDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id), { text: newText });
+  }
+};
+
+$("ctxDelete").onclick = async () => {
+  if(activeChat && confirm("Eliminar mensagem?")){
+    await deleteDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id));
+  }
+};
 
 $("composer").onsubmit = async (e) => {
   e.preventDefault();
@@ -665,55 +718,24 @@ $("closeChatBtn").onclick = () => {
   if(activeChatUnsubscribe) activeChatUnsubscribe();
 };
 
-/* LONG PRESS MENU */
-window.startPress = (e, msgId, text) => {
-  cancelPress();
-  longPressTimer = setTimeout(() => {
-    selectedMessage = { id: msgId, text };
-    const menu = $("contextMenu");
-    menu.style.top = (e.clientY || e.touches[0].clientY) + "px";
-    menu.style.left = (e.clientX || e.touches[0].clientX) + "px";
-    menu.classList.remove("hidden");
-  }, 600);
-};
-
-window.cancelPress = () => clearTimeout(longPressTimer);
-
-document.onclick = () => $("contextMenu").classList.add("hidden");
-
-$("ctxCopy").onclick = () => {
-  if(selectedMessage) navigator.clipboard.writeText(selectedMessage.text);
-  showToast("Texto copiado!");
-};
-
-$("ctxEdit").onclick = async () => {
-  const newText = prompt("Editar mensagem:", selectedMessage.text);
-  if(newText && activeChat){
-    await updateDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id), { text: newText });
-  }
-};
-
-$("ctxDelete").onclick = async () => {
-  if(activeChat && confirm("Eliminar esta mensagem?")){
-    await deleteDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id));
-  }
-};
-
-/* STATUS SYSTEM */
+/* PUBLICAÇÃO E EXIBIÇÃO DE STATUS */
 $("addStatusBtn").onclick = () => $("statusModal").classList.remove("hidden");
 $("closeStatusModal").onclick = () => $("statusModal").classList.add("hidden");
 
 $("confirmPublishStatus").onclick = async () => {
-  const mediaUrl = $("statusMediaUrl").value.trim();
-  const caption = $("statusCaption").value.trim();
-  if(!mediaUrl) return showToast("Adiciona um link de imagem/vídeo.");
+  if(!uploadedStatusBase64) return showToast("Escolha uma foto ou vídeo da galeria.");
 
   await addDoc(collection(db, "statuses"), {
-    uid: me.uid, name: myProfile.publicName, mediaUrl, caption, createdAt: serverTimestamp()
+    uid: me.uid,
+    name: myProfile.publicName,
+    mediaData: uploadedStatusBase64,
+    mediaType: uploadedStatusType,
+    caption: $("statusCaption").value.trim(),
+    createdAt: serverTimestamp()
   });
 
   $("statusModal").classList.add("hidden");
-  showToast("Status publicado!");
+  showToast("Status publicado com sucesso!");
   loadStatuses();
 };
 
@@ -724,68 +746,15 @@ function loadStatuses(){
 
     box.innerHTML = snap.docs.map(d => {
       const s = d.data();
+      const mediaHtml = s.mediaType === "video" 
+        ? `<video src="${s.mediaData}" controls style="width:100%;max-height:280px;border-radius:14px;"></video>`
+        : `<img src="${s.mediaData}" style="width:100%;max-height:280px;object-fit:cover;border-radius:14px;">`;
+
       return `
         <div class="card">
-          <div style="font-weight:800;margin-bottom:6px;">${escapeHTML(s.name)}</div>
-          <img src="${escapeHTML(s.mediaUrl)}" style="width:100%;max-height:250px;object-fit:cover;border-radius:14px;margin-bottom:6px;">
-          <div style="font-size:14px;opacity:.8;">${escapeHTML(s.caption)}</div>
-        </div>
-      `;
-    }).join("");
-  });
-}
-
-/* LISTA DE CONVERSAS */
-function loadConversations(){
-  const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
-  onSnapshot(q, snap => {
-    const box = $("conversationList");
-    if(snap.empty){ box.innerHTML = `<div class="muted">Sem conversas ativas.</div>`; return; }
-
-    box.innerHTML = snap.docs.map(d => {
-      const c = d.data();
-      return `
-        <div class="card person" onclick="openChat('${c.id}', 'Conversa')">
-          <div class="avatar">K</div>
-          <div class="person-info">
-            <div class="person-name">Conversa</div>
-            <div class="person-user">${escapeHTML(c.lastMessage || "Nova conversa...")}</div>
-          </div>
-        </div>
-      `;
-    }).join("");
-  });
-}
-
-/* GRUPOS */
-$("createGroupBtn").onclick = () => $("groupModal").classList.remove("hidden");
-$("closeGroupModal").onclick = () => $("groupModal").classList.add("hidden");
-
-$("confirmCreateGroup").onclick = async () => {
-  const name = $("groupName").value.trim();
-  if(!name) return showToast("Digita o nome do grupo.");
-
-  await addDoc(collection(db, "groups"), {
-    name, createdBy: me.uid, members: [me.uid], createdAt: serverTimestamp()
-  });
-
-  $("groupModal").classList.add("hidden");
-  showToast("Grupo criado!");
-  loadGroups();
-};
-
-function loadGroups(){
-  onSnapshot(collection(db, "groups"), snap => {
-    const box = $("groupsList");
-    if(snap.empty){ box.innerHTML = `<div class="muted">Ainda não estás em nenhum grupo.</div>`; return; }
-    box.innerHTML = snap.docs.map(d => {
-      const g = d.data();
-      return `
-        <div class="card person">
-          <div class="avatar">${initials(g.name)}</div>
-          <div class="person-info">
-            <div class="person-name">${escapeHTML(g.name)}</div>
-          </div>
+          <div style="font-weight:800;margin-bottom:8px;">${escapeHTML(s.name)}</div>
+          ${mediaHtml}
+          <div style="font-size:14px;opacity:.8;margin-top:6px;">${escapeHTML(s.caption)}</div>
         </div>
       `;
     }).join("");
