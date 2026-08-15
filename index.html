@@ -4,636 +4,114 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#0b0912">
-<title>Angotell</title>
+<title>KidiTalk</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  width:100%;
-  height:100%;
-  background:#08070d;
-  color:#f7f2ff;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  overflow:hidden;
-}
-
-button,input,textarea{
-  font:inherit;
-}
-
-button{
-  border:0;
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.screen{
-  width:100%;
-  height:100dvh;
-  position:relative;
-}
-
-.app{
-  width:100%;
-  height:100%;
-  background:
-    radial-gradient(circle at 90% 15%,rgba(174,72,255,.12),transparent 30%),
-    radial-gradient(circle at 10% 85%,rgba(255,65,145,.08),transparent 35%),
-    #08070d;
-}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;width:100%;height:100%;background:#08070d;color:#f7f2ff;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden;}
+button,input,textarea{font:inherit;}
+button{border:0;cursor:pointer;}
+.hidden{display:none!important;}
+.screen{width:100%;height:100dvh;position:relative;}
+.app{width:100%;height:100%;background:radial-gradient(circle at 90% 15%,rgba(174,72,255,.12),transparent 30%),radial-gradient(circle at 10% 85%,rgba(255,65,145,.08),transparent 35%),#08070d;}
 
 /* AUTH */
+.auth{width:min(620px,100%);height:100%;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:center;overflow-y:auto;}
+.auth-card{width:100%;max-width:560px;padding:28px;border:1px solid rgba(255,255,255,.10);border-radius:30px;background:rgba(17,14,26,.90);box-shadow:0 20px 70px rgba(0,0,0,.45);}
+.logo{width:105px;height:105px;margin:0 auto 18px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:900;color:white;background:linear-gradient(135deg,#7d4cff,#ff3f91,#ff7b3d,#00d9ff);box-shadow:0 0 45px rgba(188,75,255,.35);}
+.brand{text-align:center;font-size:38px;font-weight:900;letter-spacing:-1px;}
+.subtitle{text-align:center;opacity:.58;line-height:1.6;margin:12px auto 25px;}
+.tabs{display:flex;padding:5px;border-radius:18px;background:#17131f;margin-bottom:22px;}
+.tab{flex:1;padding:14px;border-radius:14px;background:transparent;color:#aaa2b4;}
+.tab.active{color:white;background:linear-gradient(135deg,#7142d9,#c43691);}
+.field{margin-bottom:15px;}
+.field label{display:block;margin:0 0 7px 4px;font-size:13px;opacity:.65;}
+.field input, .field textarea{width:100%;padding:14px 17px;border-radius:17px;border:1px solid rgba(255,255,255,.10);background:#17141e;color:white;outline:none;}
+.field input:focus, .field textarea:focus{border-color:#a34cff;box-shadow:0 0 0 3px rgba(163,76,255,.12);}
+.primary{width:100%;min-height:55px;border-radius:18px;color:white;font-weight:800;background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);}
+.primary:disabled{opacity:.5;}
+.error{margin-top:14px;padding:12px;border-radius:14px;background:rgba(255,45,100,.10);color:#ff719d;text-align:center;font-size:13px;}
 
-.auth{
-  width:min(620px,100%);
-  height:100%;
-  margin:auto;
-  padding:26px 24px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow-y:auto;
-}
-
-.auth-card{
-  width:100%;
-  max-width:560px;
-  padding:28px;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:30px;
-  background:rgba(17,14,26,.90);
-  box-shadow:0 20px 70px rgba(0,0,0,.45);
-}
-
-.logo{
-  width:105px;
-  height:105px;
-  margin:0 auto 18px;
-  border-radius:30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:62px;
-  font-weight:900;
-  color:white;
-  background:linear-gradient(135deg,#7d4cff,#ff3f91,#ff7b3d,#00d9ff);
-  box-shadow:0 0 45px rgba(188,75,255,.35);
-}
-
-.brand{
-  text-align:center;
-  font-size:38px;
-  font-weight:900;
-  letter-spacing:-1px;
-}
-
-.subtitle{
-  text-align:center;
-  opacity:.58;
-  line-height:1.6;
-  margin:12px auto 25px;
-}
-
-.tabs{
-  display:flex;
-  padding:5px;
-  border-radius:18px;
-  background:#17131f;
-  margin-bottom:22px;
-}
-
-.tab{
-  flex:1;
-  padding:14px;
-  border-radius:14px;
-  background:transparent;
-  color:#aaa2b4;
-}
-
-.tab.active{
-  color:white;
-  background:linear-gradient(135deg,#7142d9,#c43691);
-}
-
-.field{
-  margin-bottom:15px;
-}
-
-.field label{
-  display:block;
-  margin:0 0 7px 4px;
-  font-size:13px;
-  opacity:.65;
-}
-
-.field input{
-  width:100%;
-  height:54px;
-  padding:0 17px;
-  border-radius:17px;
-  border:1px solid rgba(255,255,255,.10);
-  background:#17141e;
-  color:white;
-  outline:none;
-}
-
-.field input:focus{
-  border-color:#a34cff;
-  box-shadow:0 0 0 3px rgba(163,76,255,.12);
-}
-
-.primary{
-  width:100%;
-  min-height:55px;
-  border-radius:18px;
-  color:white;
-  font-weight:800;
-  background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);
-}
-
-.primary:disabled{
-  opacity:.5;
-}
-
-.error{
-  margin-top:14px;
-  padding:12px;
-  border-radius:14px;
-  background:rgba(255,45,100,.10);
-  color:#ff719d;
-  text-align:center;
-  font-size:13px;
-}
-
-/* APP HEADER */
-
-.main{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-}
-
-.topbar{
-  flex:none;
-  min-height:92px;
-  padding:16px 20px 12px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:rgba(9,8,14,.88);
-  backdrop-filter:blur(18px);
-}
-
-.identity{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  min-width:0;
-}
-
-.avatar{
-  width:56px;
-  height:56px;
-  flex:none;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  color:white;
-  background:linear-gradient(135deg,#8745ff,#ff3d91);
-  position:relative;
-}
-
-.online-dot{
-  width:13px;
-  height:13px;
-  border-radius:50%;
-  background:#35e895;
-  border:2px solid #09080e;
-  position:absolute;
-  right:0;
-  bottom:1px;
-}
-
-.identity-text{
-  min-width:0;
-}
-
-.identity-name{
-  font-size:18px;
-  font-weight:800;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.identity-user{
-  opacity:.5;
-  font-size:13px;
-}
-
-.top-actions{
-  display:flex;
-  gap:10px;
-}
-
-.icon-btn{
-  width:54px;
-  height:54px;
-  border-radius:18px;
-  color:white;
-  background:#17141f;
-  border:1px solid rgba(255,255,255,.08);
-  font-size:21px;
-}
+/* HEADER */
+.main{width:100%;height:100%;display:flex;flex-direction:column;}
+.topbar{flex:none;min-height:85px;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(9,8,14,.88);backdrop-filter:blur(18px);}
+.identity{display:flex;align-items:center;gap:13px;min-width:0;}
+.avatar{width:52px;height:52px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;background:linear-gradient(135deg,#8745ff,#ff3d91);position:relative;background-size:cover;background-position:center;}
+.online-dot{width:13px;height:13px;border-radius:50%;background:#35e895;border:2px solid #09080e;position:absolute;right:0;bottom:1px;}
+.identity-text{min-width:0;}
+.identity-name{font-size:18px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.identity-user{opacity:.5;font-size:13px;}
+.top-actions{display:flex;gap:10px;}
+.icon-btn{width:48px;height:48px;border-radius:16px;color:white;background:#17141f;border:1px solid rgba(255,255,255,.08);font-size:20px;}
 
 /* CONTENT */
-
-.content{
-  flex:1;
-  min-height:0;
-  overflow:hidden;
-  position:relative;
-}
-
-.page{
-  width:100%;
-  height:100%;
-  overflow-y:auto;
-  padding:24px 20px 105px;
-}
-
-.page-title{
-  font-size:24px;
-  font-weight:900;
-  margin-bottom:18px;
-}
-
-.search{
-  width:100%;
-  height:52px;
-  border-radius:17px;
-  border:1px solid rgba(255,255,255,.08);
-  background:#14111c;
-  color:white;
-  padding:0 17px;
-  outline:none;
-  margin-bottom:18px;
-}
-
-.card{
-  padding:15px;
-  border-radius:23px;
-  background:#15121d;
-  border:1px solid rgba(255,255,255,.07);
-  margin-bottom:12px;
-}
-
-.person{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-
-.person-info{
-  flex:1;
-  min-width:0;
-}
-
-.person-name{
-  font-weight:800;
-  font-size:16px;
-}
-
-.person-user{
-  opacity:.5;
-  font-size:13px;
-  margin-top:2px;
-}
-
-.action{
-  flex:none;
-  padding:12px 17px;
-  border-radius:15px;
-  color:white;
-  font-weight:800;
-  background:linear-gradient(135deg,#7545e8,#db419c);
-}
-
-.muted{
-  opacity:.45;
-  text-align:center;
-  padding:30px 10px;
-}
+.content{flex:1;min-height:0;overflow:hidden;position:relative;}
+.page{width:100%;height:100%;overflow-y:auto;padding:20px 20px 105px;}
+.page-title{font-size:24px;font-weight:900;margin-bottom:18px;}
+.search{width:100%;height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.08);background:#14111c;color:white;padding:0 17px;outline:none;margin-bottom:18px;}
+.card{padding:15px;border-radius:22px;background:#15121d;border:1px solid rgba(255,255,255,.07);margin-bottom:12px;}
+.person{display:flex;align-items:center;gap:12px;}
+.person-info{flex:1;min-width:0;}
+.person-name{font-weight:800;font-size:16px;}
+.person-user{opacity:.5;font-size:13px;margin-top:2px;}
+.action{flex:none;padding:10px 16px;border-radius:14px;color:white;font-weight:800;background:linear-gradient(135deg,#7545e8,#db419c);font-size:13px;}
+.muted{opacity:.45;text-align:center;padding:30px 10px;}
 
 /* CHAT */
+.chat{width:100%;height:100%;display:flex;flex-direction:column;background:#09080f;}
+.chat-header{min-height:70px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);background:#0d0b14;}
+.back{width:42px;height:42px;border-radius:14px;color:white;background:#181520;font-size:21px;}
+.chat-title{flex:1;min-width:0;}
+.chat-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.chat-status{font-size:12px;opacity:.5;}
+.messages{flex:1;min-height:0;overflow-y:auto;padding:16px 14px;}
+.message-row{display:flex;margin:7px 0;position:relative;}
+.message-row.mine{justify-content:flex-end;}
+.bubble{max-width:78%;padding:10px 13px 7px;border-radius:19px;background:#1b1824;border:1px solid rgba(255,255,255,.05);user-select:none;}
+.mine .bubble{background:linear-gradient(135deg,#693dcc,#b33791);}
+.message-text{white-space:pre-wrap;overflow-wrap:anywhere;}
+.message-meta{text-align:right;font-size:10px;opacity:.65;margin-top:4px;display:flex;align-items:center;justify-content:flex-end;gap:4px;}
+.blue-tick{color:#00d9ff;font-weight:bold;}
+.grey-tick{color:#aaa2b4;}
 
-.chat{
-  width:100%;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  background:#09080f;
-}
+.composer{flex:none;display:flex;gap:8px;padding:9px 10px max(9px,env(safe-area-inset-bottom));background:#0d0b14;border-top:1px solid rgba(255,255,255,.06);}
+.composer input{flex:1;min-width:0;height:50px;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:0 16px;background:#191620;color:white;outline:none;}
+.send{width:52px;height:50px;border-radius:17px;color:white;background:linear-gradient(135deg,#7947f1,#ec429c);font-size:20px;}
 
-.chat-header{
-  min-height:72px;
-  padding:10px 14px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-  background:#0d0b14;
-}
+/* BOTTOM NAV */
+.bottom{position:absolute;z-index:20;left:18px;right:18px;bottom:max(12px,env(safe-area-inset-bottom));height:68px;display:flex;align-items:center;justify-content:space-around;border-radius:25px;background:rgba(24,20,32,.94);border:1px solid rgba(255,255,255,.09);box-shadow:0 12px 35px rgba(0,0,0,.35);backdrop-filter:blur(18px);}
+.nav{flex:1;height:100%;color:#85808e;background:transparent;font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
+.nav-icon{font-size:19px;}
+.nav.active{color:white;}
+.nav.add{font-size:28px;}
 
-.back{
-  width:45px;
-  height:45px;
-  border-radius:15px;
-  color:white;
-  background:#181520;
-  font-size:21px;
-}
+/* MODALS & MENUS */
+.modal{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(6px);}
+.modal-card{width:min(600px,100%);max-height:88dvh;overflow-y:auto;padding:22px;border-radius:30px 30px 0 0;background:#15121d;border:1px solid rgba(255,255,255,.09);}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.modal-title{font-size:20px;font-weight:900;}
+.close{width:40px;height:40px;border-radius:14px;color:white;background:#211d29;}
 
-.chat-title{
-  flex:1;
-  min-width:0;
-}
+.context-menu{position:fixed;z-index:150;background:#1f1a2b;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:8px;box-shadow:0 10px 30px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:4px;}
+.context-btn{padding:10px 16px;background:transparent;color:white;text-align:left;border-radius:12px;font-weight:600;font-size:13px;}
+.context-btn:hover{background:rgba(255,255,255,.08);}
 
-.chat-name{
-  font-weight:900;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.chat-status{
-  font-size:12px;
-  opacity:.5;
-}
-
-.messages{
-  flex:1;
-  min-height:0;
-  overflow-y:auto;
-  padding:16px 14px;
-}
-
-.message-row{
-  display:flex;
-  margin:7px 0;
-}
-
-.message-row.mine{
-  justify-content:flex-end;
-}
-
-.bubble{
-  max-width:78%;
-  padding:10px 13px 7px;
-  border-radius:19px;
-  background:#1b1824;
-  border:1px solid rgba(255,255,255,.05);
-}
-
-.mine .bubble{
-  background:linear-gradient(135deg,#693dcc,#b33791);
-}
-
-.message-text{
-  white-space:pre-wrap;
-  overflow-wrap:anywhere;
-}
-
-.message-meta{
-  text-align:right;
-  font-size:10px;
-  opacity:.55;
-  margin-top:4px;
-}
-
-.composer{
-  flex:none;
-  display:flex;
-  gap:8px;
-  padding:9px 10px max(9px,env(safe-area-inset-bottom));
-  background:#0d0b14;
-  border-top:1px solid rgba(255,255,255,.06);
-}
-
-.composer input{
-  flex:1;
-  min-width:0;
-  height:50px;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:0 16px;
-  background:#191620;
-  color:white;
-  outline:none;
-}
-
-.send{
-  width:52px;
-  height:50px;
-  border-radius:17px;
-  color:white;
-  background:linear-gradient(135deg,#7947f1,#ec429c);
-  font-size:20px;
-}
-
-/* BOTTOM */
-
-.bottom{
-  position:absolute;
-  z-index:20;
-  left:18px;
-  right:18px;
-  bottom:max(12px,env(safe-area-inset-bottom));
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-around;
-  border-radius:25px;
-  background:rgba(24,20,32,.94);
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
-  backdrop-filter:blur(18px);
-}
-
-.nav{
-  flex:1;
-  height:100%;
-  color:#85808e;
-  background:transparent;
-  font-size:12px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-}
-
-.nav-icon{
-  font-size:20px;
-}
-
-.nav.active{
-  color:white;
-}
-
-.nav.add{
-  font-size:30px;
-}
-
-/* MODAL */
-
-.modal{
-  position:fixed;
-  z-index:100;
-  inset:0;
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(5px);
-}
-
-.modal-card{
-  width:min(600px,100%);
-  max-height:90dvh;
-  overflow-y:auto;
-  padding:22px;
-  border-radius:30px 30px 0 0;
-  background:#15121d;
-  border:1px solid rgba(255,255,255,.09);
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:18px;
-}
-
-.modal-title{
-  font-size:21px;
-  font-weight:900;
-}
-
-.close{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  color:white;
-  background:#211d29;
-}
-
-/* TOAST */
-
-.toast{
-  position:fixed;
-  z-index:200;
-  left:50%;
-  bottom:98px;
-  transform:translateX(-50%);
-  max-width:90%;
-  padding:13px 18px;
-  border-radius:17px;
-  background:#25202e;
-  color:white;
-  border:1px solid rgba(255,255,255,.09);
-  box-shadow:0 10px 35px rgba(0,0,0,.35);
-  text-align:center;
-  font-size:13px;
-}
-
-/* PROFILE */
-
-.profile-card{
-  text-align:center;
-  padding:25px 20px;
-}
-
-.profile-big{
-  width:90px;
-  height:90px;
-  margin:auto auto 14px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
-  font-weight:900;
-  background:linear-gradient(135deg,#8049ff,#ff3c91);
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-  .auth{
-    padding:10px 12px;
-  }
-
-  .auth-card{
-    padding:22px 17px;
-    border-radius:26px;
-  }
-
-  .logo{
-    width:88px;
-    height:88px;
-    font-size:51px;
-  }
-
-  .brand{
-    font-size:32px;
-  }
-
-  .topbar{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .page{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .bottom{
-    left:12px;
-    right:12px;
-  }
-}
+.toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.09);box-shadow:0 10px 35px rgba(0,0,0,.35);text-align:center;font-size:13px;}
+.story-item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-right:14px;cursor:pointer;}
+.story-ring{width:64px;height:64px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#8049ff,#ff3c91);}
+.story-avatar{width:100%;height:100%;border-radius:50%;background:#17141e;display:flex;align-items:center;justify-content:center;font-weight:bold;background-size:cover;background-position:center;}
 </style>
 </head>
 
 <body>
 
+<!-- AUTH SCREEN -->
 <div id="authScreen" class="screen">
   <div class="auth">
     <div class="auth-card">
-
-      <div class="logo">A</div>
-
-      <div class="brand">Angotell</div>
-
-      <div class="subtitle">
-        Comunicação de nova geração.<br>
-        Cria a tua identidade e conecta-te com pessoas reais.
-      </div>
+      <div class="logo">K</div>
+      <div class="brand">KidiTalk</div>
+      <div class="subtitle">Conecta-te com o mundo de forma simples, privada e rápida.</div>
 
       <div class="tabs">
         <button id="loginTab" class="tab active">Entrar</button>
@@ -641,311 +119,248 @@ button{
       </div>
 
       <div id="registerFields" class="hidden">
-
         <div class="field">
           <label>Nome público</label>
-          <input id="regName" autocomplete="name" placeholder="Ex.: G’Jackson">
+          <input id="regName" placeholder="Ex.: Gaspar">
         </div>
-
         <div class="field">
           <label>Nome de utilizador</label>
-          <input id="regUsername" autocomplete="username" placeholder="Ex.: jackson007">
+          <input id="regUsername" placeholder="Ex.: gaspar_kididiz">
         </div>
-
       </div>
 
       <div class="field">
         <label>E-mail</label>
-        <input id="authEmail" type="email" autocomplete="email" placeholder="teu@email.com">
+        <input id="authEmail" type="email" placeholder="teu@email.com">
       </div>
-
       <div class="field">
         <label>Senha</label>
-        <input id="authPassword" type="password" autocomplete="current-password" placeholder="Mínimo 6 caracteres">
+        <input id="authPassword" type="password" placeholder="Mínimo 6 caracteres">
       </div>
 
-      <button id="authButton" class="primary">
-        Entrar no Angotell
-      </button>
-
+      <button id="authButton" class="primary">Entrar no KidiTalk</button>
       <div id="authError" class="error hidden"></div>
-
     </div>
   </div>
 </div>
 
-
+<!-- APP SCREEN -->
 <div id="appScreen" class="screen hidden">
-
   <div class="app">
-
     <div class="main">
-
       <header class="topbar">
-
         <div class="identity">
-
           <div id="topAvatar" class="avatar">
-            A
+            K
             <span id="topOnline" class="online-dot"></span>
           </div>
-
           <div class="identity-text">
-            <div id="topName" class="identity-name">Angotell</div>
+            <div id="topName" class="identity-name">KidiTalk</div>
             <div id="topUsername" class="identity-user">@utilizador</div>
           </div>
-
         </div>
 
         <div class="top-actions">
           <button id="globalSearchBtn" class="icon-btn">⌕</button>
-          <button id="profileTopBtn" class="icon-btn">◎</button>
+          <button id="settingsTopBtn" class="icon-btn">⚙</button>
         </div>
-
       </header>
 
-
       <main class="content">
-
         <!-- CONVERSAS -->
-
         <section id="conversationsPage" class="page">
-
           <div class="page-title">Conversas</div>
-
           <div id="conversationList"></div>
-
         </section>
 
-
-        <!-- CONTACTOS -->
-
+        <!-- CONTACTOS E PEDIDOS -->
         <section id="contactsPage" class="page hidden">
-
-          <div class="page-title">Os meus contactos</div>
-
-          <input
-            id="contactSearch"
-            class="search"
-            placeholder="Pesquisar pessoas..."
-            autocomplete="off"
-          >
-
+          <div class="page-title">Contactos</div>
+          <input id="contactSearch" class="search" placeholder="Pesquisar utilizadores...">
+          
           <div id="contactSearchResults"></div>
+          
+          <div style="margin:15px 0 10px;font-weight:800;">Pedidos Pendentes (Validade de 7 dias)</div>
+          <div id="requestsList"></div>
 
+          <div style="margin:20px 0 10px;font-weight:800;">Os Meus Contactos</div>
           <div id="contactsList"></div>
-
         </section>
 
+        <!-- STATUS -->
+        <section id="statusPage" class="page hidden">
+          <div class="page-title">Status</div>
+          <div style="display:flex;overflow-x:auto;padding-bottom:10px;margin-bottom:15px;" id="statusTray">
+            <div class="story-item" id="addStatusBtn">
+              <div class="story-ring" style="background:#332d41;">
+                <div class="story-avatar">+</div>
+              </div>
+              <span style="font-size:12px;opacity:.7;">O Meu Status</span>
+            </div>
+          </div>
+          <div id="statusList"></div>
+        </section>
 
         <!-- GRUPOS -->
-
         <section id="groupsPage" class="page hidden">
-
           <div class="page-title">Grupos</div>
-
-          <button id="createGroupBtn" class="primary" style="margin-bottom:18px;">
-            + Criar novo grupo
-          </button>
-
+          <button id="createGroupBtn" class="primary" style="margin-bottom:18px;">+ Criar Novo Grupo</button>
           <div id="groupsList"></div>
-
         </section>
 
-
-        <!-- PERFIL -->
-
-        <section id="profilePage" class="page hidden">
-
-          <div class="page-title">Perfil</div>
-
-          <div class="card profile-card">
-
-            <div id="profileAvatar" class="profile-big">A</div>
-
-            <div id="profilePublicName" class="person-name">
-              Utilizador
+        <!-- DEFINIÇÕES (ENGRENAGEM) -->
+        <section id="settingsPage" class="page hidden">
+          <div class="page-title">Definições</div>
+          
+          <div class="card" id="openProfileBtn" style="cursor:pointer;display:flex;align-items:center;gap:15px;">
+            <div id="settingsAvatar" class="avatar" style="width:60px;height:60px;font-size:24px;">K</div>
+            <div>
+              <div id="settingsName" style="font-weight:800;font-size:18px;">Utilizador</div>
+              <div id="settingsUser" style="opacity:.5;font-size:13px;">@utilizador</div>
+              <div style="color:#a34cff;font-size:12px;margin-top:4px;">Editar Perfil ›</div>
             </div>
-
-            <div id="profileUsername" class="person-user">
-              @utilizador
-            </div>
-
           </div>
 
-          <div class="card">
+          <div class="card" id="openDevInfoBtn" style="cursor:pointer;margin-top:12px;">
+            <div style="font-weight:800;font-size:16px;">Sobre o Desenvolvedor</div>
+            <div style="opacity:.5;font-size:13px;margin-top:4px;">Conhece a história por trás do KidiTalk</div>
+          </div>
 
+          <button id="logoutBtn" class="primary" style="margin-top:20px;background:#e63a3a;">Terminar Sessão</button>
+        </section>
+
+        <!-- EDITAR PERFIL -->
+        <section id="profileEditPage" class="page hidden">
+          <div class="page-title">Editar Perfil</div>
+          <div class="card">
             <div class="field">
-              <label>Nome público</label>
+              <label>Nome Público</label>
               <input id="profileNameInput">
             </div>
-
             <div class="field">
-              <label>Nome de utilizador</label>
+              <label>Nome de Utilizador</label>
               <input id="profileUsernameInput">
             </div>
-
-            <button id="saveProfileBtn" class="primary">
-              Guardar alterações
-            </button>
-
+            <div class="field">
+              <label>URL da Foto de Perfil (Opcional)</label>
+              <input id="profilePicInput" placeholder="https://link-da-imagem.com/foto.jpg">
+            </div>
+            <button id="saveProfileBtn" class="primary">Guardar Alterações</button>
           </div>
+        </section>
 
-          <button id="logoutBtn" class="primary" style="margin-top:12px;">
-            Terminar sessão
-          </button>
-
+        <!-- SOBRE O DESENVOLVEDOR -->
+        <section id="devInfoPage" class="page hidden">
+          <div class="page-title">Desenvolvimento</div>
+          <div class="card" style="line-height:1.6;">
+            <div style="font-size:20px;font-weight:900;color:#00d9ff;margin-bottom:8px;">Gaspar Kididiz</div>
+            <div style="font-size:13px;opacity:.6;margin-bottom:15px;">Criador & Desenvolvedor Solo</div>
+            <p style="font-size:14px;opacity:.85;">
+              O <strong>KidiTalk</strong> nasceu de uma visão de criar uma plataforma de comunicação rápida, segura e moderna.
+            </p>
+            <p style="font-size:14px;opacity:.85;">
+              O desenvolvimento oficial começou no dia <strong>30 de Julho</strong>. Trabalhar sozinho na criação de toda a arquitetura, design, banco de dados e regras de segurança foi um desafio gigantesco, mas demonstrativo do poder da dedicação e paixão pela tecnologia.
+            </p>
+            <div style="margin-top:20px;padding:10px;background:rgba(255,255,255,.05);border-radius:12px;font-size:12px;opacity:.6;text-align:center;">
+              KidiTalk v2.0 (Build Escalável de Alta Performance)
+            </div>
+          </div>
         </section>
 
       </main>
 
-
       <nav class="bottom">
-
         <button class="nav active" data-page="conversationsPage">
-          <span class="nav-icon">◉</span>
-          Conversas
+          <span class="nav-icon">◉</span> Conversas
         </button>
-
         <button class="nav" data-page="contactsPage">
-          <span class="nav-icon">♣</span>
-          Contactos
+          <span class="nav-icon">♣</span> Contactos
         </button>
-
-        <button id="bottomGroupBtn" class="nav add">
-          +
+        <button class="nav" data-page="statusPage">
+          <span class="nav-icon">✦</span> Status
         </button>
-
         <button class="nav" data-page="groupsPage">
-          <span class="nav-icon">♧</span>
-          Grupo
+          <span class="nav-icon">♧</span> Grupos
         </button>
-
-        <button class="nav" data-page="profilePage">
-          <span class="nav-icon">◎</span>
-          Perfil
-        </button>
-
       </nav>
-
     </div>
-
   </div>
-
 </div>
 
-
-<!-- CHAT -->
-
+<!-- CHAT SCREEN -->
 <div id="chatScreen" class="screen hidden">
-
   <div class="chat">
-
     <header class="chat-header">
-
       <button id="closeChatBtn" class="back">‹</button>
-
-      <div id="chatAvatar" class="avatar">A</div>
-
+      <div id="chatAvatar" class="avatar">K</div>
       <div class="chat-title">
         <div id="chatName" class="chat-name">Conversa</div>
         <div id="chatStatus" class="chat-status"></div>
       </div>
-
     </header>
 
     <div id="messages" class="messages"></div>
 
     <form id="composer" class="composer">
-
-      <input
-        id="messageInput"
-        autocomplete="off"
-        placeholder="Escreve uma mensagem..."
-      >
-
+      <input id="messageInput" autocomplete="off" placeholder="Escreve uma mensagem...">
       <button class="send" type="submit">➤</button>
-
     </form>
-
   </div>
-
 </div>
 
-
-<!-- GROUP MODAL -->
-
+<!-- MODAL DE CRIAR GRUPO -->
 <div id="groupModal" class="modal hidden">
-
   <div class="modal-card">
-
     <div class="modal-head">
-      <div class="modal-title">Criar grupo</div>
+      <div class="modal-title">Criar Grupo</div>
       <button id="closeGroupModal" class="close">×</button>
     </div>
-
     <div class="field">
-      <label>Nome do grupo</label>
-      <input id="groupName" placeholder="Ex.: Amigos">
+      <label>Nome do Grupo</label>
+      <input id="groupName" placeholder="Ex.: Amigos do KidiTalk">
     </div>
-
-    <div style="margin-bottom:10px;font-weight:800;">
-      Selecionar contactos
+    <div class="field">
+      <label>URL da Foto do Grupo (Opcional)</label>
+      <input id="groupPic" placeholder="https://link.com/foto.jpg">
     </div>
-
+    <div style="margin-bottom:10px;font-weight:800;">Selecionar Contactos</div>
     <div id="groupContacts"></div>
-
-    <button id="confirmCreateGroup" class="primary" style="margin-top:15px;">
-      Criar grupo
-    </button>
-
+    <button id="confirmCreateGroup" class="primary" style="margin-top:15px;">Criar Grupo</button>
   </div>
-
 </div>
 
+<!-- MODAL NOVO STATUS -->
+<div id="statusModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title">Novo Status</div>
+      <button id="closeStatusModal" class="close">×</button>
+    </div>
+    <div class="field">
+      <label>URL da Imagem ou Vídeo</label>
+      <input id="statusMediaUrl" placeholder="https://link-da-midia.com/imagem.jpg">
+    </div>
+    <div class="field">
+      <label>Legenda</label>
+      <textarea id="statusCaption" rows="3" placeholder="Escreve o que estás a pensar..."></textarea>
+    </div>
+    <button id="confirmPublishStatus" class="primary">Publicar Status</button>
+  </div>
+</div>
+
+<!-- MENU CONTEXTUAL DE MENSAGENS -->
+<div id="contextMenu" class="context-menu hidden">
+  <button class="context-btn" id="ctxCopy">Copiar Texto</button>
+  <button class="context-btn" id="ctxEdit">Editar Mensagem</button>
+  <button class="context-btn" id="ctxDelete" style="color:#ff5555;">Eliminar Mensagem</button>
+</div>
 
 <div id="toast" class="toast hidden"></div>
 
-
 <script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-  updateProfile
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  updateDoc,
-  addDoc,
-  collection,
-  query,
-  where,
-  orderBy,
-  limit,
-  limitToLast,
-  onSnapshot,
-  serverTimestamp,
-  arrayUnion
-}
-from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-/* =========================================================
-   FIREBASE
-========================================================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, setDoc, updateDoc, addDoc, deleteDoc, collection, query, where, orderBy, limit, limitToLast, onSnapshot, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
@@ -957,1180 +372,425 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
 let me = null;
 let myProfile = null;
-
 let activeChat = null;
 let activeChatUnsubscribe = null;
-
-let contactsUnsubscribe = null;
-let conversationsUnsubscribe = null;
-let groupsUnsubscribe = null;
-
-let searchTimer = null;
+let longPressTimer = null;
+let selectedMessage = null;
 
 const $ = id => document.getElementById(id);
 
-
-/* =========================================================
-   UTILIDADES
-========================================================= */
-
-function escapeHTML(value){
-  return String(value ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function escapeHTML(str){
+  return String(str ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
 }
 
 function initials(name){
-  const value = String(name || "A").trim();
-  const parts = value.split(/\s+/).filter(Boolean);
-
-  if(parts.length === 1){
-    return parts[0].slice(0,2).toUpperCase();
-  }
-
-  return (
-    parts[0][0] +
-    parts[parts.length - 1][0]
-  ).toUpperCase();
+  const parts = String(name || "K").trim().split(/\s+/).filter(Boolean);
+  return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
 }
 
-function showToast(message){
-  $("toast").textContent = message;
+function showToast(msg){
+  $("toast").textContent = msg;
   $("toast").classList.remove("hidden");
-
   clearTimeout(showToast.timer);
-
-  showToast.timer = setTimeout(() => {
-    $("toast").classList.add("hidden");
-  },3000);
+  showToast.timer = setTimeout(() => $("toast").classList.add("hidden"), 3000);
 }
-
-function showAuthError(message){
-  $("authError").textContent = message;
-  $("authError").classList.remove("hidden");
-}
-
-function clearAuthError(){
-  $("authError").classList.add("hidden");
-}
-
-function friendlyError(error){
-  const code = error?.code || "";
-
-  const map = {
-    "auth/email-already-in-use": "Este e-mail já possui uma conta.",
-    "auth/invalid-email": "O e-mail não é válido.",
-    "auth/weak-password": "A senha precisa ter pelo menos 6 caracteres.",
-    "auth/invalid-credential": "E-mail ou senha incorretos.",
-    "auth/user-not-found": "Utilizador não encontrado.",
-    "auth/wrong-password": "Senha incorreta.",
-    "permission-denied": "Sem permissão no Firebase. Verifica as regras do Firestore.",
-    "failed-precondition": "O Firestore precisa de uma configuração adicional.",
-    "unavailable": "Firebase temporariamente indisponível. Verifica a internet."
-  };
-
-  return map[code] || error?.message || "Ocorreu um erro.";
-}
-
-
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
 
 function showPage(pageId){
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.add("hidden");
-  });
-
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
   $(pageId).classList.remove("hidden");
-
-  document.querySelectorAll(".nav").forEach(btn => {
-    btn.classList.toggle(
-      "active",
-      btn.dataset.page === pageId
-    );
-  });
+  document.querySelectorAll(".nav").forEach(b => b.classList.toggle("active", b.dataset.page === pageId));
 }
 
-document.querySelectorAll(".nav[data-page]").forEach(button => {
-  button.addEventListener("click",() => {
-    showPage(button.dataset.page);
-
-    if(button.dataset.page === "contactsPage"){
-      loadContacts();
-    }
-
-    if(button.dataset.page === "groupsPage"){
-      loadGroups();
-    }
-  });
+document.querySelectorAll(".nav[data-page]").forEach(b => {
+  b.onclick = () => {
+    showPage(b.dataset.page);
+    if(b.dataset.page === "contactsPage") { loadContacts(); loadRequests(); }
+    if(b.dataset.page === "statusPage") loadStatuses();
+    if(b.dataset.page === "groupsPage") loadGroups();
+  };
 });
 
-
-/* =========================================================
-   LOGIN / CADASTRO
-========================================================= */
-
+/* AUTHENTICATION */
 let authMode = "login";
-
-$("loginTab").onclick = () => {
-  authMode = "login";
-  $("loginTab").classList.add("active");
-  $("registerTab").classList.remove("active");
-  $("registerFields").classList.add("hidden");
-  $("authButton").textContent = "Entrar no Angotell";
-  clearAuthError();
-};
-
-$("registerTab").onclick = () => {
-  authMode = "register";
-  $("registerTab").classList.add("active");
-  $("loginTab").classList.remove("active");
-  $("registerFields").classList.remove("hidden");
-  $("authButton").textContent = "Criar conta Angotell";
-  clearAuthError();
-};
+$("loginTab").onclick = () => { authMode = "login"; $("loginTab").classList.add("active"); $("registerTab").classList.remove("active"); $("registerFields").classList.add("hidden"); };
+$("registerTab").onclick = () => { authMode = "register"; $("registerTab").classList.add("active"); $("loginTab").classList.remove("active"); $("registerFields").classList.remove("hidden"); };
 
 $("authButton").onclick = async () => {
-  clearAuthError();
-
   const email = $("authEmail").value.trim();
   const password = $("authPassword").value;
+  if(!email || !password) return showToast("Preenche todos os campos.");
 
-  if(!email || !password){
-    showAuthError("Preenche o e-mail e a senha.");
-    return;
-  }
-
-  $("authButton").disabled = true;
-
-  try{
+  try {
     if(authMode === "login"){
       await signInWithEmailAndPassword(auth, email, password);
-    }else{
+    } else {
       const publicName = $("regName").value.trim();
-      const username = $("regUsername").value.trim();
+      const username = $("regUsername").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
+      if(!publicName || username.length < 3) return showToast("Preenche os dados do registo.");
 
-      if(!publicName || !username){
-        throw new Error("Preenche o nome público e o nome de utilizador.");
-      }
+      const uSnap = await getDoc(doc(db, "usernames", username));
+      if(uSnap.exists()) return showToast("Nome de utilizador ocupado.");
 
-      const usernameClean = username.toLowerCase().replace(/[^a-z0-9_.]/g,"");
-
-      if(usernameClean.length < 3){
-        throw new Error("O nome de utilizador precisa ter pelo menos 3 caracteres.");
-      }
-
-      const usernameRef = doc(db,"usernames",usernameClean);
-      const usernameSnap = await getDoc(usernameRef);
-
-      if(usernameSnap.exists()){
-        throw new Error("Este nome de utilizador já está ocupado.");
-      }
-
-      const credential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = credential.user;
-
-      await updateProfile(user,{ displayName: publicName });
-
-      await setDoc(
-        doc(db,"users",user.uid),
-        {
-          uid:user.uid,
-          publicName,
-          username:usernameClean,
-          usernameLower:usernameClean,
-          publicNameLower:publicName.toLowerCase(),
-          email,
-          online:true,
-          lastSeen:serverTimestamp(),
-          createdAt:serverTimestamp()
-        },
-        {merge:true}
-      );
-
-      await setDoc(
-        usernameRef,
-        {
-          uid:user.uid,
-          username:usernameClean
-        },
-        {merge:true}
-      );
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", cred.user.uid), {
+        uid: cred.user.uid, publicName, username, email, online: true, createdAt: serverTimestamp()
+      });
+      await setDoc(doc(db, "usernames", username), { uid: cred.user.uid });
     }
-  }catch(error){
-    console.error(error);
-    showAuthError(friendlyError(error));
-  }finally{
-    $("authButton").disabled = false;
-  }
+  } catch(e) { showToast(e.message); }
 };
-
-
-/* =========================================================
-   AUTH STATE
-========================================================= */
 
 onAuthStateChanged(auth, async user => {
   if(!user){
-    me = null;
-    myProfile = null;
     $("authScreen").classList.remove("hidden");
     $("appScreen").classList.add("hidden");
-    $("chatScreen").classList.add("hidden");
     return;
   }
-
   me = user;
   $("authScreen").classList.add("hidden");
   $("appScreen").classList.remove("hidden");
-
-  try{
-    await loadMyProfile();
-    await setOnline(true);
-    startRealtimeSystems();
-  }catch(error){
-    console.error(error);
-    showToast("Conta autenticada, mas houve erro ao carregar o perfil.");
-  }
+  await loadMyProfile();
+  loadConversations();
 });
 
-
-/* =========================================================
-   PERFIL
-========================================================= */
-
 async function loadMyProfile(){
-  const ref = doc(db,"users",me.uid);
-  const snap = await getDoc(ref);
-
-  if(!snap.exists()){
-    const fallbackName = me.displayName || me.email?.split("@")[0] || "Utilizador";
-    const fallbackUsername = (me.email?.split("@")[0] || ("user" + me.uid.slice(0,7)))
-      .toLowerCase()
-      .replace(/[^a-z0-9_.]/g,"");
-
-    myProfile = {
-      uid:me.uid,
-      publicName:fallbackName,
-      username:fallbackUsername,
-      usernameLower:fallbackUsername,
-      publicNameLower:fallbackName.toLowerCase(),
-      email:me.email || "",
-      online:true
-    };
-
-    await setDoc(
-      ref,
-      {
-        ...myProfile,
-        createdAt:serverTimestamp(),
-        lastSeen:serverTimestamp()
-      },
-      {merge:true}
-    );
-  }else{
-    myProfile = {
-      uid:me.uid,
-      ...snap.data()
-    };
-  }
-
+  const snap = await getDoc(doc(db, "users", me.uid));
+  myProfile = snap.data() || {};
   renderProfile();
 }
 
 function renderProfile(){
-  if(!myProfile) return;
-
-  const name = myProfile.publicName || myProfile.username || "Utilizador";
-  const username = myProfile.username || "utilizador";
-
+  const name = myProfile.publicName || "Utilizador";
+  const user = "@" + (myProfile.username || "utilizador");
   $("topName").textContent = name;
-  $("topUsername").textContent = "@" + username;
-  $("topAvatar").childNodes[0].nodeValue = initials(name) + " ";
-  $("profileAvatar").textContent = initials(name);
-  $("profilePublicName").textContent = name;
-  $("profileUsername").textContent = "@" + username;
-  $("profileNameInput").value = name;
-  $("profileUsernameInput").value = username;
+  $("topUsername").textContent = user;
+  $("settingsName").textContent = name;
+  $("settingsUser").textContent = user;
+  if(myProfile.photoUrl) $("topAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
+  else $("topAvatar").textContent = initials(name);
 }
 
-async function setOnline(value){
-  if(!me) return;
-  await setDoc(
-    doc(db,"users",me.uid),
-    {
-      online:value,
-      lastSeen:serverTimestamp()
-    },
-    {merge:true}
-  );
-}
-
-setInterval(() => {
-  if(me){
-    setOnline(true).catch(console.error);
-  }
-},30000);
-
-window.addEventListener("pagehide",() => {
-  if(me){
-    setOnline(false).catch(() => {});
-  }
-});
+/* SETTINGS & DEV INFO */
+$("settingsTopBtn").onclick = () => showPage("settingsPage");
+$("openProfileBtn").onclick = () => {
+  $("profileNameInput").value = myProfile.publicName || "";
+  $("profileUsernameInput").value = myProfile.username || "";
+  $("profilePicInput").value = myProfile.photoUrl || "";
+  showPage("profileEditPage");
+};
+$("openDevInfoBtn").onclick = () => showPage("devInfoPage");
 
 $("saveProfileBtn").onclick = async () => {
-  if(!me) return;
+  const publicName = $("profileNameInput").value.trim();
+  const photoUrl = $("profilePicInput").value.trim();
+  if(!publicName) return showToast("Nome inválido.");
 
-  const name = $("profileNameInput").value.trim();
-  const username = $("profileUsernameInput").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
-
-  if(name.length < 2){
-    showToast("Nome público inválido.");
-    return;
-  }
-
-  if(username.length < 3){
-    showToast("Nome de utilizador inválido.");
-    return;
-  }
-
-  try{
-    const currentUsername = myProfile.usernameLower || "";
-
-    if(username !== currentUsername){
-      const usernameSnap = await getDoc(doc(db,"usernames",username));
-
-      if(usernameSnap.exists()){
-        showToast("Esse nome de utilizador já está ocupado.");
-        return;
-      }
-
-      await setDoc(
-        doc(db,"usernames",username),
-        { uid:me.uid, username },
-        {merge:true}
-      );
-    }
-
-    await setDoc(
-      doc(db,"users",me.uid),
-      {
-        publicName:name,
-        username,
-        usernameLower:username,
-        publicNameLower:name.toLowerCase()
-      },
-      {merge:true}
-    );
-
-    myProfile.publicName = name;
-    myProfile.username = username;
-    myProfile.usernameLower = username;
-
-    renderProfile();
-    showToast("Perfil atualizado.");
-
-  }catch(error){
-    console.error(error);
-    showToast(friendlyError(error));
-  }
+  await updateDoc(doc(db, "users", me.uid), { publicName, photoUrl });
+  myProfile.publicName = publicName;
+  myProfile.photoUrl = photoUrl;
+  renderProfile();
+  showToast("Perfil atualizado!");
+  showPage("settingsPage");
 };
 
-$("logoutBtn").onclick = async () => {
-  try{
-    await setOnline(false);
-    await signOut(auth);
-  }catch(error){
-    console.error(error);
-  }
-};
+$("logoutBtn").onclick = () => signOut(auth);
 
+/* PEDIDOS DE AMIZADE (7 DIAS DE VALIDADE) */
+async function searchUsers(term){
+  const box = $("contactSearchResults");
+  box.innerHTML = `<div class="muted">A pesquisar...</div>`;
+  const q = query(collection(db, "users"), where("username", "==", term.toLowerCase().replace("@","")));
+  const snap = await getDocs(q);
 
-/* =========================================================
-   CONTACTOS
-========================================================= */
+  if(snap.empty) { box.innerHTML = `<div class="muted">Nenhum utilizador encontrado.</div>`; return; }
 
-function startRealtimeSystems(){
-  loadContacts();
-  loadConversations();
-  loadGroups();
-}
-
-function loadContacts(){
-  if(!me) return;
-
-  if(contactsUnsubscribe){
-    contactsUnsubscribe();
-  }
-
-  const ref = collection(db, "users", me.uid, "contacts");
-
-  contactsUnsubscribe = onSnapshot(
-    ref,
-    snapshot => {
-      renderContacts(
-        snapshot.docs.map(d => ({
-          id: d.id,
-          ...d.data()
-        }))
-      );
-    },
-    error => {
-      console.error("CONTACTS:", error);
-      showToast("Erro ao carregar contactos.");
-    }
-  );
-}
-
-function renderContacts(contacts=[]){
-  const box = $("contactsList");
-
-  if(!contacts.length){
-    box.innerHTML = `<div class="muted">Ainda não tens contactos guardados.</div>`;
-    return;
-  }
-
-  box.innerHTML = contacts.map(contact => {
-    const name = contact.publicName || contact.username || "Utilizador";
-    const targetUid = contact.uid || contact.id;
-
+  box.innerHTML = snap.docs.map(d => {
+    const u = d.data();
+    if(u.uid === me.uid) return "";
     return `
-      <div class="card">
-        <div class="person">
-          <div class="avatar">
-            ${escapeHTML(initials(name))}
-            ${contact.online ? `<span class="online-dot"></span>` : ""}
-          </div>
-          <div class="person-info">
-            <div class="person-name">${escapeHTML(name)}</div>
-            <div class="person-user">@${escapeHTML(contact.username || "")}</div>
-          </div>
-          <button class="action" data-chat-user="${escapeHTML(targetUid)}">
-            Conversar
-          </button>
+      <div class="card person">
+        <div class="avatar">${initials(u.publicName)}</div>
+        <div class="person-info">
+          <div class="person-name">${escapeHTML(u.publicName)}</div>
+          <div class="person-user">@${escapeHTML(u.username)}</div>
         </div>
+        <button class="action" onclick="sendFriendRequest('${u.uid}')">Pedir Contacto</button>
       </div>
     `;
   }).join("");
+}
 
-  box.querySelectorAll("[data-chat-user]").forEach(button => {
-    button.onclick = () => {
-      openPrivateChat(button.dataset.chatUser);
-    };
+$("contactSearch").oninput = (e) => {
+  if(e.target.value.trim().length > 2) searchUsers(e.target.value.trim());
+};
+
+window.sendFriendRequest = async (targetUid) => {
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + 7); // 7 dias de validade
+
+  await setDoc(doc(db, "users", targetUid, "requests", me.uid), {
+    fromUid: me.uid,
+    fromName: myProfile.publicName,
+    fromUsername: myProfile.username,
+    createdAt: serverTimestamp(),
+    expiresAt: expiresAt
+  });
+  showToast("Pedido enviado com sucesso!");
+};
+
+function loadRequests(){
+  onSnapshot(collection(db, "users", me.uid, "requests"), snap => {
+    const box = $("requestsList");
+    const now = new Date();
+    const validDocs = snap.docs.filter(d => {
+      const data = d.data();
+      return !data.expiresAt || data.expiresAt.toDate() > now;
+    });
+
+    if(!validDocs.length){ box.innerHTML = `<div class="muted">Sem pedidos pendentes.</div>`; return; }
+
+    box.innerHTML = validDocs.map(d => {
+      const r = d.data();
+      return `
+        <div class="card person">
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(r.fromName)}</div>
+            <div class="person-user">@${escapeHTML(r.fromUsername)}</div>
+          </div>
+          <button class="action" onclick="acceptRequest('${r.fromUid}', '${escapeHTML(r.fromName)}', '${escapeHTML(r.fromUsername)}')">Aceitar</button>
+        </div>
+      `;
+    }).join("");
   });
 }
 
-
-/* =========================================================
-   PESQUISA GLOBAL
-========================================================= */
-
-$("globalSearchBtn").onclick = () => {
-  showPage("contactsPage");
-  $("contactSearch").focus();
+window.acceptRequest = async (fromUid, name, username) => {
+  await setDoc(doc(db, "users", me.uid, "contacts", fromUid), { uid: fromUid, publicName: name, username });
+  await setDoc(doc(db, "users", fromUid, "contacts", me.uid), { uid: me.uid, publicName: myProfile.publicName, username: myProfile.username });
+  await deleteDoc(doc(db, "users", me.uid, "requests", fromUid));
+  showToast("Contacto aceite!");
 };
 
-$("contactSearch").addEventListener("input", () => {
-  clearTimeout(searchTimer);
-  const term = $("contactSearch").value.trim().toLowerCase();
-
-  if(term.length < 2){
-    $("contactSearchResults").innerHTML = "";
-    return;
-  }
-
-  searchTimer = setTimeout(() => searchUsers(term), 220);
-});
-
-async function searchUsers(term){
-  const results = new Map();
-
-  try{
-    const usernameQuery = query(
-      collection(db,"users"),
-      where("usernameLower", ">=", term),
-      where("usernameLower", "<=", term + "\uf8ff"),
-      limit(15)
-    );
-
-    const nameQuery = query(
-      collection(db,"users"),
-      where("publicNameLower", ">=", term),
-      where("publicNameLower", "<=", term + "\uf8ff"),
-      limit(15)
-    );
-
-    const [usernameSnap, nameSnap] = await Promise.all([
-      getDocs(usernameQuery),
-      getDocs(nameQuery)
-    ]);
-
-    [usernameSnap, nameSnap].forEach(snapshot => {
-      snapshot.forEach(d => {
-        if(d.id !== me.uid){
-          results.set(d.id, { uid: d.id, ...d.data() });
-        }
-      });
-    });
-
-    renderSearchResults([...results.values()]);
-
-  }catch(error){
-    console.error("SEARCH:", error);
-    showToast(friendlyError(error));
-  }
+function loadContacts(){
+  onSnapshot(collection(db, "users", me.uid, "contacts"), snap => {
+    const box = $("contactsList");
+    if(snap.empty){ box.innerHTML = `<div class="muted">Ainda não tens contactos.</div>`; return; }
+    box.innerHTML = snap.docs.map(d => {
+      const c = d.data();
+      return `
+        <div class="card person">
+          <div class="avatar">${initials(c.publicName)}</div>
+          <div class="person-info">
+            <div class="person-name">${escapeHTML(c.publicName)}</div>
+            <div class="person-user">@${escapeHTML(c.username)}</div>
+          </div>
+          <button class="action" onclick="openChat('${c.uid}', '${escapeHTML(c.publicName)}')">Conversar</button>
+        </div>
+      `;
+    }).join("");
+  });
 }
 
-function renderSearchResults(users){
-  const box = $("contactSearchResults");
+/* CHAT, DOIS TICS AZUIS & MENU DEMORADO */
+window.openChat = async (otherUid, otherName) => {
+  const chatId = [me.uid, otherUid].sort().join("_");
+  const chatRef = doc(db, "chats", chatId);
+  const snap = await getDoc(chatRef);
 
-  if(!users.length){
-    box.innerHTML = `<div class="muted">Nenhum perfil encontrado.</div>`;
-    return;
+  if(!snap.exists()){
+    await setDoc(chatRef, {
+      id: chatId, type: "private", members: [me.uid, otherUid], updatedAt: serverTimestamp()
+    });
   }
 
-  box.innerHTML =
-    `<div style="margin-bottom:10px;font-weight:800;">Resultados da pesquisa</div>` +
-    users.map(user => {
-      const name = user.publicName || user.username || "Utilizador";
+  activeChat = { id: chatId, name: otherName, otherUid };
+  $("chatName").textContent = otherName;
+  $("chatAvatar").textContent = initials(otherName);
+  $("appScreen").classList.add("hidden");
+  $("chatScreen").classList.remove("hidden");
+
+  listenMessages();
+};
+
+function listenMessages(){
+  if(activeChatUnsubscribe) activeChatUnsubscribe();
+
+  const q = query(collection(db, "chats", activeChat.id, "messages"), orderBy("createdAt", "asc"), limitToLast(100));
+  activeChatUnsubscribe = onSnapshot(q, snap => {
+    const box = $("messages");
+    box.innerHTML = snap.docs.map(d => {
+      const m = d.data();
+      const mine = m.senderId === me.uid;
+      const isRead = Array.isArray(m.readBy) && m.readBy.length > 1;
+      const tickHtml = mine ? `<span class="${isRead ? 'blue-tick' : 'grey-tick'}">${isRead ? '✓✓' : '✓'}</span>` : '';
+
+      if(!mine && (!m.readBy || !m.readBy.includes(me.uid))){
+        updateDoc(doc(db, "chats", activeChat.id, "messages", d.id), { readBy: arrayUnion(me.uid) });
+      }
 
       return `
-        <div class="card">
-          <div class="person">
-            <div class="avatar">
-              ${escapeHTML(initials(name))}
-              ${user.online ? `<span class="online-dot"></span>` : ""}
-            </div>
-            <div class="person-info">
-              <div class="person-name">${escapeHTML(name)}</div>
-              <div class="person-user">@${escapeHTML(user.username || "")}</div>
-            </div>
-            <button
-              class="action add-contact"
-              data-uid="${escapeHTML(user.uid)}"
-              data-name="${escapeHTML(name)}"
-              data-username="${escapeHTML(user.username || "")}"
-            >
-              Adicionar
-            </button>
+        <div class="message-row ${mine ? 'mine' : ''}">
+          <div class="bubble" onmousedown="startPress(event, '${d.id}', '${escapeHTML(m.text)}')" onmouseleave="cancelPress()" onmouseup="cancelPress()" ontouchstart="startPress(event, '${d.id}', '${escapeHTML(m.text)}')" ontouchend="cancelPress()">
+            <div class="message-text">${escapeHTML(m.text)}</div>
+            <div class="message-meta">${tickHtml}</div>
           </div>
         </div>
       `;
     }).join("");
-
-  box.querySelectorAll(".add-contact").forEach(button => {
-    button.onclick = () => {
-      addContact({
-        uid: button.dataset.uid,
-        publicName: button.dataset.name,
-        username: button.dataset.username
-      });
-    };
-  });
-}
-
-
-/* =========================================================
-   ADICIONAR CONTACTO
-========================================================= */
-
-async function addContact(user){
-  if(!me || !user?.uid){
-    showToast("Não foi possível identificar o contacto.");
-    return;
-  }
-
-  if(user.uid === me.uid){
-    showToast("Não podes adicionar a tua própria conta.");
-    return;
-  }
-
-  try{
-    await setDoc(
-      doc(db, "users", me.uid, "contacts", user.uid),
-      {
-        uid: user.uid,
-        publicName: user.publicName || "Utilizador",
-        username: user.username || "",
-        online: user.online === true,
-        addedAt: serverTimestamp()
-      },
-      {merge:true}
-    );
-
-    showToast("Contacto adicionado com sucesso.");
-    loadContacts();
-
-  }catch(error){
-    console.error("ADD CONTACT ERROR:", error);
-    showToast(friendlyError(error));
-  }
-}
-
-
-/* =========================================================
-   CONVERSAS
-========================================================= */
-
-function createPrivateChatId(uid1,uid2){
-  return [uid1,uid2].sort().join("_");
-}
-
-async function openPrivateChat(otherUid){
-  if(!me || !otherUid) return;
-
-  try{
-    const otherSnap = await getDoc(doc(db, "users", otherUid));
-
-    if(!otherSnap.exists()){
-      showToast("Este perfil já não existe.");
-      return;
-    }
-
-    const other = { uid: otherUid, ...otherSnap.data() };
-    const chatId = createPrivateChatId(me.uid, otherUid);
-    const chatRef = doc(db, "chats", chatId);
-    const existing = await getDoc(chatRef);
-
-    if(!existing.exists()){
-      await setDoc(chatRef, {
-        id: chatId,
-        type: "private",
-        members: [me.uid, otherUid],
-        memberNames: {
-          [me.uid]: myProfile.publicName || myProfile.username || "Utilizador",
-          [otherUid]: other.publicName || other.username || "Utilizador"
-        },
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-        lastMessage: "",
-        lastSenderId: ""
-      });
-    }
-
-    activeChat = {
-      id: chatId,
-      type: "private",
-      otherUid,
-      name: other.publicName || other.username || "Utilizador",
-      avatar: initials(other.publicName || other.username || "U")
-    };
-
-    showChat();
-
-  }catch(error){
-    console.error("OPEN CHAT ERROR:", error);
-    showToast(friendlyError(error));
-  }
-}
-
-function showChat(){
-  $("appScreen").classList.add("hidden");
-  $("chatScreen").classList.remove("hidden");
-  $("chatName").textContent = activeChat.name;
-  $("chatAvatar").textContent = activeChat.avatar;
-  $("chatStatus").textContent = activeChat.type === "group" ? "Grupo" : "Conversa";
-  $("composer").classList.remove("hidden");
-  $("messageInput").value = "";
-  $("messageInput").focus();
-
-  startChatMessages();
-}
-
-function startChatMessages(){
-  if(activeChatUnsubscribe){
-    activeChatUnsubscribe();
-    activeChatUnsubscribe = null;
-  }
-
-  if(!activeChat) return;
-
-  const messagesRef = collection(db, "chats", activeChat.id, "messages");
-  const messagesQuery = query(
-    messagesRef,
-    orderBy("createdAt","asc"),
-    limitToLast(100)
-  );
-
-  activeChatUnsubscribe = onSnapshot(
-    messagesQuery,
-    snapshot => {
-      renderMessages(
-        snapshot.docs.map(d => ({
-          id: d.id,
-          ...d.data()
-        }))
-      );
-    },
-    error => {
-      console.error("MESSAGES:", error);
-      showToast(friendlyError(error));
-    }
-  );
-}
-
-function renderMessages(messages){
-  const box = $("messages");
-  box.innerHTML = "";
-
-  if(!messages.length){
-    box.innerHTML = `<div class="muted">Esta conversa começou agora.</div>`;
-    return;
-  }
-
-  messages.forEach(message => {
-    const mine = message.senderId === me.uid;
-    const time = message.createdAt?.toDate
-      ? message.createdAt.toDate().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" })
-      : "...";
-
-    const row = document.createElement("div");
-    row.className = "message-row " + (mine ? "mine" : "");
-
-    const bubble = document.createElement("div");
-    bubble.className = "bubble";
-
-    const text = document.createElement("div");
-    text.className = "message-text";
-    text.textContent = message.text || "";
-
-    const meta = document.createElement("div");
-    meta.className = "message-meta";
-
-    let receipt = "";
-    if(mine){
-      const readBy = Array.isArray(message.readBy) ? message.readBy : [];
-      receipt = readBy.includes(activeChat.otherUid) ? " ✓✓" : " ✓";
-    }
-
-    meta.textContent = time + receipt;
-
-    bubble.appendChild(text);
-    bubble.appendChild(meta);
-    row.appendChild(bubble);
-    box.appendChild(row);
-
-    if(!mine && !(Array.isArray(message.readBy) && message.readBy.includes(me.uid))){
-      updateDoc(
-        doc(db, "chats", activeChat.id, "messages", message.id),
-        { readBy: arrayUnion(me.uid) }
-      ).catch(() => {});
-    }
-  });
-
-  requestAnimationFrame(() => {
     box.scrollTop = box.scrollHeight;
   });
 }
 
-
-/* =========================================================
-   ENVIAR MENSAGEM
-========================================================= */
-
-$("composer").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  if(!activeChat || !me) return;
-
+$("composer").onsubmit = async (e) => {
+  e.preventDefault();
   const input = $("messageInput");
   const text = input.value.trim();
-
-  if(!text) return;
+  if(!text || !activeChat) return;
 
   input.value = "";
-
-  try{
-    const chatRef = doc(db, "chats", activeChat.id);
-    const messagesRef = collection(chatRef, "messages");
-
-    await addDoc(messagesRef, {
-      text,
-      senderId: me.uid,
-      senderName: myProfile.publicName || myProfile.username || "Utilizador",
-      readBy: [me.uid],
-      createdAt: serverTimestamp()
-    });
-
-    await updateDoc(chatRef, {
-      lastMessage: text.slice(0,120),
-      lastSenderId: me.uid,
-      updatedAt: serverTimestamp()
-    });
-
-  }catch(error){
-    console.error("SEND MESSAGE:", error);
-    input.value = text;
-    showToast(friendlyError(error));
-  }
-});
-
-
-/* =========================================================
-   FECHAR CHAT
-========================================================= */
-
-$("closeChatBtn").onclick = () => {
-  if(activeChatUnsubscribe){
-    activeChatUnsubscribe();
-    activeChatUnsubscribe = null;
-  }
-
-  activeChat = null;
-  $("chatScreen").classList.add("hidden");
-  $("appScreen").classList.remove("hidden");
-  showPage("conversationsPage");
+  await addDoc(collection(db, "chats", activeChat.id, "messages"), {
+    text, senderId: me.uid, readBy: [me.uid], createdAt: serverTimestamp()
+  });
+  await updateDoc(doc(db, "chats", activeChat.id), { lastMessage: text, updatedAt: serverTimestamp() });
 };
 
+$("closeChatBtn").onclick = () => {
+  $("chatScreen").classList.add("hidden");
+  $("appScreen").classList.remove("hidden");
+  if(activeChatUnsubscribe) activeChatUnsubscribe();
+};
 
-/* =========================================================
-   LISTA DE CONVERSAS
-========================================================= */
+/* LONG PRESS MENU */
+window.startPress = (e, msgId, text) => {
+  cancelPress();
+  longPressTimer = setTimeout(() => {
+    selectedMessage = { id: msgId, text };
+    const menu = $("contextMenu");
+    menu.style.top = (e.clientY || e.touches[0].clientY) + "px";
+    menu.style.left = (e.clientX || e.touches[0].clientX) + "px";
+    menu.classList.remove("hidden");
+  }, 600);
+};
 
-function loadConversations(){
-  if(!me) return;
+window.cancelPress = () => clearTimeout(longPressTimer);
 
-  if(conversationsUnsubscribe){
-    conversationsUnsubscribe();
+document.onclick = () => $("contextMenu").classList.add("hidden");
+
+$("ctxCopy").onclick = () => {
+  if(selectedMessage) navigator.clipboard.writeText(selectedMessage.text);
+  showToast("Texto copiado!");
+};
+
+$("ctxEdit").onclick = async () => {
+  const newText = prompt("Editar mensagem:", selectedMessage.text);
+  if(newText && activeChat){
+    await updateDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id), { text: newText });
   }
+};
 
-  const q = query(
-    collection(db,"chats"),
-    where("members", "array-contains", me.uid),
-    limit(50)
-  );
-
-  conversationsUnsubscribe = onSnapshot(
-    q,
-    snapshot => {
-      const chats = snapshot.docs
-        .map(d => ({ id: d.id, ...d.data() }))
-        .sort((a,b) => (b.updatedAt?.seconds || 0) - (a.updatedAt?.seconds || 0));
-
-      renderConversations(chats);
-    },
-    error => {
-      console.error("CONVERSATIONS:", error);
-    }
-  );
-}
-
-function renderConversations(chats){
-  const box = $("conversationList");
-
-  if(!chats.length){
-    box.innerHTML = `<div class="muted">As tuas conversas aparecerão aqui.</div>`;
-    return;
+$("ctxDelete").onclick = async () => {
+  if(activeChat && confirm("Eliminar esta mensagem?")){
+    await deleteDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id));
   }
+};
 
-  box.innerHTML = chats.map(chat => {
-    let name = "Conversa";
-    let avatar = "A";
+/* STATUS SYSTEM */
+$("addStatusBtn").onclick = () => $("statusModal").classList.remove("hidden");
+$("closeStatusModal").onclick = () => $("statusModal").classList.add("hidden");
 
-    if(chat.type === "private"){
-      const otherUid = (chat.members || []).find(uid => uid !== me.uid);
-      name = chat.memberNames?.[otherUid] || "Utilizador";
-      avatar = initials(name);
-    }else{
-      name = chat.name || "Grupo";
-      avatar = initials(name);
-    }
+$("confirmPublishStatus").onclick = async () => {
+  const mediaUrl = $("statusMediaUrl").value.trim();
+  const caption = $("statusCaption").value.trim();
+  if(!mediaUrl) return showToast("Adiciona um link de imagem/vídeo.");
 
-    const preview = chat.lastMessage || "Nova conversa";
+  await addDoc(collection(db, "statuses"), {
+    uid: me.uid, name: myProfile.publicName, mediaUrl, caption, createdAt: serverTimestamp()
+  });
 
-    return `
-      <div class="card">
-        <div class="person" data-open-conversation="${escapeHTML(chat.id)}">
-          <div class="avatar">${escapeHTML(avatar)}</div>
-          <div class="person-info">
-            <div class="person-name">${escapeHTML(name)}</div>
-            <div class="person-user">${escapeHTML(preview)}</div>
-          </div>
-          <button class="action">Abrir</button>
+  $("statusModal").classList.add("hidden");
+  showToast("Status publicado!");
+  loadStatuses();
+};
+
+function loadStatuses(){
+  onSnapshot(collection(db, "statuses"), snap => {
+    const box = $("statusList");
+    if(snap.empty){ box.innerHTML = `<div class="muted">Nenhum status recente.</div>`; return; }
+
+    box.innerHTML = snap.docs.map(d => {
+      const s = d.data();
+      return `
+        <div class="card">
+          <div style="font-weight:800;margin-bottom:6px;">${escapeHTML(s.name)}</div>
+          <img src="${escapeHTML(s.mediaUrl)}" style="width:100%;max-height:250px;object-fit:cover;border-radius:14px;margin-bottom:6px;">
+          <div style="font-size:14px;opacity:.8;">${escapeHTML(s.caption)}</div>
         </div>
-      </div>
-    `;
-  }).join("");
-
-  box.querySelectorAll("[data-open-conversation]").forEach(row => {
-    row.onclick = () => {
-      const id = row.dataset.openConversation;
-      const chat = chats.find(c => c.id === id);
-      if(chat) openExistingChat(chat);
-    };
+      `;
+    }).join("");
   });
 }
 
-async function openExistingChat(chat){
-  if(chat.type === "private"){
-    const otherUid = (chat.members || []).find(uid => uid !== me.uid);
+/* LISTA DE CONVERSAS */
+function loadConversations(){
+  const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
+  onSnapshot(q, snap => {
+    const box = $("conversationList");
+    if(snap.empty){ box.innerHTML = `<div class="muted">Sem conversas ativas.</div>`; return; }
 
-    if(!otherUid) return;
-
-    const snap = await getDoc(doc(db, "users", otherUid));
-    const other = snap.exists() ? snap.data() : {};
-
-    activeChat = {
-      id: chat.id,
-      type: "private",
-      otherUid,
-      name: other.publicName || chat.memberNames?.[otherUid] || "Utilizador",
-      avatar: initials(other.publicName || chat.memberNames?.[otherUid] || "U")
-    };
-  }else{
-    activeChat = {
-      id: chat.id,
-      type: "group",
-      name: chat.name || "Grupo",
-      avatar: initials(chat.name || "Grupo")
-    };
-  }
-
-  showChat();
-}
-
-
-/* =========================================================
-   GRUPOS
-========================================================= */
-
-$("createGroupBtn").onclick =
-$("bottomGroupBtn").onclick = () => {
-  openGroupModal();
-};
-
-function openGroupModal(){
-  $("groupModal").classList.remove("hidden");
-  renderGroupContacts();
-}
-
-$("closeGroupModal").onclick = () => {
-  $("groupModal").classList.add("hidden");
-};
-
-async function renderGroupContacts(){
-  const box = $("groupContacts");
-  box.innerHTML = `<div class="muted">A carregar contactos...</div>`;
-
-  try{
-    const snap = await new Promise((resolve, reject) => {
-      const unsub = onSnapshot(
-        collection(db, "users", me.uid, "contacts"),
-        snapshot => {
-          unsub();
-          resolve(snapshot);
-        },
-        reject
-      );
-    });
-
-    const contacts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-
-    if(!contacts.length){
-      box.innerHTML = `<div class="muted">Adiciona contactos primeiro.</div>`;
-      return;
-    }
-
-    box.innerHTML = contacts.map(contact => {
-      const name = contact.publicName || contact.username || "Utilizador";
-      const targetUid = contact.uid || contact.id;
-
+    box.innerHTML = snap.docs.map(d => {
+      const c = d.data();
       return `
-        <label class="card" style="display:flex;align-items:center;gap:12px;cursor:pointer;">
-          <input
-            type="checkbox"
-            class="group-member"
-            value="${escapeHTML(targetUid)}"
-            style="width:20px;height:20px;"
-          >
-          <div class="avatar">${escapeHTML(initials(name))}</div>
+        <div class="card person" onclick="openChat('${c.id}', 'Conversa')">
+          <div class="avatar">K</div>
           <div class="person-info">
-            <div class="person-name">${escapeHTML(name)}</div>
-            <div class="person-user">@${escapeHTML(contact.username || "")}</div>
+            <div class="person-name">Conversa</div>
+            <div class="person-user">${escapeHTML(c.lastMessage || "Nova conversa...")}</div>
           </div>
-        </label>
+        </div>
       `;
     }).join("");
-
-  }catch(error){
-    console.error(error);
-    box.innerHTML = `<div class="muted">Não foi possível carregar os contactos.</div>`;
-  }
+  });
 }
+
+/* GRUPOS */
+$("createGroupBtn").onclick = () => $("groupModal").classList.remove("hidden");
+$("closeGroupModal").onclick = () => $("groupModal").classList.add("hidden");
 
 $("confirmCreateGroup").onclick = async () => {
   const name = $("groupName").value.trim();
-  const selected = [...document.querySelectorAll(".group-member:checked")].map(input => input.value);
+  if(!name) return showToast("Digita o nome do grupo.");
 
-  if(name.length < 2){
-    showToast("Escolhe um nome para o grupo.");
-    return;
-  }
+  await addDoc(collection(db, "groups"), {
+    name, createdBy: me.uid, members: [me.uid], createdAt: serverTimestamp()
+  });
 
-  if(!selected.length){
-    showToast("Seleciona pelo menos um contacto.");
-    return;
-  }
-
-  try{
-    const members = [...new Set([me.uid, ...selected])];
-
-    const groupRef = await addDoc(collection(db, "groups"), {
-      name,
-      members,
-      admins: [me.uid],
-      createdBy: me.uid,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      lastMessage: "",
-      lastSenderId: ""
-    });
-
-    await setDoc(
-      doc(db, "chats", groupRef.id),
-      {
-        id: groupRef.id,
-        type: "group",
-        groupId: groupRef.id,
-        name,
-        members,
-        createdBy: me.uid,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
-        lastMessage: "",
-        lastSenderId: ""
-      },
-      {merge:true}
-    );
-
-    $("groupName").value = "";
-    $("groupModal").classList.add("hidden");
-    showToast("Grupo criado com sucesso.");
-    loadGroups();
-
-  }catch(error){
-    console.error("CREATE GROUP:", error);
-    showToast(friendlyError(error));
-  }
+  $("groupModal").classList.add("hidden");
+  showToast("Grupo criado!");
+  loadGroups();
 };
-
-
-/* =========================================================
-   GRUPOS LISTA
-========================================================= */
 
 function loadGroups(){
-  if(!me) return;
-
-  if(groupsUnsubscribe){
-    groupsUnsubscribe();
-  }
-
-  const q = query(
-    collection(db, "groups"),
-    where("members", "array-contains", me.uid),
-    limit(50)
-  );
-
-  groupsUnsubscribe = onSnapshot(
-    q,
-    snapshot => {
-      const groups = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
-      renderGroups(groups);
-    },
-    error => {
-      console.error("GROUPS:", error);
-    }
-  );
-}
-
-function renderGroups(groups){
-  const box = $("groupsList");
-
-  if(!groups.length){
-    box.innerHTML = `<div class="muted">Ainda não participas de nenhum grupo.</div>`;
-    return;
-  }
-
-  box.innerHTML = groups.map(group => {
-    const name = group.name || "Grupo";
-
-    return `
-      <div class="card">
-        <div class="person">
-          <div class="avatar">${escapeHTML(initials(name))}</div>
+  onSnapshot(collection(db, "groups"), snap => {
+    const box = $("groupsList");
+    if(snap.empty){ box.innerHTML = `<div class="muted">Ainda não estás em nenhum grupo.</div>`; return; }
+    box.innerHTML = snap.docs.map(d => {
+      const g = d.data();
+      return `
+        <div class="card person">
+          <div class="avatar">${initials(g.name)}</div>
           <div class="person-info">
-            <div class="person-name">${escapeHTML(name)}</div>
-            <div class="person-user">${(group.members || []).length} membros</div>
+            <div class="person-name">${escapeHTML(g.name)}</div>
           </div>
-          <button class="action" data-group="${escapeHTML(group.id)}">
-            Abrir
-          </button>
         </div>
-      </div>
-    `;
-  }).join("");
-
-  box.querySelectorAll("[data-group]").forEach(button => {
-    button.onclick = () => {
-      const group = groups.find(g => g.id === button.dataset.group);
-
-      if(group){
-        activeChat = {
-          id: group.id,
-          type: "group",
-          name: group.name || "Grupo",
-          avatar: initials(group.name || "Grupo")
-        };
-        showChat();
-      }
-    };
+      `;
+    }).join("");
   });
 }
-
-
-/* =========================================================
-   PERFIL / BOTÕES
-========================================================= */
-
-$("profileTopBtn").onclick = () => {
-  showPage("profilePage");
-};
-
-$("profilePage").addEventListener("click", event => {
-  if(event.target === $("profilePage")){
-    showPage("conversationsPage");
-  }
-});
-
-
-/* =========================================================
-   LIMPEZA
-========================================================= */
-
-window.addEventListener("beforeunload", () => {
-  if(contactsUnsubscribe) contactsUnsubscribe();
-  if(conversationsUnsubscribe) conversationsUnsubscribe();
-  if(groupsUnsubscribe) groupsUnsubscribe();
-  if(activeChatUnsubscribe) activeChatUnsubscribe();
-});
-
 </script>
-
 </body>
 </html>
