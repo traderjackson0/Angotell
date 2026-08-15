@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -23,7 +22,7 @@ button{border:0;cursor:pointer;}
 .brand{text-align:center;font-size:38px;font-weight:900;letter-spacing:-1px;}
 .subtitle{text-align:center;opacity:.58;line-height:1.6;margin:12px auto 25px;}
 .tabs{display:flex;padding:5px;border-radius:18px;background:#17131f;margin-bottom:22px;}
-.tab{flex:1;padding:14px;border-radius:14px;background:transparent;color:#aaa2b4;}
+.tab{flex:1;padding:14px;border-radius:14px;background:transparent;color:#aaa2b4;font-weight:700;}
 .tab.active{color:white;background:linear-gradient(135deg,#7142d9,#c43691);}
 .field{margin-bottom:15px;}
 .field label{display:block;margin:0 0 7px 4px;font-size:13px;opacity:.65;}
@@ -32,7 +31,7 @@ button{border:0;cursor:pointer;}
 .primary{width:100%;min-height:55px;border-radius:18px;color:white;font-weight:800;background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);}
 .primary:disabled{opacity:.5;}
 
-/* CABEÇALHO SUPERIOR */
+/* CABEÇALHO SUPERIOR E NAVEGAÇÃO */
 .main{width:100%;height:100%;display:flex;flex-direction:column;}
 .topbar{flex:none;min-height:85px;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(9,8,14,.88);backdrop-filter:blur(18px);}
 .identity{display:flex;align-items:center;gap:13px;min-width:0;}
@@ -47,23 +46,29 @@ button{border:0;cursor:pointer;}
 /* CONTEÚDO DAS PÁGINAS */
 .content{flex:1;min-height:0;overflow:hidden;position:relative;}
 .page{width:100%;height:100%;overflow-y:auto;padding:20px 20px 105px;}
-.page-title{font-size:24px;font-weight:900;margin-bottom:18px;}
+.page-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.back-btn{padding:8px 14px;border-radius:12px;background:#1d1829;color:#a34cff;font-weight:700;font-size:14px;}
+.page-title{font-size:24px;font-weight:900;margin:0;}
 .search{width:100%;height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.08);background:#14111c;color:white;padding:0 17px;outline:none;margin-bottom:18px;}
 .card{padding:15px;border-radius:22px;background:#15121d;border:1px solid rgba(255,255,255,.07);margin-bottom:12px;}
-.person{display:flex;align-items:center;gap:12px;cursor:pointer;}
+
+/* EFEITO DESLIZANTE NAS CONVERSAS (SWIPE) */
+.swipe-container{position:relative;overflow:hidden;border-radius:22px;margin-bottom:12px;background:#e63a3a;}
+.swipe-item{display:flex;align-items:center;gap:12px;padding:15px;background:#15121d;border:1px solid rgba(255,255,255,.07);border-radius:22px;transition:transform 0.2s ease;cursor:pointer;position:relative;z-index:2;}
+.swipe-action{position:absolute;right:0;top:0;bottom:0;width:90px;background:#e63a3a;color:white;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;z-index:1;border-radius:0 22px 22px 0;}
+
 .person-info{flex:1;min-width:0;}
 .person-name{font-weight:800;font-size:16px;}
 .person-user{opacity:.5;font-size:13px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .action{flex:none;padding:10px 16px;border-radius:14px;color:white;font-weight:800;background:linear-gradient(135deg,#7545e8,#db419c);font-size:13px;}
 .muted{opacity:.45;text-align:center;padding:30px 10px;}
 
-/* CHAT DA CONVERSA */
+/* CHAT */
 .chat{width:100%;height:100%;display:flex;flex-direction:column;background:#09080f;}
 .chat-header{min-height:70px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);background:#0d0b14;}
 .back{width:42px;height:42px;border-radius:14px;color:white;background:#181520;font-size:21px;}
 .chat-title{flex:1;min-width:0;}
 .chat-name{font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.chat-status{font-size:12px;opacity:.5;}
 .messages{flex:1;min-height:0;overflow-y:auto;padding:16px 14px;}
 .message-row{display:flex;margin:7px 0;position:relative;}
 .message-row.mine{justify-content:flex-end;}
@@ -84,7 +89,7 @@ button{border:0;cursor:pointer;}
 .nav-icon{font-size:19px;}
 .nav.active{color:white;}
 
-/* MODAL E MENU CONTEXTUAL REPOSICIONADO */
+/* MODAL E TOAST */
 .modal{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(6px);}
 .modal-card{width:min(600px,100%);max-height:88dvh;overflow-y:auto;padding:22px;border-radius:30px 30px 0 0;background:#15121d;border:1px solid rgba(255,255,255,.09);}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
@@ -95,10 +100,7 @@ button{border:0;cursor:pointer;}
 .context-btn{padding:12px 16px;background:transparent;color:white;text-align:left;border-radius:12px;font-weight:600;font-size:14px;}
 .context-btn:hover{background:rgba(255,255,255,.1);}
 
-.toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.09);box-shadow:0 10px 35px rgba(0,0,0,.35);text-align:center;font-size:13px;}
-.story-item{display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-right:14px;cursor:pointer;}
-.story-ring{width:64px;height:64px;border-radius:50%;padding:3px;background:linear-gradient(135deg,#8049ff,#ff3c91);}
-.story-avatar{width:100%;height:100%;border-radius:50%;background:#17141e;display:flex;align-items:center;justify-content:center;font-weight:bold;background-size:cover;background-position:center;}
+.toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 35px rgba(0,0,0,.5);text-align:center;font-size:13px;font-weight:600;}
 
 .file-label{display:inline-block;padding:12px 18px;border-radius:14px;background:#211d2b;color:#a34cff;border:1px dashed #a34cff;cursor:pointer;font-weight:700;text-align:center;width:100%;margin-top:6px;}
 </style>
@@ -121,7 +123,7 @@ button{border:0;cursor:pointer;}
       <div id="registerFields" class="hidden">
         <div class="field">
           <label>Nome público</label>
-          <input id="regName" placeholder="Ex.: Gaspar">
+          <input id="regName" placeholder="Ex.: Gaspar Kididi">
         </div>
         <div class="field">
           <label>Nome de utilizador</label>
@@ -165,13 +167,13 @@ button{border:0;cursor:pointer;}
 
       <main class="content">
         <section id="conversationsPage" class="page">
-          <div class="page-title">Conversas</div>
+          <div class="page-title" style="margin-bottom:18px;">Conversas</div>
           <div id="conversationList"></div>
         </section>
 
         <section id="contactsPage" class="page hidden">
-          <div class="page-title">Contactos</div>
-          <input id="contactSearch" class="search" placeholder="Pesquisar utilizadores pelo @username...">
+          <div class="page-title" style="margin-bottom:18px;">Contactos</div>
+          <input id="contactSearch" class="search" placeholder="Pesquisar por @username...">
           
           <div id="contactSearchResults"></div>
           
@@ -183,26 +185,13 @@ button{border:0;cursor:pointer;}
         </section>
 
         <section id="statusPage" class="page hidden">
-          <div class="page-title">Status</div>
-          <div style="display:flex;overflow-x:auto;padding-bottom:10px;margin-bottom:15px;" id="statusTray">
-            <div class="story-item" id="addStatusBtn">
-              <div class="story-ring" style="background:#332d41;">
-                <div class="story-avatar">+</div>
-              </div>
-              <span style="font-size:12px;opacity:.7;">O Meu Status</span>
-            </div>
-          </div>
+          <div class="page-title" style="margin-bottom:18px;">Status</div>
+          <button id="addStatusBtn" class="primary" style="margin-bottom:18px;">+ Publicar Novo Status</button>
           <div id="statusList"></div>
         </section>
 
-        <section id="groupsPage" class="page hidden">
-          <div class="page-title">Grupos</div>
-          <button id="createGroupBtn" class="primary" style="margin-bottom:18px;">+ Criar Novo Grupo</button>
-          <div id="groupsList"></div>
-        </section>
-
         <section id="settingsPage" class="page hidden">
-          <div class="page-title">Definições</div>
+          <div class="page-title" style="margin-bottom:18px;">Definições</div>
           
           <div class="card" id="openProfileBtn" style="cursor:pointer;display:flex;align-items:center;gap:15px;">
             <div id="settingsAvatar" class="avatar" style="width:60px;height:60px;font-size:24px;">K</div>
@@ -215,23 +204,26 @@ button{border:0;cursor:pointer;}
 
           <div class="card" id="openDevInfoBtn" style="cursor:pointer;margin-top:12px;">
             <div style="font-weight:800;font-size:16px;">Sobre o Desenvolvedor</div>
-            <div style="opacity:.5;font-size:13px;margin-top:4px;">Conhece a história por trás do KidiTalk</div>
+            <div style="opacity:.5;font-size:13px;margin-top:4px;">Gaspar Kididi</div>
           </div>
 
           <button id="logoutBtn" class="primary" style="margin-top:20px;background:#e63a3a;">Terminar Sessão</button>
         </section>
 
         <section id="profileEditPage" class="page hidden">
-          <div class="page-title">Editar Perfil</div>
+          <div class="page-header">
+            <button class="back-btn" onclick="showPage('settingsPage')">← Voltar</button>
+            <h2 class="page-title">Editar Perfil</h2>
+          </div>
           <div class="card">
             <div class="field">
               <label>Nome Público</label>
               <input id="profileNameInput">
             </div>
             <div class="field">
-              <label>Escolher Foto da Galeria</label>
+              <label>Escolher Foto da Galeria (Ajuste Automático)</label>
               <label class="file-label">
-                📷 Selecionar Imagem da Galeria
+                📷 Selecionar Imagem
                 <input type="file" id="profileFilePicker" accept="image/*" class="hidden">
               </label>
               <div id="profileFileStatus" style="font-size:12px;margin-top:6px;color:#35e895;"></div>
@@ -241,19 +233,16 @@ button{border:0;cursor:pointer;}
         </section>
 
         <section id="devInfoPage" class="page hidden">
-          <div class="page-title">Desenvolvimento</div>
+          <div class="page-header">
+            <button class="back-btn" onclick="showPage('settingsPage')">← Voltar</button>
+            <h2 class="page-title">Desenvolvedor</h2>
+          </div>
           <div class="card" style="line-height:1.6;">
             <div style="font-size:20px;font-weight:900;color:#00d9ff;margin-bottom:8px;">Gaspar Kididi</div>
             <div style="font-size:13px;opacity:.6;margin-bottom:15px;">Criador & Desenvolvedor Solo</div>
             <p style="font-size:14px;opacity:.85;">
-              O <strong>KidiTalk</strong> nasceu de uma visão de criar uma plataforma de comunicação rápida, segura e moderna.
+              O <strong>KidiTalk</strong> foi idealizado e desenvolvido por Gaspar Kididi, focando na criação de um sistema de conversas em tempo real robusto e performático.
             </p>
-            <p style="font-size:14px;opacity:.85;">
-              O desenvolvimento oficial começou no dia <strong>30 de Julho</strong>. Trabalhar sozinho na criação de toda a arquitetura, design, banco de dados e regras de segurança foi um desafio gigantesco, mas demonstrativo do poder da dedicação e paixão pela tecnologia.
-            </p>
-            <div style="margin-top:20px;padding:10px;background:rgba(255,255,255,.05);border-radius:12px;font-size:12px;opacity:.6;text-align:center;">
-              KidiTalk v2.2 (Edição Estável)
-            </div>
           </div>
         </section>
 
@@ -269,8 +258,8 @@ button{border:0;cursor:pointer;}
         <button class="nav" data-page="statusPage">
           <span class="nav-icon">✦</span> Status
         </button>
-        <button class="nav" data-page="groupsPage">
-          <span class="nav-icon">♧</span> Grupos
+        <button class="nav" data-page="settingsPage">
+          <span class="nav-icon">⚙</span> Definições
         </button>
       </nav>
     </div>
@@ -284,7 +273,6 @@ button{border:0;cursor:pointer;}
       <div id="chatAvatar" class="avatar">K</div>
       <div class="chat-title">
         <div id="chatName" class="chat-name">Conversa</div>
-        <div id="chatStatus" class="chat-status"></div>
       </div>
     </header>
 
@@ -304,7 +292,7 @@ button{border:0;cursor:pointer;}
       <button id="closeStatusModal" class="close">×</button>
     </div>
     <div class="field">
-      <label>Escolher Foto ou Vídeo da Galeria</label>
+      <label>Escolher Mídia da Galeria</label>
       <label class="file-label">
         📁 Carregar Foto / Vídeo
         <input type="file" id="statusFilePicker" accept="image/*,video/*" class="hidden">
@@ -373,11 +361,11 @@ function showToast(msg){
   showToast.timer = setTimeout(() => $("toast").classList.add("hidden"), 3000);
 }
 
-function showPage(pageId){
+window.showPage = (pageId) => {
   document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
   $(pageId).classList.remove("hidden");
   document.querySelectorAll(".nav").forEach(b => b.classList.toggle("active", b.dataset.page === pageId));
-}
+};
 
 document.querySelectorAll(".nav[data-page]").forEach(b => {
   b.onclick = () => {
@@ -387,30 +375,65 @@ document.querySelectorAll(".nav[data-page]").forEach(b => {
   };
 });
 
-/* UPLOAD VIA GALERIA LOCAL */
-function fileToBase64(file){
-  return new Promise((resolve, reject) => {
+/* REDIMENSIONAMENTO E PROCESSAMENTO DE IMAGEM (ENCAIXE PERFEITO E LEVE) */
+function resizeImageFile(file, maxWidth = 400, maxHeight = 400) {
+  return new Promise((resolve) => {
     const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height *= maxWidth / width;
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width *= maxHeight / height;
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", 0.8));
+      };
+      img.src = e.target.result;
+    };
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
   });
 }
 
 $("profileFilePicker").onchange = async (e) => {
   const file = e.target.files[0];
   if(file){
-    uploadedProfileBase64 = await fileToBase64(file);
-    $("profileFileStatus").textContent = "✓ Imagem pronta a carregar!";
+    showToast("A otimizar imagem...");
+    uploadedProfileBase64 = await resizeImageFile(file, 400, 400);
+    $("profileFileStatus").textContent = "✓ Imagem otimizada e pronta!";
   }
 };
 
 $("statusFilePicker").onchange = async (e) => {
   const file = e.target.files[0];
   if(file){
-    uploadedStatusBase64 = await fileToBase64(file);
-    uploadedStatusType = file.type.startsWith("video") ? "video" : "image";
-    $("statusFileStatus").textContent = `✓ ${uploadedStatusType === "video" ? "Vídeo" : "Imagem"} selecionado!`;
+    if(file.type.startsWith("image")){
+      uploadedStatusBase64 = await resizeImageFile(file, 800, 800);
+      uploadedStatusType = "image";
+    } else {
+      const reader = new FileReader();
+      reader.onload = () => {
+        uploadedStatusBase64 = reader.result;
+        uploadedStatusType = "video";
+      };
+      reader.readAsDataURL(file);
+    }
+    $("statusFileStatus").textContent = "✓ Mídia pronta a publicar!";
   }
 };
 
@@ -424,13 +447,17 @@ $("authButton").onclick = async () => {
   const password = $("authPassword").value;
   if(!email || !password) return showToast("Preenche todos os campos.");
 
+  $("authButton").disabled = true;
   try {
     if(authMode === "login"){
       await signInWithEmailAndPassword(auth, email, password);
     } else {
       const publicName = $("regName").value.trim();
       const username = $("regUsername").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
-      if(!publicName || username.length < 3) return showToast("Preenche os dados do registo.");
+      if(!publicName || username.length < 3) {
+        $("authButton").disabled = false;
+        return showToast("Preenche os dados do registo.");
+      }
 
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, "users", cred.user.uid), {
@@ -438,7 +465,10 @@ $("authButton").onclick = async () => {
       });
       await setDoc(doc(db, "usernames", username), { uid: cred.user.uid });
     }
-  } catch(e) { showToast(e.message); }
+  } catch(e) { 
+    showToast("Erro de autenticação: " + e.message); 
+    $("authButton").disabled = false;
+  }
 };
 
 onAuthStateChanged(auth, async user => {
@@ -471,13 +501,17 @@ function renderProfile(){
   if(myProfile.photoUrl) {
     $("topAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
     $("topAvatar").textContent = "";
+    $("settingsAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
+    $("settingsAvatar").textContent = "";
   } else {
     $("topAvatar").style.backgroundImage = "none";
     $("topAvatar").textContent = initials(name);
+    $("settingsAvatar").style.backgroundImage = "none";
+    $("settingsAvatar").textContent = initials(name);
   }
 }
 
-/* DEFENIÇÕES E NAVEGAÇÃO */
+/* NAVEGAÇÃO E GUARDAR PERFIL */
 $("settingsTopBtn").onclick = () => showPage("settingsPage");
 $("openProfileBtn").onclick = () => {
   $("profileNameInput").value = myProfile.publicName || "";
@@ -487,7 +521,10 @@ $("openDevInfoBtn").onclick = () => showPage("devInfoPage");
 
 $("saveProfileBtn").onclick = async () => {
   const publicName = $("profileNameInput").value.trim();
-  if(!publicName) return showToast("Nome inválido.");
+  if(!publicName) return showToast("Insere um nome válido.");
+
+  $("saveProfileBtn").disabled = true;
+  showToast("A guardar alterações...");
 
   const updateData = { publicName };
   if(uploadedProfileBase64) {
@@ -495,16 +532,22 @@ $("saveProfileBtn").onclick = async () => {
     myProfile.photoUrl = uploadedProfileBase64;
   }
 
-  await updateDoc(doc(db, "users", me.uid), updateData);
-  myProfile.publicName = publicName;
-  renderProfile();
-  showToast("Perfil atualizado!");
-  showPage("settingsPage");
+  try {
+    await updateDoc(doc(db, "users", me.uid), updateData);
+    myProfile.publicName = publicName;
+    renderProfile();
+    showToast("Perfil atualizado com sucesso!");
+    showPage("settingsPage");
+  } catch(e) {
+    showToast("Erro ao guardar perfil.");
+  } finally {
+    $("saveProfileBtn").disabled = false;
+  }
 };
 
 $("logoutBtn").onclick = () => signOut(auth);
 
-/* PESQUISA E AMIGOS */
+/* PESQUISA E ACEITAR PEDIDOS (COM ABERTURA DE CHAT AUTOMÁTICA) */
 $("contactSearch").oninput = async (e) => {
   const term = e.target.value.trim().toLowerCase().replace("@","");
   if(term.length < 3) return;
@@ -539,7 +582,7 @@ window.sendFriendRequest = async (targetUid) => {
     fromUsername: myProfile.username,
     createdAt: serverTimestamp()
   });
-  showToast("Pedido enviado!");
+  showToast("Pedido de amizade enviado!");
 };
 
 function loadRequests(){
@@ -563,10 +606,20 @@ function loadRequests(){
 }
 
 window.acceptRequest = async (fromUid, name, username) => {
-  await setDoc(doc(db, "users", me.uid, "contacts", fromUid), { uid: fromUid, publicName: name, username });
-  await setDoc(doc(db, "users", fromUid, "contacts", me.uid), { uid: me.uid, publicName: myProfile.publicName, username: myProfile.username });
-  await deleteDoc(doc(db, "users", me.uid, "requests", fromUid));
-  showToast("Contacto aceite!");
+  try {
+    // 1. Guardar contactos em ambas as partes
+    await setDoc(doc(db, "users", me.uid, "contacts", fromUid), { uid: fromUid, publicName: name, username });
+    await setDoc(doc(db, "users", fromUid, "contacts", me.uid), { uid: me.uid, publicName: myProfile.publicName, username: myProfile.username });
+    
+    // 2. Apagar pedido
+    await deleteDoc(doc(db, "users", me.uid, "requests", fromUid));
+    
+    showToast("Pedido aceite! A abrir conversa...");
+    // 3. Iniciar conversa imediatamente
+    openChat(fromUid, name);
+  } catch(e) {
+    showToast("Erro ao aceitar pedido.");
+  }
 };
 
 function loadContacts(){
@@ -589,7 +642,7 @@ function loadContacts(){
   });
 }
 
-/* LISTA DE CONVERSAS (NOMES DOS CONTACTOS CORRIGIDOS) */
+/* LISTA DE CONVERSAS COM OPÇÃO DESLIZANTE (SWIPE TO DELETE) */
 function loadConversations(){
   const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
   onSnapshot(q, async snap => {
@@ -610,20 +663,52 @@ function loadConversations(){
       }
 
       html += `
-        <div class="card person" onclick="openChat('${otherUid}', '${escapeHTML(displayName)}')">
-          <div class="avatar">${initials(displayName)}</div>
-          <div class="person-info">
-            <div class="person-name">${escapeHTML(displayName)}</div>
-            <div class="person-user">${escapeHTML(c.lastMessage || "Sem mensagens...")}</div>
+        <div class="swipe-container">
+          <div class="swipe-action" onclick="deleteChat('${d.id}')">Eliminar</div>
+          <div class="swipe-item" id="chat-item-${d.id}" onclick="openChat('${otherUid}', '${escapeHTML(displayName)}')">
+            <div class="avatar">${initials(displayName)}</div>
+            <div class="person-info">
+              <div class="person-name">${escapeHTML(displayName)}</div>
+              <div class="person-user">${escapeHTML(c.lastMessage || "Sem mensagens...")}</div>
+            </div>
           </div>
         </div>
       `;
     }
     box.innerHTML = html;
+    initSwipeGestures();
   });
 }
 
-/* TELA DE MENSAGENS E OPÇÕES DE SMS */
+function initSwipeGestures() {
+  document.querySelectorAll('.swipe-item').forEach(item => {
+    let startX = 0;
+    item.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+    item.addEventListener('touchmove', e => {
+      let diffX = e.touches[0].clientX - startX;
+      if (diffX < 0 && diffX > -100) {
+        item.style.transform = `translateX(${diffX}px)`;
+      }
+    }, {passive: true});
+    item.addEventListener('touchend', e => {
+      let diffX = e.changedTouches[0].clientX - startX;
+      if (diffX < -50) {
+        item.style.transform = `translateX(-90px)`;
+      } else {
+        item.style.transform = `translateX(0px)`;
+      }
+    });
+  });
+}
+
+window.deleteChat = async (chatId) => {
+  if(confirm("Eliminar toda a conversa?")) {
+    await deleteDoc(doc(db, "chats", chatId));
+    showToast("Conversa eliminada.");
+  }
+};
+
+/* MENSAGENS DO CHAT */
 window.openChat = async (otherUid, otherName) => {
   const chatId = [me.uid, otherUid].sort().join("_");
   const chatRef = doc(db, "chats", chatId);
@@ -718,12 +803,12 @@ $("closeChatBtn").onclick = () => {
   if(activeChatUnsubscribe) activeChatUnsubscribe();
 };
 
-/* PUBLICAÇÃO E EXIBIÇÃO DE STATUS */
+/* STATUS (COM OPÇÃO DE ELIMINAR) */
 $("addStatusBtn").onclick = () => $("statusModal").classList.remove("hidden");
 $("closeStatusModal").onclick = () => $("statusModal").classList.add("hidden");
 
 $("confirmPublishStatus").onclick = async () => {
-  if(!uploadedStatusBase64) return showToast("Escolha uma foto ou vídeo da galeria.");
+  if(!uploadedStatusBase64) return showToast("Escolha uma foto ou vídeo.");
 
   await addDoc(collection(db, "statuses"), {
     uid: me.uid,
@@ -735,6 +820,8 @@ $("confirmPublishStatus").onclick = async () => {
   });
 
   $("statusModal").classList.add("hidden");
+  uploadedStatusBase64 = "";
+  $("statusCaption").value = "";
   showToast("Status publicado com sucesso!");
   loadStatuses();
 };
@@ -746,13 +833,17 @@ function loadStatuses(){
 
     box.innerHTML = snap.docs.map(d => {
       const s = d.data();
+      const isMine = s.uid === me.uid;
       const mediaHtml = s.mediaType === "video" 
         ? `<video src="${s.mediaData}" controls style="width:100%;max-height:280px;border-radius:14px;"></video>`
         : `<img src="${s.mediaData}" style="width:100%;max-height:280px;object-fit:cover;border-radius:14px;">`;
 
       return `
         <div class="card">
-          <div style="font-weight:800;margin-bottom:8px;">${escapeHTML(s.name)}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <div style="font-weight:800;">${escapeHTML(s.name)}</div>
+            ${isMine ? `<button onclick="deleteStatus('${d.id}')" style="background:transparent;color:#ff5555;font-weight:700;font-size:12px;">Eliminar</button>` : ''}
+          </div>
           ${mediaHtml}
           <div style="font-size:14px;opacity:.8;margin-top:6px;">${escapeHTML(s.caption)}</div>
         </div>
@@ -760,6 +851,13 @@ function loadStatuses(){
     }).join("");
   });
 }
+
+window.deleteStatus = async (statusId) => {
+  if(confirm("Desejas eliminar este status?")) {
+    await deleteDoc(doc(db, "statuses", statusId));
+    showToast("Status eliminado.");
+  }
+};
 </script>
 </body>
 </html>
