@@ -126,13 +126,9 @@ button{border:0;cursor:pointer}
 <div id="authScreen" class="screen">
   <div class="auth">
     <div class="auth-card">
-
       <div class="logo">K</div>
       <div class="brand">KidiTalk</div>
-
-      <div class="subtitle">
-        Conecta-te com o mundo de forma simples, privada e rápida.
-      </div>
+      <div class="subtitle">Conecta-te com o mundo de forma simples, privada e rápida.</div>
 
       <div class="tabs">
         <button id="loginTab" class="tab active">Entrar</button>
@@ -140,17 +136,14 @@ button{border:0;cursor:pointer}
       </div>
 
       <div id="registerFields" class="hidden">
-
         <div class="field">
           <label>Nome público</label>
           <input id="regName" placeholder="Ex.: Gaspar Kididi">
         </div>
-
         <div class="field">
           <label>Nome de utilizador</label>
           <input id="regUsername" placeholder="Ex.: gaspar_kididi">
         </div>
-
       </div>
 
       <div class="field">
@@ -163,582 +156,175 @@ button{border:0;cursor:pointer}
         <input id="authPassword" type="password" placeholder="Mínimo 6 caracteres">
       </div>
 
-      <button id="authButton" class="primary">
-        Entrar no KidiTalk
-      </button>
-
+      <button id="authButton" class="primary">Entrar no KidiTalk</button>
     </div>
   </div>
 </div>
 
 <div id="appScreen" class="screen hidden">
-
   <div class="app">
     <div class="main">
-
       <header class="topbar">
-
         <div class="identity">
-
-          <div id="topAvatar" class="avatar">
-            K
-            <span class="online-dot"></span>
-          </div>
-
+          <div id="topAvatar" class="avatar">K <span class="online-dot"></span></div>
           <div class="identity-text">
             <div id="topName" class="identity-name">KidiTalk</div>
             <div id="topUsername" class="identity-user">@utilizador</div>
           </div>
-
         </div>
-
         <div class="top-actions">
           <button id="settingsTopBtn" class="icon-btn">⚙</button>
         </div>
-
       </header>
 
       <main class="content">
-
         <section id="conversationsPage" class="page">
-
-          <div class="page-title">
-            Conversas
-          </div>
-
+          <div class="page-title">Conversas</div>
           <div id="conversationList"></div>
-
         </section>
 
         <section id="contactsPage" class="page hidden">
-
-          <div class="page-title">
-            Contactos
-          </div>
-
-          <input
-            id="contactSearch"
-            class="search"
-            placeholder="Pesquisar por @username..."
-          >
-
+          <div class="page-title">Contactos</div>
+          <input id="contactSearch" class="search" placeholder="Pesquisar por @username...">
           <div id="contactSearchResults"></div>
 
-          <div style="margin:15px 0 10px;font-weight:800">
-            Pedidos Pendentes
-          </div>
-
+          <div style="margin:15px 0 10px;font-weight:800">Pedidos Pendentes</div>
           <div id="requestsList"></div>
 
-          <div style="margin:20px 0 10px;font-weight:800">
-            Os Meus Contactos
-          </div>
-
+          <div style="margin:20px 0 10px;font-weight:800">Os Meus Contactos</div>
           <div id="contactsList"></div>
-
         </section>
 
         <section id="statusPage" class="page hidden">
-
-          <div class="page-title">
-            Status
-          </div>
-
-          <button
-            id="addStatusBtn"
-            class="primary"
-            style="margin-bottom:18px"
-          >
-            + Publicar Novo Status
-          </button>
-
-          <div id="statusList"></div>
-
+          <div class="page-title">Status</div>
+          <button id="addStatusBtn" class="primary" style="margin-bottom:18px">+ Publicar Novo Status</button>
+          <div id="statusList" class="status-grid"></div>
         </section>
 
         <section id="settingsPage" class="page hidden">
-
-          <div class="page-title">
-            Definições
-          </div>
-
-          <div
-            id="openProfileBtn"
-            class="card person"
-            style="cursor:pointer"
-          >
-
-            <div
-              id="settingsAvatar"
-              class="avatar"
-              style="width:60px;height:60px;font-size:24px"
-            >
-              K
-            </div>
-
+          <div class="page-title">Definições</div>
+          <div id="openProfileBtn" class="card person" style="cursor:pointer">
+            <div id="settingsAvatar" class="avatar" style="width:60px;height:60px;font-size:24px">K</div>
             <div class="person-info">
-
-              <div id="settingsName" class="person-name">
-                Utilizador
-              </div>
-
-              <div id="settingsUser" class="person-user">
-                @utilizador
-              </div>
-
-              <div style="color:#a34cff;font-size:12px;margin-top:4px">
-                Editar Perfil ›
-              </div>
-
+              <div id="settingsName" class="person-name">Utilizador</div>
+              <div id="settingsUser" class="person-user">@utilizador</div>
+              <div style="color:#a34cff;font-size:12px;margin-top:4px">Editar Perfil ›</div>
             </div>
-
           </div>
 
-          <div
-            id="openDevInfoBtn"
-            class="card"
-            style="cursor:pointer"
-          >
+          <div id="openDevInfoBtn" class="card" style="cursor:pointer">
             <b>Sobre o Desenvolvedor</b>
-
-            <div style="opacity:.5;font-size:13px;margin-top:4px">
-              Gaspar Kididi
-            </div>
-
+            <div style="opacity:.5;font-size:13px;margin-top:4px">Gaspar Kididi</div>
           </div>
 
-          <button
-            id="logoutBtn"
-            class="primary danger"
-          >
-            Terminar Sessão
-          </button>
-
+          <button id="logoutBtn" class="primary danger">Terminar Sessão</button>
         </section>
 
         <section id="profileEditPage" class="page hidden">
-
           <div class="page-header">
-
-            <button
-              class="back-btn"
-              data-back="settingsPage"
-            >
-              ← Voltar
-            </button>
-
-            <h2 class="page-title">
-              Editar Perfil
-            </h2>
-
+            <button class="back-btn" data-back="settingsPage">← Voltar</button>
+            <h2 class="page-title">Editar Perfil</h2>
           </div>
-
           <div class="card">
-
             <div class="field">
-
-              <label>
-                Nome Público
-              </label>
-
+              <label>Nome Público</label>
               <input id="profileNameInput">
-
             </div>
-
             <div class="field">
-
-              <label>
-                Foto de perfil
-              </label>
-
+              <label>Foto de perfil</label>
               <label class="file-label">
-
                 📷 Selecionar da Galeria
-
-                <input
-                  id="profileFilePicker"
-                  type="file"
-                  accept="image/*"
-                  class="hidden"
-                >
-
+                <input id="profileFilePicker" type="file" accept="image/*" class="hidden">
               </label>
-
-              <div
-                id="profileFileStatus"
-                style="font-size:12px;margin-top:6px;color:#35e895"
-              ></div>
-
+              <div id="profileFileStatus" style="font-size:12px;margin-top:6px;color:#35e895"></div>
             </div>
-
-            <button
-              id="saveProfileBtn"
-              class="primary"
-            >
-              Guardar Alterações
-            </button>
-
+            <button id="saveProfileBtn" class="primary">Guardar Alterações</button>
           </div>
-
         </section>
 
         <section id="devInfoPage" class="page hidden">
-
           <div class="page-header">
-
-            <button
-              class="back-btn"
-              data-back="settingsPage"
-            >
-              ← Voltar
-            </button>
-
-            <h2 class="page-title">
-              Desenvolvedor
-            </h2>
-
+            <button class="back-btn" data-back="settingsPage">← Voltar</button>
+            <h2 class="page-title">Desenvolvedor</h2>
           </div>
-
-          <div
-            class="card"
-            style="line-height:1.6"
-          >
-
-            <div
-              style="font-size:20px;font-weight:900;color:#00d9ff"
-            >
-              Gaspar Kididi
-            </div>
-
-            <div
-              style="font-size:13px;opacity:.6;margin:8px 0 15px"
-            >
-              Criador & Desenvolvedor Solo
-            </div>
-
-            <p
-              style="font-size:14px;opacity:.85"
-            >
-              O <b>KidiTalk</b> foi idealizado e desenvolvido por
-              Gaspar Kididi. Desenvolvimento iniciado no dia 30
-              do mês passado, com foco em criar um sistema de
-              comunicação em tempo real robusto, privado e preparado
-              para crescer.
+          <div class="card" style="line-height:1.6">
+            <div style="font-size:20px;font-weight:900;color:#00d9ff">Gaspar Kididi</div>
+            <div style="font-size:13px;opacity:.6;margin:8px 0 15px">Criador & Desenvolvedor Solo</div>
+            <p style="font-size:14px;opacity:.85">
+              O <b>KidiTalk</b> foi idealizado e desenvolvido por Gaspar Kididi. Sistema em tempo real privado e expansível.
             </p>
-
           </div>
-
         </section>
-
       </main>
 
       <nav class="bottom">
-
-        <button
-          class="nav active"
-          data-page="conversationsPage"
-        >
-          <span class="nav-icon">◉</span>
-          Conversas
+        <button class="nav active" data-page="conversationsPage">
+          <span class="nav-icon">◉</span> Conversas
         </button>
-
-        <button
-          class="nav"
-          data-page="contactsPage"
-        >
-          <span class="nav-icon">♣</span>
-          Contactos
+        <button class="nav" data-page="contactsPage">
+          <span class="nav-icon">♣</span> Contactos
         </button>
-
-        <button
-          class="nav"
-          data-page="statusPage"
-        >
-          <span class="nav-icon">✦</span>
-          Status
+        <button class="nav" data-page="statusPage">
+          <span class="nav-icon">✦</span> Status
         </button>
-
-        <button
-          class="nav"
-          data-page="settingsPage"
-        >
-          <span class="nav-icon">⚙</span>
-          Definições
+        <button class="nav" data-page="settingsPage">
+          <span class="nav-icon">⚙</span> Definições
         </button>
-
       </nav>
-
     </div>
   </div>
-
 </div>
 
 <div id="chatScreen" class="screen hidden">
-
   <div class="chat">
-
     <header class="chat-header">
-
-      <button
-        id="closeChatBtn"
-        class="back"
-      >
-        ‹
-      </button>
-
-      <div
-        id="chatAvatar"
-        class="avatar"
-      >
-        K
-      </div>
-
+      <button id="closeChatBtn" class="back">‹</button>
+      <div id="chatAvatar" class="avatar">K</div>
       <div class="chat-title">
-
-        <div
-          id="chatName"
-          class="chat-name"
-        >
-          Conversa
-        </div>
-
+        <div id="chatName" class="chat-name">Conversa</div>
       </div>
-
     </header>
-
-    <div
-      id="messages"
-      class="messages"
-    ></div>
-
-    <form
-      id="composer"
-      class="composer"
-    >
-
-      <input
-        id="messageInput"
-        autocomplete="off"
-        placeholder="Escreve uma mensagem..."
-      >
-
-      <button
-        class="send"
-        type="submit"
-      >
-        ➤
-      </button>
-
+    <div id="messages" class="messages"></div>
+    <form id="composer" class="composer">
+      <input id="messageInput" autocomplete="off" placeholder="Escreve uma mensagem...">
+      <button class="send" type="submit">➤</button>
     </form>
-
   </div>
-
 </div>
 
 <div id="statusModal" class="modal hidden">
-
   <div class="modal-card">
-
     <div class="modal-head">
-
-      <div class="modal-title">
-        Novo Status
-      </div>
-
-      <button
-        id="closeStatusModal"
-        class="close"
-      >
-        ×
-      </button>
-
+      <div class="modal-title">Novo Status</div>
+      <button id="closeStatusModal" class="close">×</button>
     </div>
-
     <div class="field">
-
-      <label>
-        Mídia da galeria
-      </label>
-
+      <label>Mídia da galeria</label>
       <label class="file-label">
-
         📁 Carregar Foto / Vídeo
-
-        <input
-          id="statusFilePicker"
-          type="file"
-          accept="image/*,video/*"
-          class="hidden"
-        >
-
+        <input id="statusFilePicker" type="file" accept="image/*,video/*" class="hidden">
       </label>
-
-      <div
-        id="statusFileStatus"
-        style="font-size:12px;margin-top:6px;color:#35e895"
-      ></div>
-
+      <div id="statusFileStatus" style="font-size:12px;margin-top:6px;color:#35e895"></div>
     </div>
-
-    <div
-      id="statusPreviewWrap"
-      class="hidden"
-    >
-
-      <video
-        id="statusPreviewVideo"
-        class="status-preview"
-        controls
-        playsinline
-      ></video>
-
-      <img
-        id="statusPreviewImage"
-        class="status-preview hidden"
-      >
-
+    <div id="statusPreviewWrap" class="hidden">
+      <video id="statusPreviewVideo" class="status-preview" controls playsinline></video>
+      <img id="statusPreviewImage" class="status-preview hidden">
     </div>
-
     <div class="field">
-
-      <label>
-        Legenda
-      </label>
-
-      <textarea
-        id="statusCaption"
-        rows="2"
-        placeholder="Escreve uma legenda..."
-      ></textarea>
-
+      <label>Legenda</label>
+      <textarea id="statusCaption" rows="2" placeholder="Escreve uma legenda..."></textarea>
     </div>
-
-    <button
-      id="confirmPublishStatus"
-      class="primary"
-    >
-      Publicar Status
-    </button>
-
+    <button id="confirmPublishStatus" class="primary">Publicar Status</button>
   </div>
-
 </div>
 
-<div
-  id="viewer"
-  class="viewer hidden"
->
-
-  <div class="viewer-top">
-
-    <button
-      id="closeViewer"
-      class="back"
-    >
-      ×
-    </button>
-
-    <div
-      id="viewerName"
-      style="font-weight:800;flex:1"
-    ></div>
-
-  </div>
-
-  <div class="viewer-progress">
-    <span id="viewerProgress"></span>
-  </div>
-
-  <div
-    id="viewerMedia"
-    class="viewer-media"
-  ></div>
-
-  <div
-    id="viewerCaption"
-    class="viewer-caption"
-  ></div>
-
-</div>
-
-<div
-  id="contextMenu"
-  class="context-menu hidden"
->
-
-  <button
-    id="ctxCopy"
-    class="context-btn"
-  >
-    Copiar Texto
-  </button>
-
-  <button
-    id="ctxEdit"
-    class="context-btn"
-  >
-    Editar Mensagem
-  </button>
-
-  <button
-    id="ctxDelete"
-    class="context-btn"
-    style="color:#ff5555"
-  >
-    Eliminar
-  </button>
-
-</div>
-
-<div
-  id="toast"
-  class="toast hidden"
-></div>
+<div id="toast" class="toast hidden"></div>
 
 <script type="module">
-
-  import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  getDocs,
-  setDoc,
-  updateDoc,
-  deleteDoc,
-  collection,
-  query,
-  where,
-  orderBy,
-  limit,
-  onSnapshot,
-  serverTimestamp,
-  runTransaction
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
-
-
-/* =========================================================
-   FIREBASE
-========================================================= */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc, collection, query, where, orderBy, onSnapshot, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBl_SqID26LfAIYrd9HykCETmNLb7d66m4",
@@ -754,3433 +340,315 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-
-/* =========================================================
-   ESTADO GLOBAL
-========================================================= */
-
 const $ = id => document.getElementById(id);
+let me = null, myProfile = null, activeChat = null, chatUnsub = null;
+let requestUnsub = null, contactsUnsub = null, statusUnsub = null, conversationsUnsub = null;
 
-let me = null;
-let myProfile = null;
-
-let activeChat = null;
-let chatUnsub = null;
-
-let profileFile = null;
-let statusFile = null;
-
-let selectedMessage = null;
-let statusTimer = null;
-
-let requestUnsub = null;
-let contactsUnsub = null;
-let statusUnsub = null;
-let conversationsUnsub = null;
-
-
-/* =========================================================
-   UTILITÁRIOS
-========================================================= */
-
-function esc(value) {
-  return String(value ?? "").replace(
-    /[&<>"']/g,
-    c => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    }[c])
-  );
-}
-
-
+function esc(val) { return String(val ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c])); }
 function initials(name) {
-
-  const parts = String(name || "K")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean);
-
+  const parts = String(name || "K").trim().split(/\s+/).filter(Boolean);
   if (!parts.length) return "K";
-
-  if (parts.length === 1) {
-    return parts[0].slice(0, 2).toUpperCase();
-  }
-
-  return (
-    parts[0][0] +
-    parts[parts.length - 1][0]
-  ).toUpperCase();
+  return parts.length === 1 ? parts[0].slice(0, 2).toUpperCase() : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
-
-
-function showToast(message) {
-
-  $("toast").textContent = message;
-
-  $("toast").classList.remove("hidden");
-
-  clearTimeout(showToast.timer);
-
-  showToast.timer = setTimeout(() => {
-    $("toast").classList.add("hidden");
-  }, 3000);
+function showToast(msg) {
+  $("toast").textContent = msg; $("toast").classList.remove("hidden");
+  clearTimeout(showToast.timer); showToast.timer = setTimeout(() => $("toast").classList.add("hidden"), 3000);
 }
-
-
-function firebaseError(error) {
-
-  console.error(error);
-
-  const code = error?.code || "";
-
-  if (code.includes("permission-denied")) {
-    showToast(
-      "O Firebase recusou esta operação. Verifica as Rules."
-    );
-    return;
-  }
-
-  if (code.includes("unauthenticated")) {
-    showToast("A sessão expirou. Entra novamente.");
-    return;
-  }
-
-  if (code.includes("not-found")) {
-    showToast("O conteúdo solicitado não foi encontrado.");
-    return;
-  }
-
-  if (code.includes("network")) {
-    showToast("Problema de ligação. Tenta novamente.");
-    return;
-  }
-
-  showToast(
-    error?.message ||
-    "Ocorreu um erro. Tenta novamente."
-  );
+function firebaseError(err) {
+  console.error(err);
+  showToast(err?.message || "Ocorreu um erro no Firebase.");
 }
-
-
-function setLoading(button, text) {
-
-  button.disabled = true;
-
-  button.innerHTML =
-    `<span class="loader"></span>${esc(text)}`;
-}
-
-
-function resetButton(button, text) {
-
-  button.disabled = false;
-  button.textContent = text;
-}
-
-
-/* =========================================================
-   NAVEGAÇÃO
-========================================================= */
 
 function showPage(pageId) {
-
-  document.querySelectorAll(".page")
-    .forEach(page => page.classList.add("hidden"));
-
-  const target = $(pageId);
-
-  if (target) {
-    target.classList.remove("hidden");
-  }
-
-  document.querySelectorAll(".nav")
-    .forEach(button => {
-      button.classList.toggle(
-        "active",
-        button.dataset.page === pageId
-      );
-    });
+  document.querySelectorAll(".page").forEach(p => p.classList.add("hidden"));
+  const target = $(pageId); if (target) target.classList.remove("hidden");
+  document.querySelectorAll(".nav").forEach(b => b.classList.toggle("active", b.dataset.page === pageId));
 }
-
-
 window.showPage = showPage;
 
-
-document.querySelectorAll(".nav[data-page]")
-  .forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      showPage(button.dataset.page);
-
-      if (button.dataset.page === "contactsPage") {
-        listenRequests();
-        listenContacts();
-      }
-
-      if (button.dataset.page === "statusPage") {
-        listenStatuses();
-      }
-
-    });
-
+document.querySelectorAll(".nav[data-page]").forEach(b => {
+  b.addEventListener("click", () => {
+    showPage(b.dataset.page);
+    if (b.dataset.page === "contactsPage") { listenRequests(); listenContacts(); }
+    if (b.dataset.page === "statusPage") listenStatuses();
   });
-
-
-document.querySelectorAll("[data-back]")
-  .forEach(button => {
-
-    button.addEventListener("click", () => {
-      showPage(button.dataset.back);
-    });
-
-  });
-
-
-$("settingsTopBtn").addEventListener(
-  "click",
-  () => showPage("settingsPage")
-);
-
-
-$("openProfileBtn").addEventListener(
-  "click",
-  () => {
-
-    showPage("profileEditPage");
-
-    $("profileNameInput").value =
-      myProfile?.name || "";
-
-  }
-);
-
-
-$("openDevInfoBtn").addEventListener(
-  "click",
-  () => showPage("devInfoPage")
-);
-
-
-/* =========================================================
-   LOGIN / REGISTO
-========================================================= */
-
-$("loginTab").addEventListener(
-  "click",
-  () => {
-
-    $("loginTab").classList.add("active");
-    $("registerTab").classList.remove("active");
-
-    $("registerFields").classList.add("hidden");
-
-    $("authButton").textContent =
-      "Entrar no KidiTalk";
-
-  }
-);
-
-
-$("registerTab").addEventListener(
-  "click",
-  () => {
-
-    $("registerTab").classList.add("active");
-    $("loginTab").classList.remove("active");
-
-    $("registerFields").classList.remove("hidden");
-
-    $("authButton").textContent =
-      "Criar conta";
-
-  }
-);
-
-
-$("logoutBtn").addEventListener(
-  "click",
-  () => signOut(auth)
-);
-
-
-/* =========================================================
-   CRIAÇÃO / LOGIN
-========================================================= */
-
-$("authButton").addEventListener(
-  "click",
-  async () => {
-
-    const button = $("authButton");
-
-    if (button.disabled) return;
-
-    const email =
-      $("authEmail").value.trim();
-
-    const password =
-      $("authPassword").value;
-
-    const registerMode =
-      !$("registerFields").classList.contains("hidden");
-
-    if (!email) {
-      showToast("Introduz o teu e-mail.");
-      return;
-    }
-
-    if (password.length < 6) {
-      showToast(
-        "A senha precisa de pelo menos 6 caracteres."
-      );
-      return;
-    }
-
-    setLoading(
-      button,
-      registerMode
-        ? "A criar conta..."
-        : "A entrar..."
-    );
-
-    try {
-
-      if (registerMode) {
-
-        const name =
-          $("regName").value.trim();
-
-        const username =
-          $("regUsername")
-            .value
-            .trim()
-            .replace(/^@/, "")
-            .toLowerCase();
-
-        if (!name) {
-          throw new Error(
-            "Preenche o nome público."
-          );
-        }
-
-        if (!/^[a-z0-9_.]{3,30}$/.test(username)) {
-          throw new Error(
-            "Username inválido. Usa 3-30 caracteres."
-          );
-        }
-
-        const usernameQuery = query(
-          collection(db, "users"),
-          where("usernameLower", "==", username),
-          limit(1)
-        );
-
-        const usernameSnap =
-          await getDocs(usernameQuery);
-
-        if (!usernameSnap.empty) {
-          throw new Error(
-            "Esse nome de utilizador já está em uso."
-          );
-        }
-
-        const credential =
-          await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          );
-
-        await setDoc(
-          doc(db, "users", credential.user.uid),
-          {
-            uid: credential.user.uid,
-            name,
-            username,
-            usernameLower: username,
-            photoURL: "",
-            photoPath: "",
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
-          },
-          { merge: true }
-        );
-
-      } else {
-
-        await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-
-      }
-
-    } catch (error) {
-
-      firebaseError(error);
-
-      resetButton(
-        button,
-        registerMode
-          ? "Criar conta"
-          : "Entrar no KidiTalk"
-      );
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   AVATAR
-========================================================= */
-
-function setAvatar(element, profile) {
-
-  if (!element) return;
-
-  if (profile?.photoURL) {
-
-    element.innerHTML =
-      `<img src="${esc(profile.photoURL)}" alt="">`;
-
-  } else {
-
-    element.innerHTML =
-      `${esc(initials(profile?.name))}<span class="online-dot"></span>`;
-
-  }
-
-}
-
-
-function renderMe() {
-
-  setAvatar(
-    $("topAvatar"),
-    myProfile
-  );
-
-  setAvatar(
-    $("settingsAvatar"),
-    myProfile
-  );
-
-  $("topName").textContent =
-    myProfile?.name || "KidiTalk";
-
-  $("topUsername").textContent =
-    "@" + (myProfile?.username || "utilizador");
-
-  $("settingsName").textContent =
-    myProfile?.name || "Utilizador";
-
-  $("settingsUser").textContent =
-    "@" + (myProfile?.username || "utilizador");
-
-}
-
-
-/* =========================================================
-   IDS DETERMINÍSTICOS
-========================================================= */
-
-function conversationId(a, b) {
-
-  return [a, b]
-    .sort()
-    .join("_");
-
-}
-
-
-function contactId(owner, contact) {
-
-  return `${owner}_${contact}`;
-
-}
-
-
-function requestId(sender, receiver) {
-
-  return `${sender}_${receiver}`;
-
-}
-
-
-/* =========================================================
-   LIMPEZA
-========================================================= */
-
-function cleanupListeners() {
-
-  if (chatUnsub) {
-    chatUnsub();
-    chatUnsub = null;
-  }
-
-  if (requestUnsub) {
-    requestUnsub();
-    requestUnsub = null;
-  }
-
-  if (contactsUnsub) {
-    contactsUnsub();
-    contactsUnsub = null;
-  }
-
-  if (statusUnsub) {
-    statusUnsub();
-    statusUnsub = null;
-  }
-
-  if (conversationsUnsub) {
-    conversationsUnsub();
-    conversationsUnsub = null;
-  }
-
-}
-
-
-/* =========================================================
-   AUTENTICAÇÃO
-========================================================= */
-
-onAuthStateChanged(
-  auth,
-  async user => {
-
-    if (!user) {
-
-      cleanupListeners();
-
-      me = null;
-      myProfile = null;
-
-      $("authScreen")
-        .classList.remove("hidden");
-
-      $("appScreen")
-        .classList.add("hidden");
-
-      $("chatScreen")
-        .classList.add("hidden");
-
-      return;
-    }
-
-    me = user;
-
-    $("authScreen")
-      .classList.add("hidden");
-
-    $("appScreen")
-      .classList.remove("hidden");
-
-    try {
-
-      let profileSnap =
-        await getDoc(
-          doc(db, "users", user.uid)
-        );
-
-      if (!profileSnap.exists()) {
-
-        const fallback =
-          (user.email?.split("@")[0] ||
-          "utilizador")
-          .toLowerCase()
-          .replace(/[^a-z0-9_.]/g, "")
-          .slice(0, 30);
-
-        await setDoc(
-          doc(db, "users", user.uid),
-          {
-            uid: user.uid,
-            name: user.email?.split("@")[0] ||
-              "Utilizador",
-            username: fallback || `user_${user.uid.slice(0, 8)}`,
-            usernameLower: fallback ||
-              `user_${user.uid.slice(0, 8)}`,
-            photoURL: "",
-            photoPath: "",
-            createdAt: serverTimestamp(),
-            updatedAt: serverTimestamp()
-          },
-          { merge: true }
-        );
-
-        profileSnap =
-          await getDoc(
-            doc(db, "users", user.uid)
-          );
-
-      }
-
-      myProfile =
-        profileSnap.data();
-
-      renderMe();
-
-      listenConversations();
-
-    } catch (error) {
-
-      firebaseError(error);
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   CONVERSAS
-========================================================= */
-
-function listenConversations() {
-
-  if (!me) return;
-
-  if (conversationsUnsub) {
-    conversationsUnsub();
-  }
-
-  const q = query(
-    collection(db, "conversations"),
-    where(
-      "members",
-      "array-contains",
-      me.uid
-    )
-  );
-
-  conversationsUnsub =
-    onSnapshot(
-      q,
-      async snapshot => {
-
-        const conversations = [];
-
-        for (const item of snapshot.docs) {
-
-          const data = item.data();
-
-          const otherId =
-            (data.members || [])
-              .find(id => id !== me.uid);
-
-          let profile = null;
-
-          if (otherId) {
-
-            const profileSnap =
-              await getDoc(
-                doc(db, "users", otherId)
-              );
-
-            if (profileSnap.exists()) {
-              profile =
-                profileSnap.data();
-            }
-
-          }
-
-          conversations.push({
-            id: item.id,
-            data,
-            profile
-          });
-
-        }
-
-        conversations.sort(
-          (a, b) =>
-            (b.data.updatedAt?.toMillis?.() || 0) -
-            (a.data.updatedAt?.toMillis?.() || 0)
-        );
-
-        const container =
-          $("conversationList");
-
-        if (!conversations.length) {
-
-          container.innerHTML =
-            `<div class="empty">
-              Ainda não tens conversas.
-            </div>`;
-
-          return;
-        }
-
-        container.innerHTML =
-          conversations
-            .map(conversation => {
-
-              const p =
-                conversation.profile;
-
-              return `
-                <div
-                  class="swipe-container"
-                  data-conversation-container="${esc(conversation.id)}"
-                >
-
-                  <div
-                    class="swipe-item"
-                    data-open-chat="${esc(conversation.id)}"
-                  >
-
-                    <div class="avatar">
-
-                      ${
-                        p?.photoURL
-                        ? `<img src="${esc(p.photoURL)}" alt="">`
-                        : esc(initials(p?.name))
-                      }
-
-                    </div>
-
-                    <div class="person-info">
-
-                      <div class="person-name">
-                        ${esc(p?.name || "Conversa")}
-                      </div>
-
-                      <div class="person-user">
-                        @${esc(p?.username || "utilizador")}
-                      </div>
-
-                    </div>
-
-                    <div
-                      style="
-                        max-width:110px;
-                        overflow:hidden;
-                        text-overflow:ellipsis;
-                        white-space:nowrap;
-                        opacity:.55;
-                        font-size:12px
-                      "
-                    >
-                      ${esc(conversation.data.lastMessage || "Nova conversa")}
-                    </div>
-
-                  </div>
-
-                  <button
-                    class="swipe-action"
-                    data-del-chat="${esc(conversation.id)}"
-                  >
-                    Eliminar
-                  </button>
-
-                </div>
-              `;
-
-            })
-            .join("");
-
-        document
-          .querySelectorAll("[data-open-chat]")
-          .forEach(button => {
-
-            button.onclick = () =>
-              openChat(
-                button.dataset.openChat
-              );
-
-          });
-
-        document
-          .querySelectorAll("[data-del-chat]")
-          .forEach(button => {
-
-            button.onclick = event => {
-
-              event.stopPropagation();
-
-              deleteConversation(
-                button.dataset.delChat
-              );
-
-            };
-
-          });
-
-      },
-      error => firebaseError(error)
-    );
-
-}
-
-
-/* =========================================================
-   ELIMINAR CONVERSA
-========================================================= */
-
-async function deleteConversation(id) {
-
-  if (!me) return;
-
-  if (
-    !confirm(
-      "Eliminar esta conversa da tua lista?"
-    )
-  ) return;
+});
+document.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click", () => showPage(b.dataset.back)));
+$("settingsTopBtn").onclick = () => showPage("settingsPage");
+$("openProfileBtn").onclick = () => { showPage("profileEditPage"); $("profileNameInput").value = myProfile?.name || ""; };
+$("openDevInfoBtn").onclick = () => showPage("devInfoPage");
+
+$("loginTab").onclick = () => { $("loginTab").classList.add("active"); $("registerTab").classList.remove("active"); $("registerFields").classList.add("hidden"); $("authButton").textContent = "Entrar no KidiTalk"; };
+$("registerTab").onclick = () => { $("registerTab").classList.add("active"); $("loginTab").classList.remove("active"); $("registerFields").classList.remove("hidden"); $("authButton").textContent = "Criar conta"; };
+$("logoutBtn").onclick = () => signOut(auth);
+
+$("authButton").onclick = async () => {
+  const email = $("authEmail").value.trim(), password = $("authPassword").value;
+  const isReg = !$("registerFields").classList.contains("hidden");
+  if (!email || password.length < 6) return showToast("E-mail ou senha inválidos.");
 
   try {
+    if (isReg) {
+      const name = $("regName").value.trim(), username = $("regUsername").value.trim().replace(/^@/, "").toLowerCase();
+      if (!name || !username) return showToast("Preencha todos os campos.");
+      
+      const q = query(collection(db, "users"), where("usernameLower", "==", username));
+      const snap = await getDocs(q);
+      if (!snap.empty) return showToast("Este username já está a ser usado.");
 
-    await deleteDoc(
-      doc(db, "conversations", id)
-    );
-
-    showToast(
-      "Conversa eliminada."
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   PEDIDOS
-========================================================= */
-
-function listenRequests() {
-
-  if (!me) return;
-
-  if (requestUnsub) {
-    requestUnsub();
-  }
-
-  const q = query(
-    collection(db, "friendRequests"),
-    where(
-      "receiverId",
-      "==",
-      me.uid
-    )
-  );
-
-  requestUnsub =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const requests =
-          snapshot.docs
-            .filter(
-              d =>
-                d.data().status === "pending"
-            );
-
-        if (!requests.length) {
-
-          $("requestsList").innerHTML =
-            `<div class="muted">
-              Nenhum pedido pendente.
-            </div>`;
-
-          return;
-        }
-
-        $("requestsList").innerHTML =
-          requests.map(d => {
-
-            const x = d.data();
-
-            return `
-              <div class="card person">
-
-                <div class="avatar">
-                  ${
-                    x.senderPhotoURL
-                    ? `<img src="${esc(x.senderPhotoURL)}" alt="">`
-                    : esc(initials(x.senderName))
-                  }
-                </div>
-
-                <div class="person-info">
-
-                  <div class="person-name">
-                    ${esc(x.senderName)}
-                  </div>
-
-                  <div class="person-user">
-                    @${esc(x.senderUsername || "")}
-                  </div>
-
-                </div>
-
-                <button
-                  class="action"
-                  data-accept="${esc(d.id)}"
-                >
-                  Aceitar
-                </button>
-
-                <button
-                  class="action danger"
-                  data-reject="${esc(d.id)}"
-                >
-                  ×
-                </button>
-
-              </div>
-            `;
-
-          }).join("");
-
-        document
-          .querySelectorAll("[data-accept]")
-          .forEach(button => {
-
-            button.onclick = () =>
-              acceptRequest(
-                button.dataset.accept
-              );
-
-          });
-
-        document
-          .querySelectorAll("[data-reject]")
-          .forEach(button => {
-
-            button.onclick = () =>
-              rejectRequest(
-                button.dataset.reject
-              );
-
-          });
-
-      },
-      error => firebaseError(error)
-    );
-
-}
-
-
-/* =========================================================
-   ACEITAR PEDIDO
-========================================================= */
-
-async function acceptRequest(requestDocumentId) {
-
-  if (!me) return;
-
-  try {
-
-    const requestRef =
-      doc(
-        db,
-        "friendRequests",
-        requestDocumentId
-      );
-
-    const requestSnap =
-      await getDoc(requestRef);
-
-    if (!requestSnap.exists()) {
-      throw new Error(
-        "Este pedido já não existe."
-      );
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      await setDoc(doc(db, "users", res.user.uid), { uid: res.user.uid, name, username, usernameLower: username, photoURL: "", createdAt: serverTimestamp() });
+      await setDoc(doc(db, "usernames", username), { uid: res.user.uid });
+    } else {
+      await signInWithEmailAndPassword(auth, email, password);
     }
-
-    const requestData =
-      requestSnap.data();
-
-    if (
-      requestData.receiverId !== me.uid
-    ) {
-      throw new Error(
-        "Este pedido não pertence a esta conta."
-      );
-    }
-
-    if (
-      requestData.status !== "pending"
-    ) {
-      throw new Error(
-        "Este pedido já foi processado."
-      );
-    }
-
-    const senderId =
-      requestData.senderId;
-
-    const cid =
-      conversationId(
-        senderId,
-        me.uid
-      );
-
-    const myContactRef =
-      doc(
-        db,
-        "contacts",
-        contactId(me.uid, senderId)
-      );
-
-    const senderContactRef =
-      doc(
-        db,
-        "contacts",
-        contactId(senderId, me.uid)
-      );
-
-    const conversationRef =
-      doc(
-        db,
-        "conversations",
-        cid
-      );
-
-    await runTransaction(
-      db,
-      async transaction => {
-
-        transaction.update(
-          requestRef,
-          {
-            status: "accepted",
-            respondedAt:
-              serverTimestamp()
-          }
-        );
-
-        transaction.set(
-          myContactRef,
-          {
-            ownerId: me.uid,
-            contactId: senderId,
-            name:
-              requestData.senderName || "Utilizador",
-            username:
-              requestData.senderUsername || "",
-            photoURL:
-              requestData.senderPhotoURL || "",
-            createdAt:
-              serverTimestamp()
-          },
-          { merge: true }
-        );
-
-        transaction.set(
-          senderContactRef,
-          {
-            ownerId: senderId,
-            contactId: me.uid,
-            name:
-              myProfile.name || "Utilizador",
-            username:
-              myProfile.username || "",
-            photoURL:
-              myProfile.photoURL || "",
-            createdAt:
-              serverTimestamp()
-          },
-          { merge: true }
-        );
-
-        transaction.set(
-          conversationRef,
-          {
-            members:
-              [senderId, me.uid].sort(),
-            createdAt:
-              serverTimestamp(),
-            updatedAt:
-              serverTimestamp(),
-            lastMessage:
-              "Conversa iniciada"
-          },
-          { merge: true }
-        );
-
-      }
-    );
-
-    showToast(
-      "Pedido aceite. Conversa iniciada!"
-    );
-
-    listenContacts();
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   RECUSAR / ELIMINAR PEDIDO
-========================================================= */
-
-async function rejectRequest(id) {
-
-  if (!me) return;
-
-  try {
-
-    const refRequest =
-      doc(
-        db,
-        "friendRequests",
-        id
-      );
-
-    const snap =
-      await getDoc(refRequest);
-
-    if (!snap.exists()) {
-      return;
-    }
-
-    if (
-      snap.data().receiverId !== me.uid
-    ) {
-      throw new Error(
-        "Não podes eliminar este pedido."
-      );
-    }
-
-    await deleteDoc(refRequest);
-
-    showToast(
-      "Pedido removido."
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   CONTACTOS
-========================================================= */
-
-function listenContacts() {
-
-  if (!me) return;
-
-  if (contactsUnsub) {
-    contactsUnsub();
-  }
-
-  const q = query(
-    collection(db, "contacts"),
-    where(
-      "ownerId",
-      "==",
-      me.uid
-    )
-  );
-
-  contactsUnsub =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        if (!snapshot.docs.length) {
-
-          $("contactsList").innerHTML =
-            `<div class="muted">
-              Ainda não tens contactos.
-            </div>`;
-
-          return;
-        }
-
-        $("contactsList").innerHTML =
-          snapshot.docs
-            .map(d => {
-
-              const x = d.data();
-
-              return `
-                <div class="card person">
-
-                  <div class="avatar">
-
-                    ${
-                      x.photoURL
-                      ? `<img src="${esc(x.photoURL)}" alt="">`
-                      : esc(initials(x.name))
-                    }
-
-                  </div>
-
-                  <div class="person-info">
-
-                    <div class="person-name">
-                      ${esc(x.name)}
-                    </div>
-
-                    <div class="person-user">
-                      @${esc(x.username || "")}
-                    </div>
-
-                  </div>
-
-                  <button
-                    class="action"
-                    data-talk="${esc(x.contactId)}"
-                  >
-                    Conversar
-                  </button>
-
-                  <button
-                    class="action danger"
-                    data-remove-contact="${esc(d.id)}"
-                  >
-                    ×
-                  </button>
-
-                </div>
-              `;
-
-            })
-            .join("");
-
-        document
-          .querySelectorAll("[data-talk]")
-          .forEach(button => {
-
-            button.onclick = () =>
-              startConversation(
-                button.dataset.talk
-              );
-
-          });
-
-        document
-          .querySelectorAll("[data-remove-contact]")
-          .forEach(button => {
-
-            button.onclick = event => {
-
-              event.stopPropagation();
-
-              removeContact(
-                button.dataset.removeContact
-              );
-
-            };
-
-          });
-
-      },
-      error => firebaseError(error)
-    );
-
-}
-
-
-/* =========================================================
-   REMOVER CONTACTO
-========================================================= */
-
-async function removeContact(myContactDocumentId) {
-
-  if (!me) return;
-
-  if (
-    !confirm(
-      "Eliminar este contacto?"
-    )
-  ) return;
-
-  try {
-
-    const myRef =
-      doc(
-        db,
-        "contacts",
-        myContactDocumentId
-      );
-
-    const mySnap =
-      await getDoc(myRef);
-
-    if (!mySnap.exists()) {
-      throw new Error(
-        "Contacto não encontrado."
-      );
-    }
-
-    const data =
-      mySnap.data();
-
-    if (
-      data.ownerId !== me.uid
-    ) {
-      throw new Error(
-        "Não podes eliminar este contacto."
-      );
-    }
-
-    const otherId =
-      data.contactId;
-
-    const otherRef =
-      doc(
-        db,
-        "contacts",
-        contactId(
-          otherId,
-          me.uid
-        )
-      );
-
-    await runTransaction(
-      db,
-      async transaction => {
-
-        transaction.delete(myRef);
-
-        const otherSnap =
-          await transaction.get(otherRef);
-
-        if (otherSnap.exists()) {
-          transaction.delete(otherRef);
-        }
-
-      }
-    );
-
-    showToast(
-      "Contacto removido."
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   INICIAR / ABRIR CONVERSA
-========================================================= */
-
-async function startConversation(uid) {
-
-  if (!me) return;
-
-  try {
-
-    if (uid === me.uid) {
-      throw new Error(
-        "Não podes iniciar uma conversa contigo mesmo."
-      );
-    }
-
-    const contactRef =
-      doc(
-        db,
-        "contacts",
-        contactId(me.uid, uid)
-      );
-
-    const contactSnap =
-      await getDoc(contactRef);
-
-    if (!contactSnap.exists()) {
-      throw new Error(
-        "Primeiro é necessário aceitar o pedido de amizade."
-      );
-    }
-
-    const cid =
-      conversationId(
-        me.uid,
-        uid
-      );
-
-    const conversationRef =
-      doc(
-        db,
-        "conversations",
-        cid
-      );
-
-    const conversationSnap =
-      await getDoc(conversationRef);
-
-    if (!conversationSnap.exists()) {
-
-      await setDoc(
-        conversationRef,
-        {
-          members:
-            [me.uid, uid].sort(),
-          createdAt:
-            serverTimestamp(),
-          updatedAt:
-            serverTimestamp(),
-          lastMessage:
-            "Conversa iniciada"
-        },
-        { merge: true }
-      );
-
-    }
-
-    const profileSnap =
-      await getDoc(
-        doc(db, "users", uid)
-      );
-
-    if (!profileSnap.exists()) {
-      throw new Error(
-        "Utilizador não encontrado."
-      );
-    }
-
-    openChat(
-      cid,
-      profileSnap.data()
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   ABRIR CHAT
-========================================================= */
-
-async function openChat(
-  conversationDocumentId,
-  suppliedProfile = null
-) {
-
-  if (!me) return;
-
-  try {
-
-    const conversationSnap =
-      await getDoc(
-        doc(
-          db,
-          "conversations",
-          conversationDocumentId
-        )
-      );
-
-    if (!conversationSnap.exists()) {
-      throw new Error(
-        "Conversa não encontrada."
-      );
-    }
-
-    const conversationData =
-      conversationSnap.data();
-
-    if (
-      !(conversationData.members || [])
-        .includes(me.uid)
-    ) {
-      throw new Error(
-        "Não tens acesso a esta conversa."
-      );
-    }
-
-    const otherId =
-      (conversationData.members || [])
-        .find(id => id !== me.uid);
-
-    if (!otherId) {
-      throw new Error(
-        "Participante da conversa não encontrado."
-      );
-    }
-
-    let profile =
-      suppliedProfile;
-
-    if (!profile) {
-
-      const profileSnap =
-        await getDoc(
-          doc(db, "users", otherId)
-        );
-
-      if (!profileSnap.exists()) {
-        throw new Error(
-          "Perfil do contacto não encontrado."
-        );
-      }
-
-      profile =
-        profileSnap.data();
-
-    }
-
-    activeChat = {
-      id: conversationDocumentId,
-      otherId,
-      profile
-    };
-
-    $("chatName").textContent =
-      profile.name || "Conversa";
-
-    setAvatar(
-      $("chatAvatar"),
-      profile
-    );
-
-    $("chatScreen")
-      .classList.remove("hidden");
-
-    $("appScreen")
-      .classList.add("hidden");
-
-    if (chatUnsub) {
-      chatUnsub();
-    }
-
-    const messagesQuery =
-      query(
-        collection(
-          db,
-          "conversations",
-          conversationDocumentId,
-          "messages"
-        ),
-        orderBy(
-          "createdAt",
-          "asc"
-        ),
-        limit(200)
-      );
-
-    chatUnsub =
-      onSnapshot(
-        messagesQuery,
-        snapshot => {
-
-          let html = "";
-
-          snapshot.docs.forEach(
-            messageDocument => {
-
-              const message =
-                messageDocument.data();
-
-              const mine =
-                message.senderId === me.uid;
-
-              const time =
-                message.createdAt?.toDate
-                  ? message.createdAt
-                      .toDate()
-                      .toLocaleTimeString(
-                        [],
-                        {
-                          hour: "2-digit",
-                          minute: "2-digit"
-                        }
-                      )
-                  : "";
-
-              const seen =
-                !!message.readBy?.[otherId];
-
-              html += `
-                <div
-                  class="message-row ${mine ? "mine" : ""}"
-                  data-msg="${esc(messageDocument.id)}"
-                >
-
-                  <div class="bubble">
-
-                    <div class="message-text">
-                      ${esc(message.text)}
-                    </div>
-
-                    <div class="message-meta">
-
-                      ${
-                        message.edited
-                        ? "editado "
-                        : ""
-                      }
-
-                      ${esc(time)}
-
-                      ${
-                        mine
-                        ? `
-                          <span
-                            class="${
-                              seen
-                              ? "blue-tick"
-                              : "grey-tick"
-                            }"
-                          >
-                            ${
-                              seen
-                              ? "✓✓"
-                              : "✓"
-                            }
-                          </span>
-                        `
-                        : ""
-                      }
-
-                    </div>
-
-                  </div>
-
-                </div>
-              `;
-
-            }
-          );
-
-          $("messages").innerHTML =
-            html ||
-            `<div class="empty">
-              Começa a conversa.
-            </div>`;
-
-          requestAnimationFrame(() => {
-
-            $("messages").scrollTop =
-              $("messages").scrollHeight;
-
-          });
-
-          snapshot.docs.forEach(
-            messageDocument => {
-
-              const message =
-                messageDocument.data();
-
-              if (
-                message.senderId !== me.uid &&
-                !message.readBy?.[me.uid]
-              ) {
-
-                updateDoc(
-                  doc(
-                    db,
-                    "conversations",
-                    conversationDocumentId,
-                    "messages",
-                    messageDocument.id
-                  ),
-                  {
-                    [`readBy.${me.uid}`]: true
-                  }
-                ).catch(() => {});
-
-              }
-
-            }
-          );
-
-        },
-        error => firebaseError(error)
-      );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   FECHAR CHAT
-========================================================= */
-
-$("closeChatBtn").addEventListener(
-  "click",
-  () => {
-
-    if (chatUnsub) {
-      chatUnsub();
-      chatUnsub = null;
-    }
-
-    activeChat = null;
-
-    $("chatScreen")
-      .classList.add("hidden");
-
-    $("appScreen")
-      .classList.remove("hidden");
-
-    showPage(
-      "conversationsPage"
-    );
-
-  }
-);
-
-
-/* =========================================================
-   ENVIAR MENSAGEM
-========================================================= */
-
-$("composer").addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-    if (!me || !activeChat) {
-      return;
-    }
-
-    const input =
-      $("messageInput");
-
-    const text =
-      input.value.trim();
-
-    if (!text) return;
-
-    if (text.length > 10000) {
-      showToast(
-        "A mensagem é demasiado grande."
-      );
-      return;
-    }
-
-    input.value = "";
-
-    try {
-
-      const messageRef =
-        doc(
-          collection(
-            db,
-            "conversations",
-            activeChat.id,
-            "messages"
-          )
-        );
-
-      await setDoc(
-        messageRef,
-        {
-          senderId: me.uid,
-          text,
-          createdAt:
-            serverTimestamp(),
-          edited: false,
-          readBy: {
-            [me.uid]: true
-          }
-        }
-      );
-
-      await updateDoc(
-        doc(
-          db,
-          "conversations",
-          activeChat.id
-        ),
-        {
-          lastMessage: text,
-          lastSenderId: me.uid,
-          updatedAt:
-            serverTimestamp()
-        }
-      );
-
-    } catch (error) {
-
-      input.value = text;
-
-      firebaseError(error);
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   ENTER PARA ENVIAR
-========================================================= */
-
-$("messageInput").addEventListener(
-  "keydown",
-  event => {
-
-    if (
-      event.key === "Enter" &&
-      !event.shiftKey
-    ) {
-
-      event.preventDefault();
-
-      $("composer").requestSubmit();
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   PESQUISA DE UTILIZADORES
-========================================================= */
-
-let searchTimer = null;
-
-$("contactSearch").addEventListener(
-  "input",
-  event => {
-
-    clearTimeout(searchTimer);
-
-    const value =
-      event.target.value
-        .trim()
-        .replace(/^@/, "")
-        .toLowerCase();
-
-    if (value.length < 2) {
-
-      $("contactSearchResults")
-        .innerHTML = "";
-
-      return;
-
-    }
-
-    searchTimer =
-      setTimeout(
-        () => searchUsers(value),
-        250
-      );
-
-  }
-);
-
-
-async function searchUsers(username) {
-
-  try {
-
-    const q =
-      query(
-        collection(db, "users"),
-        where(
-          "usernameLower",
-          "==",
-          username
-        ),
-        limit(10)
-      );
-
-    const snapshot =
-      await getDocs(q);
-
-    const results =
-      snapshot.docs
-        .filter(
-          d => d.id !== me.uid
-        );
-
-    if (!results.length) {
-
-      $("contactSearchResults")
-        .innerHTML =
-        `<div class="muted">
-          Utilizador não encontrado.
-        </div>`;
-
-      return;
-
-    }
-
-    $("contactSearchResults")
-      .innerHTML =
-      results.map(d => {
-
-        const user =
-          d.data();
-
-        return `
-          <div class="card person">
-
-            <div class="avatar">
-
-              ${
-                user.photoURL
-                ? `<img src="${esc(user.photoURL)}" alt="">`
-                : esc(initials(user.name))
-              }
-
-            </div>
-
-            <div class="person-info">
-
-              <div class="person-name">
-                ${esc(user.name)}
-              </div>
-
-              <div class="person-user">
-                @${esc(user.username)}
-              </div>
-
-            </div>
-
-            <button
-              class="action"
-              data-add="${esc(d.id)}"
-            >
-              Adicionar
-            </button>
-
-          </div>
-        `;
-
-      }).join("");
-
-    document
-      .querySelectorAll("[data-add]")
-      .forEach(button => {
-
-        button.onclick = () =>
-          sendRequest(
-            button.dataset.add
-          );
-
-      });
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
-}
-
-
-/* =========================================================
-   ENVIAR PEDIDO
-========================================================= */
-
-async function sendRequest(receiverId) {
-
-  if (!me) return;
-
-  if (receiverId === me.uid) {
-    showToast(
-      "Não podes adicionar a tua própria conta."
-    );
+  } catch (err) { firebaseError(err); }
+};
+
+onAuthStateChanged(auth, async user => {
+  if (!user) {
+    me = null; myProfile = null;
+    $("authScreen").classList.remove("hidden"); $("appScreen").classList.add("hidden"); $("chatScreen").classList.add("hidden");
     return;
   }
-
-  try {
-
-    const contactSnap =
-      await getDoc(
-        doc(
-          db,
-          "contacts",
-          contactId(
-            me.uid,
-            receiverId
-          )
-        )
-      );
-
-    if (contactSnap.exists()) {
-
-      showToast(
-        "Já é teu contacto."
-      );
-
-      return;
-
-    }
-
-    const requestRef =
-      doc(
-        db,
-        "friendRequests",
-        requestId(
-          me.uid,
-          receiverId
-        )
-      );
-
-    const existing =
-      await getDoc(requestRef);
-
-    if (
-      existing.exists() &&
-      existing.data().status === "pending"
-    ) {
-
-      showToast(
-        "Pedido já enviado."
-      );
-
-      return;
-
-    }
-
-    const receiverSnap =
-      await getDoc(
-        doc(
-          db,
-          "users",
-          receiverId
-        )
-      );
-
-    if (!receiverSnap.exists()) {
-      throw new Error(
-        "Utilizador não encontrado."
-      );
-    }
-
-    const receiver =
-      receiverSnap.data();
-
-    await setDoc(
-      requestRef,
-      {
-        senderId: me.uid,
-        senderName:
-          myProfile.name,
-        senderUsername:
-          myProfile.username,
-        senderPhotoURL:
-          myProfile.photoURL || "",
-
-        receiverId,
-        receiverName:
-          receiver.name,
-        receiverUsername:
-          receiver.username,
-        receiverPhotoURL:
-          receiver.photoURL || "",
-
-        status: "pending",
-        createdAt:
-          serverTimestamp()
-      }
-    );
-
-    showToast(
-      "Pedido enviado."
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
+  me = user;
+  $("authScreen").classList.add("hidden"); $("appScreen").classList.remove("hidden");
+  
+  const docSnap = await getDoc(doc(db, "users", user.uid));
+  if (docSnap.exists()) {
+    myProfile = docSnap.data();
+    $("topName").textContent = myProfile.name;
+    $("topUsername").textContent = "@" + myProfile.username;
+    $("settingsName").textContent = myProfile.name;
+    $("settingsUser").textContent = "@" + myProfile.username;
+    listenConversations();
   }
+});
 
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function listenStatuses() {
-
+function listenConversations() {
   if (!me) return;
+  const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
+  conversationsUnsub = onSnapshot(q, async snapshot => {
+    const list = $("conversationList"); list.innerHTML = "";
+    if (snapshot.empty) { list.innerHTML = `<div class="empty">Sem conversas ativas.</div>`; return; }
 
-  if (statusUnsub) {
-    statusUnsub();
-  }
+    for (const chatDoc of snapshot.docs) {
+      const data = chatDoc.data();
+      const otherId = data.members.find(id => id !== me.uid);
+      const otherSnap = await getDoc(doc(db, "users", otherId));
+      const otherData = otherSnap.exists() ? otherSnap.data() : { name: "Utilizador" };
 
-  const q =
-    query(
-      collection(db, "statuses"),
-      where(
-        "expiresAt",
-        ">",
-        new Date()
-      )
-    );
-
-  statusUnsub =
-    onSnapshot(
-      q,
-      snapshot => {
-
-        const statuses =
-          snapshot.docs
-            .map(
-              d => ({
-                id: d.id,
-                ...d.data()
-              })
-            )
-            .filter(
-              status =>
-                status.userId === me.uid ||
-                status.contactsOnly !== true ||
-                true
-            )
-            .sort(
-              (a, b) =>
-                (b.createdAt?.toMillis?.() || 0) -
-                (a.createdAt?.toMillis?.() || 0)
-            );
-
-        if (!statuses.length) {
-
-          $("statusList").innerHTML =
-            `<div class="empty">
-              Nenhum status disponível.
-            </div>`;
-
-          return;
-
-        }
-
-        $("statusList").innerHTML =
-          `<div class="status-grid">
-
-            ${statuses.map(status => {
-
-              const media =
-                status.type === "video"
-                ? `<video
-                    src="${esc(status.url)}"
-                    muted
-                    playsinline
-                  ></video>`
-                : `<img
-                    src="${esc(status.url)}"
-                    alt=""
-                  >`;
-
-              return `
-                <div
-                  class="status-card"
-                  data-status="${esc(status.id)}"
-                >
-
-                  ${media}
-
-                  <div class="status-overlay">
-
-                    <b>
-                      ${esc(
-                        status.userName ||
-                        "Utilizador"
-                      )}
-                    </b>
-
-                    ${
-                      status.caption
-                      ? `<br>${esc(status.caption)}`
-                      : ""
-                    }
-
-                  </div>
-
-                </div>
-              `;
-
-            }).join("")}
-
-          </div>`;
-
-        document
-          .querySelectorAll("[data-status]")
-          .forEach(button => {
-
-            button.onclick = () =>
-              viewStatus(
-                button.dataset.status
-              );
-
-          });
-
-      },
-      error => firebaseError(error)
-    );
-
+      const div = document.createElement("div");
+      div.className = "card person";
+      div.style.cursor = "pointer";
+      div.innerHTML = `
+        <div class="avatar">${otherData.photoURL ? `<img src="${esc(otherData.photoURL)}">` : initials(otherData.name)}</div>
+        <div class="person-info">
+          <div class="person-name">${esc(otherData.name)}</div>
+          <div class="person-user">${esc(data.lastMessage || "")}</div>
+        </div>`;
+      div.onclick = () => openChat(chatDoc.id, otherData);
+      list.appendChild(div);
+    }
+  });
 }
 
-
-/* =========================================================
-   NOVO STATUS
-========================================================= */
-
-$("addStatusBtn").addEventListener(
-  "click",
-  () => {
-
-    $("statusModal")
-      .classList.remove("hidden");
-
-    statusFile = null;
-
-    $("statusFilePicker").value = "";
-
-    $("statusPreviewWrap")
-      .classList.add("hidden");
-
-    $("statusPreviewVideo").src = "";
-
-    $("statusPreviewImage").src = "";
-
-    $("statusFileStatus")
-      .textContent = "";
-
-    $("statusCaption")
-      .value = "";
-
-  }
-);
-
-
-$("closeStatusModal").addEventListener(
-  "click",
-  () => {
-
-    $("statusModal")
-      .classList.add("hidden");
-
-  }
-);
-
-
-/* =========================================================
-   PREVIEW STATUS
-========================================================= */
-
-$("statusFilePicker").addEventListener(
-  "change",
-  event => {
-
-    const file =
-      event.target.files?.[0];
-
-    statusFile = file || null;
-
-    if (!file) {
-
-      $("statusPreviewWrap")
-        .classList.add("hidden");
-
-      return;
-
-    }
-
-    if (
-      !file.type.startsWith("image/") &&
-      !file.type.startsWith("video/")
-    ) {
-
-      showToast(
-        "Escolhe uma imagem ou vídeo válido."
-      );
-
-      statusFile = null;
-
-      return;
-
-    }
-
-    const objectURL =
-      URL.createObjectURL(file);
-
-    $("statusPreviewWrap")
-      .classList.remove("hidden");
-
-    $("statusFileStatus")
-      .textContent =
-      "Pré-visualização pronta.";
-
-    if (
-      file.type.startsWith("video/")
-    ) {
-
-      $("statusPreviewImage")
-        .classList.add("hidden");
-
-      $("statusPreviewVideo")
-        .classList.remove("hidden");
-
-      $("statusPreviewVideo").src =
-        objectURL;
-
-    } else {
-
-      $("statusPreviewVideo")
-        .classList.add("hidden");
-
-      $("statusPreviewImage")
-        .classList.remove("hidden");
-
-      $("statusPreviewImage").src =
-        objectURL;
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   PUBLICAR STATUS
-========================================================= */
-
-$("confirmPublishStatus")
-  .addEventListener(
-    "click",
-    async () => {
-
-      if (!me) return;
-
-      if (!statusFile) {
-
-        showToast(
-          "Escolhe uma foto ou vídeo."
-        );
-
-        return;
-
-      }
-
-      const button =
-        $("confirmPublishStatus");
-
-      setLoading(
-        button,
-        "A publicar..."
-      );
-
-      try {
-
-        if (
-          statusFile.size >
-          20 * 1024 * 1024
-        ) {
-
-          throw new Error(
-            "O arquivo deve ter no máximo 20 MB."
-          );
-
-        }
-
-        const extension =
-          (
-            statusFile.name
-              .split(".")
-              .pop() ||
-            "bin"
-          ).toLowerCase();
-
-        const storagePath =
-          `statuses/${me.uid}/${Date.now()}_${crypto.randomUUID()}.${extension}`;
-
-        const storageReference =
-          ref(
-            storage,
-            storagePath
-          );
-
-        await uploadBytes(
-          storageReference,
-          statusFile,
-          {
-            contentType:
-              statusFile.type
-          }
-        );
-
-        const downloadURL =
-          await getDownloadURL(
-            storageReference
-          );
-
-        const statusRef =
-          doc(
-            collection(
-              db,
-              "statuses"
-            )
-          );
-
-        await setDoc(
-          statusRef,
-          {
-            userId: me.uid,
-            userName:
-              myProfile.name,
-            userUsername:
-              myProfile.username,
-
-            url:
-              downloadURL,
-
-            storagePath,
-
-            type:
-              statusFile.type
-                .startsWith("video/")
-                ? "video"
-                : "image",
-
-            caption:
-              $("statusCaption")
-                .value
-                .trim(),
-
-            contactsOnly:
-              true,
-
-            createdAt:
-              serverTimestamp(),
-
-            expiresAt:
-              new Date(
-                Date.now() +
-                24 * 60 * 60 * 1000
-              )
-          }
-        );
-
-        $("statusModal")
-          .classList.add("hidden");
-
-        statusFile = null;
-
-        showToast(
-          "Status publicado com sucesso!"
-        );
-
-        listenStatuses();
-
-      } catch (error) {
-
-        firebaseError(error);
-
-      } finally {
-
-        resetButton(
-          button,
-          "Publicar Status"
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   VISUALIZADOR DE STATUS
-========================================================= */
-
-async function viewStatus(id) {
-
-  try {
-
-    const statusSnap =
-      await getDoc(
-        doc(
-          db,
-          "statuses",
-          id
-        )
-      );
-
-    if (!statusSnap.exists()) {
-      throw new Error(
-        "Este status já não existe."
-      );
-    }
-
-    const status =
-      statusSnap.data();
-
-    $("viewerName").textContent =
-      status.userName ||
-      "Status";
-
-    $("viewerCaption").textContent =
-      status.caption || "";
-
-    if (
-      status.type === "video"
-    ) {
-
-      $("viewerMedia").innerHTML =
-        `<video
-          src="${esc(status.url)}"
-          controls
-          autoplay
-          playsinline
-        ></video>`;
-
-    } else {
-
-      $("viewerMedia").innerHTML =
-        `<img
-          src="${esc(status.url)}"
-          alt=""
-        >`;
-
-    }
-
-    $("viewer")
-      .classList.remove("hidden");
-
-    const progress =
-      $("viewerProgress");
-
-    progress.style.transition =
-      "none";
-
-    progress.style.width =
-      "100%";
-
-    clearTimeout(statusTimer);
-
-    let duration =
-      status.type === "video"
-      ? 15000
-      : 5000;
-
-    if (
-      status.type === "video"
-    ) {
-
-      const video =
-        $("viewerMedia")
-          .querySelector("video");
-
-      if (video) {
-
-        video.addEventListener(
-          "loadedmetadata",
-          () => {
-
-            const seconds =
-              Number(video.duration);
-
-            if (
-              Number.isFinite(seconds) &&
-              seconds > 0
-            ) {
-
-              duration =
-                Math.min(
-                  seconds * 1000,
-                  30000
-                );
-
-              startViewerTimer(
-                duration
-              );
-
-            }
-
-          },
-          { once: true }
-        );
-
-      }
-
-    }
-
-    startViewerTimer(
-      duration
-    );
-
-  } catch (error) {
-
-    firebaseError(error);
-
-  }
-
+function openChat(chatId, recipientData) {
+  activeChat = { id: chatId, recipient: recipientData };
+  $("chatName").textContent = recipientData.name;
+  $("chatAvatar").innerHTML = recipientData.photoURL ? `<img src="${esc(recipientData.photoURL)}">` : initials(recipientData.name);
+  $("chatScreen").classList.remove("hidden");
+  listenMessages(chatId);
 }
 
+$("closeChatBtn").onclick = () => {
+  $("chatScreen").classList.add("hidden");
+  if (chatUnsub) chatUnsub();
+  activeChat = null;
+};
 
-function startViewerTimer(
-  duration
-) {
+function listenMessages(chatId) {
+  if (chatUnsub) chatUnsub();
+  const q = query(collection(db, "chats", chatId, "messages"), orderBy("createdAt", "asc"));
+  chatUnsub = onSnapshot(q, snapshot => {
+    const box = $("messages"); box.innerHTML = "";
+    snapshot.docs.forEach(d => {
+      const msg = d.data();
+      const isMine = msg.senderId === me.uid;
 
-  clearTimeout(statusTimer);
+      if (!isMine && (!msg.readBy || !msg.readBy.includes(me.uid))) {
+        updateDoc(doc(db, "chats", chatId, "messages", d.id), { readBy: [me.uid] });
+      }
 
-  const progress =
-    $("viewerProgress");
+      const isRead = msg.readBy && msg.readBy.length > 0;
+      const tick = isMine ? (isRead ? `<span class="blue-tick">✓✓</span>` : `<span class="grey-tick">✓</span>`) : "";
 
-  progress.style.transition =
-    "none";
+      box.innerHTML += `
+        <div class="message-row ${isMine ? 'mine' : ''}">
+          <div class="bubble">
+            <div class="message-text">${esc(msg.text)}</div>
+            <div class="message-meta">${tick}</div>
+          </div>
+        </div>`;
+    });
+    box.scrollTop = box.scrollHeight;
+  });
+}
 
-  progress.style.width =
-    "100%";
+$("composer").onsubmit = async e => {
+  e.preventDefault();
+  const txt = $("messageInput").value.trim();
+  if (!txt || !activeChat) return;
+  $("messageInput").value = "";
 
-  requestAnimationFrame(() => {
-
-    progress.style.transition =
-      `width ${duration}ms linear`;
-
-    progress.style.width =
-      "0%";
-
+  const msgRef = doc(collection(db, "chats", activeChat.id, "messages"));
+  await setDoc(msgRef, {
+    text: txt,
+    senderId: me.uid,
+    createdAt: serverTimestamp(),
+    readBy: []
   });
 
-  statusTimer =
-    setTimeout(
-      closeViewer,
-      duration
-    );
+  await updateDoc(doc(db, "chats", activeChat.id), {
+    lastMessage: txt,
+    updatedAt: serverTimestamp()
+  });
+};
 
+$("contactSearch").oninput = async e => {
+  const val = e.target.value.trim().toLowerCase().replace(/^@/, "");
+  const res = $("contactSearchResults"); res.innerHTML = "";
+  if (val.length < 3) return;
+
+  const q = query(collection(db, "users"), where("usernameLower", "==", val));
+  const snap = await getDocs(q);
+  snap.docs.forEach(d => {
+    if (d.id === me.uid) return;
+    const u = d.data();
+    res.innerHTML += `
+      <div class="card person">
+        <div class="avatar">${u.photoURL ? `<img src="${esc(u.photoURL)}">` : initials(u.name)}</div>
+        <div class="person-info">
+          <div class="person-name">${esc(u.name)}</div>
+          <div class="person-user">@${esc(u.username)}</div>
+        </div>
+        <button class="action" onclick="sendRequest('${u.uid}')">Adicionar</button>
+      </div>`;
+  });
+};
+
+window.sendRequest = async targetUid => {
+  try {
+    await setDoc(doc(db, "users", targetUid, "requests", me.uid), {
+      senderId: me.uid,
+      senderName: myProfile.name,
+      senderUsername: myProfile.username,
+      senderPhotoURL: myProfile.photoURL || "",
+      createdAt: serverTimestamp()
+    });
+    showToast("Pedido enviado!");
+  } catch(err) { firebaseError(err); }
+};
+
+function listenRequests() {
+  const q = collection(db, "users", me.uid, "requests");
+  requestUnsub = onSnapshot(q, snap => {
+    const list = $("requestsList"); list.innerHTML = "";
+    if (snap.empty) { list.innerHTML = `<div class="muted">Nenhum pedido pendente.</div>`; return; }
+    snap.docs.forEach(d => {
+      const r = d.data();
+      list.innerHTML += `
+        <div class="card person">
+          <div class="person-info">
+            <div class="person-name">${esc(r.senderName)}</div>
+            <div class="person-user">@${esc(r.senderUsername)}</div>
+          </div>
+          <button class="action" onclick="acceptRequest('${r.senderId}')">Aceitar</button>
+        </div>`;
+    });
+  });
 }
 
+window.acceptRequest = async senderId => {
+  try {
+    const chatId = [me.uid, senderId].sort().join("_");
+    await runTransaction(db, async t => {
+      t.set(doc(db, "users", me.uid, "contacts", senderId), { uid: senderId });
+      t.set(doc(db, "users", senderId, "contacts", me.uid), { uid: me.uid });
+      t.set(doc(db, "chats", chatId), { members: [me.uid, senderId], updatedAt: serverTimestamp() });
+      t.delete(doc(db, "users", me.uid, "requests", senderId));
+    });
+    showToast("Pedido aceite!");
+  } catch(err) { firebaseError(err); }
+};
 
-function closeViewer() {
-
-  clearTimeout(statusTimer);
-
-  $("viewer")
-    .classList.add("hidden");
-
-  $("viewerMedia")
-    .innerHTML = "";
-
+function listenContacts() {
+  const q = collection(db, "users", me.uid, "contacts");
+  contactsUnsub = onSnapshot(q, async snap => {
+    const list = $("contactsList"); list.innerHTML = "";
+    if (snap.empty) { list.innerHTML = `<div class="muted">Ainda não tens contactos.</div>`; return; }
+    for (const cDoc of snap.docs) {
+      const cSnap = await getDoc(doc(db, "users", cDoc.id));
+      if (!cSnap.exists()) continue;
+      const u = cSnap.data();
+      const chatId = [me.uid, u.uid].sort().join("_");
+      list.innerHTML += `
+        <div class="card person" onclick="openChat('${chatId}', {uid:'${u.uid}', name:'${esc(u.name)}', photoURL:'${u.photoURL||""}'})">
+          <div class="avatar">${u.photoURL ? `<img src="${esc(u.photoURL)}">` : initials(u.name)}</div>
+          <div class="person-info">
+            <div class="person-name">${esc(u.name)}</div>
+            <div class="person-user">@${esc(u.username)}</div>
+          </div>
+        </div>`;
+    }
+  });
 }
 
-
-$("closeViewer").addEventListener(
-  "click",
-  closeViewer
-);
-
-
-/* =========================================================
-   PERFIL / UPLOAD
-========================================================= */
-
-$("profileFilePicker")
-  .addEventListener(
-    "change",
-    event => {
-
-      profileFile =
-        event.target.files?.[0] ||
-        null;
-
-      $("profileFileStatus")
-        .textContent =
-        profileFile
-        ? "Imagem pronta para guardar."
-        : "";
-
-    }
-  );
-
-
-/* =========================================================
-   REDIMENSIONAR IMAGEM
-========================================================= */
-
-function resizeImage(
-  file,
-  maxSize = 800,
-  quality = 0.85
-) {
-
-  return new Promise(
-    (resolve, reject) => {
-
-      const reader =
-        new FileReader();
-
-      reader.onload = event => {
-
-        const image =
-          new Image();
-
-        image.onload = () => {
-
-          let width =
-            image.width;
-
-          let height =
-            image.height;
-
-          const scale =
-            Math.min(
-              1,
-              maxSize /
-              Math.max(
-                width,
-                height
-              )
-            );
-
-          width =
-            Math.round(
-              width * scale
-            );
-
-          height =
-            Math.round(
-              height * scale
-            );
-
-          const canvas =
-            document.createElement(
-              "canvas"
-            );
-
-          canvas.width =
-            width;
-
-          canvas.height =
-            height;
-
-          const context =
-            canvas.getContext(
-              "2d"
-            );
-
-          context.drawImage(
-            image,
-            0,
-            0,
-            width,
-            height
-          );
-
-          canvas.toBlob(
-            blob => {
-
-              if (!blob) {
-
-                reject(
-                  new Error(
-                    "Não foi possível processar a imagem."
-                  )
-                );
-
-                return;
-
-              }
-
-              resolve(blob);
-
-            },
-            "image/jpeg",
-            quality
-          );
-
-        };
-
-        image.onerror =
-          () =>
-            reject(
-              new Error(
-                "Imagem inválida."
-              )
-            );
-
-        image.src =
-          event.target.result;
-
-      };
-
-      reader.onerror =
-        () =>
-          reject(
-            new Error(
-              "Falha ao ler a imagem."
-            )
-          );
-
-      reader.readAsDataURL(file);
-
-    }
-  );
-
+function listenStatuses() {
+  const q = collection(db, "statuses");
+  statusUnsub = onSnapshot(q, snap => {
+    const list = $("statusList"); list.innerHTML = "";
+    if (snap.empty) { list.innerHTML = `<div class="empty">Nenhum status publicado.</div>`; return; }
+    snap.docs.forEach(d => {
+      const s = d.data();
+      list.innerHTML += `
+        <div class="status-card">
+          <img src="${esc(s.mediaUrl)}">
+          <div class="status-overlay">${esc(s.caption || "")}</div>
+        </div>`;
+    });
+  });
 }
 
-
-/* =========================================================
-   GUARDAR PERFIL
-========================================================= */
-
-$("saveProfileBtn")
-  .addEventListener(
-    "click",
-    async () => {
-
-      if (!me) return;
-
-      const button =
-        $("saveProfileBtn");
-
-      setLoading(
-        button,
-        "A guardar..."
-      );
-
-      try {
-
-        const name =
-          $("profileNameInput")
-            .value
-            .trim();
-
-        if (!name) {
-
-          throw new Error(
-            "O nome não pode ficar vazio."
-          );
-
-        }
-
-        let photoURL =
-          myProfile.photoURL || "";
-
-        let photoPath =
-          myProfile.photoPath || "";
-
-        if (profileFile) {
-
-          if (
-            !profileFile.type
-              .startsWith("image/")
-          ) {
-
-            throw new Error(
-              "Seleciona uma imagem válida."
-            );
-
-          }
-
-          const processedImage =
-            await resizeImage(
-              profileFile,
-              800,
-              0.85
-            );
-
-          if (
-            processedImage.size >
-            5 * 1024 * 1024
-          ) {
-
-            throw new Error(
-              "A foto final é demasiado grande."
-            );
-
-          }
-
-          const path =
-            `profiles/${me.uid}/profile_${Date.now()}.jpg`;
-
-          const storageReference =
-            ref(
-              storage,
-              path
-            );
-
-          await uploadBytes(
-            storageReference,
-            processedImage,
-            {
-              contentType:
-                "image/jpeg"
-            }
-          );
-
-          photoURL =
-            await getDownloadURL(
-              storageReference
-            );
-
-          if (
-            photoPath &&
-            photoPath !== path
-          ) {
-
-            deleteObject(
-              ref(
-                storage,
-                photoPath
-              )
-            ).catch(
-              () => {}
-            );
-
-          }
-
-          photoPath =
-            path;
-
-        }
-
-        await updateDoc(
-          doc(
-            db,
-            "users",
-            me.uid
-          ),
-          {
-            name,
-            photoURL,
-            photoPath,
-            updatedAt:
-              serverTimestamp()
-          }
-        );
-
-        myProfile = {
-          ...myProfile,
-          name,
-          photoURL,
-          photoPath
-        };
-
-        renderMe();
-
-        profileFile = null;
-
-        $("profileFilePicker")
-          .value = "";
-
-        $("profileFileStatus")
-          .textContent =
-          "Guardado com sucesso.";
-
-        showToast(
-          "Perfil atualizado."
-        );
-
-        showPage(
-          "settingsPage"
-        );
-
-      } catch (error) {
-
-        firebaseError(error);
-
-      } finally {
-
-        resetButton(
-          button,
-          "Guardar Alterações"
-        );
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   MENU DAS MENSAGENS
-========================================================= */
-
-document.addEventListener(
-  "contextmenu",
-  event => {
-
-    const row =
-      event.target.closest(
-        ".message-row"
-      );
-
-    if (!row) return;
-
-    event.preventDefault();
-
-    openMessageMenu(
-      row
-    );
-
-  }
-);
-
-
-document.addEventListener(
-  "click",
-  event => {
-
-    const row =
-      event.target.closest(
-        ".message-row"
-      );
-
-    if (!row) return;
-
-    openMessageMenu(
-      row
-    );
-
-  }
-);
-
-
-function openMessageMenu(row) {
-
-  selectedMessage =
-    row.dataset.msg;
-
-  const menu =
-    $("contextMenu");
-
-  const rect =
-    row.getBoundingClientRect();
-
-  const menuHeight =
-    160;
-
-  let top =
-    rect.top;
-
-  if (
-    top + menuHeight >
-    window.innerHeight - 10
-  ) {
-
-    top =
-      window.innerHeight -
-      menuHeight -
-      10;
-
-  }
-
-  if (top < 10) {
-    top = 10;
-  }
-
-  menu.style.top =
-    `${top}px`;
-
-  menu.style.bottom =
-    "auto";
-
-  menu.classList.remove(
-    "hidden"
-  );
-
-}
-
-
-/* =========================================================
-   COPIAR
-========================================================= */
-
-$("ctxCopy")
-  .addEventListener(
-    "click",
-    async () => {
-
-      if (
-        !selectedMessage ||
-        !activeChat
-      ) return;
-
-      try {
-
-        const messageSnap =
-          await getDoc(
-            doc(
-              db,
-              "conversations",
-              activeChat.id,
-              "messages",
-              selectedMessage
-            )
-          );
-
-        if (
-          !messageSnap.exists()
-        ) return;
-
-        const text =
-          messageSnap.data()
-            .text || "";
-
-        if (
-          navigator.clipboard
-        ) {
-
-          await navigator.clipboard
-            .writeText(text);
-
-        }
-
-        showToast(
-          "Texto copiado."
-        );
-
-      } catch (error) {
-
-        firebaseError(error);
-
-      } finally {
-
-        $("contextMenu")
-          .classList.add("hidden");
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   EDITAR MENSAGEM
-========================================================= */
-
-$("ctxEdit")
-  .addEventListener(
-    "click",
-    async () => {
-
-      if (
-        !selectedMessage ||
-        !activeChat
-      ) return;
-
-      try {
-
-        const messageRef =
-          doc(
-            db,
-            "conversations",
-            activeChat.id,
-            "messages",
-            selectedMessage
-          );
-
-        const messageSnap =
-          await getDoc(
-            messageRef
-          );
-
-        if (
-          !messageSnap.exists()
-        ) return;
-
-        const message =
-          messageSnap.data();
-
-        if (
-          message.senderId !== me.uid
-        ) {
-
-          showToast(
-            "Só podes editar as tuas mensagens."
-          );
-
-          return;
-
-        }
-
-        const newText =
-          prompt(
-            "Editar mensagem:",
-            message.text || ""
-          );
-
-        if (
-          newText === null
-        ) return;
-
-        const clean =
-          newText.trim();
-
-        if (!clean) {
-          showToast(
-            "A mensagem não pode ficar vazia."
-          );
-          return;
-        }
-
-        await updateDoc(
-          messageRef,
-          {
-            text: clean,
-            edited: true,
-            editedAt:
-              serverTimestamp()
-          }
-        );
-
-      } catch (error) {
-
-        firebaseError(error);
-
-      } finally {
-
-        $("contextMenu")
-          .classList.add("hidden");
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   ELIMINAR MENSAGEM
-========================================================= */
-
-$("ctxDelete")
-  .addEventListener(
-    "click",
-    async () => {
-
-      if (
-        !selectedMessage ||
-        !activeChat
-      ) return;
-
-      try {
-
-        const messageRef =
-          doc(
-            db,
-            "conversations",
-            activeChat.id,
-            "messages",
-            selectedMessage
-          );
-
-        const messageSnap =
-          await getDoc(
-            messageRef
-          );
-
-        if (
-          !messageSnap.exists()
-        ) return;
-
-        if (
-          messageSnap.data()
-            .senderId !== me.uid
-        ) {
-
-          showToast(
-            "Só podes eliminar as tuas mensagens."
-          );
-
-          return;
-
-        }
-
-        await deleteDoc(
-          messageRef
-        );
-
-        showToast(
-          "Mensagem eliminada."
-        );
-
-      } catch (error) {
-
-        firebaseError(error);
-
-      } finally {
-
-        $("contextMenu")
-          .classList.add("hidden");
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   FECHAR MENU
-========================================================= */
-
-document.addEventListener(
-  "click",
-  event => {
-
-    if (
-      !event.target.closest(
-        ".message-row"
-      ) &&
-      !event.target.closest(
-        ".context-menu"
-      )
-    ) {
-
-      $("contextMenu")
-        .classList.add("hidden");
-
-    }
-
-  }
-);
-
-
-/* =========================================================
-   SWIPE PARA ELIMINAR CONVERSA
-========================================================= */
-
-let swipeStartX = 0;
-let swipeElement = null;
-
-
-document.addEventListener(
-  "touchstart",
-  event => {
-
-    const item =
-      event.target.closest(
-        ".swipe-item"
-      );
-
-    if (!item) return;
-
-    swipeElement =
-      item;
-
-    swipeStartX =
-      event.touches[0].clientX;
-
-  },
-  { passive: true }
-);
-
-
-document.addEventListener(
-  "touchmove",
-  event => {
-
-    if (!swipeElement) return;
-
-    const currentX =
-      event.touches[0].clientX;
-
-    const delta =
-      currentX -
-      swipeStartX;
-
-    if (
-      delta < 0 &&
-      delta > -100
-    ) {
-
-      swipeElement.style.transform =
-        `translateX(${delta}px)`;
-
-    }
-
-  },
-  { passive: true }
-);
-
-
-document.addEventListener(
-  "touchend",
-  () => {
-
-    if (!swipeElement) return;
-
-    const current =
-      swipeElement.style.transform;
-
-    if (
-      current &&
-      current.includes("-")
-    ) {
-
-      swipeElement.style.transform =
-        "translateX(-90px)";
-
-    } else {
-
-      swipeElement.style.transform =
-        "translateX(0)";
-
-    }
-
-    swipeElement = null;
-
-  }
-);
-
-
-/* =========================================================
-   FECHAR MODAIS AO TOCAR FORA
-========================================================= */
-
-$("statusModal")
-  .addEventListener(
-    "click",
-    event => {
-
-      if (
-        event.target ===
-        $("statusModal")
-      ) {
-
-        $("statusModal")
-          .classList.add("hidden");
-
-      }
-
-    }
-  );
-
-
-/* =========================================================
-   FINAL
-========================================================= */
-
-window.addEventListener(
-  "beforeunload",
-  () => {
-
-    cleanupListeners();
-
-  }
-);
-
+$("addStatusBtn").onclick = () => $("statusModal").classList.remove("hidden");
+$("closeStatusModal").onclick = () => $("statusModal").classList.add("hidden");
+
+$("statusFilePicker").onchange = e => {
+  const file = e.target.files[0];
+  if (file) $("statusFileStatus").textContent = file.name;
+};
+
+$("confirmPublishStatus").onclick = async () => {
+  const file = $("statusFilePicker").files[0];
+  const caption = $("statusCaption").value.trim();
+  if (!file) return showToast("Escolhe um ficheiro.");
+
+  try {
+    const fileRef = ref(storage, `status/${Date.now()}_${file.name}`);
+    await uploadBytes(fileRef, file);
+    const mediaUrl = await getDownloadURL(fileRef);
+
+    await setDoc(doc(collection(db, "statuses")), {
+      uid: me.uid,
+      mediaUrl,
+      caption,
+      createdAt: serverTimestamp()
+    });
+
+    $("statusModal").classList.add("hidden");
+    showToast("Status publicado!");
+  } catch(err) { firebaseError(err); }
+};
 </script>
-
 </body>
 </html>
