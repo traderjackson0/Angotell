@@ -15,7 +15,7 @@ button{border:0;cursor:pointer;}
 .screen{width:100%;height:100dvh;position:relative;}
 .app{width:100%;height:100%;background:radial-gradient(circle at 90% 15%,rgba(174,72,255,.12),transparent 30%),radial-gradient(circle at 10% 85%,rgba(255,65,145,.08),transparent 35%),#08070d;}
 
-/* TELA DE AUTENTICAÇÃO */
+/* AUTH */
 .auth{width:min(620px,100%);height:100%;margin:auto;padding:26px 24px;display:flex;align-items:center;justify-content:center;overflow-y:auto;}
 .auth-card{width:100%;max-width:560px;padding:28px;border:1px solid rgba(255,255,255,.10);border-radius:30px;background:rgba(17,14,26,.90);box-shadow:0 20px 70px rgba(0,0,0,.45);}
 .logo{width:105px;height:105px;margin:0 auto 18px;border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:900;color:white;background:linear-gradient(135deg,#7d4cff,#ff3f91,#ff7b3d,#00d9ff);box-shadow:0 0 45px rgba(188,75,255,.35);}
@@ -31,19 +31,17 @@ button{border:0;cursor:pointer;}
 .primary{width:100%;min-height:55px;border-radius:18px;color:white;font-weight:800;background:linear-gradient(135deg,#8148ff,#e63a99,#ff7541);}
 .primary:disabled{opacity:.5;}
 
-/* CABEÇALHO SUPERIOR E NAVEGAÇÃO */
+/* MAIN SYSTEM */
 .main{width:100%;height:100%;display:flex;flex-direction:column;}
 .topbar{flex:none;min-height:85px;padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(9,8,14,.88);backdrop-filter:blur(18px);}
 .identity{display:flex;align-items:center;gap:13px;min-width:0;}
 .avatar{width:52px;height:52px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:white;background:linear-gradient(135deg,#8745ff,#ff3d91);position:relative;background-size:cover;background-position:center;}
-.online-dot{width:13px;height:13px;border-radius:50%;background:#35e895;border:2px solid #09080e;position:absolute;right:0;bottom:1px;}
 .identity-text{min-width:0;}
 .identity-name{font-size:18px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .identity-user{opacity:.5;font-size:13px;}
 .top-actions{display:flex;gap:10px;}
 .icon-btn{width:48px;height:48px;border-radius:16px;color:white;background:#17141f;border:1px solid rgba(255,255,255,.08);font-size:20px;}
 
-/* CONTEÚDO DAS PÁGINAS */
 .content{flex:1;min-height:0;overflow:hidden;position:relative;}
 .page{width:100%;height:100%;overflow-y:auto;padding:20px 20px 105px;}
 .page-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
@@ -52,7 +50,7 @@ button{border:0;cursor:pointer;}
 .search{width:100%;height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.08);background:#14111c;color:white;padding:0 17px;outline:none;margin-bottom:18px;}
 .card{padding:15px;border-radius:22px;background:#15121d;border:1px solid rgba(255,255,255,.07);margin-bottom:12px;}
 
-/* EFEITO DESLIZANTE NAS CONVERSAS (SWIPE) */
+/* CONVERSATIONS SWIPE */
 .swipe-container{position:relative;overflow:hidden;border-radius:22px;margin-bottom:12px;background:#e63a3a;}
 .swipe-item{display:flex;align-items:center;gap:12px;padding:15px;background:#15121d;border:1px solid rgba(255,255,255,.07);border-radius:22px;transition:transform 0.2s ease;cursor:pointer;position:relative;z-index:2;}
 .swipe-action{position:absolute;right:0;top:0;bottom:0;width:90px;background:#e63a3a;color:white;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;z-index:1;border-radius:0 22px 22px 0;}
@@ -63,7 +61,7 @@ button{border:0;cursor:pointer;}
 .action{flex:none;padding:10px 16px;border-radius:14px;color:white;font-weight:800;background:linear-gradient(135deg,#7545e8,#db419c);font-size:13px;}
 .muted{opacity:.45;text-align:center;padding:30px 10px;}
 
-/* CHAT */
+/* CHAT INTERFACE */
 .chat{width:100%;height:100%;display:flex;flex-direction:column;background:#09080f;}
 .chat-header{min-height:70px;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.07);background:#0d0b14;}
 .back{width:42px;height:42px;border-radius:14px;color:white;background:#181520;font-size:21px;}
@@ -77,31 +75,33 @@ button{border:0;cursor:pointer;}
 .message-text{white-space:pre-wrap;overflow-wrap:anywhere;}
 .message-meta{text-align:right;font-size:10px;opacity:.65;margin-top:4px;display:flex;align-items:center;justify-content:flex-end;gap:4px;}
 .blue-tick{color:#00d9ff;font-weight:bold;}
-.grey-tick{color:#aaa2b4;}
 
 .composer{flex:none;display:flex;gap:8px;padding:9px 10px max(9px,env(safe-area-inset-bottom));background:#0d0b14;border-top:1px solid rgba(255,255,255,.06);}
 .composer input{flex:1;min-width:0;height:50px;border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:0 16px;background:#191620;color:white;outline:none;}
 .send{width:52px;height:50px;border-radius:17px;color:white;background:linear-gradient(135deg,#7947f1,#ec429c);font-size:20px;}
 
-/* BARRA INFERIOR DE NAVEGAÇÃO */
 .bottom{position:absolute;z-index:20;left:18px;right:18px;bottom:max(12px,env(safe-area-inset-bottom));height:68px;display:flex;align-items:center;justify-content:space-around;border-radius:25px;background:rgba(24,20,32,.94);border:1px solid rgba(255,255,255,.09);box-shadow:0 12px 35px rgba(0,0,0,.35);backdrop-filter:blur(18px);}
 .nav{flex:1;height:100%;color:#85808e;background:transparent;font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;}
 .nav-icon{font-size:19px;}
 .nav.active{color:white;}
 
-/* MODAL E TOAST */
+/* MODAL, PREVIEW & FULLSCREEN STATUS */
 .modal{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.68);backdrop-filter:blur(6px);}
 .modal-card{width:min(600px,100%);max-height:88dvh;overflow-y:auto;padding:22px;border-radius:30px 30px 0 0;background:#15121d;border:1px solid rgba(255,255,255,.09);}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
 .modal-title{font-size:20px;font-weight:900;}
 .close{width:40px;height:40px;border-radius:14px;color:white;background:#211d29;}
 
-.context-menu{position:fixed;z-index:150;left:20px;width:200px;background:#1f1a2b;border:1px solid rgba(255,255,255,.15);border-radius:18px;padding:8px;box-shadow:0 10px 35px rgba(0,0,0,.6);display:flex;flex-direction:column;gap:4px;}
-.context-btn{padding:12px 16px;background:transparent;color:white;text-align:left;border-radius:12px;font-weight:600;font-size:14px;}
-.context-btn:hover{background:rgba(255,255,255,.1);}
+.preview-box{width:100%;max-height:220px;border-radius:16px;overflow:hidden;background:#000;margin-top:10px;display:flex;align-items:center;justify-content:center;}
+.preview-box img, .preview-box video{max-width:100%;max-height:220px;object-fit:contain;}
 
-.toast{position:fixed;z-index:200;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 35px rgba(0,0,0,.5);text-align:center;font-size:13px;font-weight:600;}
+.status-viewer{position:fixed;z-index:250;inset:0;background:#000;display:flex;flex-direction:column;justify-content:space-between;padding:15px;}
+.status-progress-bar{width:100%;height:4px;background:rgba(255,255,255,.3);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+.status-progress-fill{height:100%;width:0%;background:#fff;transition:width 0.1s linear;}
+.status-media-container{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.status-media-container img, .status-media-container video{max-width:100%;max-height:100%;object-fit:contain;}
 
+.toast{position:fixed;z-index:300;left:50%;bottom:92px;transform:translateX(-50%);max-width:90%;padding:12px 18px;border-radius:16px;background:#25202e;color:white;border:1px solid rgba(255,255,255,.12);box-shadow:0 10px 35px rgba(0,0,0,.5);text-align:center;font-size:13px;font-weight:600;}
 .file-label{display:inline-block;padding:12px 18px;border-radius:14px;background:#211d2b;color:#a34cff;border:1px dashed #a34cff;cursor:pointer;font-weight:700;text-align:center;width:100%;margin-top:6px;}
 </style>
 </head>
@@ -150,16 +150,12 @@ button{border:0;cursor:pointer;}
     <div class="main">
       <header class="topbar">
         <div class="identity">
-          <div id="topAvatar" class="avatar">
-            K
-            <span id="topOnline" class="online-dot"></span>
-          </div>
+          <div id="topAvatar" class="avatar">K</div>
           <div class="identity-text">
             <div id="topName" class="identity-name">KidiTalk</div>
             <div id="topUsername" class="identity-user">@utilizador</div>
           </div>
         </div>
-
         <div class="top-actions">
           <button id="settingsTopBtn" class="icon-btn">⚙</button>
         </div>
@@ -174,7 +170,6 @@ button{border:0;cursor:pointer;}
         <section id="contactsPage" class="page hidden">
           <div class="page-title" style="margin-bottom:18px;">Contactos</div>
           <input id="contactSearch" class="search" placeholder="Pesquisar por @username...">
-          
           <div id="contactSearchResults"></div>
           
           <div style="margin:15px 0 10px;font-weight:800;">Pedidos Pendentes</div>
@@ -192,7 +187,6 @@ button{border:0;cursor:pointer;}
 
         <section id="settingsPage" class="page hidden">
           <div class="page-title" style="margin-bottom:18px;">Definições</div>
-          
           <div class="card" id="openProfileBtn" style="cursor:pointer;display:flex;align-items:center;gap:15px;">
             <div id="settingsAvatar" class="avatar" style="width:60px;height:60px;font-size:24px;">K</div>
             <div>
@@ -201,12 +195,6 @@ button{border:0;cursor:pointer;}
               <div style="color:#a34cff;font-size:12px;margin-top:4px;">Editar Perfil ›</div>
             </div>
           </div>
-
-          <div class="card" id="openDevInfoBtn" style="cursor:pointer;margin-top:12px;">
-            <div style="font-weight:800;font-size:16px;">Sobre o Desenvolvedor</div>
-            <div style="opacity:.5;font-size:13px;margin-top:4px;">Gaspar Kididi</div>
-          </div>
-
           <button id="logoutBtn" class="primary" style="margin-top:20px;background:#e63a3a;">Terminar Sessão</button>
         </section>
 
@@ -221,31 +209,15 @@ button{border:0;cursor:pointer;}
               <input id="profileNameInput">
             </div>
             <div class="field">
-              <label>Escolher Foto da Galeria (Ajuste Automático)</label>
+              <label>Escolher Foto da Galeria</label>
               <label class="file-label">
                 📷 Selecionar Imagem
                 <input type="file" id="profileFilePicker" accept="image/*" class="hidden">
               </label>
-              <div id="profileFileStatus" style="font-size:12px;margin-top:6px;color:#35e895;"></div>
             </div>
             <button id="saveProfileBtn" class="primary" style="margin-top:10px;">Guardar Alterações</button>
           </div>
         </section>
-
-        <section id="devInfoPage" class="page hidden">
-          <div class="page-header">
-            <button class="back-btn" onclick="showPage('settingsPage')">← Voltar</button>
-            <h2 class="page-title">Desenvolvedor</h2>
-          </div>
-          <div class="card" style="line-height:1.6;">
-            <div style="font-size:20px;font-weight:900;color:#00d9ff;margin-bottom:8px;">Gaspar Kididi</div>
-            <div style="font-size:13px;opacity:.6;margin-bottom:15px;">Criador & Desenvolvedor Solo</div>
-            <p style="font-size:14px;opacity:.85;">
-              O <strong>KidiTalk</strong> foi idealizado e desenvolvido por Gaspar Kididi, focando na criação de um sistema de conversas em tempo real robusto e performático.
-            </p>
-          </div>
-        </section>
-
       </main>
 
       <nav class="bottom">
@@ -297,7 +269,7 @@ button{border:0;cursor:pointer;}
         📁 Carregar Foto / Vídeo
         <input type="file" id="statusFilePicker" accept="image/*,video/*" class="hidden">
       </label>
-      <div id="statusFileStatus" style="font-size:12px;margin-top:6px;color:#35e895;"></div>
+      <div id="statusPreviewContainer" class="preview-box hidden"></div>
     </div>
     <div class="field">
       <label>Legenda</label>
@@ -307,10 +279,18 @@ button{border:0;cursor:pointer;}
   </div>
 </div>
 
-<div id="contextMenu" class="context-menu hidden">
-  <button class="context-btn" id="ctxCopy">Copiar Texto</button>
-  <button class="context-btn" id="ctxEdit">Editar Mensagem</button>
-  <button class="context-btn" id="ctxDelete" style="color:#ff5555;">Eliminar</button>
+<div id="statusViewer" class="status-viewer hidden">
+  <div>
+    <div class="status-progress-bar">
+      <div id="statusProgressFill" class="status-progress-fill"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div id="statusViewerName" style="font-weight:800;color:white;">---</div>
+      <button onclick="closeStatusViewer()" style="background:transparent;color:white;font-size:20px;">×</button>
+    </div>
+  </div>
+  <div id="statusViewerContent" class="status-media-container"></div>
+  <div id="statusViewerCaption" style="text-align:center;color:white;padding:10px;font-size:14px;"></div>
 </div>
 
 <div id="toast" class="toast hidden"></div>
@@ -337,11 +317,10 @@ let me = null;
 let myProfile = null;
 let activeChat = null;
 let activeChatUnsubscribe = null;
-let selectedMessage = null;
-
 let uploadedProfileBase64 = "";
 let uploadedStatusBase64 = "";
 let uploadedStatusType = "image";
+let statusTimer = null;
 
 const $ = id => document.getElementById(id);
 
@@ -352,6 +331,10 @@ function escapeHTML(str){
 function initials(name){
   const parts = String(name || "K").trim().split(/\s+/).filter(Boolean);
   return parts.length === 1 ? parts[0].slice(0,2).toUpperCase() : (parts[0][0] + parts[parts.length-1][0]).toUpperCase();
+}
+
+function getChatId(uid1, uid2) {
+  return [uid1, uid2].sort().join("_");
 }
 
 function showToast(msg){
@@ -375,7 +358,6 @@ document.querySelectorAll(".nav[data-page]").forEach(b => {
   };
 });
 
-/* REDIMENSIONAMENTO E PROCESSAMENTO DE IMAGEM (ENCAIXE PERFEITO E LEVE) */
 function resizeImageFile(file, maxWidth = 400, maxHeight = 400) {
   return new Promise((resolve) => {
     const reader = new FileReader();
@@ -383,23 +365,13 @@ function resizeImageFile(file, maxWidth = 400, maxHeight = 400) {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        let width = img.width;
-        let height = img.height;
-
+        let width = img.width, height = img.height;
         if (width > height) {
-          if (width > maxWidth) {
-            height *= maxWidth / width;
-            width = maxWidth;
-          }
+          if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
         } else {
-          if (height > maxHeight) {
-            width *= maxHeight / height;
-            height = maxHeight;
-          }
+          if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
         }
-
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = width; canvas.height = height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         resolve(canvas.toDataURL("image/jpeg", 0.8));
@@ -412,32 +384,30 @@ function resizeImageFile(file, maxWidth = 400, maxHeight = 400) {
 
 $("profileFilePicker").onchange = async (e) => {
   const file = e.target.files[0];
-  if(file){
-    showToast("A otimizar imagem...");
-    uploadedProfileBase64 = await resizeImageFile(file, 400, 400);
-    $("profileFileStatus").textContent = "✓ Imagem otimizada e pronta!";
-  }
+  if(file){ uploadedProfileBase64 = await resizeImageFile(file, 400, 400); showToast("Foto ajustada!"); }
 };
 
 $("statusFilePicker").onchange = async (e) => {
   const file = e.target.files[0];
+  const box = $("statusPreviewContainer");
   if(file){
     if(file.type.startsWith("image")){
       uploadedStatusBase64 = await resizeImageFile(file, 800, 800);
       uploadedStatusType = "image";
+      box.innerHTML = `<img src="${uploadedStatusBase64}">`;
     } else {
       const reader = new FileReader();
       reader.onload = () => {
         uploadedStatusBase64 = reader.result;
         uploadedStatusType = "video";
+        box.innerHTML = `<video src="${uploadedStatusBase64}" controls></video>`;
       };
       reader.readAsDataURL(file);
     }
-    $("statusFileStatus").textContent = "✓ Mídia pronta a publicar!";
+    box.classList.remove("hidden");
   }
 };
 
-/* AUTENTICAÇÃO */
 let authMode = "login";
 $("loginTab").onclick = () => { authMode = "login"; $("loginTab").classList.add("active"); $("registerTab").classList.remove("active"); $("registerFields").classList.add("hidden"); };
 $("registerTab").onclick = () => { authMode = "register"; $("registerTab").classList.add("active"); $("loginTab").classList.remove("active"); $("registerFields").classList.remove("hidden"); };
@@ -446,7 +416,6 @@ $("authButton").onclick = async () => {
   const email = $("authEmail").value.trim();
   const password = $("authPassword").value;
   if(!email || !password) return showToast("Preenche todos os campos.");
-
   $("authButton").disabled = true;
   try {
     if(authMode === "login"){
@@ -454,29 +423,16 @@ $("authButton").onclick = async () => {
     } else {
       const publicName = $("regName").value.trim();
       const username = $("regUsername").value.trim().toLowerCase().replace(/[^a-z0-9_.]/g,"");
-      if(!publicName || username.length < 3) {
-        $("authButton").disabled = false;
-        return showToast("Preenche os dados do registo.");
-      }
-
+      if(!publicName || username.length < 3) { $("authButton").disabled = false; return showToast("Dados de registo inválidos."); }
       const cred = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", cred.user.uid), {
-        uid: cred.user.uid, publicName, username, email, online: true, createdAt: serverTimestamp()
-      });
+      await setDoc(doc(db, "users", cred.user.uid), { uid: cred.user.uid, publicName, username, email, createdAt: serverTimestamp() });
       await setDoc(doc(db, "usernames", username), { uid: cred.user.uid });
     }
-  } catch(e) { 
-    showToast("Erro de autenticação: " + e.message); 
-    $("authButton").disabled = false;
-  }
+  } catch(e) { showToast("Erro: " + e.message); $("authButton").disabled = false; }
 };
 
 onAuthStateChanged(auth, async user => {
-  if(!user){
-    $("authScreen").classList.remove("hidden");
-    $("appScreen").classList.add("hidden");
-    return;
-  }
+  if(!user){ $("authScreen").classList.remove("hidden"); $("appScreen").classList.add("hidden"); return; }
   me = user;
   $("authScreen").classList.add("hidden");
   $("appScreen").classList.remove("hidden");
@@ -497,7 +453,6 @@ function renderProfile(){
   $("topUsername").textContent = user;
   $("settingsName").textContent = name;
   $("settingsUser").textContent = user;
-
   if(myProfile.photoUrl) {
     $("topAvatar").style.backgroundImage = `url('${myProfile.photoUrl}')`;
     $("topAvatar").textContent = "";
@@ -511,54 +466,33 @@ function renderProfile(){
   }
 }
 
-/* NAVEGAÇÃO E GUARDAR PERFIL */
 $("settingsTopBtn").onclick = () => showPage("settingsPage");
-$("openProfileBtn").onclick = () => {
-  $("profileNameInput").value = myProfile.publicName || "";
-  showPage("profileEditPage");
-};
-$("openDevInfoBtn").onclick = () => showPage("devInfoPage");
+$("openProfileBtn").onclick = () => { $("profileNameInput").value = myProfile.publicName || ""; showPage("profileEditPage"); };
 
 $("saveProfileBtn").onclick = async () => {
   const publicName = $("profileNameInput").value.trim();
-  if(!publicName) return showToast("Insere um nome válido.");
-
+  if(!publicName) return showToast("Insere um nome.");
   $("saveProfileBtn").disabled = true;
-  showToast("A guardar alterações...");
-
   const updateData = { publicName };
-  if(uploadedProfileBase64) {
-    updateData.photoUrl = uploadedProfileBase64;
-    myProfile.photoUrl = uploadedProfileBase64;
-  }
-
-  try {
-    await updateDoc(doc(db, "users", me.uid), updateData);
-    myProfile.publicName = publicName;
-    renderProfile();
-    showToast("Perfil atualizado com sucesso!");
-    showPage("settingsPage");
-  } catch(e) {
-    showToast("Erro ao guardar perfil.");
-  } finally {
-    $("saveProfileBtn").disabled = false;
-  }
+  if(uploadedProfileBase64) { updateData.photoUrl = uploadedProfileBase64; myProfile.photoUrl = uploadedProfileBase64; }
+  await updateDoc(doc(db, "users", me.uid), updateData);
+  myProfile.publicName = publicName;
+  renderProfile();
+  showToast("Perfil atualizado!");
+  showPage("settingsPage");
+  $("saveProfileBtn").disabled = false;
 };
 
 $("logoutBtn").onclick = () => signOut(auth);
 
-/* PESQUISA E ACEITAR PEDIDOS (COM ABERTURA DE CHAT AUTOMÁTICA) */
 $("contactSearch").oninput = async (e) => {
   const term = e.target.value.trim().toLowerCase().replace("@","");
   if(term.length < 3) return;
   const box = $("contactSearchResults");
   box.innerHTML = `<div class="muted">A pesquisar...</div>`;
-
   const q = query(collection(db, "users"), where("username", "==", term));
   const snap = await getDocs(q);
-
-  if(snap.empty) { box.innerHTML = `<div class="muted">Nenhum utilizador encontrado.</div>`; return; }
-
+  if(snap.empty) { box.innerHTML = `<div class="muted">Sem resultados.</div>`; return; }
   box.innerHTML = snap.docs.map(d => {
     const u = d.data();
     if(u.uid === me.uid) return "";
@@ -570,26 +504,21 @@ $("contactSearch").oninput = async (e) => {
           <div class="person-user">@${escapeHTML(u.username)}</div>
         </div>
         <button class="action" onclick="sendFriendRequest('${u.uid}')">Adicionar</button>
-      </div>
-    `;
+      </div>`;
   }).join("");
 };
 
 window.sendFriendRequest = async (targetUid) => {
   await setDoc(doc(db, "users", targetUid, "requests", me.uid), {
-    fromUid: me.uid,
-    fromName: myProfile.publicName,
-    fromUsername: myProfile.username,
-    createdAt: serverTimestamp()
+    fromUid: me.uid, fromName: myProfile.publicName, fromUsername: myProfile.username, createdAt: serverTimestamp()
   });
-  showToast("Pedido de amizade enviado!");
+  showToast("Pedido enviado!");
 };
 
 function loadRequests(){
   onSnapshot(collection(db, "users", me.uid, "requests"), snap => {
     const box = $("requestsList");
     if(snap.empty){ box.innerHTML = `<div class="muted">Sem pedidos pendentes.</div>`; return; }
-
     box.innerHTML = snap.docs.map(d => {
       const r = d.data();
       return `
@@ -599,23 +528,18 @@ function loadRequests(){
             <div class="person-user">@${escapeHTML(r.fromUsername)}</div>
           </div>
           <button class="action" onclick="acceptRequest('${r.fromUid}', '${escapeHTML(r.fromName)}', '${escapeHTML(r.fromUsername)}')">Aceitar</button>
-        </div>
-      `;
+        </div>`;
     }).join("");
   });
 }
 
 window.acceptRequest = async (fromUid, name, username) => {
   try {
-    // 1. Guardar contactos em ambas as partes
     await setDoc(doc(db, "users", me.uid, "contacts", fromUid), { uid: fromUid, publicName: name, username });
     await setDoc(doc(db, "users", fromUid, "contacts", me.uid), { uid: me.uid, publicName: myProfile.publicName, username: myProfile.username });
-    
-    // 2. Apagar pedido
     await deleteDoc(doc(db, "users", me.uid, "requests", fromUid));
     
-    showToast("Pedido aceite! A abrir conversa...");
-    // 3. Iniciar conversa imediatamente
+    showToast("Pedido aceite!");
     openChat(fromUid, name);
   } catch(e) {
     showToast("Erro ao aceitar pedido.");
@@ -625,7 +549,7 @@ window.acceptRequest = async (fromUid, name, username) => {
 function loadContacts(){
   onSnapshot(collection(db, "users", me.uid, "contacts"), snap => {
     const box = $("contactsList");
-    if(snap.empty){ box.innerHTML = `<div class="muted">Ainda não tens contactos.</div>`; return; }
+    if(snap.empty){ box.innerHTML = `<div class="muted">Sem contactos.</div>`; return; }
     box.innerHTML = snap.docs.map(d => {
       const c = d.data();
       return `
@@ -636,81 +560,50 @@ function loadContacts(){
             <div class="person-user">@${escapeHTML(c.username)}</div>
           </div>
           <button class="action" onclick="openChat('${c.uid}', '${escapeHTML(c.publicName)}')">Conversar</button>
-        </div>
-      `;
+        </div>`;
     }).join("");
   });
 }
 
-/* LISTA DE CONVERSAS COM OPÇÃO DESLIZANTE (SWIPE TO DELETE) */
 function loadConversations(){
   const q = query(collection(db, "chats"), where("members", "array-contains", me.uid));
   onSnapshot(q, async snap => {
     const box = $("conversationList");
-    if(snap.empty){ box.innerHTML = `<div class="muted">Sem conversas ativas.</div>`; return; }
-
+    if(snap.empty){ box.innerHTML = `<div class="muted">Sem conversas.</div>`; return; }
     let html = "";
     for(const d of snap.docs){
       const c = d.data();
       const otherUid = c.members.find(m => m !== me.uid);
       let displayName = "Conversa";
-
       if(otherUid){
         const userSnap = await getDoc(doc(db, "users", otherUid));
-        if(userSnap.exists()){
-          displayName = userSnap.data().publicName || userSnap.data().username;
-        }
+        if(userSnap.exists()) displayName = userSnap.data().publicName || userSnap.data().username;
       }
-
       html += `
         <div class="swipe-container">
           <div class="swipe-action" onclick="deleteChat('${d.id}')">Eliminar</div>
-          <div class="swipe-item" id="chat-item-${d.id}" onclick="openChat('${otherUid}', '${escapeHTML(displayName)}')">
+          <div class="swipe-item" onclick="openChat('${otherUid}', '${escapeHTML(displayName)}')">
             <div class="avatar">${initials(displayName)}</div>
             <div class="person-info">
               <div class="person-name">${escapeHTML(displayName)}</div>
               <div class="person-user">${escapeHTML(c.lastMessage || "Sem mensagens...")}</div>
             </div>
           </div>
-        </div>
-      `;
+        </div>`;
     }
     box.innerHTML = html;
-    initSwipeGestures();
-  });
-}
-
-function initSwipeGestures() {
-  document.querySelectorAll('.swipe-item').forEach(item => {
-    let startX = 0;
-    item.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
-    item.addEventListener('touchmove', e => {
-      let diffX = e.touches[0].clientX - startX;
-      if (diffX < 0 && diffX > -100) {
-        item.style.transform = `translateX(${diffX}px)`;
-      }
-    }, {passive: true});
-    item.addEventListener('touchend', e => {
-      let diffX = e.changedTouches[0].clientX - startX;
-      if (diffX < -50) {
-        item.style.transform = `translateX(-90px)`;
-      } else {
-        item.style.transform = `translateX(0px)`;
-      }
-    });
   });
 }
 
 window.deleteChat = async (chatId) => {
-  if(confirm("Eliminar toda a conversa?")) {
+  if(confirm("Eliminar conversa?")) {
     await deleteDoc(doc(db, "chats", chatId));
     showToast("Conversa eliminada.");
   }
 };
 
-/* MENSAGENS DO CHAT */
 window.openChat = async (otherUid, otherName) => {
-  const chatId = [me.uid, otherUid].sort().join("_");
+  const chatId = getChatId(me.uid, otherUid);
   const chatRef = doc(db, "chats", chatId);
   const snap = await getDoc(chatRef);
 
@@ -729,70 +622,32 @@ window.openChat = async (otherUid, otherName) => {
 
 function listenMessages(){
   if(activeChatUnsubscribe) activeChatUnsubscribe();
-
   const q = query(collection(db, "chats", activeChat.id, "messages"), orderBy("createdAt", "asc"), limitToLast(100));
   activeChatUnsubscribe = onSnapshot(q, snap => {
     const box = $("messages");
     box.innerHTML = snap.docs.map(d => {
       const m = d.data();
       const mine = m.senderId === me.uid;
-      const isRead = Array.isArray(m.readBy) && m.readBy.length > 1;
-      const tickHtml = mine ? `<span class="${isRead ? 'blue-tick' : 'grey-tick'}">${isRead ? '✓✓' : '✓'}</span>` : '';
-
       return `
         <div class="message-row ${mine ? 'mine' : ''}">
-          <div class="bubble" oncontextmenu="openContextMenu(event, '${d.id}', '${escapeHTML(m.text)}'); return false;">
+          <div class="bubble">
             <div class="message-text">${escapeHTML(m.text)}</div>
-            <div class="message-meta">${tickHtml}</div>
           </div>
-        </div>
-      `;
+        </div>`;
     }).join("");
     box.scrollTop = box.scrollHeight;
   });
 }
-
-window.openContextMenu = (e, msgId, text) => {
-  selectedMessage = { id: msgId, text };
-  const menu = $("contextMenu");
-  
-  let topPos = e.clientY || 100;
-  if (topPos > window.innerHeight - 150) topPos = window.innerHeight - 160;
-
-  menu.style.top = topPos + "px";
-  menu.style.left = "20px";
-  menu.classList.remove("hidden");
-};
-
-document.onclick = () => $("contextMenu").classList.add("hidden");
-
-$("ctxCopy").onclick = () => {
-  if(selectedMessage) navigator.clipboard.writeText(selectedMessage.text);
-  showToast("Mensagem copiada!");
-};
-
-$("ctxEdit").onclick = async () => {
-  const newText = prompt("Editar mensagem:", selectedMessage.text);
-  if(newText && activeChat){
-    await updateDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id), { text: newText });
-  }
-};
-
-$("ctxDelete").onclick = async () => {
-  if(activeChat && confirm("Eliminar mensagem?")){
-    await deleteDoc(doc(db, "chats", activeChat.id, "messages", selectedMessage.id));
-  }
-};
 
 $("composer").onsubmit = async (e) => {
   e.preventDefault();
   const input = $("messageInput");
   const text = input.value.trim();
   if(!text || !activeChat) return;
-
   input.value = "";
+  
   await addDoc(collection(db, "chats", activeChat.id, "messages"), {
-    text, senderId: me.uid, readBy: [me.uid], createdAt: serverTimestamp()
+    text, senderId: me.uid, createdAt: serverTimestamp()
   });
   await updateDoc(doc(db, "chats", activeChat.id), { lastMessage: text, updatedAt: serverTimestamp() });
 };
@@ -803,60 +658,69 @@ $("closeChatBtn").onclick = () => {
   if(activeChatUnsubscribe) activeChatUnsubscribe();
 };
 
-/* STATUS (COM OPÇÃO DE ELIMINAR) */
+/* STATUS VIEWER FULLSCREEN */
 $("addStatusBtn").onclick = () => $("statusModal").classList.remove("hidden");
 $("closeStatusModal").onclick = () => $("statusModal").classList.add("hidden");
 
 $("confirmPublishStatus").onclick = async () => {
-  if(!uploadedStatusBase64) return showToast("Escolha uma foto ou vídeo.");
-
+  if(!uploadedStatusBase64) return showToast("Escolha um ficheiro.");
   await addDoc(collection(db, "statuses"), {
-    uid: me.uid,
-    name: myProfile.publicName,
-    mediaData: uploadedStatusBase64,
-    mediaType: uploadedStatusType,
-    caption: $("statusCaption").value.trim(),
-    createdAt: serverTimestamp()
+    uid: me.uid, name: myProfile.publicName, mediaData: uploadedStatusBase64, mediaType: uploadedStatusType, caption: $("statusCaption").value.trim(), createdAt: serverTimestamp()
   });
-
   $("statusModal").classList.add("hidden");
   uploadedStatusBase64 = "";
   $("statusCaption").value = "";
-  showToast("Status publicado com sucesso!");
+  $("statusPreviewContainer").classList.add("hidden");
+  showToast("Status publicado!");
   loadStatuses();
 };
 
 function loadStatuses(){
   onSnapshot(collection(db, "statuses"), snap => {
     const box = $("statusList");
-    if(snap.empty){ box.innerHTML = `<div class="muted">Nenhum status recente.</div>`; return; }
-
+    if(snap.empty){ box.innerHTML = `<div class="muted">Nenhum status.</div>`; return; }
     box.innerHTML = snap.docs.map(d => {
       const s = d.data();
-      const isMine = s.uid === me.uid;
-      const mediaHtml = s.mediaType === "video" 
-        ? `<video src="${s.mediaData}" controls style="width:100%;max-height:280px;border-radius:14px;"></video>`
-        : `<img src="${s.mediaData}" style="width:100%;max-height:280px;object-fit:cover;border-radius:14px;">`;
-
       return `
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-            <div style="font-weight:800;">${escapeHTML(s.name)}</div>
-            ${isMine ? `<button onclick="deleteStatus('${d.id}')" style="background:transparent;color:#ff5555;font-weight:700;font-size:12px;">Eliminar</button>` : ''}
-          </div>
-          ${mediaHtml}
-          <div style="font-size:14px;opacity:.8;margin-top:6px;">${escapeHTML(s.caption)}</div>
-        </div>
-      `;
+        <div class="card" style="cursor:pointer;" onclick="viewStatus('${escapeHTML(s.name)}', '${s.mediaData}', '${s.mediaType}', '${escapeHTML(s.caption)}')">
+          <div style="font-weight:800;">${escapeHTML(s.name)}</div>
+          <div style="font-size:12px;opacity:.6;">Clique para visualizar em ecrã inteiro</div>
+        </div>`;
     }).join("");
   });
 }
 
-window.deleteStatus = async (statusId) => {
-  if(confirm("Desejas eliminar este status?")) {
-    await deleteDoc(doc(db, "statuses", statusId));
-    showToast("Status eliminado.");
+window.viewStatus = (name, mediaData, mediaType, caption) => {
+  $("statusViewerName").textContent = name;
+  $("statusViewerCaption").textContent = caption;
+  const box = $("statusViewerContent");
+  
+  if(mediaType === "video"){
+    box.innerHTML = `<video id="statusVideo" src="${mediaData}" autoplay></video>`;
+  } else {
+    box.innerHTML = `<img src="${mediaData}">`;
   }
+
+  $("statusViewer").classList.remove("hidden");
+  
+  let fill = $("statusProgressFill");
+  fill.style.width = "0%";
+  let duration = 5000;
+  let elapsed = 0;
+
+  clearInterval(statusTimer);
+  statusTimer = setInterval(() => {
+    elapsed += 100;
+    fill.style.width = (elapsed / duration * 100) + "%";
+    if(elapsed >= duration){
+      closeStatusViewer();
+    }
+  }, 100);
+};
+
+window.closeStatusViewer = () => {
+  clearInterval(statusTimer);
+  $("statusViewer").classList.add("hidden");
 };
 </script>
 </body>
